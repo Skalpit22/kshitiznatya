@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ne">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>क्षितिज नाट्य समूह — Kshitiz Natya Samuha</title>
+<meta name="description" content="क्षितिज नाट्य समूह, बिर्तामोड-१, झापा। एक इट्टा — एक धुर अभियान।"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Mukta','Noto Serif',Georgia,serif;background:#FDFAF5;color:#1A1108;overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-thumb{background:#B01C2E;border-radius:3px;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,250,245,0.96);backdrop-filter:blur(16px);border-bottom:1px solid #EAD8BC;padding:0 5%;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
+.logo-circle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#8B1520,#B01C2E);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px;flex-shrink:0;}
+.logo-text{font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#1A1108;line-height:1.1;}
+.logo-sub{font-size:9px;color:#9A7D5A;letter-spacing:1.5px;text-transform:uppercase;}
+.nav-links{display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.nl{cursor:pointer;font-size:12.5px;color:#6B5232;transition:color .2s;padding-bottom:2px;border-bottom:2px solid transparent;}
+.nl:hover,.nl.act{color:#B01C2E;border-bottom-color:#B01C2E;}
+.lang-btn{background:#EDD9BB;color:#3D2B12;border:1.5px solid #D4B896;padding:4px 13px;border-radius:20px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600;}
+.lang-btn:hover{background:#B01C2E;color:#fff;border-color:#B01C2E;}
+.ham{display:none;background:none;border:none;cursor:pointer;font-size:22px;color:#1A1108;}
+.mob-menu{display:none;flex-direction:column;padding:10px 0 16px;border-top:1px solid #EAD8BC;}
+.mob-menu a{padding:10px 0;font-size:15px;color:#3D2B12;cursor:pointer;text-decoration:none;display:block;}
+.mob-menu a:hover{color:#B01C2E;}
+
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;padding:108px 5% 70px;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 72% 28%,rgba(201,150,58,0.13) 0%,transparent 58%),radial-gradient(ellipse at 12% 82%,rgba(176,28,46,0.07) 0%,transparent 48%);pointer-events:none;}
+.hero-content{max-width:820px;position:relative;z-index:1;animation:fu .7s ease forwards;}
+@keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#B01C2E;font-weight:700;margin-bottom:10px;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,72px);font-weight:700;line-height:1.08;color:#1A1108;margin-bottom:8px;}
+h1 span.red{color:#B01C2E;}
+.origin-tag{font-size:11.5px;background:#EDD9BB;border-radius:12px;padding:4px 12px;color:#6B5232;font-weight:600;display:inline-block;margin-bottom:16px;}
+.tagline{font-size:clamp(14px,2.2vw,18px);color:#6B5232;max-width:580px;line-height:1.78;margin-bottom:36px;font-style:italic;}
+.btn-r{background:linear-gradient(135deg,#8B1520,#B01C2E);color:#fff;border:none;padding:13px 28px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-r:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(176,28,46,.26);}
+.btn-g{background:transparent;color:#B01C2E;border:2px solid #B01C2E;padding:11px 26px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;transition:all .2s;text-decoration:none;display:inline-block;}
+.btn-g:hover{background:#B01C2E;color:#fff;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;}
+
+/* STATS */
+.stats-bar{background:linear-gradient(135deg,#8B1520,#B01C2E);padding:32px 5%;}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:860px;margin:0 auto;text-align:center;}
+.stat-n{font-family:'Playfair Display',serif;font-size:clamp(18px,2.8vw,28px);font-weight:700;color:#fff;margin-bottom:4px;}
+.stat-l{font-size:11px;color:rgba(255,255,255,0.62);letter-spacing:1px;text-transform:uppercase;}
+
+/* SECTIONS */
+section{padding:80px 5%;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.bar{width:56px;height:3px;background:linear-gradient(90deg,#B01C2E,#C9963A);margin:14px 0 0;border-radius:2px;}
+h2{font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,38px);font-weight:700;color:#1A1108;line-height:1.2;}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px;}
+p{font-size:15px;color:#6B5232;line-height:1.85;margin-bottom:14px;}
+.card{background:#fff;border:1px solid #EAD8BC;border-radius:10px;padding:22px 18px;box-shadow:0 2px 14px rgba(26,17,8,0.08);transition:all .2s;}
+.card:hover{box-shadow:0 8px 28px rgba(176,28,46,0.11);transform:translateY(-3px);}
+.reg-box{background:#F5EBD8;border:1px solid #D4B896;border-radius:10px;padding:16px 18px;margin-top:8px;}
+.reg-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #EAD8BC;font-size:13px;}
+.reg-row:last-child{border-bottom:none;}
+.reg-l{color:#9A7D5A;}
+.reg-v{color:#1A1108;font-weight:700;}
+.val-item{display:flex;gap:12px;margin-bottom:20px;}
+.val-icon{width:42px;height:42px;border-radius:50%;background:#FDF3DC;border:2px solid #C9963A;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px;}
+.val-title{font-weight:700;font-size:14.5px;color:#1A1108;margin-bottom:3px;}
+.val-desc{font-size:13px;color:#9A7D5A;line-height:1.65;}
+.alt-bg{background:#F5EBD8;}
+
+/* TIMELINE */
+.timeline{position:relative;}
+.timeline::before{content:'';position:absolute;left:80px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,#B01C2E,#C9963A);border-radius:1px;}
+.tm-item{display:flex;margin-bottom:30px;position:relative;}
+.tm-year{width:80px;flex-shrink:0;text-align:right;padding-right:18px;padding-top:13px;font-size:11px;font-weight:700;color:#B01C2E;line-height:1.3;}
+.tm-year.gold{color:#C9963A;}
+.tm-dot{width:14px;height:14px;border-radius:50%;background:#B01C2E;border:3px solid #F5EBD8;flex-shrink:0;margin-top:14px;z-index:1;box-shadow:0 0 0 3px rgba(176,28,46,0.2);}
+.tm-dot.gold{background:#C9963A;box-shadow:0 0 0 3px rgba(201,150,58,0.2);}
+.tm-body{padding-left:16px;padding-top:6px;}
+.tm-title{font-weight:700;font-size:15px;color:#1A1108;margin-bottom:5px;}
+.tm-title.gold{color:#C9963A;}
+.tm-desc{font-size:13.5px;color:#6B5232;line-height:1.72;}
+
+/* FOUNDER */
+.founder-card{background:linear-gradient(135deg,#F5EBD8,#EDD9BB);border:2px solid #D4B896;border-radius:14px;padding:36px 22px;text-align:center;margin-bottom:18px;}
+.founder-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,#8B1520,#B01C2E);margin:0 auto 13px;display:flex;align-items:center;justify-content:center;font-size:36px;color:#fff;font-weight:900;}
+.founder-name{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1A1108;margin-bottom:4px;}
+.founder-aka{font-size:13px;color:#B01C2E;font-style:italic;font-weight:600;}
+.awards-box{background:#FDF3DC;border:1px solid #C9963A;border-radius:10px;padding:18px;}
+.awards-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#C9963A;font-weight:700;margin-bottom:12px;}
+.award-item{display:flex;align-items:flex-start;gap:8px;margin-bottom:9px;padding-bottom:9px;border-bottom:1px solid #EDD9BB;font-size:13px;color:#3D2B12;line-height:1.55;}
+.award-item:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.award-num{color:#C9963A;font-weight:700;flex-shrink:0;}
+
+/* ACTIVITIES */
+.act-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:36px;}
+.act-icon{font-size:28px;margin-bottom:10px;}
+.act-title{font-weight:700;font-size:15px;color:#1A1108;margin-bottom:6px;}
+.act-desc{font-size:13px;color:#9A7D5A;line-height:1.7;}
+
+/* TEAM */
+.exec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:36px;}
+.dept-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.team-card{background:#fff;border:1px solid #EAD8BC;border-radius:10px;padding:18px 12px;text-align:center;box-shadow:0 2px 10px rgba(26,17,8,0.07);}
+.team-card.gold-border{border-color:#C9963A;}
+.team-avatar{width:50px;height:50px;border-radius:50%;margin:0 auto 10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:16px;}
+.av-red{background:linear-gradient(135deg,#8B1520,#B01C2E);}
+.av-gold{background:linear-gradient(135deg,#C9963A,#E8B84B);}
+.av-purple{background:linear-gradient(135deg,#4a2a8a,#7a3aaa);}
+.team-name{font-weight:700;font-size:13px;color:#1A1108;margin-bottom:2px;}
+.team-aka{font-size:11px;color:#B01C2E;font-style:italic;margin-bottom:2px;}
+.team-role{font-size:11px;color:#9A7D5A;}
+.section-sub{font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:#B01C2E;font-weight:700;margin:32px 0 14px;}
+
+/* NATAK */
+.natak-placeholder{background:linear-gradient(135deg,#F5EBD8,#EDD9BB);border:2px dashed #D4B896;border-radius:12px;padding:38px 20px;text-align:center;margin-bottom:16px;}
+.natak-badge{background:rgba(201,150,58,0.15);border:1px solid rgba(201,150,58,0.4);border-radius:20px;display:inline-block;padding:3px 12px;font-size:11px;color:#7a5a10;font-weight:700;margin-top:8px;}
+.supporters-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.sup-tag{background:#F5EBD8;border:1px solid #EAD8BC;border-radius:20px;padding:3px 10px;font-size:11.5px;color:#3D2B12;}
+.vision-box{background:linear-gradient(135deg,#FDF3DC,#fffde8);border:1.5px solid #C9963A;border-radius:12px;padding:20px 18px;}
+.vision-title{display:flex;align-items:center;gap:8px;font-weight:700;font-size:15px;color:#C9963A;margin-bottom:10px;}
+
+/* APPEAL */
+.appeal-wrap{background:linear-gradient(135deg,#FDF3DC,#fffef5);border:2px solid #C9963A;border-radius:14px;padding:32px 28px;position:relative;overflow:hidden;margin-top:28px;}
+.appeal-bg{position:absolute;top:-18px;right:-18px;font-size:90px;opacity:0.07;user-select:none;pointer-events:none;}
+.pull-quote{font-family:'Playfair Display',serif;font-size:clamp(15px,2.2vw,19px);font-weight:700;color:#3D2B12;font-style:italic;margin-bottom:20px;line-height:1.6;border-left:4px solid #C9963A;padding-left:16px;}
+.bold-statements{background:#EDD9BB;border-radius:8px;padding:14px 16px;margin:14px 0 18px;display:flex;flex-direction:column;gap:8px;}
+.bs-item{display:flex;gap:10px;align-items:flex-start;font-size:14.5px;color:#3D2B12;font-weight:600;line-height:1.6;}
+.bs-dash{color:#B01C2E;font-weight:900;font-size:16px;margin-top:1px;flex-shrink:0;}
+.cta-box{background:linear-gradient(135deg,#B01C2E,#8B1520);color:#fff;border-radius:10px;padding:18px 20px;margin:18px 0;text-align:center;}
+.cta-box-title{font-family:'Playfair Display',serif;font-size:clamp(14px,2.2vw,18px);font-weight:700;margin-bottom:6px;line-height:1.5;}
+.cta-box-sub{font-size:13px;opacity:0.82;}
+.tier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0 18px;}
+.tier{background:#fff;border-radius:10px;padding:14px 16px;text-align:center;}
+.tier.red-border{border:2px solid #B01C2E;}
+.tier.gold-border{border:2px solid #C9963A;}
+.tier-icon{font-size:26px;margin-bottom:6px;}
+.tier-amt{font-weight:900;font-size:17px;}
+.tier-amt.red{color:#B01C2E;}
+.tier-amt.gold{color:#C9963A;}
+.tier-lbl{font-size:12px;color:#3D2B12;margin-top:3px;}
+.donate-header{font-weight:700;font-size:14px;color:#B01C2E;margin:22px 0 12px;letter-spacing:1px;}
+.bank-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
+.bank-card{background:#fff;border:1.5px solid #EAD8BC;border-radius:8px;padding:14px 16px;}
+.bank-label{font-size:11px;color:#9A7D5A;letter-spacing:1px;margin-bottom:6px;}
+.bank-num{font-family:monospace;font-weight:700;color:#1A1108;font-size:15px;}
+.bank-sub{font-size:11.5px;color:#9A7D5A;margin-top:4px;}
+.sig{border-top:1px solid #D4B896;padding-top:16px;margin-top:16px;text-align:right;}
+.sig-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1A1108;}
+.sig-role{font-size:12.5px;color:#9A7D5A;}
+.letter-header{background:#fff;border:1.5px solid #D4B896;border-radius:10px;padding:14px 20px;margin-bottom:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+
+/* NEWS */
+.news-controls{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin:24px 0 26px;}
+.tag-filters{display:flex;gap:8px;flex-wrap:wrap;}
+.tag-btn{padding:5px 14px;border-radius:20px;border:1.5px solid #EAD8BC;background:#fff;color:#6B5232;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .2s;}
+.tag-btn.active,.tag-btn:hover{background:#B01C2E;color:#fff;border-color:#B01C2E;}
+.admin-btn{display:flex;align-items:center;gap:6px;padding:7px 14px;border-radius:6px;border:1.5px dashed #B01C2E;background:rgba(176,28,46,0.06);color:#B01C2E;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;}
+.admin-form{background:#fff;border:1.5px solid #B01C2E;border-radius:10px;padding:20px;margin-bottom:24px;box-shadow:0 4px 18px rgba(176,28,46,0.1);}
+.admin-form-title{font-weight:700;color:#B01C2E;margin-bottom:14px;font-size:14px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:10px;}
+.fi{border:1.5px solid #EAD8BC;border-radius:6px;padding:8px 12px;font-family:inherit;font-size:14px;outline:none;width:100%;}
+.fi:focus{border-color:#B01C2E;}
+textarea.fi{min-height:80px;resize:vertical;width:100%;margin-bottom:10px;}
+.form-btns{display:flex;gap:10px;}
+.post-btn{padding:8px 20px;background:#B01C2E;color:#fff;border:none;border-radius:6px;font-family:inherit;font-weight:700;cursor:pointer;font-size:14px;}
+.cancel-btn{padding:8px 20px;background:#eee;color:#3D2B12;border:none;border-radius:6px;font-family:inherit;font-weight:600;cursor:pointer;font-size:14px;}
+.news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;}
+.news-card{background:#fff;border:1px solid #EAD8BC;border-radius:10px;padding:20px 18px;box-shadow:0 2px 12px rgba(26,17,8,0.07);transition:all .2s;}
+.news-card:hover{box-shadow:0 6px 22px rgba(176,28,46,0.1);transform:translateY(-2px);}
+.nc-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
+.nc-tag{display:inline-block;background:rgba(176,28,46,0.09);color:#B01C2E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px;}
+.nc-meta{display:flex;align-items:center;gap:8px;}
+.nc-date{font-size:11.5px;color:#9A7D5A;}
+.nc-del{background:none;border:none;cursor:pointer;color:#9A7D5A;padding:2px;font-size:13px;}
+.nc-title{font-weight:700;font-size:15px;color:#1A1108;margin-bottom:7px;line-height:1.4;}
+.nc-body{font-size:13.5px;color:#6B5232;line-height:1.7;}
+.no-news{text-align:center;color:#9A7D5A;font-size:15px;padding:40px 0;}
+
+/* DONATE */
+.donate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;}
+.esewa-box{margin-top:12px;background:#F5EBD8;border-radius:6px;padding:10px 13px;font-size:13px;color:#3D2B12;text-align:center;font-weight:600;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:34px;margin-top:36px;}
+.ci{display:flex;gap:12px;margin-bottom:20px;}
+.ci-icon{color:#B01C2E;margin-top:2px;font-size:17px;}
+.ci-label{font-size:11px;color:#9A7D5A;letter-spacing:1px;text-transform:uppercase;margin-bottom:3px;}
+.ci-value{color:#1A1108;font-size:15px;font-weight:700;text-decoration:none;}
+.ci-sub{font-size:12.5px;color:#9A7D5A;margin-top:1px;}
+.map-link{color:#B01C2E;font-size:12.5px;text-decoration:none;margin-top:6px;display:inline-flex;align-items:center;gap:4px;font-weight:600;}
+.social-row{display:flex;gap:10px;margin-top:4px;}
+.soc{width:40px;height:40px;border-radius:6px;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:18px;}
+.soc.fb{background:rgba(24,119,242,0.1);border:1.5px solid rgba(24,119,242,0.22);color:#1877F2;}
+.soc.yt{background:rgba(255,0,0,0.08);border:1.5px solid rgba(255,0,0,0.18);color:#CC0000;}
+.form-title{font-weight:700;font-size:15px;color:#1A1108;margin-bottom:14px;}
+.cf{width:100%;background:#fff;border:1.5px solid #EAD8BC;border-radius:7px;padding:10px 14px;color:#1A1108;font-family:inherit;font-size:14px;margin-bottom:10px;outline:none;}
+.cf:focus{border-color:#B01C2E;}
+textarea.cf{resize:vertical;min-height:100px;}
+.submit-btn{width:100%;background:linear-gradient(135deg,#8B1520,#B01C2E);color:#fff;border:none;padding:13px;border-radius:6px;cursor:pointer;font-family:inherit;font-size:14px;font-weight:600;}
+.submit-btn:hover{transform:translateY(-1px);}
+
+/* FOOTER */
+footer{background:#1A1108;padding:42px 5% 26px;text-align:center;}
+.footer-logo{display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:12px;}
+.footer-org{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#fff;}
+.footer-tagline{font-family:'Playfair Display',serif;font-size:13px;color:#C9963A;font-style:italic;margin-bottom:14px;}
+.footer-nav{display:flex;justify-content:center;gap:16px;margin-bottom:18px;flex-wrap:wrap;}
+.footer-nav a{font-size:11.5px;color:rgba(255,255,255,0.35);cursor:pointer;text-decoration:none;}
+.footer-nav a:hover{color:rgba(255,255,255,0.7);}
+.footer-div{height:1px;background:rgba(255,255,255,0.08);max-width:440px;margin:0 auto 14px;}
+.footer-copy{font-size:11px;color:rgba(255,255,255,0.28);}
+.footer-reg{font-size:10.5px;color:rgba(255,255,255,0.18);margin-top:4px;}
+
+/* RESPONSIVE */
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .ham{display:block;}
+  .mob-menu{display:flex;}
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .two-col{grid-template-columns:1fr;}
+  .act-grid{grid-template-columns:repeat(2,1fr);}
+  .exec-grid{grid-template-columns:repeat(2,1fr);}
+  .dept-grid{grid-template-columns:repeat(2,1fr);}
+  .form-row{grid-template-columns:1fr;}
+  .appeal-wrap{padding:22px 16px;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a class="logo" href="#home">
+      <div class="logo-circle">क्ष</div>
+      <div>
+        <div class="logo-text" id="nav-org">क्षितिज नाट्य समूह</div>
+        <div class="logo-sub">BIRTAMOD · JHAPA</div>
+      </div>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <span class="nl act" onclick="go('home')" data-key="home">गृहपृष्ठ</span>
+      <span class="nl" onclick="go('about')" data-key="about">हाम्रोबारे</span>
+      <span class="nl" onclick="go('journey')" data-key="journey">यात्रा</span>
+      <span class="nl" onclick="go('activities')" data-key="activities">गतिविधि</span>
+      <span class="nl" onclick="go('team')" data-key="team">टोली</span>
+      <span class="nl" onclick="go('natak')" data-key="natak">नाटक घर</span>
+      <span class="nl" onclick="go('appeal')" data-key="appeal">हाम्रो अपिल</span>
+      <span class="nl" onclick="go('news')" data-key="news">समाचार</span>
+      <span class="nl" onclick="go('donate')" data-key="donate">सहयोग</span>
+      <span class="nl" onclick="go('contact')" data-key="contact">सम्पर्क</span>
+      <button class="lang-btn" onclick="toggleLang()" id="lang-btn">EN</button>
+    </div>
+    <button class="ham" onclick="toggleMenu()" id="ham-btn">☰</button>
+  </div>
+  <div class="mob-menu" id="mob-menu">
+    <a onclick="go('home')">गृहपृष्ठ / Home</a>
+    <a onclick="go('about')">हाम्रोबारे / About</a>
+    <a onclick="go('journey')">यात्रा / Journey</a>
+    <a onclick="go('activities')">गतिविधि / Activities</a>
+    <a onclick="go('team')">टोली / Team</a>
+    <a onclick="go('natak')">नाटक घर / Natak Ghar</a>
+    <a onclick="go('appeal')">हाम्रो अपिल / Appeal</a>
+    <a onclick="go('news')">समाचार / News</a>
+    <a onclick="go('donate')">सहयोग / Support</a>
+    <a onclick="go('contact')">सम्पर्क / Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="label">बिर्तामोड-१, झापा · कोशी प्रदेश · स्था. २०५८ सा.वि.</div>
+    <h1><span class="red">क्षितिज</span><br/><em>नाट्य समूह</em></h1>
+    <div class="origin-tag">सुरुमा फिदिम-१, पाँचथरमा स्थापित</div>
+    <p class="tagline">"सबै जातका थुँगा-थुँगालाई उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा"</p>
+    <div class="hero-btns">
+      <a class="btn-r" onclick="go('donate')">सहयोग गर्नुस्</a>
+      <a class="btn-g" onclick="go('about')">हाम्रो कथा</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-grid">
+    <div><div class="stat-n">२०५८ सा.वि.</div><div class="stat-l">स्थापना</div></div>
+    <div><div class="stat-n">२५+</div><div class="stat-l">वर्ष नाट्यमा</div></div>
+    <div><div class="stat-n">१,०००+</div><div class="stat-l">समुदाय समर्थकहरू</div></div>
+    <div><div class="stat-n">अन्तर्राष्ट्रिय</div><div class="stat-l">सम्मान</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="label">हाम्रोबारे</div>
+    <h2>नाटकले नेपाललाई जोड्छ</h2>
+    <div class="bar"></div>
+    <div class="two-col" style="margin-top:36px;">
+      <div>
+        <p>क्षितिज नाट्य समूहको स्थापना २०५८ सालमा फिदिम-१, पाँचथरमा भएको थियो। सुरुदेखि नै यस संस्थाले सडक नाटक, मञ्च नाटक र सामाजिक रूपान्तरणका लागि कलाको माध्यम प्रयोग गर्ने प्रतिबद्धतामा समर्पित रह्यो।</p>
+        <p>वर्षहरू बित्दै जाँदा संस्था बिस्तारै फैलियो — रेडियो नाटक, सांस्कृतिक महोत्सव, संगीत र नृत्यमा पनि सक्रिय बन्दै। आफ्नो पहुँच र लक्ष्य विस्तार हुँदै गएपछि क्षितिज नाट्य समूहले आफ्नो केन्द्रीय कार्यालय बिर्तामोड-१, झापामा स्थापना गर्‍यो।</p>
+        <p>आज यो संस्था पूर्वी नेपालको सबैभन्दा सम्मानित नाट्य संस्था मध्ये एक हो। संस्थापक र केन्द्रीय अध्यक्ष माधव प्रसाद खतिवडा — माधव 'कल्पित' — को नेतृत्वमा संस्था नेपाली कला, संस्कृति र पहिचानको प्रवर्धनमा निरन्तर लागिरहेको छ।</p>
+      </div>
+      <div>
+        <div class="val-item"><div class="val-icon">🎭</div><div><div class="val-title">विविधतामा एकता</div><div class="val-desc">सबै समुदाय, भाषा र संस्कृतिलाई एउटै मञ्चमा।</div></div></div>
+        <div class="val-item"><div class="val-icon">📜</div><div><div class="val-title">जीवित सम्पदा</div><div class="val-desc">मौखिक इतिहास, रीतिरिवाज, संगीत र सामूहिक सम्झनाको संरक्षण।</div></div></div>
+        <div class="val-item"><div class="val-icon">🌄</div><div><div class="val-title">जरा र भविष्य</div><div class="val-desc">आफ्नो उद्गमलाई सम्मान गर्दै नेपालको सांस्कृतिक भविष्य निर्माण।</div></div></div>
+        <div class="reg-box">
+          <div class="label" style="margin-bottom:10px;">दर्ता विवरण</div>
+          <div class="reg-row"><span class="reg-l">दर्ता नं.</span><span class="reg-v">२३०-५८/५९</span></div>
+          <div class="reg-row"><span class="reg-l">पा.न.</span><span class="reg-v">३०१६५४०९८६</span></div>
+          <div class="reg-row"><span class="reg-l">स.क.पा.न.</span><span class="reg-v">२४४९९</span></div>
+          <div class="reg-row" style="border:none;"><span class="reg-l">ठेगाना</span><span class="reg-v">बिर्तामोड-१, झापा</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey" class="alt-bg">
+  <div class="section-inner" style="max-width:840px;">
+    <div class="label">इतिहास र विकास</div>
+    <h2>हाम्रो यात्रा</h2>
+    <div class="bar"></div>
+    <p style="margin-top:18px;margin-bottom:40px;max-width:660px;">पाँचथरका पहाडमा उत्साही कलाकारहरूको सानो समूहदेखि झापामा आफ्नै नाटक घर भएको संस्था बन्नसम्म — क्षितिज नाट्य समूहको कथा उत्साह, समुदाय र कलाप्रतिको अटल समर्पणको कथा हो।</p>
+    <div class="timeline">
+      <div class="tm-item"><div class="tm-year">२०५८</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">फिदिममा स्थापना</div><div class="tm-desc">फिदिम-१, पाँचथरका कलाकारहरू एक साझा सपनालिएर एक ठाउँ आए। सडक नाटक, मञ्च प्रदर्शन र जनचेतना अभियान शुरू भए।</div></div></div>
+      <div class="tm-item"><div class="tm-year">२०६० दशक</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">विस्तार र वृद्धि</div><div class="tm-desc">रेडियो नाटक, मञ्च प्रदर्शन र सांस्कृतिक कार्यक्रम विस्तार हुँदै कोशी प्रदेश र बाहिर पनि मान्यता प्राप्त गर्दै गयो।</div></div></div>
+      <div class="tm-item"><div class="tm-year">२०६५+</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">झापामा जरा जमाउँदै</div><div class="tm-desc">बिर्तामोड-१, झापामा केन्द्रीय कार्यालय स्थापना भयो — पूर्वी नेपालमा नाटकलाई अझ नजिक ल्याउँदै।</div></div></div>
+      <div class="tm-item"><div class="tm-year">२०७५+</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">एक इट्टा अभियान</div><div class="tm-desc">नेपालभरका हजारौं समर्थकहरूले 'एक इट्टा सहयोग' अभियानमा साथ दिए। अभियान अहिले पनि जारी छ — नाटक घर अन्तिम चरणमा, र संग्रहालय निर्माणका लागि।</div></div></div>
+      <div class="tm-item"><div class="tm-year">२०८२</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">झापा नाटक घर — अन्तिम चरण</div><div class="tm-desc">झापा नाटक घर निर्माण अन्तिम चरणमा — पूर्वी नेपालमा कुनै नाट्य संस्थाको स्वामित्वमा रहेको पहिलो नाटक घर। एक इट्टा अभियान अब संग्रहालयका लागि पनि जारी छ।</div></div></div>
+      <div class="tm-item"><div class="tm-year">२०८२</div><div class="tm-dot"></div><div class="tm-body"><div class="tm-title">अन्तर्राष्ट्रिय सम्मान</div><div class="tm-desc">८ मार्च २०२६ मा दानाङ, भियतनाममा माधव 'कल्पित'लाई अन्तर्राष्ट्रिय सम्मान प्रदान गरियो।</div></div></div>
+      <div class="tm-item"><div class="tm-year gold">भविष्य</div><div class="tm-dot gold"></div><div class="tm-body"><div class="tm-title gold">बहुसांस्कृतिक संग्रहालय</div><div class="tm-desc">बहुजाति, बहुभाषी, बहुसांस्कृतिक संग्रहालय — नेपालको अद्भुत जीवित सम्पदा आउने पुस्ताहरूका लागि संरक्षण।</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section id="founder">
+  <div class="section-inner">
+    <div class="two-col" style="align-items:start;">
+      <div>
+        <div class="founder-card">
+          <div class="founder-avatar">म</div>
+          <div class="founder-name">माधव प्रसाद खतिवडा</div>
+          <div class="founder-aka">माधव 'कल्पित'</div>
+        </div>
+        <div class="awards-box">
+          <div class="awards-title">सम्मान तथा पुरस्कार</div>
+          <div class="award-item"><span class="award-num">१.</span>वि.सं. २०५९ — पूर्वाञ्चल नाट्य समोत्सव, धरानमा सम्मानित।</div>
+          <div class="award-item"><span class="award-num">२.</span>वि.सं. २०६४ — आरोहण गुरुकुलद्वारा राष्ट्रिय नाटक महोत्सवबाट सम्मानित।</div>
+          <div class="award-item"><span class="award-num">३.</span>वि.सं. २०७४ — नेपाल प्रज्ञा प्रतिष्ठानद्वारा इलाममा राष्ट्रिय नाट्य महोत्सवबाट सम्मानित।</div>
+          <div class="award-item"><span class="award-num">४.</span>वि.सं. २०७८ — कोशी प्रदेश सरकारद्वारा नाट्य कला सम्मान पुरस्कार–२०७८ प्रदान।</div>
+          <div class="award-item"><span class="award-num">५.</span>सन् २०२६ मार्च ८ — दानाङ, भियतनाममा अन्तर्राष्ट्रिय सम्मान प्रदान।</div>
+          <div class="award-item"><span class="award-num">६.</span>वि.सं. २०८२/१२/२७ — इन्टरनेशनल बक्स अफिस अवार्डबाट सम्मानित।</div>
+          <div class="award-item"><span class="award-num">७.</span>स्थानीयदेखि अन्तर्राष्ट्रिय स्तरसम्म करिब १,००० भन्दा बढी सम्मानपत्र तथा कदरपत्र।</div>
+        </div>
+      </div>
+      <div>
+        <div class="label">संस्थापक र अध्यक्ष</div>
+        <h2>माधव प्रसाद खतिवडा</h2>
+        <div style="font-family:'Playfair Display',serif;font-size:15px;color:#B01C2E;font-style:italic;margin-top:4px;margin-bottom:4px;">माधव 'कल्पित'</div>
+        <div class="bar"></div>
+        <p style="margin-top:18px;">माधव प्रसाद खतिवडा — माधव 'कल्पित' — क्षितिज नाट्य समूहका संस्थापक र केन्द्रीय अध्यक्ष हुन्। उनले दुई दशकभन्दा बढी आफ्नो जीवन नेपालमा नाट्यकला र प्रदर्शनकलाको विकासमा समर्पित गरेका छन्।</p>
+        <p>उनको नेतृत्वमा पाँचथरको सानो सामुदायिक नाट्य समूह पूर्वी नेपालको सबैभन्दा सम्मानित सांस्कृतिक संस्था मध्ये एक बन्यो — झापामा आफ्नै नाटक घर र सांस्कृतिक संग्रहालयको भव्य सपनासहित।</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities" class="alt-bg">
+  <div class="section-inner">
+    <div class="label">हाम्रो काम</div>
+    <h2>हाम्रा गतिविधिहरू</h2>
+    <div class="bar"></div>
+    <div class="act-grid">
+      <div class="card"><div class="act-icon">🎭</div><div class="act-title">मञ्च नाटक</div><div class="act-desc">सामाजिक यथार्थमा आधारित मौलिक नेपाली मञ्च नाटकहरू।</div></div>
+      <div class="card"><div class="act-icon">🛣</div><div class="act-title">सडक नाटक</div><div class="act-desc">समुदायमा सीधा पुग्ने नाटक — बजार, विद्यालय, सार्वजनिक चोकहरूमा।</div></div>
+      <div class="card"><div class="act-icon">🎙</div><div class="act-title">रेडियो नाटक</div><div class="act-desc">रेडियोमार्फत नाट्यकृतिको प्रसारण — ग्रामीण समुदायसम्म पुग्दै।</div></div>
+      <div class="card"><div class="act-icon">🥁</div><div class="act-title">सांस्कृतिक महोत्सव</div><div class="act-desc">नेपालको अद्भुत सांस्कृतिक विविधता उत्सव मनाउने महोत्सवहरू।</div></div>
+      <div class="card"><div class="act-icon">🎼</div><div class="act-title">संगीत र नृत्य</div><div class="act-desc">नेपाली लोक संगीत, परम्परागत वाद्ययन्त्र र लोक नृत्य।</div></div>
+      <div class="card"><div class="act-icon">🌱</div><div class="act-title">युवा र समुदाय</div><div class="act-desc">अर्को पुस्ताका नेपाली कलाकारका लागि कार्यशाला र प्रशिक्षण।</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- NATAK GHAR -->
+<section id="natak">
+  <div class="section-inner">
+    <div class="label">हाम्रो नाटक घर</div>
+    <h2>झापा नाटक घर</h2>
+    <div class="bar"></div>
+    <div class="two-col" style="margin-top:36px;align-items:start;">
+      <div>
+        <div class="natak-placeholder">
+          <div style="font-size:52px;margin-bottom:8px;">🏛</div>
+          <div style="font-size:13px;color:#6B5232;font-weight:600;">Jhapa Natak Ghar</div>
+          <div style="font-size:12px;color:#9A7D5A;">Birtamod-1, Jhapa</div>
+          <div class="natak-badge">🔨 निर्माण अन्तिम चरणमा</div>
+        </div>
+        <div class="label" style="margin-bottom:8px;">सहयोगीहरू</div>
+        <div class="supporters-wrap">
+          <span class="sup-tag">केपी शर्मा ओली</span><span class="sup-tag">शेर बहादुर देउबा</span><span class="sup-tag">माधव कुमार नेपाल</span><span class="sup-tag">राजेन्द्र लिङ्देन</span><span class="sup-tag">रवि लामिछाने</span><span class="sup-tag">देवराज घिमिरे</span><span class="sup-tag">इन्दिरा राना मगर</span><span class="sup-tag">गिरिराज मणि पोखरेल</span><span class="sup-tag">अग्नि प्रसाद खरेल</span><span class="sup-tag">पवित्रा महतारा प्रसाई</span><span class="sup-tag">राजेन्द्र कुमार पोखरेल</span><span class="sup-tag">हर्क साम्पाङ</span><span class="sup-tag">भक्ति सिटौला</span><span class="sup-tag">हर्क माया बि.क.</span><span class="sup-tag">गंगा प्रसाद उप्रेती</span><span class="sup-tag">र हजारौं दाताहरू</span>
+        </div>
+      </div>
+      <div>
+        <p>झापा नाटक घर पूर्वी नेपालमा कुनै नाट्य संस्थाको स्वामित्वमा रहेको पहिलो नाटक घर हो — हजारौं समर्थकहरूको उदारता र सामूहिक इच्छाशक्तिले निर्मित।</p>
+        <p>बिर्तामोड-१, झापामा अवस्थित यो नाटक घर क्षितिज नाट्य समूहको स्थायी आवास र क्षेत्रको जीवन्त सांस्कृतिक केन्द्र हो।</p>
+        <div class="vision-box">
+          <div class="vision-title"><span>🏺</span> भविष्यको सपना: सांस्कृतिक संग्रहालय</div>
+          <p style="font-size:13.5px;color:#3D2B12;margin:0;">क्षितिज नाट्य समूहको अर्को महान् अध्याय हो एक बहुजाति, बहुभाषी, बहुसांस्कृतिक संग्रहालयको निर्माण।</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team" class="alt-bg">
+  <div class="section-inner">
+    <div class="label">टोली</div>
+    <h2>हाम्रो नेतृत्व</h2>
+    <div class="bar"></div>
+    <div class="section-sub">कार्यकारी समिति</div>
+    <div class="exec-grid">
+      <div class="team-card gold-border"><div class="team-avatar av-gold">म</div><div class="team-name">माधव प्रसाद खतिवडा</div><div class="team-aka">माधव 'कल्पित'</div><div class="team-role">केन्द्रीय अध्यक्ष</div></div>
+      <div class="team-card"><div class="team-avatar av-red">ह</div><div class="team-name">हरि प्र. भण्डारी</div><div class="team-role">बरिष्ठ उपाध्यक्ष</div></div>
+      <div class="team-card"><div class="team-avatar av-red">सु</div><div class="team-name">सुजना खतिवडा</div><div class="team-role">उपाध्यक्ष</div></div>
+      <div class="team-card"><div class="team-avatar av-red">र</div><div class="team-name">राजकुमार भट्टराई</div><div class="team-role">का. सचिव</div></div>
+      <div class="team-card"><div class="team-avatar av-red">मु</div><div class="team-name">मुना प्रसाईं</div><div class="team-role">कोषाध्यक्ष</div></div>
+    </div>
+    <div class="section-sub">विभागीय प्रमुखहरू</div>
+    <div class="dept-grid">
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">ग</div><div class="team-name">गजेन्द्र पृथक</div><div class="team-role">नाट्य</div></div>
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">तु</div><div class="team-name">तुलसी प्र. भट्टराई</div><div class="team-role">साहित्य</div></div>
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">नि</div><div class="team-name">निरज पोखरेल</div><div class="team-role">संगीत</div></div>
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">स</div><div class="team-name">सविता रेग्मी</div><div class="team-role">नृत्य</div></div>
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">कु</div><div class="team-name">कुमार ढकाल</div><div class="team-role">संगठन</div></div>
+      <div class="team-card"><div class="team-avatar av-purple" style="width:44px;height:44px;font-size:14px;">भि</div><div class="team-name">भिमा शिवाकोटी</div><div class="team-role">संचार</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- APPEAL -->
+<section id="appeal">
+  <div class="section-inner" style="max-width:960px;">
+    <div class="label">हाम्रो अपिल</div>
+    <h2>एक इट्टा — एक धुर अभियान</h2>
+    <div class="bar"></div>
+    <div class="appeal-wrap">
+      <div class="appeal-bg">🧱</div>
+      <div class="letter-header">
+        <div><div style="font-size:11px;color:#9A7D5A;letter-spacing:1px;margin-bottom:3px;">विषय:</div><div style="font-weight:700;color:#1A1108;font-size:15px;">विशेष सहयोग सम्बन्धमा</div></div>
+        <div style="text-align:right;"><div style="font-size:11.5px;color:#9A7D5A;">क्षितिज नाट्य प्रतिष्ठान, झापा</div><div style="font-size:11.5px;color:#9A7D5A;">मो.नं. ९८४४६३७९५२</div></div>
+      </div>
+      <p style="font-size:14.5px;font-weight:500;">तपाइं आदरणीय मान्यजन प्रति सादर नमस्कार।</p>
+      <div class="pull-quote">"कहिलेकाहीँ एउटा सानो इट्टाले मात्र घर बन्दैन् — त्यसले सपना बोक्छ, आशा जोड्छ र भविष्य निर्माण गर्छ।"</div>
+      <p>यस्तै सपना बोकेर "एक इट्टा–एक पहिचान" को अभियानसहित क्षितिज नाट्य प्रतिष्ठान, झापाले पाँच वर्षअघि सुरु गरेको बहुजातीय सांस्कृतिक संग्रहालयसहितको झापा नाटक घर आज हजारौं शुभेच्छुकहरूको साथमा विस्तार हुँदै आएको छ।</p>
+      <div class="bold-statements">
+        <div class="bs-item"><span class="bs-dash">—</span>हामीले सडकबाट १ इट्टा माग्यौं — जनताले विश्वास दिए।</div>
+        <div class="bs-item"><span class="bs-dash">—</span>हामीले सानो ठाउँ माग्यौं — समाजले अपनत्व दियो।</div>
+        <div class="bs-item"><span class="bs-dash">—</span>त्यही विश्वासकै जगमा उभिएको यो अभियान आज अन्तर्राष्ट्रिय स्तरसम्म पुगेको छ।</div>
+      </div>
+      <p>सन् २०२६ मार्च ८ मा Government of Vietnam द्वारा नेपाली कला, साहित्य र संस्कृतिको संरक्षण तथा प्रवर्द्धनमा पुर्‍याएको योगदानको सम्मानस्वरूप प्रतिष्ठानलाई अन्तर्राष्ट्रिय सम्मान प्रदान गरिनु हामी सबै नेपालीका लागि गौरवको विषय हो।</p>
+      <p>तर अझै केही इट्टाहरू राखिन बाँकी छन् र केही धुर जमिनहरूमा तपाईंजस्ता दाताका नामहरू लेखिन पर्खिरहेका छन्। झापा नाटक घर निर्माण अन्तिम चरणमा पुगेको छ।</p>
+      <div class="tier-grid">
+        <div class="tier red-border"><div class="tier-icon">🧱</div><div class="tier-amt red">रु. १५</div><div class="tier-lbl">१ थान इट्टा</div></div>
+        <div class="tier gold-border"><div class="tier-icon">🌍</div><div class="tier-amt gold">रु. २,१०,०००+</div><div class="tier-lbl">१ धुर भूमिदान</div></div>
+      </div>
+      <p>तपाईंको सहयोग केवल आर्थिक योगदान मात्र होइन — यो एउटा संस्कृतिको संरक्षण, एतिहासिक जिम्मेवारी र राष्ट्रको पहिचानलाई जोगाउने संकल्प समेत बन्न सक्छ।</p>
+      <div class="cta-box">
+        <div class="cta-box-title">"आउनुहोस्, हामी सबै मिलेर यस्तो घर बनाऔं जहाँ नेपालीपन बोलोस्, संस्कृतिले सास फेरोस्, र इतिहासले गर्व गरोस्।"</div>
+        <div class="cta-box-sub">तपाईंको योगदान संग्रहालयको शिलापत्रमा अजर, अमर र अभिनाशी बनेर चम्कीरहोस्।</div>
+      </div>
+      <p><strong>आउनुहोस्, एक इट्टा र एक धुर सहयोगमार्फत इतिहास निर्माणमा सबै सहभागी बनौं।</strong></p>
+      <div class="sig">
+        <div class="sig-name">माधब कल्पित</div>
+        <div class="sig-role">केन्द्रीय अध्यक्ष</div>
+        <div class="sig-role">क्षितिज नाट्य प्रतिष्ठान, नेपाल</div>
+      </div>
+      <div class="donate-header">सहयोगका लागि हाम्रा खाताहरू:</div>
+      <div class="bank-cards">
+        <div class="bank-card"><div class="bank-label">🏦 बैंक खाता नं.</div><div class="bank-num">30205440254489</div><div class="bank-sub">NIMB — Madhav Prasad Khatiwada</div></div>
+        <div class="bank-card"><div class="bank-label">📱 eSewa / QR</div><div class="bank-num">9844637952</div><div class="bank-sub">Madhav Kalpit</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news" class="alt-bg">
+  <div class="section-inner">
+    <div class="label">समाचार</div>
+    <h2>क्षितिज नाट्य समूहका ताजा समाचार</h2>
+    <div class="bar"></div>
+    <div class="news-controls">
+      <div class="tag-filters" id="tag-filters"></div>
+      <button class="admin-btn" onclick="toggleAdmin()">+ पोस्ट थप्नुस् (Admin)</button>
+    </div>
+    <div class="admin-form" id="admin-form" style="display:none;">
+      <div class="admin-form-title">✏️ नयाँ अपडेट थप्नुस्</div>
+      <div class="form-row">
+        <input class="fi" id="f-title" placeholder="शीर्षक"/>
+        <input class="fi" id="f-tag" placeholder="ट्याग (जस्तै: कार्यक्रम)"/>
+        <input class="fi" id="f-date" placeholder="मिति (जस्तै: २०८२/०२/०१)"/>
+      </div>
+      <textarea class="fi" id="f-body" placeholder="विवरण…"></textarea>
+      <div class="form-btns">
+        <button class="post-btn" onclick="addPost()">पोस्ट गर्नुस्</button>
+        <button class="cancel-btn" onclick="toggleAdmin()">रद्द</button>
+      </div>
+    </div>
+    <div class="news-grid" id="news-grid"></div>
+  </div>
+</section>
+
+<!-- DONATE -->
+<section id="donate">
+  <div class="section-inner" style="max-width:940px;">
+    <div class="label">सहयोग</div>
+    <h2>हाम्रो कामलाई सहयोग गर्नुस्</h2>
+    <div class="bar"></div>
+    <p style="max-width:620px;margin-top:18px;margin-bottom:32px;">तपाईंको सहयोगले नाट्य प्रदर्शन, कलाकारको हेरचाह र संग्रहालय निर्माण अभियानमा योगदान पुर्‍याउँछ।</p>
+    <div class="donate-grid">
+      <div class="card" style="border-color:rgba(176,28,46,0.22);">
+        <div class="label" style="margin-bottom:12px;">बैंक खाता</div>
+        <div class="reg-row"><span class="reg-l">खाताधारी</span><span class="reg-v">Madhav Prasad Khatiwada</span></div>
+        <div class="reg-row"><span class="reg-l">बैंक</span><span class="reg-v">NIMB</span></div>
+        <div class="reg-row"><span class="reg-l">खाताको प्रकार</span><span class="reg-v">नवाअयम बचत खाता</span></div>
+        <div class="reg-row" style="border:none;"><span class="reg-l">खाता नम्बर</span><span class="reg-v" style="font-family:monospace;">30205440254489</span></div>
+        <div class="esewa-box">📱 eSewa: 9844637952</div>
+      </div>
+      <div class="card">
+        <p>सहयोगको समन्वयका लागि हामीलाई सीधा सम्पर्क गर्न सक्नुहुन्छ।</p>
+        <a href="tel:+9779844637952" style="display:flex;align-items:center;gap:8px;color:#B01C2E;text-decoration:none;font-weight:700;font-size:15px;margin-bottom:4px;">📞 +977-9844637952</a>
+        <div style="font-size:12.5px;color:#9A7D5A;margin-bottom:18px;">Madhav Kalpit</div>
+        <div style="display:flex;gap:10px;">
+          <a href="https://www.facebook.com/share/1P4jHSgz7V/" target="_blank" class="soc fb">f</a>
+          <a href="https://youtube.com/@expensivelife" target="_blank" class="soc yt">▶</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="alt-bg">
+  <div class="section-inner" style="max-width:940px;">
+    <div class="label">सम्पर्क</div>
+    <h2>सम्पर्क गर्नुस्</h2>
+    <div class="bar"></div>
+    <div class="contact-grid">
+      <div>
+        <div class="ci"><div class="ci-icon">📞</div><div><div class="ci-label">Phone</div><a href="tel:+9779844637952" class="ci-value">+९७७-९८४४६३७९५२</a><div class="ci-sub">माधव कल्पित</div></div></div>
+        <div class="ci"><div class="ci-icon">📍</div><div><div class="ci-label">Address</div><div class="ci-value" style="font-size:14px;">बिर्तामोड-१, झापा, कोशी प्रदेश, नेपाल</div><a href="https://maps.app.goo.gl/qGUNG1JPbHXLjWQZ7" target="_blank" class="map-link">🗺 Google Maps मा हेर्नुस् ›</a></div></div>
+        <div class="social-row">
+          <a href="https://www.facebook.com/share/1P4jHSgz7V/" target="_blank" class="soc fb" style="font-size:14px;font-weight:700;">f</a>
+          <a href="https://youtube.com/@expensivelife" target="_blank" class="soc yt" style="font-size:14px;">▶</a>
+        </div>
+      </div>
+      <div>
+        <div class="form-title">सन्देश पठाउनुस्</div>
+        <input type="text" class="cf" placeholder="तपाईंको नाम"/>
+        <input type="email" class="cf" placeholder="तपाईंको इमेल"/>
+        <textarea class="cf" placeholder="तपाईंको सन्देश"></textarea>
+        <button class="submit-btn">सन्देश पठाउनुस्</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <div class="logo-circle">क्ष</div>
+    <div class="footer-org">क्षितिज नाट्य समूह</div>
+  </div>
+  <div class="footer-tagline">"बहुजाति, बहुभाषी, बहुसांस्कृतिक नेपालको सुन्दर माला।"</div>
+  <div class="footer-nav">
+    <a onclick="go('home')">गृहपृष्ठ</a><a onclick="go('about')">हाम्रोबारे</a><a onclick="go('journey')">यात्रा</a><a onclick="go('activities')">गतिविधि</a><a onclick="go('team')">टोली</a><a onclick="go('natak')">नाटक घर</a><a onclick="go('appeal')">अपिल</a><a onclick="go('news')">समाचार</a><a onclick="go('donate')">सहयोग</a><a onclick="go('contact')">सम्पर्क</a>
+  </div>
+  <div class="footer-div"></div>
+  <div class="footer-copy">© २०२५ क्षितिज नाट्य समूह। सर्वाधिकार सुरक्षित।</div>
+  <div class="footer-reg">द.न. २३०-५८/५९ · पा.न. ३०१६५४०९८६ · kshitiznatya.org.np</div>
+</footer>
+
+<script>
+// News data
+var posts = [
+  {id:1, date:"२०८२/०१/१५", tag:"कार्यक्रम", title:"झापा नाटक घरमा नयाँ नाटक मञ्चन", body:"क्षितिज नाट्य समूहद्वारा यस महिना नयाँ मञ्च नाटकको प्रदर्शन हुँदैछ। विस्तृत जानकारीका लागि सम्पर्क गर्नुहोस्।"},
+  {id:2, date:"२०८२/०१/०५", tag:"सम्मान", title:"अन्तर्राष्ट्रिय सम्मान प्राप्त", body:"माधव कल्पितलाई इन्टरनेशनल बक्स अफिस अवार्डबाट सम्मानित गरियो।"},
+  {id:3, date:"२०८१/१२/२८", tag:"अभियान", title:"एक इट्टा अभियान जारी", body:"संग्रहालय निर्माणका लागि एक इट्टा र एक धुर भूमिदान अभियान निरन्तर चलिरहेको छ।"}
+];
+var currentFilter = "all";
+var adminOpen = false;
+
+function go(id) {
+  document.getElementById(id).scrollIntoView({behavior:'smooth'});
+  document.querySelectorAll('.nl').forEach(function(n){n.classList.remove('act');});
+  var el = document.querySelector('[data-key="'+id+'"]');
+  if(el) el.classList.add('act');
+  closeMob();
+}
+function toggleMenu() {
+  var m = document.getElementById('mob-menu');
+  var b = document.getElementById('ham-btn');
+  var open = m.style.display === 'flex';
+  m.style.display = open ? 'none' : 'flex';
+  b.textContent = open ? '☰' : '✕';
+}
+function closeMob() {
+  document.getElementById('mob-menu').style.display='none';
+  document.getElementById('ham-btn').textContent='☰';
+}
+function toggleAdmin() {
+  adminOpen = !adminOpen;
+  document.getElementById('admin-form').style.display = adminOpen ? 'block' : 'none';
+}
+function addPost() {
+  var title = document.getElementById('f-title').value.trim();
+  var body = document.getElementById('f-body').value.trim();
+  var tag = document.getElementById('f-tag').value.trim() || 'अन्य';
+  var date = document.getElementById('f-date').value.trim() || '२०८२';
+  if(!title || !body) return alert('शीर्षक र विवरण भर्नुस्।');
+  posts.unshift({id:Date.now(), date:date, tag:tag, title:title, body:body});
+  document.getElementById('f-title').value='';
+  document.getElementById('f-body').value='';
+  document.getElementById('f-tag').value='';
+  document.getElementById('f-date').value='';
+  toggleAdmin();
+  renderNews();
+}
+function deletePost(id) {
+  posts = posts.filter(function(p){return p.id !== id;});
+  renderNews();
+}
+function setFilter(f) {
+  currentFilter = f;
+  renderNews();
+}
+function renderNews() {
+  // Build tag list
+  var tags = ['all'];
+  posts.forEach(function(p){ if(tags.indexOf(p.tag)===-1) tags.push(p.tag); });
+  var tf = document.getElementById('tag-filters');
+  tf.innerHTML = '';
+  tags.forEach(function(tg){
+    var b = document.createElement('button');
+    b.className = 'tag-btn' + (currentFilter===tg?' active':'');
+    b.textContent = tg==='all'?'सबै':tg;
+    b.onclick = function(){setFilter(tg);};
+    tf.appendChild(b);
+  });
+  // Render posts
+  var filtered = currentFilter==='all' ? posts : posts.filter(function(p){return p.tag===currentFilter;});
+  var grid = document.getElementById('news-grid');
+  if(filtered.length===0){
+    grid.innerHTML='<div class="no-news">अहिले कुनै अपडेट छैन।</div>';
+    return;
+  }
+  grid.innerHTML = filtered.map(function(p){
+    return '<div class="news-card"><div class="nc-top"><span class="nc-tag">'+p.tag+'</span><div class="nc-meta"><span class="nc-date">'+p.date+'</span><button class="nc-del" onclick="deletePost('+p.id+')" title="हटाउनुस्">🗑</button></div></div><div class="nc-title">'+p.title+'</div><div class="nc-body">'+p.body+'</div></div>';
+  }).join('');
+}
+
+// Init
+renderNews();
+
+// Scroll active nav
+window.addEventListener('scroll', function(){
+  var sections = ['home','about','journey','founder','activities','natak','team','appeal','news','donate','contact'];
+  var current = 'home';
+  sections.forEach(function(id){
+    var el = document.getElementById(id);
+    if(el && el.getBoundingClientRect().top < 100) current = id;
+  });
+  document.querySelectorAll('.nl').forEach(function(n){
+    n.classList.toggle('act', n.dataset.key===current);
+  });
+});
+</script>
+</body>
+</html>
