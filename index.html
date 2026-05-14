@@ -325,6 +325,131 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
 .ro-cancel-btn{background:#f0e8d8;color:#5a3a1a;border:none;border-radius:7px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
 .arr-btn{background:linear-gradient(135deg,#4a2a8a,#7a3aaa);color:#fff;border:none;border-radius:6px;padding:6px 13px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;display:inline-flex;align-items:center;gap:5px;margin-bottom:10px;}
 .arr-btn:hover{opacity:.88;}
+
+/* ═══ MULTI-PAGE ROUTER ═══════════════════════════════════════════════════════ */
+.page-view{display:none;position:fixed;inset:0;background:#FDFAF5;z-index:150;overflow-y:auto;animation:pgIn .3s ease forwards;}
+.page-view.active{display:block;}
+@keyframes pgIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.main-scroll{display:block;}
+
+/* ═══ PAGE HERO BANNERS ════════════════════════════════════════════════════════ */
+.page-hero{background:linear-gradient(135deg,#1A1108 0%,#2d1a0a 50%,#8B1520 100%);padding:90px 5% 52px;margin-top:64px;position:relative;overflow:hidden;}
+.page-hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23C9963A' fill-opacity='0.06'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+.page-hero-content{position:relative;z-index:1;max-width:1060px;margin:0 auto;}
+.page-hero-label{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#C9963A;font-weight:700;margin-bottom:8px;}
+.page-hero-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,52px);font-weight:700;color:#fff;line-height:1.1;margin-bottom:10px;}
+.page-hero-sub{font-size:14px;color:rgba(255,255,255,.6);max-width:520px;line-height:1.7;}
+.page-hero-bar{width:52px;height:3px;background:linear-gradient(90deg,#B01C2E,#C9963A);border-radius:2px;margin:14px 0;}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,.4);margin-bottom:16px;flex-wrap:wrap;}
+.breadcrumb span{cursor:pointer;transition:color .2s;}.breadcrumb span:hover{color:#C9963A;}
+.breadcrumb .sep{color:rgba(255,255,255,.2);}
+
+/* ═══ ENHANCED NAV (active page state) ════════════════════════════════════════ */
+.nl.pg-act{color:#B01C2E;border-bottom-color:#B01C2E;}
+
+/* ═══ NEWS PAGE ════════════════════════════════════════════════════════════════ */
+.news-pg-wrap{max-width:1060px;margin:0 auto;padding:48px 5%;}
+.news-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px;margin-top:28px;}
+.news-card-lg{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 3px 18px rgba(26,17,8,.08);transition:all .25s;cursor:pointer;position:relative;border:1px solid #EAD8BC;}
+.news-card-lg:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(176,28,46,.13);}
+.news-card-img{width:100%;height:200px;object-fit:cover;display:block;}
+.news-card-img-placeholder{width:100%;height:200px;background:linear-gradient(135deg,#F5EBD8,#EDD9BB);display:flex;align-items:center;justify-content:center;font-size:48px;}
+.news-card-body{padding:20px;}
+.news-card-meta{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:4px;}
+.news-card-tag{background:rgba(176,28,46,.1);color:#B01C2E;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.news-card-date{font-size:11px;color:#9A7D5A;}
+.news-card-title{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1A1108;line-height:1.35;margin-bottom:8px;}
+.news-card-excerpt{font-size:13px;color:#6B5232;line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.news-card-footer{padding:14px 20px;border-top:1px solid #F0E8D8;display:flex;align-items:center;justify-content:space-between;}
+.news-read-more{font-size:12.5px;font-weight:700;color:#B01C2E;display:flex;align-items:center;gap:4px;}
+
+/* ═══ NEWS DETAIL PAGE ══════════════════════════════════════════════════════════ */
+.news-detail-wrap{max-width:780px;margin:0 auto;padding:48px 5%;}
+.news-detail-img{width:100%;max-height:420px;object-fit:cover;border-radius:12px;margin-bottom:28px;border:1px solid #EAD8BC;}
+.news-detail-tag-row{display:flex;align-items:center;gap:10px;margin-bottom:14px;flex-wrap:wrap;}
+.news-detail-title{font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,38px);font-weight:700;color:#1A1108;line-height:1.2;margin-bottom:16px;}
+.news-detail-body{font-size:15.5px;color:#3D2B12;line-height:2;white-space:pre-wrap;}
+.news-detail-share{background:#FDFAF5;border:1px solid #EAD8BC;border-radius:10px;padding:18px 20px;margin-top:32px;}
+.news-detail-share-title{font-size:12px;font-weight:700;color:#9A7D5A;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+.news-back-btn{display:inline-flex;align-items:center;gap:6px;background:#F5EBD8;border:1px solid #D4B896;color:#5a3a1a;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;margin-bottom:28px;transition:all .2s;}
+.news-back-btn:hover{background:#EDD9BB;}
+
+/* ═══ GALLERY PAGE ═════════════════════════════════════════════════════════════ */
+.gallery-pg-wrap{max-width:1100px;margin:0 auto;padding:48px 5%;}
+.gal-filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+.gal-pg-grid{columns:4;gap:16px;}
+@media(max-width:900px){.gal-pg-grid{columns:3;}}
+@media(max-width:600px){.gal-pg-grid{columns:2;}.news-pg-grid{grid-template-columns:1fr;}}
+.gal-pg-item{break-inside:avoid;margin-bottom:16px;border-radius:10px;overflow:hidden;position:relative;cursor:pointer;background:#EDD9BB;}
+.gal-pg-item img{width:100%;display:block;transition:transform .3s;}
+.gal-pg-item:hover img{transform:scale(1.04);}
+.gal-pg-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,17,8,.75) 0%,transparent 50%);opacity:0;transition:opacity .25s;display:flex;align-items:flex-end;padding:14px;}
+.gal-pg-item:hover .gal-pg-overlay{opacity:1;}
+.gal-pg-caption{color:#fff;font-size:12.5px;font-weight:600;line-height:1.4;}
+.gal-pg-cat-badge{font-size:10px;color:rgba(255,255,255,.7);text-transform:uppercase;letter-spacing:1px;}
+.gal-cat-pill{padding:6px 16px;border-radius:20px;border:1.5px solid #EAD8BC;background:#fff;color:#6B5232;font-size:12.5px;font-weight:600;cursor:pointer;font-family:inherit;transition:all .18s;}
+.gal-cat-pill.on,.gal-cat-pill:hover{background:#B01C2E;color:#fff;border-color:#B01C2E;}
+
+/* ═══ TEAM PAGE ════════════════════════════════════════════════════════════════ */
+.team-pg-wrap{max-width:1060px;margin:0 auto;padding:48px 5%;}
+.team-section-title{font-family:'Playfair Display',serif;font-size:20px;color:#1A1108;margin:36px 0 18px;padding-bottom:8px;border-bottom:2px solid #EAD8BC;}
+.team-pg-exec-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:20px;margin-bottom:32px;}
+.team-pg-dept-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:16px;}
+.team-pg-card{background:#fff;border:1px solid #EAD8BC;border-radius:14px;padding:24px 16px;text-align:center;transition:all .22s;position:relative;}
+.team-pg-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(176,28,46,.1);}
+.team-pg-card.gold{border-color:#C9963A;background:linear-gradient(135deg,#FDFAF5,#FDF3DC);}
+.team-pg-av{width:88px;height:88px;border-radius:12px;margin:0 auto 14px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:26px;font-weight:800;color:#fff;}
+.team-pg-av img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.team-pg-name{font-weight:700;font-size:14px;color:#1A1108;margin-bottom:3px;line-height:1.3;}
+.team-pg-aka{font-size:12px;color:#B01C2E;font-style:italic;margin-bottom:3px;}
+.team-pg-role{font-size:12px;color:#9A7D5A;font-weight:600;}
+.team-pg-fb{display:inline-flex;align-items:center;gap:4px;margin-top:8px;font-size:11px;color:#1877F2;text-decoration:none;font-weight:600;}
+
+/* ═══ ENHANCED LIGHTBOX ════════════════════════════════════════════════════════ */
+#lightbox{display:none;position:fixed;inset:0;background:rgba(10,6,3,.95);z-index:800;align-items:center;justify-content:center;flex-direction:column;}
+#lightbox.show{display:flex;}
+.lb-close{position:absolute;top:18px;right:22px;background:rgba(255,255,255,.1);border:none;color:#fff;font-size:24px;cursor:pointer;z-index:801;width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.lb-close:hover{background:rgba(255,255,255,.2);}
+.lb-prev,.lb-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.1);border:none;color:#fff;font-size:22px;cursor:pointer;width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:801;}
+.lb-prev{left:16px;}.lb-next{right:16px;}
+.lb-prev:hover,.lb-next:hover{background:rgba(255,255,255,.2);}
+#lb-img{max-width:88vw;max-height:72vh;border-radius:10px;object-fit:contain;}
+.lb-info{text-align:center;margin-top:16px;padding:0 20px;}
+#lb-caption{color:#EDD9BB;font-size:15px;font-weight:600;}
+#lb-meta{color:#9A7D5A;font-size:12px;margin-top:4px;}
+.lb-counter{color:rgba(255,255,255,.35);font-size:11px;margin-top:6px;}
+
+/* ═══ CONTACT PAGE ═════════════════════════════════════════════════════════════ */
+.contact-pg-wrap{max-width:960px;margin:0 auto;padding:48px 5%;}
+.contact-card{background:#fff;border:1px solid #EAD8BC;border-radius:14px;padding:28px 24px;box-shadow:0 3px 16px rgba(26,17,8,.06);}
+
+/* ═══ DONORS PAGE ══════════════════════════════════════════════════════════════ */
+.donors-pg-wrap{max-width:1060px;margin:0 auto;padding:48px 5%;}
+.donor-card-lg{background:#fff;border:1px solid #EAD8BC;border-radius:12px;padding:18px 20px;display:flex;align-items:center;gap:14px;transition:all .2s;position:relative;}
+.donor-card-lg:hover{box-shadow:0 6px 22px rgba(201,150,58,.12);border-color:#C9963A;}
+.donor-rank{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#EAD8BC;width:32px;flex-shrink:0;text-align:center;}
+.donor-av-lg{width:52px;height:52px;border-radius:10px;background:linear-gradient(135deg,#C9963A,#E8B84B);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px;flex-shrink:0;}
+.donors-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-top:28px;}
+
+/* ═══ SUPPORTERS PAGE ══════════════════════════════════════════════════════════ */
+.sup-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px;margin-top:28px;}
+.sup-pg-card{background:#fff;border:1px solid #EAD8BC;border-radius:12px;padding:18px 12px;text-align:center;transition:all .2s;}
+.sup-pg-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(201,150,58,.1);}
+.sup-pg-av{width:80px;height:80px;border-radius:10px;margin:0 auto 10px;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:700;color:#fff;background:linear-gradient(135deg,#C9963A,#E8B84B);}
+.sup-pg-av img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+
+/* ═══ BACK-TO-TOP ══════════════════════════════════════════════════════════════ */
+#btt{position:fixed;bottom:72px;right:20px;width:40px;height:40px;border-radius:50%;background:#B01C2E;color:#fff;border:none;font-size:18px;cursor:pointer;z-index:299;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;align-items:center;justify-content:center;}
+#btt.vis{opacity:1;pointer-events:auto;}
+
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .ham{display:block;}
+  .page-hero{padding:80px 5% 40px;}
+  .team-pg-exec-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));}
+  .gal-pg-grid{columns:2;}
+  .lb-prev{left:6px;}.lb-next{right:6px;}
+}
 </style>
 </head>
 <body>
@@ -371,6 +496,7 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
   </div>
 </nav>
 
+<div id="main-scroll" class="main-scroll">
 <div class="cover-wrap">
   <img id="site-cover" src="" alt="" class="cover-photo" style="display:none;"/>
   <button class="cover-eBtn" onclick="qup('cover')">📷 Cover Photo बदल्नुस्</button>
@@ -656,6 +782,161 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
   <div class="ft-div"></div>
   <div class="ft-copy">© २०२५ क्षितिज नाट्य समूह · kshitiznatya.org.np</div>
 </footer>
+</div><!-- end main-scroll -->
+
+
+<!-- ═══ NEWS LIST PAGE ══════════════════════════════════════════════════════════ -->
+<div id="page-news" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" data-ne="समाचार" data-en="News">समाचार</span>
+      </div>
+      <div class="page-hero-label" data-ne="ताजा अपडेट" data-en="LATEST UPDATES">ताजा अपडेट</div>
+      <h1 class="page-hero-title" data-ne="समाचार र अपडेट" data-en="News &amp; Updates">समाचार र अपडेट</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub" data-ne="क्षितिज नाट्य समूहका ताजा समाचार, घोषणा र गतिविधिहरू।" data-en="Latest news, announcements and activities from Kshitiz Natya Samuha.">क्षितिज नाट्य समूहका ताजा समाचार, घोषणा र गतिविधिहरू।</p>
+    </div>
+  </div>
+  <div class="news-pg-wrap">
+    <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px;">
+      <div class="tag-row" id="pg-tag-row"></div>
+    </div>
+    <div class="news-pg-grid" id="pg-news-grid"></div>
+    <div id="pg-news-empty" style="text-align:center;color:#9A7D5A;padding:60px 0;font-size:16px;display:none;">कुनै समाचार छैन। / No news yet.</div>
+  </div>
+</div>
+
+<!-- ═══ NEWS DETAIL PAGE ════════════════════════════════════════════════════════ -->
+<div id="page-news-detail" class="page-view">
+  <div class="page-hero" id="nd-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span onclick="showPage('news')" style="cursor:pointer;" data-ne="समाचार" data-en="News">समाचार</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" id="nd-hero-title-short">...</span>
+      </div>
+      <div class="page-hero-label" id="nd-tag-hero"></div>
+      <h1 class="page-hero-title" id="nd-title-hero"></h1>
+      <div class="page-hero-bar"></div>
+      <div style="color:rgba(255,255,255,.5);font-size:12px;" id="nd-date-hero"></div>
+    </div>
+  </div>
+  <div class="news-detail-wrap">
+    <button class="news-back-btn" onclick="showPage('news')">&#8592; <span data-ne="सबै समाचार" data-en="All News">सबै समाचार</span></button>
+    <img id="nd-img" src="" alt="" class="news-detail-img" style="display:none;"/>
+    <div class="news-detail-body" id="nd-body"></div>
+    <div class="news-detail-share" id="nd-share-box">
+      <div class="news-detail-share-title" data-ne="साझा गर्नुस्" data-en="SHARE THIS">साझा गर्नुस्</div>
+      <div class="share-btns" id="nd-share-btns"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ GALLERY PAGE ════════════════════════════════════════════════════════════ -->
+<div id="page-gallery" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" data-ne="फोटो ग्यालरी" data-en="Photo Gallery">फोटो ग्यालरी</span>
+      </div>
+      <div class="page-hero-label" data-ne="हाम्रा तस्विरहरू" data-en="OUR PHOTOS">हाम्रा तस्विरहरू</div>
+      <h1 class="page-hero-title" data-ne="फोटो ग्यालरी" data-en="Photo Gallery">फोटो ग्यालरी</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub" data-ne="संस्थाका गतिविधि, नाटक, दाता र महत्वपूर्ण क्षणहरूका तस्विरहरू।" data-en="Photos of our activities, dramas, donors and important moments.">संस्थाका गतिविधि, नाटक, दाता र महत्वपूर्ण क्षणहरूका तस्विरहरू।</p>
+    </div>
+  </div>
+  <div class="gallery-pg-wrap">
+    <div class="gal-filter-bar" id="pg-gal-cats"></div>
+    <div class="gal-pg-grid" id="pg-gal-grid"></div>
+    <div id="pg-gal-empty" style="text-align:center;color:#9A7D5A;padding:60px 0;font-size:16px;display:none;">कुनै तस्विर छैन। / No photos yet.</div>
+  </div>
+</div>
+
+<!-- ═══ TEAM PAGE ════════════════════════════════════════════════════════════════ -->
+<div id="page-team" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" data-ne="हाम्रो टोली" data-en="Our Team">हाम्रो टोली</span>
+      </div>
+      <div class="page-hero-label" data-ne="कार्यकारी समिति" data-en="EXECUTIVE COMMITTEE">कार्यकारी समिति</div>
+      <h1 class="page-hero-title" data-ne="हाम्रो टोली" data-en="Our Team">हाम्रो टोली</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub" data-ne="क्षितिज नाट्य समूहका समर्पित कार्यकारी र विभाग प्रमुखहरू।" data-en="Dedicated executive members and department heads of Kshitiz Natya Samuha.">क्षितिज नाट्य समूहका समर्पित कार्यकारी र विभाग प्रमुखहरू।</p>
+    </div>
+  </div>
+  <div class="team-pg-wrap">
+    <h2 class="team-section-title" data-ne="कार्यकारी समिति" data-en="Executive Committee">कार्यकारी समिति</h2>
+    <div class="team-pg-exec-grid" id="pg-exec-grid"></div>
+    <h2 class="team-section-title" data-ne="विभाग प्रमुखहरू" data-en="Department Heads">विभाग प्रमुखहरू</h2>
+    <div class="team-pg-dept-grid" id="pg-dept-grid"></div>
+    <h2 class="team-section-title" data-ne="हाम्रा शुभचिन्तकहरू" data-en="Our Supporters">हाम्रा शुभचिन्तकहरू</h2>
+    <div class="sup-pg-grid" id="pg-sup-grid"></div>
+  </div>
+</div>
+
+<!-- ═══ DONORS PAGE ══════════════════════════════════════════════════════════════ -->
+<div id="page-donors" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" data-ne="दाताहरू" data-en="Donors">दाताहरू</span>
+      </div>
+      <div class="page-hero-label" data-ne="सम्मानित दाताहरू" data-en="HONOURED DONORS">सम्मानित दाताहरू</div>
+      <h1 class="page-hero-title" data-ne="हाम्रा दाताहरू" data-en="Our Donors">हाम्रा दाताहरू</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub" data-ne="यस अभियानमा सहयोग गर्नु भएका सम्मानित व्यक्ति तथा संस्थाहरू।" data-en="Honoured individuals and organisations who have supported this campaign.">यस अभियानमा सहयोग गर्नु भएका सम्मानित व्यक्ति तथा संस्थाहरू।</p>
+    </div>
+  </div>
+  <div class="donors-pg-wrap">
+    <div class="donors-pg-grid" id="pg-donors-grid"></div>
+    <div id="pg-donors-empty" style="text-align:center;color:#9A7D5A;padding:60px 0;font-size:16px;display:none;">कुनै दाता छैन। / No donors yet.</div>
+  </div>
+</div>
+
+<!-- ═══ CONTACT PAGE ════════════════════════════════════════════════════════════ -->
+<div id="page-contact" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <span onclick="showMain()">&#8962; Home</span>
+        <span class="sep">&#8250;</span>
+        <span style="color:rgba(255,255,255,.7);" data-ne="सम्पर्क" data-en="Contact">सम्पर्क</span>
+      </div>
+      <div class="page-hero-label" data-ne="हामीसँग जोडिनुस्" data-en="GET IN TOUCH">हामीसँग जोडिनुस्</div>
+      <h1 class="page-hero-title" data-ne="सम्पर्क गर्नुस्" data-en="Contact Us">सम्पर्क गर्नुस्</h1>
+      <div class="page-hero-bar"></div>
+    </div>
+  </div>
+  <div class="contact-pg-wrap">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;" class="two-col">
+      <div class="contact-card" id="pg-contact-info"></div>
+      <div class="contact-card">
+        <div style="font-weight:700;font-size:17px;color:#1A1108;margin-bottom:18px;font-family:'Playfair Display',serif;" data-ne="सन्देश पठाउनुस्" data-en="Send a Message">सन्देश पठाउनुस्</div>
+        <input type="text" class="cf" id="pg-cn" placeholder="नाम / Name"/>
+        <input type="email" class="cf" id="pg-ce" placeholder="इमेल / Email"/>
+        <textarea class="cf" id="pg-cm" placeholder="सन्देश / Message" style="min-height:120px;"></textarea>
+        <button class="btn-r" style="width:100%;margin:0;" onclick="sendMsgPg()" data-ne="सन्देश पठाउनुस्" data-en="Send Message">सन्देश पठाउनुस्</button>
+        <div id="pg-msg-ok" class="ok-msg" style="margin-top:10px;display:none;">&#10003; सन्देश पठाइयो!</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BACK TO TOP -->
+<button id="btt" onclick="var pv=document.querySelector('.page-view.active');if(pv)pv.scrollTop=0;else window.scrollTo({top:0,behavior:'smooth'});" title="Back to top">&#8679;</button>
+
 
 <button id="admin-trigger" onclick="showLogin()" title="Admin">⚙</button>
 <div id="admin-badge">ADMIN</div>
@@ -1787,7 +2068,7 @@ function renderGalAdmin(){
   el.innerHTML=gC.length?gC.map(g=>`
     <div class="item-row">
       <div style="display:flex;align-items:center;gap:10px;flex:1;">
-        <img src="${g.img}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display='none'"/>
+        <img src="${g.img}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display=\\'none\\'" />
         <div class="item-info">
           <div class="item-title">${g.cat||'—'}</div>
           <div class="item-sub">${g.caption||'(no caption)'} ${g.date?'· '+g.date:''}</div>
@@ -1989,6 +2270,308 @@ async function saveReorder(){
   }catch(err){alert('Error saving order: '+err.message);}
   btn.disabled=false;btn.textContent='Save Order';
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PAGE ROUTER — multi-page navigation
+// ═══════════════════════════════════════════════════════════════════════════════
+var _curPage = null;
+var _galLBItems = [], _galLBIdx = 0;
+var _pgGalCat = 'all';
+
+function showMain(){
+  document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');});
+  _curPage=null;
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.querySelectorAll('.nl').forEach(function(el){el.classList.remove('pg-act');});
+}
+
+function showPage(name, data){
+  // Hide all page views
+  document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');});
+  // Show requested page
+  var pg=G('page-'+name);
+  if(!pg){showMain();return;}
+  pg.classList.add('active');
+  _curPage=name;
+  pg.scrollTop=0;
+  window.scrollTo({top:0,behavior:'smooth'});
+  closeMob();
+  // Update nav highlight
+  document.querySelectorAll('.nl').forEach(function(el){
+    el.classList.remove('pg-act');
+    if(el.getAttribute('data-ne')&&name==='news'&&el.getAttribute('data-ne')==='समाचार') el.classList.add('pg-act');
+    if(name==='gallery'&&el.getAttribute('data-ne')==='फोटो') el.classList.add('pg-act');
+    if(name==='team'&&el.getAttribute('data-ne')==='टोली') el.classList.add('pg-act');
+    if(name==='donors'&&el.getAttribute('data-ne')==='दाताहरू') el.classList.add('pg-act');
+    if(name==='contact'&&el.getAttribute('data-ne')==='सम्पर्क') el.classList.add('pg-act');
+  });
+  // Render page content
+  if(name==='news') renderPageNews();
+  if(name==='gallery') renderPageGallery();
+  if(name==='team') renderPageTeam();
+  if(name==='donors') renderPageDonors();
+  if(name==='contact') renderPageContact();
+  if(name==='news-detail' && data) renderNewsDetail(data);
+  // Apply current language
+  if(_lang==='en'){
+    pg.querySelectorAll('[data-ne][data-en]').forEach(function(el){
+      el.textContent=el.getAttribute('data-en');
+    });
+  }
+}
+
+// Override go() to use page router for key sections
+var _origGo = go;
+function go(id){
+  var pageMap={news:'news', gallery:'gallery', team:'team', donors:'donors', contact:'contact'};
+  if(pageMap[id]){
+    showPage(pageMap[id]);
+  } else {
+    showMain();
+    setTimeout(function(){
+      var el=document.getElementById(id);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    },50);
+    closeMob();
+  }
+}
+
+// ─── NEWS PAGE ──────────────────────────────────────────────────────────────
+var _pgNewsTag='all';
+function renderPageNews(){
+  // Render tag filters
+  var tags=['all',...new Set(nC.map(function(n){return n.tag;}).filter(Boolean))];
+  G('pg-tag-row').innerHTML=tags.map(function(t){
+    var lbl=t==='all'?'सबै':t;
+    return '<button class="tg-btn'+((_pgNewsTag===t)?' on':'')+'" data-tag="'+t+'" onclick="_pgSetTag(this)">'+lbl+'</button>';
+  }).join('');
+  var list=_pgNewsTag==='all'?nC:nC.filter(function(n){return n.tag===_pgNewsTag;});
+  if(!list.length){G('pg-news-grid').innerHTML='';G('pg-news-empty').style.display='block';return;}
+  G('pg-news-empty').style.display='none';
+
+  var FB_SVG='<svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;flex-shrink:0;"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>';
+  var WA_SVG='<svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
+
+  G('pg-news-grid').innerHTML=list.map(function(n){
+    var excerpt=(n.body||'').substring(0,120)+(n.body&&n.body.length>120?'...':'');
+    var imgHtml=n.img
+      ?('<img class="news-card-img" src="'+n.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"/>')
+      :'<div class="news-card-img-placeholder">&#128240;</div>';    return '<div class="news-card-lg" onclick="showPage(\'news-detail\','+JSON.stringify(n).replace(/"/g,'&quot;')+')">'
+      +imgHtml
+      +'<div class="news-card-body">'
+        +'<div class="news-card-meta"><span class="news-card-tag">'+(n.tag||'News')+'</span><span class="news-card-date">'+(n.date||'')+'</span></div>'
+        +'<div class="news-card-title">'+(n.title||'')+'</div>'
+        +'<div class="news-card-excerpt">'+excerpt+'</div>'
+      +'</div>'
+      +'<div class="news-card-footer">'
+        +'<span class="news-read-more">&#128366; पढ्नुस् &#8250;</span>'
+        +'<div class="share-btns" onclick="event.stopPropagation();">'
+          +'<button class="shr-btn shr-fb" onclick="shareNewsFB('+JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;')+')">'+FB_SVG+'</button>'
+          +'<button class="shr-btn shr-wa" onclick="shareNewsWA('+JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;')+')">'+WA_SVG+'</button>'
+          +'<button class="shr-btn shr-cp" onclick="copyNewsLink(this)">&#128203;</button>'
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function _pgSetTag(b){setPgNewsTag(b,b.getAttribute('data-tag'));}
+function setPgNewsTag(btn, tag){
+  _pgNewsTag=tag;
+  renderPageNews();
+}
+
+// ─── NEWS DETAIL ────────────────────────────────────────────────────────────
+function renderNewsDetail(n){
+  G('nd-title-hero').textContent=n.title||'';
+  G('nd-hero-title-short').textContent=(n.title||'').substring(0,30)+((n.title||'').length>30?'...':'');
+  G('nd-tag-hero').textContent=(n.tag||'').toUpperCase();
+  G('nd-date-hero').textContent=n.date||'';
+  G('nd-body').textContent=n.body||'';
+  var img=G('nd-img');
+  if(n.img){img.src=n.img;img.style.display='block';}else{img.style.display='none';}
+  // Share buttons
+  var FB_SVG='<svg viewBox="0 0 24 24"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>';
+  var WA_SVG='<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
+  var CP_SVG='<svg viewBox="0 0 24 24"><path d="M16 1H4C3 1 2 2 2 3v14h2V3h12V1zm3 4H8C7 5 6 6 6 7v14c0 1 1 2 2 2h11c1 0 2-1 2-2V7c0-1-1-2-2-2zm0 16H8V7h11v14z"/></svg>';
+  var nb=JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;');
+  G('nd-share-btns').innerHTML=
+    '<button class="shr-btn shr-fb" onclick="shareNewsFB('+nb+')">'+FB_SVG+' Facebook</button>'
+    +'<button class="shr-btn shr-wa" onclick="shareNewsWA('+nb+')">'+WA_SVG+' WhatsApp</button>'
+    +'<button class="shr-btn shr-cp" onclick="copyNewsLink(this)">'+CP_SVG+' Copy Link</button>';
+}
+
+// ─── GALLERY PAGE ────────────────────────────────────────────────────────────
+var _pgGalLBItems=[], _pgGalLBIdx=0;
+function renderPageGallery(){
+  var cats=['all',...new Set(gC.map(function(g){return g.cat;}).filter(Boolean))];
+    G('pg-gal-cats').innerHTML=cats.map(function(cat){
+    var lbl=cat==='all'?'&#128444; All':cat;
+    var on=_pgGalCat===cat?' on':'';
+    return '<button class="gal-cat-pill'+on+'" data-cat="'+cat+'" onclick="_pgSetGalCat(this)">'+lbl+'</button>';
+  }).join('');
+  var filtered=_pgGalCat==='all'?gC:gC.filter(function(g){return g.cat===_pgGalCat;});
+  _pgGalLBItems=filtered;
+  if(!filtered.length){G('pg-gal-grid').innerHTML='';G('pg-gal-empty').style.display='block';return;}
+  G('pg-gal-empty').style.display='none';
+  G('pg-gal-grid').innerHTML=filtered.map(function(g,i){
+    return '<div class="gal-pg-item" onclick="openGalLB('+i+')">'
+      +'<img src="'+g.img+'" alt="" loading="lazy" />'
+      +'<div class="gal-pg-overlay">'
+        +'<div>'
+          +(g.caption?'<div class="gal-pg-caption">'+g.caption+'</div>':'')
+          +(g.cat?'<div class="gal-pg-cat-badge">'+g.cat+'</div>':'')
+        +'</div>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+function _pgSetGalCat(b){setPgGalCat(b,b.getAttribute('data-cat'));}
+function setPgGalCat(btn, cat){
+  _pgGalCat=cat;
+  renderPageGallery();
+}
+
+function openGalLB(idx){
+  _pgGalLBIdx=idx;
+  _showGalLB();
+  G('lightbox').classList.add('show');
+}
+function _showGalLB(){
+  var it=_pgGalLBItems[_pgGalLBIdx];
+  if(!it)return;
+  G('lb-img').src=it.img;
+  G('lb-caption').textContent=it.caption||it.cat||'';
+  G('lb-meta').textContent=(it.cat?it.cat:'')+(it.caption&&it.cat?' — ':'');
+  G('lightbox').querySelector('.lb-counter') && (G('lightbox').querySelector('.lb-counter').textContent=(_pgGalLBIdx+1)+' / '+_pgGalLBItems.length);
+}
+function prevGalLB(){_pgGalLBIdx=(_pgGalLBIdx-1+_pgGalLBItems.length)%_pgGalLBItems.length;_showGalLB();}
+function nextGalLB(){_pgGalLBIdx=(_pgGalLBIdx+1)%_pgGalLBItems.length;_showGalLB();}
+function closeLB(){G('lightbox').classList.remove('show');G('lightbox').style.display='none';setTimeout(function(){G('lightbox').style.display='';},50);}
+
+// Keyboard navigation for lightbox
+document.addEventListener('keydown',function(e){
+  if(!G('lightbox').classList.contains('show'))return;
+  if(e.key==='ArrowLeft')prevGalLB();
+  if(e.key==='ArrowRight')nextGalLB();
+  if(e.key==='Escape')closeLB();
+});
+
+// ─── TEAM PAGE ───────────────────────────────────────────────────────────────
+function renderPageTeam(){
+  function card(m){
+    var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
+    var isFounder=(m.id==='dm1'||m._origId==='dm1');
+    var col=isFounder?'av-g':(m.color||'av-r');
+    var avHtml=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    return '<div class="team-pg-card'+(isFounder?' gold':'')+'">'
+      +'<div class="team-pg-av '+col+'">'+avHtml+'</div>'
+      +'<div class="team-pg-name">'+m.name+'</div>'
+      +(m.aka?'<div class="team-pg-aka">'+m.aka+'</div>':'')
+      +'<div class="team-pg-role">'+m.role+'</div>'
+      +(m.fb?'<a class="team-pg-fb" href="'+m.fb+'" target="_blank">&#128100; Facebook</a>':'')
+    +'</div>';
+  }
+  G('pg-exec-grid').innerHTML=mC.filter(function(m){return m.dept==='exec';}).map(card).join('');
+  G('pg-dept-grid').innerHTML=mC.filter(function(m){return m.dept==='dept';}).map(card).join('');
+
+  // Supporters
+  G('pg-sup-grid').innerHTML=sC.map(function(s){
+    var init=(s.name||'?').charAt(0).toUpperCase();
+    var avHtml=s.img?'<img src="'+s.img+'" alt="'+s.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    return '<div class="sup-pg-card">'
+      +'<div class="sup-pg-av">'+avHtml+'</div>'
+      +'<div style="font-weight:700;font-size:13px;color:#1A1108;line-height:1.3;">'+s.name+'</div>'
+      +(s.title?'<div style="font-size:11px;color:#9A7D5A;margin-top:3px;">'+s.title+'</div>':'')
+    +'</div>';
+  }).join('');
+}
+
+// ─── DONORS PAGE ─────────────────────────────────────────────────────────────
+function renderPageDonors(){
+  if(!dC.length){G('pg-donors-grid').innerHTML='';G('pg-donors-empty').style.display='block';return;}
+  G('pg-donors-empty').style.display='none';
+  G('pg-donors-grid').innerHTML=dC.map(function(d,i){
+    var init=(d.name||'?').charAt(0).toUpperCase();
+    return '<div class="donor-card-lg">'
+      +'<div class="donor-rank">'+(i+1)+'</div>'
+      +'<div class="donor-av-lg">'+init+'</div>'
+      +'<div>'
+        +'<div style="font-weight:700;font-size:15px;color:#1A1108;">'+d.name+'</div>'
+        +(d.amount?'<div style="font-size:13px;color:#C9963A;font-weight:600;">'+d.amount+'</div>':'')
+        +(d.meta?'<div style="font-size:12px;color:#9A7D5A;">'+d.meta+'</div>':'')
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+
+// ─── CONTACT PAGE ─────────────────────────────────────────────────────────────
+function renderPageContact(){
+  var c=_CI;
+  var html='<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:#1A1108;margin-bottom:20px;" data-ne="सम्पर्क जानकारी" data-en="Contact Information">सम्पर्क जानकारी</div>';
+  if(c.phone) html+='<div class="ci"><div class="ci-ic">&#128222;</div><div><div class="ci-lb">PHONE</div><a class="ci-vl" href="tel:'+c.phone+'">'+c.phone+'</a>'+(c.phone2?'<br/><a class="ci-vl" href="tel:'+c.phone2+'">'+c.phone2+'</a>':'')+'</div></div>';
+  if(c.person) html+='<div class="ci"><div class="ci-ic">&#128100;</div><div><div class="ci-lb">CONTACT PERSON</div><div class="ci-vl">'+c.person+'</div></div></div>';
+  if(c.email) html+='<div class="ci"><div class="ci-ic">&#128231;</div><div><div class="ci-lb">EMAIL</div><a class="ci-vl" href="mailto:'+c.email+'">'+c.email+'</a></div></div>';
+  if(c.address) html+='<div class="ci"><div class="ci-ic">&#128205;</div><div><div class="ci-lb">ADDRESS</div><div class="ci-vl">'+c.address+'</div>'+(c.maps?'<a class="map-lnk" href="'+c.maps+'" target="_blank">&#128506; Maps &#8250;</a>':'')+'</div></div>';
+  html+='<div style="margin-top:12px;"><div class="ci-lb" style="margin-bottom:8px;">SOCIAL</div><div class="soc-row">';
+  if(c.fb) html+='<a href="'+c.fb+'" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>';
+  if(c.fb2) html+='<a href="'+c.fb2+'" target="_blank" class="soc fb" style="opacity:.75;" title="Facebook Group">f</a>';
+  if(c.fb3) html+='<a href="'+c.fb3+'" target="_blank" class="soc fb" style="opacity:.5;" title="Facebook Profile">f</a>';
+  if(c.yt) html+='<a href="'+c.yt+'" target="_blank" class="soc yt" title="YouTube">&#9654;</a>';
+  html+='</div></div>';
+  G('pg-contact-info').innerHTML=html;
+}
+
+function sendMsgPg(){
+  var name=G('pg-cn').value.trim(), email=G('pg-ce').value.trim(), msg=G('pg-cm').value.trim();
+  if(!name||!msg){alert('Please fill in name and message.');return;}
+  // Reuse existing sendMsg logic
+  G('cn').value=name; G('ce').value=email; G('cm').value=msg;
+  sendMsg();
+  G('pg-cn').value=''; G('pg-ce').value=''; G('pg-cm').value='';
+  G('pg-msg-ok').style.display='block';
+  setTimeout(function(){G('pg-msg-ok').style.display='none';},3500);
+}
+
+// ─── BACK TO TOP ──────────────────────────────────────────────────────────────
+function _bttScroll(){
+  var pv=document.querySelector('.page-view.active');
+  var scrolled=pv?pv.scrollTop>300:window.scrollY>300;
+  var btt=G('btt'); if(btt) btt.classList.toggle('vis',scrolled);
+}
+window.addEventListener('scroll',_bttScroll);
+document.querySelectorAll('.page-view').forEach(function(pv){
+  pv.addEventListener('scroll',_bttScroll);
+});
+
+// ─── UPDATE LIGHTBOX HTML with prev/next buttons ───────────────────────────
+(function patchLightbox(){
+  var lb=G('lightbox');
+  if(!lb)return;
+  // Add prev/next/counter if not present
+  if(!lb.querySelector('.lb-prev')){
+    lb.innerHTML=
+      '<button class="lb-close" onclick="closeLB()">&#10005;</button>'
+      +'<button class="lb-prev" onclick="prevGalLB()">&#8249;</button>'
+      +'<button class="lb-next" onclick="nextGalLB()">&#8250;</button>'
+      +'<img id="lb-img" src="" alt="" />'
+      +'<div class="lb-info">'
+        +'<div id="lb-caption"></div>'
+        +'<div id="lb-meta"></div>'
+        +'<div class="lb-counter"></div>'
+      +'</div>';
+  }
+})();
+
+// ─── ALSO UPDATE HOME PAGE BUTTONS ────────────────────────────────────────────
+// Make news cards on the home section click through to news detail
+function _patchHomeNewsCards(){
+  // Re-render news on main page with click-through to news page
+  renderNews();
+}
+
+// page views re-render on showPage() call
 </script>
 
 <div class="reorder-overlay" id="reorder-overlay">
