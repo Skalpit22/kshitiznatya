@@ -31,7 +31,10 @@
 html{scroll-behavior:smooth;}
 body{font-family:'Mukta','Noto Serif',Georgia,serif;background:#FDFAF5;color:#1A1108;overflow-x:hidden;}
 ::-webkit-scrollbar{width:5px;}::-webkit-scrollbar-thumb{background:#B01C2E;border-radius:3px;}
-nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,250,245,0.96);backdrop-filter:blur(16px);border-bottom:1px solid #EAD8BC;padding:0 4%;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,250,245,0.97);backdrop-filter:blur(16px);border-bottom:1px solid #EAD8BC;padding:0 4%;transition:transform .3s ease,box-shadow .3s ease;}
+nav.nav-scrolled{box-shadow:0 2px 20px rgba(26,17,8,.12);}
+nav.nav-hidden{transform:translateY(-100%);}
+nav.nav-pinned{transform:translateY(0)!important;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;}
 .logo{display:flex;align-items:center;gap:10px;cursor:pointer;text-decoration:none;}
 .logo-circle{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,#8B1520,#B01C2E);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:900;font-size:16px;flex-shrink:0;overflow:hidden;}
@@ -725,6 +728,11 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
 
 /* ── DARK MODE ─────────────────────────────────────────────────────────── */
 body.dark{background:#0D0A07;color:#EDD9BB;}
+body.dark h1,body.dark h2,body.dark h3,body.dark h4,body.dark h5{color:#EDD9BB;}
+body.dark p,body.dark li,body.dark td,body.dark th,body.dark label{color:#C8B89A;}
+body.dark section{background:#0D0A07;}
+body.dark section.alt{background:#110D08;}
+body.dark .si,body.dark .page-view{background:transparent;}
 body.dark .page-view{background:#0D0A07;}
 body.dark .news-card-lg,body.dark .event-card,body.dark .video-card,
 body.dark .notice-item,body.dark .volunteer-form-card,body.dark .donate-card,
@@ -732,24 +740,34 @@ body.dark .activity-content-block,body.dark .contact-card,body.dark .nc,
 body.dark .tc,body.dark .sup-pg-card,body.dark .team-pg-card{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
 body.dark nav{background:rgba(13,10,7,.97);}
 body.dark .mob-menu{background:#1A1108;}
+body.dark .mob-menu a{color:#EDD9BB;}
+body.dark .nl{color:#C8B89A;}
+body.dark .nl:hover{color:#C9963A;}
 body.dark .news-card-title,body.dark .event-title,body.dark .notice-title,
 body.dark .video-card-title,body.dark .tn,body.dark .team-pg-name{color:#EDD9BB;}
 body.dark .news-card-excerpt,body.dark .event-desc,body.dark .notice-body,
 body.dark .video-card-desc,body.dark .tr,body.dark .team-pg-role{color:#9A7D5A;}
 body.dark .gal-cat-pill{background:#1A1108;color:#EDD9BB;border-color:#3D2B12;}
 body.dark .gal-cat-pill.on{background:#B01C2E;color:#fff;}
-body.dark .fi,body.dark .cf,body.dark select.fi{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
+body.dark .fi,body.dark .cf,body.dark select.fi,body.dark textarea.fi,body.dark input.fi{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
+body.dark .fi::placeholder,body.dark .cf::placeholder{color:#6B5232;}
 body.dark .donors-table tbody tr:hover{background:#2d1a0a;}
 body.dark .donors-table{color:#EDD9BB;}
-body.dark .donors-table thead th{background:linear-gradient(135deg,#1A1108,#0D0A07);}
+body.dark .donors-table td{color:#C8B89A;}
+body.dark .donors-table .dt-name{color:#EDD9BB;}
+body.dark .donors-table thead th{background:linear-gradient(135deg,#1A1108,#0D0A07);color:#EDD9BB;}
 body.dark .donors-table tbody tr{border-color:#3D2B12;}
 body.dark .search-big-input{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
-body.dark .search-result-item{background:#1A1108;border-color:#3D2B12;}
+body.dark .search-result-item{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
+body.dark .search-result-title{color:#EDD9BB;}
+body.dark .search-result-sub{color:#9A7D5A;}
 body.dark .bank-detail-row{border-color:#3D2B12;}
 body.dark .bank-detail-val{color:#EDD9BB;}
 body.dark .bank-detail-label{color:#9A7D5A;}
-body.dark .manage-row{background:#1A1108;border-color:#3D2B12;}
-body.dark .reorder-item{background:#1A1108;border-color:#3D2B12;}
+body.dark .manage-row{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
+body.dark .manage-name{color:#EDD9BB;}
+body.dark .manage-meta{color:#9A7D5A;}
+body.dark .reorder-item{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
 body.dark .reorder-box{background:#1A1108;}
 body.dark .reorder-title{color:#EDD9BB;}
 body.dark .two-col .contact-card{background:#1A1108;}
@@ -757,6 +775,51 @@ body.dark .txn-form{background:#0D0A07;border-color:#3D2B12;}
 body.dark .amount-pills .amt-pill{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
 body.dark .sup-pg-card,.dark .donor-card-lg{background:#1A1108;border-color:#3D2B12;}
 body.dark .sup-banner-placeholder{background:linear-gradient(135deg,#1A1108,#2d1a0a);}
+body.dark .ap-card{background:#1A1108;border-color:#3D2B12;color:#EDD9BB;}
+body.dark .ap-card-title{color:#EDD9BB;}
+body.dark .ap-tab{background:#1A1108;border-color:#3D2B12;color:#C8B89A;}
+body.dark .ap-tab.on{background:#B01C2E;color:#fff;}
+body.dark .donors-section-title{color:#EDD9BB;}
+body.dark .label{color:#C9963A;}
+body.dark .notice-date{color:#9A7D5A;}
+body.dark .glass-card{background:rgba(26,17,8,.8);border-color:#3D2B12;}
+body.dark .contact-info-row{color:#C8B89A;}
+body.dark .page-hero-title{color:#EDD9BB;}
+body.dark .page-hero-sub{color:#C8B89A;}
+body.dark .breadcrumb span{color:#9A7D5A;}
+body.dark .two-col{color:#C8B89A;}
+body.dark .vis-box{background:#1A1108;border-color:#3D2B12;}
+body.dark .pq{color:#EDD9BB;border-color:#B01C2E;}
+body.dark .bs-i{color:#C8B89A;}
+body.dark .cta-b{background:linear-gradient(135deg,#1A1108,#2d1a0a);}
+body.dark .cta-bt{color:#EDD9BB;}
+body.dark .sec-sub{color:#9A7D5A;}
+body.dark .exec-card,.dark .dept-card{background:#1A1108;border-color:#3D2B12;}
+body.dark .volunteer-record-row{background:#1A1108;border-color:#3D2B12;}
+body.dark .ap-section{background:transparent;}
+body.dark .origin-tag{background:#2d1a0a;color:#EDD9BB;}
+body.dark .page-hero-content .breadcrumb .sep{color:#9A7D5A;}
+body.dark .modal-box{background:#1A1108;color:#EDD9BB;}
+body.dark .modal-box h3{color:#EDD9BB;}
+body.dark .lh{color:#C8B89A;}
+body.dark .dh{color:#EDD9BB;}
+body.dark .ft-copy,.dark .ft-tg{color:#9A7D5A;}
+body.dark .ft-nav a{color:#C8B89A;}
+body.dark .newsletter-strip{background:linear-gradient(135deg,#1A1108,#2d1a0a);}
+body.dark .tm-year,.dark .tm-content{color:#C8B89A;}
+body.dark .tm-title{color:#EDD9BB;}
+body.dark .tier{background:#1A1108;border-color:#3D2B12;}
+body.dark .t-amt{color:#EDD9BB;}
+body.dark .sig{color:#C8B89A;}
+body.dark .bank-c{background:#1A1108;border-color:#3D2B12;}
+body.dark .bv{color:#EDD9BB;}
+body.dark .bs2{color:#9A7D5A;}
+body.dark .event-date-block{background:#1A1108;border-color:#3D2B12;}
+body.dark .event-day,.dark .event-month,.dark .event-year{color:#EDD9BB;}
+body.dark .don-card{background:#1A1108;border-color:#3D2B12;}
+body.dark .don-card-title,.dark .don-card-num{color:#EDD9BB;}
+body.dark .don-form-card{background:#1A1108;border-color:#3D2B12;}
+body.dark .don-form-title{color:#EDD9BB;}
 .dark-toggle{background:none;border:1.5px solid rgba(255,255,255,.2);color:inherit;border-radius:20px;padding:4px 12px;font-size:12px;cursor:pointer;font-family:inherit;transition:all .2s;display:flex;align-items:center;gap:5px;}
 .dark-toggle:hover{border-color:rgba(255,255,255,.5);}
 
@@ -1314,9 +1377,22 @@ body.dark .impact-card{background:linear-gradient(135deg,#1A1108,#2d1a0a);border
 
 <section id="donors">
 <div class="si">
-  <div class="label" data-ne="दाताहरू" data-en="Donors">दाताहरू</div><h2 data-ne="हाम्रा सम्मानित दाताहरू" data-en="Our Honoured Donors">हाम्रा सम्मानित दाताहरू</h2><div class="bar"></div>
-  <p style="margin-top:14px;max-width:580px;">यस अभियानमा सहयोग गर्नु भएका सबै दाताहरूलाई हार्दिक धन्यवाद।</p>
-  <div class="donors-grid" id="donors-grid"></div>
+  <div class="label" data-ne="दाताहरू" data-en="Donors">दाताहरू</div>
+  <h2 data-ne="हाम्रा सम्मानित दाताहरू" data-en="Our Honoured Donors">हाम्रा सम्मानित दाताहरू</h2>
+  <div class="bar"></div>
+  <p style="margin-top:14px;max-width:580px;">यस अभियानमा सहयोग गर्नु भएका सबै दाताहरूलाई हार्दिक धन्यवाद। हामीसँग हाल <strong id="donor-count-home">१०६+</strong> दर्ता दाताहरू हुनुहुन्छ।</p>
+  <!-- Recent donors (top 6 shown) -->
+  <div id="donors-grid" style="margin-bottom:24px;"></div>
+  <!-- Always-visible CTA button -->
+  <div style="text-align:center;padding:28px;background:linear-gradient(135deg,#FDF3DC,#fff8ee);border:2px dashed #C9963A;border-radius:14px;">
+    <div style="font-size:32px;margin-bottom:10px;">🏛</div>
+    <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1A1108;margin-bottom:8px;">सम्पूर्ण दाता सूची हेर्नुस्</div>
+    <p style="font-size:13.5px;color:#6B5232;margin-bottom:16px;">भूमिदान दाता, निर्माण सहयोग दाता, अक्षयकोष दाता र बिबिध सहयोगकर्ताहरूको पूरा विवरण सहितको सूची।</p>
+    <button class="btn-r" onclick="go('donors')" style="font-size:15px;padding:13px 32px;">
+      📋 पूरा दाता सूची हेर्नुस् →
+    </button>
+    <div style="font-size:12px;color:#9A7D5A;margin-top:10px;">भूमिदान · निर्माण सहयोग · अक्षयकोष · बिबिध सहयोग</div>
+  </div>
 </div>
 </section>
 
@@ -2808,6 +2884,61 @@ var _EJS = {
 var _W3F_KEY = 'e5becf8e-b862-43e6-8a0b-de9e6042616e';
 
 // ── SEND EMAIL VIA WEB3FORMS ──────────────────────────────────────────────────
+// ── PAYMENT VOUCHER PHOTO HELPERS ─────────────────────────────────────────────
+function previewVoucher(input, prevId, nameId){
+  var file=input.files[0]; if(!file) return;
+  var nameEl=G(nameId), prevEl=G(prevId);
+  if(nameEl) nameEl.textContent=file.name;
+  if(prevEl && file.type.startsWith('image/')){
+    var reader=new FileReader();
+    reader.onload=function(e){
+      prevEl.src=e.target.result;
+      prevEl.style.display='block';
+    };
+    reader.readAsDataURL(file);
+  }
+}
+
+// Read file as base64 data URL
+function _readFileAsB64(file){
+  return new Promise(function(resolve,reject){
+    if(!file){resolve(null);return;}
+    var reader=new FileReader();
+    reader.onload=function(e){resolve(e.target.result);};
+    reader.onerror=reject;
+    reader.readAsDataURL(file);
+  });
+}
+
+// Send file via Web3Forms as attachment (uses Cloudinary upload for image delivery)
+async function _uploadAndSendVoucher(fileInput, formType, senderName, bodyText, subject, senderEmail){
+  if(!fileInput||!fileInput.files||!fileInput.files[0]){
+    // No file — just send text email
+    return await _sendW3F(subject, bodyText, senderName, senderEmail, senderEmail);
+  }
+  var file=fileInput.files[0];
+  var sent=false;
+  try{
+    // Upload to Cloudinary first
+    var k=window.__K().c;
+    var fd=new FormData();
+    fd.append('file',file);
+    fd.append('upload_preset',k.p);
+    fd.append('folder','vouchers');
+    var res=await fetch('https://api.cloudinary.com/v1_1/'+k.n+'/upload',{method:'POST',body:fd});
+    var data=await res.json();
+    if(data.secure_url){
+      // Include URL in email body
+      var fullBody=bodyText+'\n\n📎 भुक्तानी प्रमाण:\n'+data.secure_url;
+      sent=await _sendW3F(subject, fullBody, senderName, senderEmail, senderEmail);
+    }
+  }catch(e){
+    // Fallback: send without image
+    sent=await _sendW3F(subject, bodyText+'\n\n(फोटो अपलोड गर्न सकिएन)', senderName, senderEmail, senderEmail);
+  }
+  return sent;
+}
+
 async function _sendW3F(subject, bodyText, fromName, fromEmail, replyTo){
   if(!_W3F_KEY || _W3F_KEY.startsWith('PASTE')) return false;
   try{
@@ -3803,36 +3934,42 @@ function openEsewaApp() {
 // ── DONATION SUBMISSION → kurakalpit@gmail.com ───────────────────────────────
 async function submitDonation() {
   var name    = G('don-name').value.trim();
-  var amt     = G('don-amt').value.trim() || G('pg-amt-custom').value.trim();
+  var amt     = G('don-amt').value.trim() || (G('pg-amt-custom')&&G('pg-amt-custom').value.trim());
   var contact = G('don-contact').value.trim();
   if(!name || !amt){ G('don-err').textContent='कृपया नाम र रकम भर्नुस्।'; G('don-err').style.display='block'; return; }
   G('don-err').style.display='none';
+  var btn=G('don-submit-btn'); if(btn){btn.disabled=true;btn.textContent='⏳ पठाउँदैछ...';}
   var data = {
     name, contact, amount:amt,
-    method  : G('don-method').value,
-    txnId   : G('don-txnid').value.trim(),
-    message : G('don-msg').value.trim(),
+    method  : G('don-method')?G('don-method').value:'—',
+    txnId   : G('don-txnid')?G('don-txnid').value.trim():'',
+    message : G('don-msg')?G('don-msg').value.trim():'',
     status  : 'pending',
     createdAt: new Date().toISOString()
   };
   try {
     await window._add(window._col(window._db,'donations'), data);
-    // Email notification
     var emailBody = _buildEmailBody('नयाँ सहयोग प्राप्त — क्षितिज', {
       'दाताको नाम' : name,
-      'सम्पर्क'    : contact || '—',
-      'रकम'        : 'रु. ' + amt,
-      'माध्यम'     : data.method || '—',
-      'Transaction ID': data.txnId || '—',
-      'सन्देश'     : data.message || '—'
+      'सम्पर्क'    : contact||'—',
+      'रकम'        : 'रु. '+amt,
+      'माध्यम'     : data.method||'—',
+      'Transaction ID': data.txnId||'—',
+      'सन्देश'     : data.message||'—'
     });
-    await _sendW3F('नयाँ सहयोग: रु.' + amt + ' — ' + name, emailBody, name, contact||undefined, contact||undefined);
+    // Upload voucher + send email
+    var voucherInput=G('don-voucher-file');
+    await _uploadAndSendVoucher(voucherInput,'donation',name,emailBody,'नयाँ सहयोग: रु.'+amt+' — '+name,contact||undefined);
     G('don-success').style.display='block';
-    ['don-name','don-contact','don-amt','don-txnid','don-msg'].forEach(function(id){ G(id).value=''; });
-    clearPills(); G('pg-amt-custom').value='';
+    ['don-name','don-contact','don-amt','don-txnid','don-msg'].forEach(function(id){var e=G(id);if(e)e.value='';});
+    if(G('don-voucher-name'))G('don-voucher-name').textContent='कुनै फाइल छानिएको छैन';
+    if(G('don-voucher-prev')){G('don-voucher-prev').src='';G('don-voucher-prev').style.display='none';}
+    if(G('don-voucher-file'))G('don-voucher-file').value='';
+    clearPills(); if(G('pg-amt-custom'))G('pg-amt-custom').value='';
   } catch(e) {
     G('don-err').textContent='Error: '+e.message; G('don-err').style.display='block';
   }
+  if(btn){btn.disabled=false;btn.textContent='✅ सहयोग पुष्टि गर्नुस्';}
 }
 function renderDonatePage() {
   // Bank details
@@ -4065,7 +4202,14 @@ async function submitMembership(){
     'शैक्षिक योग्यता'  : data.education||'—',
     'सुझाव/प्रतिक्रिया': data.feedback||'—'
   });
-  emailSent = await _sendW3F('नयाँ सदस्यता: ' + name + ' (' + memType + ')', emailBody, name, email, email);
+  emailSent = await _uploadAndSendVoucher(
+    G('mem-voucher-file'),
+    'membership',
+    name,
+    emailBody,
+    'नयाँ सदस्यता: '+name+' ('+memType+')',
+    email
+  );
   if(btn){btn.disabled=false;btn.textContent='&#128640; सदस्यता फाराम पेश गर्नुस्';}
   if(saved||emailSent){
     // Reset form
@@ -4075,9 +4219,13 @@ async function submitMembership(){
      .forEach(function(id){var el=G(id);if(el)el.value='';});
     G('mem-gender').value=''; G('mem-marital').value=''; G('mem-blood').value=''; G('mem-dept').value=''; G('mem-role').value='';
     document.querySelectorAll('input[name="mem-type"]').forEach(function(r){r.checked=false;});
+    // Clear voucher
+    if(G('mem-voucher-file'))G('mem-voucher-file').value='';
+    if(G('mem-voucher-name'))G('mem-voucher-name').textContent='कुनै फाइल छानिएको छैन';
+    if(G('mem-voucher-prev')){G('mem-voucher-prev').src='';G('mem-voucher-prev').style.display='none';}
     G('mem-ok').innerHTML='&#9989; सदस्यता फाराम सफलतापूर्वक पेश गरियो!'
-      +(emailSent?' kurakalpit@gmail.com मा सूचना पठाइयो।':' (Firestore मा सुरक्षित गरियो।)')
-      +'<br/><span style="font-size:12px;color:#5a3a1a;">कृपया भुक्तानी प्रमाण <a href="mailto:kurakalpit@gmail.com" style="color:#B01C2E;">kurakalpit@gmail.com</a> मा पठाउनुहोस्। धेरैधेरै धन्यवाद!</span>';
+      +(emailSent?' भुक्तानी प्रमाण सहित kurakalpit@gmail.com मा पठाइयो।':' (Firestore मा सुरक्षित गरियो।)')
+      +'<br/><span style="font-size:12px;color:#5a3a1a;">धेरैधेरै धन्यवाद! हामी छिट्टै सम्पर्क गर्नेछौं।</span>';
     G('mem-ok').style.display='block';
     setTimeout(function(){G('mem-ok').style.display='none';},8000);
   } else {
@@ -4195,10 +4343,10 @@ function applyStats(){
   // Impact strip
   var pEl=G('stat-productions'), yEl=G('stat-years'), dEl=G('stat-donors'), aEl=G('stat-awards');
   var pLbl=G('stat-productions-lbl'), yLbl=G('stat-years-lbl'), dLbl=G('stat-donors-lbl'), aLbl=G('stat-awards-lbl');
-  if(pEl){ pEl.textContent=_fmtStat(_STATS.productions)+'+'; pEl.setAttribute('data-target',_STATS.productions); }
-  if(yEl){ yEl.textContent=_STATS.years+'+'; yEl.setAttribute('data-target',_STATS.years); }
-  if(dEl){ dEl.textContent=_fmtStat(_STATS.supporters)+'+'; dEl.setAttribute('data-target',_STATS.supporters); }
-  if(aEl){ aEl.textContent=_fmtStat(_STATS.awards)+'+'; aEl.setAttribute('data-target',_STATS.awards); }
+  if(pEl){ pEl.textContent=_fmtStat(_STATS.productions||2000)+'+'; pEl.setAttribute('data-target',_STATS.productions||2000); }
+  if(yEl){ yEl.textContent=toNe(_STATS.years||25)+'+'; yEl.setAttribute('data-target',_STATS.years||25); }
+  if(dEl){ dEl.textContent=_fmtStat(_STATS.supporters||1000)+'+'; dEl.setAttribute('data-target',_STATS.supporters||1000); }
+  if(aEl){ aEl.textContent=_fmtStat(_STATS.awards||100)+'+'; aEl.setAttribute('data-target',_STATS.awards||100); }
   if(pLbl) pLbl.textContent=_STATS.productionsLbl||'नाटक प्रदर्शन';
   if(yLbl) yLbl.textContent=_STATS.yearsLbl||'वर्षको अनुभव';
   if(dLbl) dLbl.textContent=_STATS.supportersLbl||'समर्थकहरू';
@@ -4229,14 +4377,21 @@ function applyStats(){
   setTimeout(animateCounters, 300);
 }
 
+// ── NEPALI NUMERAL CONVERTER ──────────────────────────────────────────────────
+function toNe(n){
+  return String(n).replace(/[0-9]/g,function(d){return '०१२३४५६७८९'[d];});
+}
 function _fmtStat(n){
   n=parseInt(n)||0;
-  if(n>=1000) return (n/1000).toFixed(n%1000===0?0:1).replace('.0','')+'K';
-  if(n>=2000) return n.toLocaleString('ne-NP');
-  return n.toString();
+  if(n>=1000){
+    var k=(n/1000);
+    var display=k===Math.floor(k)?toNe(Math.floor(k))+'K':toNe(Math.floor(k))+'.'+toNe(Math.round((k%1)*10))+'K';
+    return display;
+  }
+  return toNe(n);
 }
 
-// Counter animation (counts up on scroll)
+// Counter animation — counts up using Nepali numerals
 var _statsAnimated=false;
 function animateCounters(){
   var strip=G('stats-strip'); if(!strip) return;
@@ -4244,10 +4399,10 @@ function animateCounters(){
   if(rect.top<window.innerHeight+100 && !_statsAnimated){
     _statsAnimated=true;
     [
-      {id:'stat-productions',val:_STATS.productions},
-      {id:'stat-years',val:_STATS.years},
-      {id:'stat-donors',val:_STATS.supporters},
-      {id:'stat-awards',val:_STATS.awards}
+      {id:'stat-productions',val:_STATS.productions||2000},
+      {id:'stat-years',val:_STATS.years||25},
+      {id:'stat-donors',val:_STATS.supporters||1000},
+      {id:'stat-awards',val:_STATS.awards||100}
     ].forEach(function(item){
       var el=G(item.id); if(!el) return;
       var start=0, end=item.val, dur=1800, step=16;
@@ -4255,8 +4410,7 @@ function animateCounters(){
       var t=setInterval(function(){
         start+=inc;
         if(start>=end){ start=end; clearInterval(t); }
-        var n=Math.floor(start);
-        el.textContent=(n>=1000?(n>=2000?n.toLocaleString('ne-NP'):n.toString()):n.toString())+'+';
+        el.textContent=_fmtStat(Math.floor(start))+'+';
       },step);
     });
   }
@@ -5123,6 +5277,38 @@ var _titleMap={
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // ── VISUAL EFFECTS ──────────────────────────────────────────────────────────
+
+// ── 0. STICKY NAV — hides on scroll down, reappears on scroll up ─────────────
+(function(){
+  var nav=document.querySelector('nav');
+  if(!nav) return;
+  var lastY=0, ticking=false;
+  window.addEventListener('scroll',function(){
+    if(!ticking){
+      requestAnimationFrame(function(){
+        var y=window.scrollY;
+        if(y>80){
+          nav.classList.add('nav-scrolled');
+          // Hide on scroll down, show on scroll up
+          if(y>lastY+8 && y>120){
+            nav.classList.add('nav-hidden');
+          } else if(y<lastY-4){
+            nav.classList.remove('nav-hidden');
+          }
+        } else {
+          nav.classList.remove('nav-scrolled','nav-hidden');
+        }
+        lastY=y;
+        ticking=false;
+      });
+      ticking=true;
+    }
+  },{passive:true});
+  // Always show nav when mouse near top of screen
+  document.addEventListener('mousemove',function(e){
+    if(e.clientY<80) nav.classList.remove('nav-hidden');
+  });
+})();
 // ═══════════════════════════════════════════════════════════════════════════════
 
 // ── 1. HERO PARTICLE CANVAS ───────────────────────────────────────────────────
@@ -5400,8 +5586,20 @@ var _titleMap={
         </div>
       </div>
       <div style="margin-bottom:12px;"><label style="font-size:11px;font-weight:700;color:#9A7D5A;display:block;margin-bottom:4px;text-transform:uppercase;">Transaction ID / Ref नम्बर</label><input class="fi" id="don-txnid" placeholder="eSewa/Bank transaction ID (optional)"/></div>
+      <!-- Payment proof photo upload -->
+      <div style="background:#F5EBD8;border-radius:10px;padding:14px;margin-bottom:12px;">
+        <div style="font-size:12px;font-weight:700;color:#3D2B12;margin-bottom:8px;">&#128247; भुक्तानी प्रमाण (Screenshot/Voucher)</div>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <label style="display:inline-flex;align-items:center;gap:5px;background:#B01C2E;color:#fff;border-radius:7px;padding:7px 14px;font-size:12px;font-weight:600;cursor:pointer;">
+            <input type="file" id="don-voucher-file" accept="image/*" style="display:none;" onchange="previewVoucher(this,'don-voucher-prev','don-voucher-name')"/>
+            &#128247; Upload गर्नुस्
+          </label>
+          <span id="don-voucher-name" style="font-size:11.5px;color:#6B5232;">कुनै फाइल छानिएको छैन</span>
+        </div>
+        <img id="don-voucher-prev" src="" alt="" style="display:none;max-width:100%;max-height:140px;object-fit:contain;border-radius:8px;border:1px solid #C9963A;margin-top:8px;"/>
+      </div>
       <textarea class="fi" id="don-msg" placeholder="&#128140; सन्देश वा टिप्पणी (optional)" style="min-height:70px;"></textarea>
-      <button class="btn-r" style="width:100%;margin-top:12px;" onclick="submitDonation()">&#9989; सहयोग पुष्टि गर्नुस्</button>
+      <button class="btn-r" id="don-submit-btn" style="width:100%;margin-top:12px;" onclick="submitDonation()">&#9989; सहयोग पुष्टि गर्नुस्</button>
       <div class="donation-success" id="don-success">
         <div style="font-size:40px;margin-bottom:8px;">&#127881;</div>
         <div style="font-size:16px;font-weight:700;color:#2e7d32;margin-bottom:4px;">धन्यवाद! तपाईंको सहयोगका लागि हार्दिक आभार।</div>
@@ -5784,9 +5982,19 @@ var _titleMap={
         <textarea class="fi" id="mem-feedback" placeholder="संस्थागत विकासका लागि तपाईंको अमूल्य सुझाभ, सल्लाह र प्रतिक्रिया..." style="min-height:80px;"></textarea>
       </div>
 
-      <!-- Payment voucher note -->
-      <div style="background:#F5EBD8;border-radius:8px;padding:13px 15px;margin-bottom:20px;font-size:13px;color:#5a3a1a;line-height:1.7;">
-        &#9432; फाराम पेश गरेपछि कृपया सदस्यता शुल्क बुझाएको रसिद / Bank Voucher को Photo <a href="mailto:kurakalpit@gmail.com" style="color:#B01C2E;font-weight:700;">kurakalpit@gmail.com</a> मा पठाउनुहोस्।
+      <!-- Payment voucher upload (sends to kurakalpit@gmail.com) -->
+      <div style="background:#F5EBD8;border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:#3D2B12;margin-bottom:10px;">&#128247; भुक्तानी प्रमाण / Payment Proof</div>
+        <p style="font-size:12.5px;color:#5a3a1a;margin-bottom:12px;">Bank Voucher वा eSewa/Khalti Screenshot यहाँ अपलोड गर्नुस् — कुरैकल्पित@gmail.com मा स्वतः पुग्नेछ।</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <label style="display:inline-flex;align-items:center;gap:6px;background:#B01C2E;color:#fff;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+            <input type="file" id="mem-voucher-file" accept="image/*,application/pdf" style="display:none;" onchange="previewVoucher(this,'mem-voucher-prev','mem-voucher-name')"/>
+            &#128247; Photo/File छान्नुस्
+          </label>
+          <span id="mem-voucher-name" style="font-size:12px;color:#6B5232;">कुनै फाइल छानिएको छैन</span>
+        </div>
+        <img id="mem-voucher-prev" src="" alt="" style="display:none;max-width:100%;max-height:160px;object-fit:contain;border-radius:8px;border:1px solid #C9963A;margin-top:10px;"/>
+        <p style="font-size:11px;color:#9A7D5A;margin:8px 0 0;">JPG, PNG, PDF स्वीकार्य। अधिकतम 5MB।</p>
       </div>
 
       <button class="btn-r" style="width:100%;font-size:15px;padding:14px;" onclick="submitMembership()">&#128640; सदस्यता फाराम पेश गर्नुस्</button>
