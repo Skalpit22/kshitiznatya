@@ -5,6 +5,38 @@
 <link rel="icon" id="favicon-link" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%238B1520'/><text y='.9em' font-size='72' x='50%25' text-anchor='middle' fill='white' font-family='serif'>क्ष</text></svg>"/>
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%238B1520'/><text y='.9em' font-size='72' x='50%25' text-anchor='middle' fill='white' font-family='serif'>क्ष</text></svg>"/>
 <meta name="theme-color" content="#8B1520"/>
+<!-- ── GOOGLE ANALYTICS 4 ──────────────────────────────────────────────────── -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-XXXXXXXXXX',{
+  page_title:document.title,
+  send_page_view:true
+});
+// Track page views on SPA navigation
+window._gtagPage=function(pageName){
+  if(typeof gtag==='function'){
+    gtag('event','page_view',{page_title:pageName+' — क्षितिज नाट्य प्रतिष्ठान',page_location:location.href+'#'+pageName});
+  }
+};
+// Track donations
+window._gtagDonate=function(method,amount){
+  if(typeof gtag==='function'){
+    gtag('event','donate',{event_category:'Fundraising',event_label:method,value:parseInt(amount)||0});
+  }
+};
+// Track membership
+window._gtagMembership=function(type){
+  if(typeof gtag==='function'){
+    gtag('event','membership_submit',{event_category:'Membership',event_label:type});
+  }
+};
+</script>
+<!-- NOTE FOR ADMIN: Replace G-XXXXXXXXXX above with your real GA4 Measurement ID
+     Get it from: analytics.google.com → Admin → Data Streams → Web Stream Details -->
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>क्षितिज नाट्य प्रतिष्ठान — Kshitiz Natya Pratishthan</title>
 <meta name="description" content="क्षितिज नाट्य प्रतिष्ठान — पूर्वी नेपालको अग्रणी नाट्य संस्था। ६२+ मञ्च नाटक, झापा नाटक घर अभियान। बिर्तामोड, झापा, नेपाल।"/>
@@ -1685,6 +1717,28 @@ body.dark .suborg-desc{color:#888888;}
 .share-link-copy{background:#8B1520;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;}
 .share-link-copy:hover{background:#6a0f18;}
 .share-link-copy.copied{background:#4caf50;}
+
+/* ── DASHBOARD STAT CARDS ─────────────────────────────────────── */
+.dash-stat-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:16px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s;}
+.dash-stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,21,32,.1);}
+.ds-icon{font-size:26px;margin-bottom:6px;}
+.ds-val{font-size:26px;font-weight:800;color:#8B1520;font-family:'Playfair Display',serif;line-height:1;}
+.ds-lbl{font-size:11px;color:#888;font-weight:600;margin-top:4px;text-transform:uppercase;letter-spacing:.5px;}
+body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
+
+/* ── PRODUCTIONS ADMIN LIST ───────────────────────────────────── */
+.prod-admin-row{display:flex;align-items:flex-start;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;}
+.prod-admin-row:last-child{border-bottom:none;}
+.prod-admin-info{flex:1;min-width:0;}
+.prod-admin-title{font-weight:700;font-size:13px;color:#1a2332;margin-bottom:2px;}
+.prod-admin-meta{font-size:11.5px;color:#888;}
+.prod-admin-acts{display:flex;gap:6px;flex-shrink:0;}
+
+/* ── TESTIMONIAL ADMIN LIST ───────────────────────────────────── */
+.test-admin-row{background:#fafafa;border:1px solid #e8e8e8;border-radius:8px;padding:12px;margin-bottom:8px;}
+.test-admin-quote{font-size:13px;color:#444;margin-bottom:6px;font-style:italic;}
+.test-admin-name{font-size:12px;font-weight:700;color:#8B1520;}
+.test-admin-acts{display:flex;gap:6px;margin-top:8px;}
 </style>
 <script type="application/ld+json">
 {
@@ -1926,7 +1980,7 @@ body.dark .suborg-desc{color:#888888;}
       <div class="reg-box">
         <div class="label" style="margin-bottom:8px;">दर्ता विवरण</div>
         <div class="reg-row"><span class="rl">दर्ता नं.</span><span class="rv">२३०-५८/५९</span></div>
-        <div class="reg-row"><span class="rl">पा.न.</span><span class="rv">३०१६५४०९८६</span></div>
+        <div class="reg-row"><span class="rl">पा.न.</span><span class="rv">३०१९५७०३८</span></div>
         <div class="reg-row"><span class="rl">स.क.पा.न.</span><span class="rv">२४४९९</span></div>
         <div class="reg-row" style="border:none;"><span class="rl">ठेगाना</span><span class="rv">बिर्तामोड-१, झापा</span></div>
       </div>
@@ -2638,8 +2692,9 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
   <div class="ap-body">
     <div class="ap-tabs" id="ap-tabs-wrap">
       <!-- GROUP 1: Content -->
+      <button class="ap-tab on" onclick="tab('t-dash',this);_loadDash()">📊 Dashboard</button>
       <div style="width:100%;font-size:10px;font-weight:700;color:#8B1520;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;margin-top:4px;">📢 सामग्री व्यवस्थापन</div>
-      <button class="ap-tab on" onclick="tab('t-news',this)">📰 समाचार</button>
+      <button class="ap-tab" onclick="tab('t-news',this)">📰 समाचार</button>
       <button class="ap-tab" onclick="tab('t-gallery',this)">📸 फोटो</button>
       <button class="ap-tab" onclick="tab('t-videos',this)">🎬 भिडियो</button>
       <button class="ap-tab" onclick="tab('t-events',this)">📅 कार्यक्रम</button>
@@ -2653,13 +2708,113 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
       <button class="ap-tab" onclick="tab('t-membership',this)">📋 सदस्यता</button>
       <!-- GROUP 3: Site -->
       <div style="width:100%;font-size:10px;font-weight:700;color:#8B1520;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;margin-top:10px;">⚙️ साइट सेटिङ</div>
+      <button class="ap-tab" onclick="tab('t-testimonials',this);_loadTestimonialsAdmin()">💬 प्रशंसापत्र</button>
       <button class="ap-tab" onclick="tab('t-img',this)">🖼 फोटो/लोगो</button>
       <button class="ap-tab" onclick="tab('t-contact',this)">📞 सम्पर्क</button>
       <button class="ap-tab" onclick="tab('t-stats',this);loadStatsTab()">📊 तथ्याङ्क</button>
+      <button class="ap-tab" onclick="tab('t-productions',this);_loadProdsAdmin()">🎬 नाटक सूची</button>
       <button class="ap-tab" onclick="tab('t-activity',this)">🎭 गतिविधि</button>
       <button class="ap-tab" onclick="tab('t-help',this)">❓ सहायता</button>
     </div>
 
+
+    <!-- DASHBOARD TAB -->
+    <div class="ap-section" id="t-dash">
+      <div class="ap-card">
+        <div class="ap-card-title">📊 Admin Dashboard</div>
+        <p style="font-size:13px;color:#888;margin-bottom:16px;">संस्थाको सम्पूर्ण गतिविधि एकै ठाउँमा।</p>
+        <div id="dash-stats-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin-bottom:20px;">
+          <div class="dash-stat-card" id="ds-members"><div class="ds-icon">👥</div><div class="ds-val" id="ds-val-members">…</div><div class="ds-lbl">सदस्यहरू</div></div>
+          <div class="dash-stat-card" id="ds-donors"><div class="ds-icon">💰</div><div class="ds-val" id="ds-val-donors">…</div><div class="ds-lbl">दाताहरू</div></div>
+          <div class="dash-stat-card" id="ds-news"><div class="ds-icon">📰</div><div class="ds-val" id="ds-val-news">…</div><div class="ds-lbl">समाचार</div></div>
+          <div class="dash-stat-card" id="ds-gallery"><div class="ds-icon">📸</div><div class="ds-val" id="ds-val-gallery">…</div><div class="ds-lbl">फोटो</div></div>
+          <div class="dash-stat-card" id="ds-volunteers"><div class="ds-icon">🙋</div><div class="ds-val" id="ds-val-volunteers">…</div><div class="ds-lbl">स्वयंसेवक</div></div>
+          <div class="dash-stat-card" id="ds-newsletter"><div class="ds-icon">📧</div><div class="ds-val" id="ds-val-newsletter">…</div><div class="ds-lbl">Newsletter</div></div>
+          <div class="dash-stat-card" id="ds-events"><div class="ds-icon">📅</div><div class="ds-val" id="ds-val-events">…</div><div class="ds-lbl">कार्यक्रम</div></div>
+          <div class="dash-stat-card" id="ds-supporters"><div class="ds-icon">🤝</div><div class="ds-val" id="ds-val-supporters">…</div><div class="ds-lbl">शुभचिन्तक</div></div>
+        </div>
+        <div style="font-size:12px;color:#aaa;margin-bottom:16px;" id="dash-updated"></div>
+        <!-- Recent activity feed -->
+        <div class="ap-card-title" style="font-size:13px;margin-top:8px;">🕐 पछिल्लो गतिविधि</div>
+        <div id="dash-recent" style="font-size:13px;color:#555;margin-top:8px;"></div>
+        <!-- Quick action buttons -->
+        <div class="ap-card-title" style="font-size:13px;margin-top:20px;">⚡ Quick Actions</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;">
+          <button class="save-btn" onclick="tab('t-news',document.querySelector('[onclick*=t-news]'))">+ समाचार थप्नुस्</button>
+          <button class="save-btn" onclick="tab('t-events',document.querySelector('[onclick*=t-events]'));loadEvents().then(renderEvAdminList)">+ कार्यक्रम थप्नुस्</button>
+          <button class="save-btn" onclick="tab('t-volunteer',document.querySelector('[onclick*=t-volunteer]'));loadVolunteers(true)">स्वयंसेवक हेर्नुस्</button>
+          <button class="save-btn" onclick="tab('t-membership',document.querySelector('[onclick*=t-membership]'));_loadMembershipAdmin()">सदस्यता हेर्नुस्</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRODUCTIONS ADMIN TAB -->
+    <div class="ap-section" id="t-productions">
+      <div class="ap-card">
+        <div class="ap-card-title">🎬 नाटक सूची व्यवस्थापन</div>
+        <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#5a2a00;">💡 यहाँ नयाँ नाटक थप्नुस्, सम्पादन गर्नुस् वा हटाउनुस्। परिवर्तन तुरुन्त नाटक सूची पृष्ठमा देखिनेछ।</div>
+        <input type="hidden" id="prod-eid"/>
+        <div class="fi-row">
+          <input class="fi" id="prod-title" placeholder="नाटकको शीर्षक *"/>
+          <input class="fi" id="prod-date" placeholder="मिति (e.g. २०८२ वैशाख १)"/>
+        </div>
+        <div class="fi-row">
+          <input class="fi" id="prod-venue" placeholder="स्थान / Venue"/>
+          <input class="fi" id="prod-org" placeholder="आयोजक संस्था (optional)"/>
+        </div>
+        <div class="fi-row">
+          <select class="fi" id="prod-type">
+            <option value="मञ्च">🎭 मञ्च नाटक</option>
+            <option value="सडक">🛣️ सडक नाटक</option>
+            <option value="रेडियो">🎙️ रेडियो नाटक</option>
+            <option value="सांस्कृतिक">🎵 सांस्कृतिक</option>
+          </select>
+          <select class="fi" id="prod-cat">
+            <option value="social">🤝 सामाजिक</option>
+            <option value="health">🏥 स्वास्थ्य</option>
+            <option value="env">🌿 वातावरण</option>
+            <option value="women">👩 महिला</option>
+            <option value="caste">⚖️ जातीय</option>
+            <option value="edu">📚 शिक्षा</option>
+          </select>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="save-btn" id="prod-save-btn" onclick="_saveProd()">💾 सुरक्षित गर्नुस्</button>
+          <button class="save-btn" onclick="_cancelProd()" style="background:#888;">रद्द गर्नुस्</button>
+        </div>
+        <div class="ok-msg" id="prod-ok"></div>
+        <div class="err-msg" id="prod-err"></div>
+      </div>
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">📋 नाटकहरूको सूची <span id="prod-admin-count" style="font-weight:400;font-size:12px;color:#888;"></span></div>
+        <input class="fi" id="prod-admin-search" placeholder="🔍 शीर्षक वा स्थान खोज्नुस्..." oninput="_filterProdsAdmin()" style="margin-bottom:12px;"/>
+        <div id="prod-admin-list" style="font-size:13px;"></div>
+      </div>
+    </div>
+
+    <!-- TESTIMONIALS ADMIN TAB -->
+    <div class="ap-section" id="t-testimonials">
+      <div class="ap-card">
+        <div class="ap-card-title">💬 प्रशंसापत्र व्यवस्थापन</div>
+        <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#5a2a00;">💡 दर्शक, दाता वा कलाकारहरूको प्रशंसापत्र यहाँ थप्नुस्। यो homepage मा देखिनेछ।</div>
+        <input type="hidden" id="test-eid"/>
+        <textarea class="fi" id="test-quote" placeholder="प्रशंसापत्र / Quote *" style="min-height:80px;"></textarea>
+        <div class="fi-row">
+          <input class="fi" id="test-name" placeholder="नाम *"/>
+          <input class="fi" id="test-role" placeholder="परिचय (e.g. दर्शक, बिर्तामोड)"/>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button class="save-btn" onclick="_saveTestimonial()">💾 सुरक्षित गर्नुस्</button>
+          <button class="save-btn" onclick="_cancelTestimonial()" style="background:#888;">रद्द</button>
+        </div>
+        <div class="ok-msg" id="test-ok"></div>
+        <div class="err-msg" id="test-err"></div>
+      </div>
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">प्रशंसापत्रहरू</div>
+        <div id="test-admin-list" style="font-size:13px;"></div>
+      </div>
+    </div>
     <!-- NEWS TAB -->
     <div class="ap-section on" id="t-news">
 <div style="text-align:right"><button class="arr-btn" onclick="openReorder('news')">&#128256; Arrange News</button></div>
@@ -3059,6 +3214,8 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
     <div class="ap-section" id="t-help">
       <div class="ap-card">
         <div class="ap-card-title">🔐 Security & Setup Guide</div>
+        <div style="background:#e8f5e9;border-left:3px solid #4caf50;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#1b5e20;"><b>📊 GA4 Analytics Setup:</b><br/>1. analytics.google.com → Create Property → Web Stream → Copy Measurement ID (G-XXXXXXXX)<br/>2. Find "G-XXXXXXXXXX" in this file (2 places) → replace with your real ID<br/>3. Upload → live traffic visible within 24 hrs.</div>
+        <div style="background:#fff3e0;border-left:3px solid #ff9800;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#e65100;"><b>🖼 OG Banner (Facebook share image):</b><br/>Create 1200×630px image at canva.com → download as <code>og-banner.jpg</code> → upload to hosting root alongside index.html.</div>
         <div style="line-height:2;font-size:14px;color:#1a2332;">
           <p><strong>Security:</strong> API keys are split across JS variables so simple scrapers cannot extract them. The real protection is <strong>Firebase Security Rules</strong> — only authenticated admin users can write data. All visitors can only read.</p>
           <p><strong>Firestore Rules (paste in Firebase Console → Firestore → Rules):</strong></p>
@@ -3168,6 +3325,7 @@ service cloud.firestore {<br/>
         <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the Join Us form appear below. You can confirm or delete entries.</p>
         <button class="save-btn" onclick="loadVolunteers(true)" style="margin-bottom:14px;">🔄 Refresh List</button>
         <div id="vol-admin-list"><div style="color:#888888;font-size:13px;padding:12px;">Click Refresh to load registrations.</div></div>
+        <div style="font-size:12px;color:#888;margin-top:8px;">✅ = Approve (sends welcome email)&nbsp;&nbsp;🗑 = Delete</div>
       </div>
     </div>
 
@@ -3213,7 +3371,7 @@ service cloud.firestore {<br/>
     <div class="ap-section" id="t-membership">
       <div class="ap-card">
         <div class="ap-card-title">📋 सदस्यता नवीकरण दर्ताहरू</div>
-        <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#5a2a00;">💡 सदस्यता ट्याब: वेबसाइटबाट दर्ता भएका सदस्यताका फाराम यहाँ देखिन्छन्। Confirm वा Delete गर्न सकिन्छ।</div>
+        <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#5a2a00;">💡 सदस्यता ट्याब: वेबसाइटबाट दर्ता भएका सदस्यताका फाराम यहाँ देखिन्छन्। 🪪 ले कार्ड डाउनलोड हुन्छ, 📧 ले member लाई कार्ड Email जान्छ। पुराना सदस्यका लागि सबैलाई एकैचोटि कार्ड पठाउन माथिको बटन प्रयोग गर्नुस्।</div>
         <p style="font-size:13px;color:#888888;margin-bottom:14px;">वेबसाइटबाट दर्ता भएका सदस्यता फाराम। Status confirm/delete गर्न सकिन्छ।</p>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;">
           <button class="save-btn" onclick="_loadMembershipAdmin()" style="font-size:12px;padding:7px 14px;">🔄 Refresh</button>
@@ -3427,8 +3585,9 @@ async function handleQup(inp){
 }
 
 // ── SITE IMAGES ───────────────────────────────────────────────────────────────
-// Global signature URL for use in vouchers
+// Global signature URL and logo URL for use in vouchers/cards
 var _signatureUrl = '';
+var _logoUrl = '';
 
 async function loadImages(){
   try{
@@ -3441,6 +3600,7 @@ function applyImg(type,url){
   else if(type==='founder'){ G('founder-av').innerHTML='<img src="'+url+'" alt="Founder" style="width:100%;height:100%;object-fit:cover;"/>'; var th=G('th-founder'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='natak'){ var el=G('natak-cover-img'); el.src=url; el.style.display='block'; var th=G('th-natak'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='logo'){ G('nav-logo').innerHTML='<img src="'+url+'"/>';
+    _logoUrl = url;
     var fv=document.getElementById('favicon-link'); if(fv) fv.href=url;
     var og=document.getElementById('og-image-meta'); if(og) og.content=url; var fl=G('footer-logo'); if(fl) fl.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>'; var th=G('th-logo'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='about'){ var w=G('about-img-wrap'),i=G('about-img'); if(w&&i){i.src=url;w.style.display='block';} var th=G('th-about'); if(th){th.src=url;th.style.display='block';} }
@@ -3997,6 +4157,9 @@ function tab(id,btn){
   if(id==='t-notices')   loadNotices().then(renderNotAdminList);
   if(id==='t-volunteer') loadVolunteers(true);
   if(id==='t-membership') _loadMembershipAdmin();
+  if(id==='t-dash') _loadDash();
+  if(id==='t-productions') _loadProdsAdmin();
+  if(id==='t-testimonials') _loadTestimonialsAdmin();
   if(id==='t-stats')     loadStatsTab();
   if(id==='t-gallery')   renderGalAdmin();
   // Scroll to top of admin body
@@ -4489,7 +4652,12 @@ function showMain(){
 function showPage(name, data){
   document.querySelectorAll('.page-view').forEach(function(p){p.classList.remove('active');});
   var pg=G('page-'+name);
-  if(!pg){showMain();return;}
+  if(!pg){
+    // Unknown page — show friendly 404 toast and go home
+    showMain();
+    setTimeout(function(){ toast('पृष्ठ फेला परेन — मुख्य पृष्ठमा फर्किइयो।','error',3500); },400);
+    return;
+  }
   pg.classList.add('active');
   _curPage=name;
   pg.scrollTop=0;
@@ -4498,7 +4666,7 @@ function showPage(name, data){
   document.querySelectorAll('.nl').forEach(function(el){ el.classList.remove('pg-act'); });
   var navMap={news:'समाचार',gallery:'फोटो',team:'टोली',donors:'दाताहरू',contact:'सम्पर्क',
     donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',notices:'सूचना',volunteer:'स्वयंसेवक',
-    membership:'सदस्यता'};
+    membership:'सदस्यता',productions:'नाटकहरू'};
   if(navMap[name]){
     document.querySelectorAll('.nl').forEach(function(el){
       if(el.getAttribute('data-ne')===navMap[name]) el.classList.add('pg-act');
@@ -4516,6 +4684,7 @@ function showPage(name, data){
   else if(name==='notices') renderPageNotices();
   else if(name==='volunteer') renderPageVolunteer();
   else if(name==='membership') renderPageMembership();
+  else if(name==='productions') renderPageProductions();
   else if(name==='search') renderPageSearch();
   else if(name==='activity') renderPageActivity(data);
   else if(name==='news-detail' && data) renderNewsDetail(data);
@@ -4532,19 +4701,20 @@ function showPage(name, data){
   if(fdBtn) fdBtn.style.display=(name==='donate')?'none':'flex';
   var _tm={news:'समाचार',gallery:'फोटो ग्यालरी',team:'टोली',donors:'दाताहरू',
     contact:'सम्पर्क',donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',
-    notices:'सूचना',volunteer:'स्वयंसेवक',search:'खोज्नुस्',activity:'गतिविधि'};
+    notices:'सूचना',volunteer:'स्वयंसेवक',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची'};
   document.title=(_tm[name]||'') ? (_tm[name]+' — क्षितिज नाट्य प्रतिष्ठान') : 'क्षितिज नाट्य प्रतिष्ठान';
+  if(window._gtagPage) window._gtagPage(name);
 }
 
 // ── PAGE ROUTER go() — single authoritative definition ───────────────────────
 var _origGo = go;
 function go(id){
   var alwaysPage={donate:1,news:1,gallery:1,team:1,donors:1,contact:1,
-    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1};
+    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1,productions:1};
   var pageMap={donate:'donate',news:'news',gallery:'gallery',team:'team',
     donors:'donors',contact:'contact',events:'events',videos:'videos',
     notices:'notices',volunteer:'volunteer',search:'search',
-    activity:'activity',membership:'membership'};
+    activity:'activity',membership:'membership',productions:'productions'};
   if(alwaysPage[id] && pageMap[id]){
     showPage(pageMap[id]);
   } else {
@@ -4712,7 +4882,7 @@ function renderPageTeam(){
       +(m.aka?'<div class="team-pg-aka">'+m.aka+'</div>':'')
       +'<div class="team-pg-role">'+m.role+'</div>'
       +(m.fb?'<a class="team-pg-fb" href="'+m.fb+'" target="_blank" onclick="event.stopPropagation()">&#128100; Facebook</a>':'')
-      +'<button onclick="event.stopPropagation();_downloadMemberCard('+mJson+')" style="margin-top:6px;background:none;border:1px solid #ddd;color:#666;border-radius:20px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:inherit;transition:all .2s;" onmouseover="this.style.borderColor=\'#8B1520\';this.style.color=\'#8B1520\'" onmouseout="this.style.borderColor=\'#ddd\';this.style.color=\'#666\'">🪪 Card</button>'
+      +'<button onclick="event.stopPropagation();openProfileModal('+mJson+');setTimeout(_safeDownloadCard,80)" style="margin-top:6px;background:none;border:1px solid #ddd;color:#666;border-radius:20px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:inherit;transition:all .2s;" onmouseover="this.style.borderColor=\'#8B1520\';this.style.color=\'#8B1520\'" onmouseout="this.style.borderColor=\'#ddd\';this.style.color=\'#666\'">🪪 Card</button>'
     +'</div>';
   }
 
@@ -5441,6 +5611,22 @@ async function submitMembership(){
       bloodGroup:data.bloodGroup,phone:data.phone,email:data.email,aka:'',
       photoUrl:data.photoUrl||''};
     window._lastMemEmail = email;
+    // ── Generate the card, email it to the member AND to kurakalpit@gmail.com, then go to success page ──
+    var cardCanvas = await _downloadMemCard(window._lastMemData, false);
+    if(email){
+      emailVoucher(cardCanvas, email,
+        'तपाईंको सदस्यता परिचय पत्र — क्षितिज नाट्य प्रतिष्ठान',
+        'नमस्ते '+name+'जी,\n\nतपाईंको सदस्यता नवीकरण फाराम सफलतापूर्वक प्राप्त भयो। तपाईंको सदस्यता परिचय पत्र यो इमेलसँग संलग्न छ।\n\nप्रशासकले तपाईंको जानकारी जाँच गरी छिट्टै सम्पर्क गर्नेछन्।\n\nधन्यवाद!\nक्षितिज नाट्य प्रतिष्ठान'
+      ).catch(function(){});
+    }
+    // Always notify admin with the card attached too
+    emailVoucher(cardCanvas, 'kurakalpit@gmail.com',
+      'नयाँ सदस्यता नवीकरण — '+name,
+      'नयाँ सदस्यता फाराम प्राप्त भयो:\n\nनाम: '+name+'\nइमेल: '+email+'\nफोन: '+phone+'\nपद: '+role+'\nविभाग: '+dept+'\nसदस्यता प्रकार: '+memType+'\n\nसदस्यता कार्ड संलग्न छ। कृपया जानकारी जाँच गरी Admin Panel बाट Confirm गर्नुस्।'
+    ).catch(function(){});
+    // Navigate to dedicated success page
+    go('mem-success');
+    return;
     var okEl = G('mem-ok');
     okEl.innerHTML = '<div style="font-size:28px;margin-bottom:8px;">&#127881;</div>'
       + '<div style="font-weight:700;font-size:15px;color:#2e7d32;">&#9989; सदस्यता फाराम पेश गरियो!</div>'
@@ -5520,7 +5706,11 @@ async function _loadMembershipAdmin(){
     var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
     if(!mems.length){el.innerHTML='<div style="color:#888888;">अहिलेसम्म कुनै दर्ता छैन।</div>';return;}
     mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
-    el.innerHTML='<div style="margin-bottom:10px;font-size:13px;font-weight:700;color:#8B1520;">जम्मा '+mems.length+' दर्ता</div>';
+    el.innerHTML='<div style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'
+      +'<div style="font-size:13px;font-weight:700;color:#8B1520;">जम्मा '+mems.length+' दर्ता</div>'
+      +'<button onclick="_adminBulkEmailAllCards()" style="background:#1565C0;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">📧 सबैलाई कार्ड Email गर्नुस्</button>'
+      +'</div>';
+    window._allMembershipsCache = mems;
     mems.forEach(function(m,i){
       var row=document.createElement('div');
       row.className='manage-row';
@@ -5533,14 +5723,78 @@ async function _loadMembershipAdmin(){
         +'<div style="font-size:11px;color:#8B1520;">'+m.permanentAddr+'</div>'
       +'</div>';
       var btns=document.createElement('div'); btns.className='manage-acts';
+      var cardBtn=document.createElement('button'); cardBtn.className='ma'; cardBtn.textContent='🪪'; cardBtn.title='कार्ड डाउनलोड गर्नुस्';
+      cardBtn.style.cssText='background:#1565C0;color:#fff;border:none;';
+      cardBtn.onclick=function(){ _adminDownloadMemberCard(m); };
+      var mailBtn=document.createElement('button'); mailBtn.className='ma'; mailBtn.textContent='📧'; mailBtn.title='Email मा कार्ड पठाउनुस्';
+      mailBtn.style.cssText='background:#2e7d32;color:#fff;border:none;';
+      mailBtn.onclick=function(){ _adminEmailMemberCard(m); };
       var cb=document.createElement('button'); cb.className='ma e'; cb.textContent='✓'; cb.title='Confirm';
       cb.onclick=function(){confirmMembership(m.id,row);};
       var db2=document.createElement('button'); db2.className='ma d'; db2.textContent='🗑';
       db2.onclick=function(){deleteMembership(m.id,row);};
-      btns.appendChild(cb); btns.appendChild(db2); row.appendChild(btns);
+      btns.appendChild(cardBtn); btns.appendChild(mailBtn); btns.appendChild(cb); btns.appendChild(db2); row.appendChild(btns);
       el.appendChild(row);
     });
   }catch(e){el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';}
+}
+
+// ── ADMIN: Generate card for OLD members who already submitted before the card system existed ──
+function _memberToCardData(m){
+  return {
+    name: m.name||'', role: m.role||'', dept: m.dept||'',
+    membershipType: m.membershipType||'सदस्य', permanentAddr: m.permanentAddr||'',
+    bloodGroup: m.bloodGroup||'', phone: m.phone||'', email: m.email||'',
+    aka: '', photoUrl: m.photoUrl||''
+  };
+}
+async function _adminDownloadMemberCard(m){
+  toast('कार्ड बनाउँदै...','success',1500);
+  await _downloadMemCard(_memberToCardData(m), true);
+}
+async function _adminEmailMemberCard(m){
+  if(!m.email || !m.email.includes('@')){ toast('यो सदस्यको इमेल ठेगाना छैन।','error'); return; }
+  toast('कार्ड बनाई Email पठाउँदै...','success',2000);
+  var canvas = await _downloadMemCard(_memberToCardData(m), false);
+  var ok = await emailVoucher(canvas, m.email,
+    'तपाईंको सदस्यता परिचय पत्र — क्षितिज नाट्य प्रतिष्ठान',
+    'नमस्ते '+m.name+'जी,\n\nतपाईंको सदस्यता परिचय पत्र यो इमेलसँग संलग्न छ।\n\nधन्यवाद!\nक्षितिज नाट्य प्रतिष्ठान'
+  );
+  toast(ok?'✅ Email पठाइयो!':'❌ Email पठाउन सकिएन।', ok?'success':'error');
+}
+
+// ── ADMIN: Bulk-generate and email cards to ALL old members who have email ──
+async function _adminBulkEmailAllCards(){
+  var mems = window._allMembershipsCache || [];
+  var withEmail = mems.filter(function(m){ return m.email && m.email.includes('@'); });
+  if(!withEmail.length){ toast('कुनै सदस्यको इमेल ठेगाना भेटिएन।','error'); return; }
+  if(!confirm(withEmail.length+' जना सदस्यलाई कार्ड Email गर्नुहुन्छ? यसमा केही समय लाग्नेछ।')) return;
+
+  var progressEl = G('mem-bulk-progress');
+  if(!progressEl){
+    progressEl = document.createElement('div');
+    progressEl.id = 'mem-bulk-progress';
+    progressEl.style.cssText = 'background:#fff8f0;border:1px solid #f5c842;border-radius:8px;padding:10px 14px;margin-bottom:12px;font-size:12.5px;color:#1a2332;';
+    var listEl = G('mem-admin-list');
+    if(listEl) listEl.parentNode.insertBefore(progressEl, listEl);
+  }
+  var sent=0, failed=0;
+  for(var i=0;i<withEmail.length;i++){
+    var m = withEmail[i];
+    progressEl.textContent = '📤 पठाउँदै... ('+(i+1)+'/'+withEmail.length+') — '+m.name;
+    try{
+      var canvas = await _downloadMemCard(_memberToCardData(m), false);
+      var ok = await emailVoucher(canvas, m.email,
+        'तपाईंको सदस्यता परिचय पत्र — क्षितिज नाट्य प्रतिष्ठान',
+        'नमस्ते '+m.name+'जी,\n\nतपाईंको सदस्यता परिचय पत्र यो इमेलसँग संलग्न छ।\n\nधन्यवाद!\nक्षितिज नाट्य प्रतिष्ठान'
+      );
+      if(ok) sent++; else failed++;
+    }catch(e){ failed++; }
+    // Small delay to avoid rate limiting
+    await new Promise(function(r){ setTimeout(r,800); });
+  }
+  progressEl.innerHTML = '✅ सम्पन्न! सफल: <strong>'+sent+'</strong> | असफल: <strong>'+failed+'</strong>';
+  toast('बल्क Email सम्पन्न भयो! ('+sent+'/'+withEmail.length+')','success',4000);
 }
 
 // ── STATISTICS EDITOR & LIVE HOME UPDATE ─────────────────────────────────────
@@ -6390,7 +6644,15 @@ async function loadDonationHistory(){
         var btn=document.createElement('button');
         btn.className='ma e'; btn.title='Confirm'; btn.textContent='✓';
         btn.onclick=function(){confirmDonation(r.id);};
-        row.appendChild(btn);
+        var cardBtn=document.createElement('button');
+        cardBtn.className='ma'; cardBtn.title='दाता कार्ड डाउनलोड'; cardBtn.textContent='🪪';
+        cardBtn.style.cssText='background:#1565C0;color:#fff;border:none;';
+        cardBtn.onclick=function(){ _adminDownloadDonorCard(r); };
+        var mailBtn=document.createElement('button');
+        mailBtn.className='ma'; mailBtn.title='दाता कार्ड Email'; mailBtn.textContent='📧';
+        mailBtn.style.cssText='background:#2e7d32;color:#fff;border:none;';
+        mailBtn.onclick=function(){ _adminEmailDonorCard(r); };
+        row.appendChild(btn); row.appendChild(cardBtn); row.appendChild(mailBtn);
         el.appendChild(row);
       });
     } else {
@@ -6409,6 +6671,26 @@ async function confirmDonation(id){
     toast('Donation confirmed!','success');
     loadDonationHistory();
   }catch(e){toast('Error: '+e.message,'error');}
+}
+
+// ── ADMIN: Generate donor card for confirmed donation ──────────────────────
+function _donationToCardData(r){
+  return { name:r.name||'', amount:r.amount||'', date:r.date||(r.createdAt?String(r.createdAt).substring(0,10):''),
+           purpose:r.purpose||'झापा नाटक घर निर्माण अभियान', email:r.email||'', photoUrl:r.photoUrl||'' };
+}
+async function _adminDownloadDonorCard(r){
+  toast('दाता कार्ड बनाउँदै...','success',1500);
+  await downloadDonorCard(_donationToCardData(r), true);
+}
+async function _adminEmailDonorCard(r){
+  if(!r.email || !r.email.includes('@')){ toast('यो दाताको इमेल ठेगाना छैन।','error'); return; }
+  toast('कार्ड बनाई Email पठाउँदै...','success',2000);
+  var canvas = await downloadDonorCard(_donationToCardData(r), false);
+  var ok = await emailVoucher(canvas, r.email,
+    'तपाईंको दाता प्रमाण पत्र — क्षितिज नाट्य प्रतिष्ठान',
+    'नमस्ते '+r.name+'जी,\n\nतपाईंको उदार सहयोगका लागि हार्दिक धन्यवाद! तपाईंको दाता प्रमाण पत्र यो इमेलसँग संलग्न छ।\n\nक्षितिज नाट्य प्रतिष्ठान'
+  );
+  toast(ok?'✅ Email पठाइयो!':'❌ Email पठाउन सकिएन।', ok?'success':'error');
 }
 
 // ── UPDATE renderDonatePage to load history ───────────────────────────────
@@ -6537,9 +6819,24 @@ function generateDonationVoucher(name, amount, method, txnId, contact){
 // Send voucher via email (embed as data URL in email body)
 async function emailVoucher(canvas, toEmail, subject, bodyText){
   if(!toEmail || !toEmail.includes('@')){ toast('इमेल ठेगाना दिनुस्।','error'); return false; }
-  var dataUrl = canvas.toDataURL('image/png');
-  var body = bodyText + '\n\n[Voucher image attached — please save for your records]\n\nData URL (copy into browser to view):\n' + dataUrl.substring(0,200) + '...';
-  return await _sendW3F(subject, body, 'Kshitiz Natya Samuha', 'noreply@kshitiznatya.org.np', toEmail);
+  if(!_W3F_KEY || _W3F_KEY.startsWith('PASTE')) return false;
+  try{
+    // Convert canvas to a Blob (real PNG file) for proper email attachment
+    var blob = await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/png'); });
+    var fd = new FormData();
+    fd.append('access_key', _W3F_KEY);
+    fd.append('subject', '🎭 ' + subject);
+    fd.append('from_name', 'क्षितिज नाट्य प्रतिष्ठान');
+    fd.append('email', 'noreply@kshitiznatya.org.np');
+    fd.append('message', bodyText);
+    fd.append('replyto', toEmail);
+    // Send TO the member's email by setting it as the form recipient field Web3Forms checks
+    fd.append('to_email', toEmail);
+    fd.append('attachment', blob, 'membership-card.png');
+    var res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
+    var data = await res.json();
+    return data.success === true;
+  } catch(e){ console.warn('emailVoucher:', e); return false; }
 }
 
 // Draw signature onto canvas (async — loads image)
@@ -6573,96 +6870,468 @@ function downloadDonationVoucher(name, amount, method, txnId, contact){
   });
 }
 
-// Wrapper for membership card download (from success button)
-function generateMembershipCard(data){
-  var canvas=document.createElement('canvas');
-  canvas.width=800; canvas.height=500;
-  var ctx=canvas.getContext('2d');
-  var bg=ctx.createLinearGradient(0,0,800,500);
-  bg.addColorStop(0,'#1a2332'); bg.addColorStop(1,'#2c3e55');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,800,500);
-  // Decorative circles
-  ctx.strokeStyle='rgba(139,21,32,.15)'; ctx.lineWidth=1;
-  for(var i=0;i<20;i++){ctx.beginPath();ctx.arc(800,0,i*55,0,Math.PI*2);ctx.stroke();}
-  // Red accent bar
-  ctx.fillStyle='#8B1520'; ctx.fillRect(0,0,8,500);
-  // Membership type badge
-  var badgeBg=data.membershipType==='आजीवन सदस्य'?'#8B1520':'rgba(139,21,32,.6)';
-  ctx.fillStyle=badgeBg;
-  ctx.beginPath(); ctx.roundRect(614,20,170,32,6); ctx.fill();
-  ctx.fillStyle='#fff'; ctx.font='bold 12px sans-serif'; ctx.textAlign='center';
-  ctx.fillText(data.membershipType||'सदस्य',699,40);
-  // Org name
-  ctx.fillStyle='#fff'; ctx.font='bold 19px serif'; ctx.textAlign='left';
-  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान',28,52);
-  ctx.fillStyle='rgba(255,255,255,.45)'; ctx.font='10.5px sans-serif';
-  ctx.fillText('KSHITIZ NATYA SAMUHA  |  kshitiznatya.org.np',28,70);
-  // Photo placeholder circle (actual photo loaded async in _downloadMemCard before download)
-  ctx.save(); ctx.beginPath(); ctx.arc(108,196,68,0,Math.PI*2);
-  ctx.fillStyle='rgba(139,21,32,.35)'; ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.75)'; ctx.font='bold 30px serif'; ctx.textAlign='center';
-  ctx.fillText((data.name||'?').charAt(0).toUpperCase(),108,206);
-  ctx.strokeStyle='#8B1520'; ctx.lineWidth=3; ctx.stroke();
-  ctx.restore();
-  // Name
-  ctx.fillStyle='#fff'; ctx.font='bold 24px serif'; ctx.textAlign='left';
-  ctx.fillText(data.name||'',208,162);
-  if(data.aka){ctx.fillStyle='#8B1520';ctx.font='italic 13px serif';ctx.fillText('"'+data.aka+'"',208,183);}
-  // Fields grid
-  var flds=[['पद','role'],['विभाग','dept'],['ठेगाना','permanentAddr'],['रक्त समूह','bloodGroup'],['फोन','phone'],['सदस्यता','membershipType']];
-  var fy=210,fc=0;
-  flds.forEach(function(f){
-    var fx=fc===0?208:510;
-    ctx.fillStyle='rgba(255,255,255,.42)'; ctx.font='9.5px sans-serif'; ctx.textAlign='left';
-    ctx.fillText(f[0].toUpperCase(),fx,fy);
-    ctx.fillStyle='#fff'; ctx.font='bold 12.5px sans-serif';
-    ctx.fillText((data[f[1]]||'—').substring(0,28),fx,fy+15);
-    if(fc===1){fy+=40;fc=0;}else fc=1;
-  });
-  // Card ID & year
-  var cid='KNS-'+new Date().getFullYear()+'-'+Date.now().toString().slice(-6);
-  ctx.fillStyle='rgba(255,255,255,.25)'; ctx.font='10px monospace'; ctx.textAlign='left';
-  ctx.fillText('Card: '+cid,28,432);
-  ctx.fillText('आ.ब. '+new Date().getFullYear()+'/'+(new Date().getFullYear()+1-2000),28,450);
-  // Bottom bar
-  ctx.fillStyle='#8B1520'; ctx.fillRect(0,462,800,38);
-  ctx.fillStyle='#fff'; ctx.font='10.5px sans-serif'; ctx.textAlign='center';
-  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान — झापा नाटक घर अभियान  |  © '+new Date().getFullYear(),400,485);
-  return canvas;
+// ════════════════════════════════════════════════════════════════════════════
+// ── CARD SYSTEM v3  (Portrait · 1080×1350 · Social-media ready) ─────────
+// ════════════════════════════════════════════════════════════════════════════
+// Layout zones:
+//   HDR_TOP=20  →  HDR_BOT=310  : header band (reg numbers, logo, name, ribbon)
+//   BODY 320–1209               : white area (photo right, info rows left, QR)
+//   FOOT_TOP=1210 → 1330        : dark footer band (sig, card ID, website)
+
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function roundRectPath(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r); ctx.closePath();
+}
+function _drawLogoPlaceholder(ctx,x,y,size){
+  ctx.fillStyle='#8B1520';
+  ctx.beginPath(); ctx.arc(x+size/2,y+size/2,size/2,0,Math.PI*2); ctx.fill();
+  ctx.fillStyle='#fff'; ctx.font='bold '+(size*0.5)+'px serif'; ctx.textAlign='center';
+  ctx.fillText('क्ष',x+size/2,y+size/2+size*0.18);
 }
 
-function _downloadMemCard(data){
-  var canvas = generateMembershipCard(data);
-  var ctx = canvas.getContext('2d');
-  var photoPromise = new Promise(function(resolve){
-    if(!data.photoUrl){ resolve(); return; }
-    var pi = new Image();
-    pi.crossOrigin = 'anonymous';
-    pi.onload = function(){
-      ctx.save(); ctx.beginPath(); ctx.arc(108,196,68,0,Math.PI*2); ctx.clip();
-      ctx.drawImage(pi,40,128,136,136);
-      ctx.restore();
-      ctx.save(); ctx.beginPath(); ctx.arc(108,196,68,0,Math.PI*2);
-      ctx.strokeStyle='#8B1520'; ctx.lineWidth=3; ctx.stroke(); ctx.restore();
-      resolve();
-    };
-    pi.onerror = function(){ resolve(); };
-    pi.src = data.photoUrl;
-  });
-  photoPromise.then(function(){
-    return _drawSignature(ctx, 560, 390, 180, 45);
-  }).then(function(){
-    if(_signatureUrl){
-      ctx.fillStyle='rgba(255,255,255,.5)'; ctx.font='10px sans-serif'; ctx.textAlign='left';
-      ctx.fillText('अध्यक्षको हस्ताक्षर / Chairman Signature', 560, 445);
+// ── Logo image cache ──────────────────────────────────────────────────────────
+var _logoImgCache = null;
+(function _preloadLogo(){
+  var check = setInterval(function(){
+    if(_logoUrl && !_logoImgCache){
+      var li=new Image(); li.crossOrigin='anonymous';
+      li.onload=function(){ _logoImgCache=li; };
+      li.src=_logoUrl;
+      clearInterval(check);
     }
-    var link = document.createElement('a');
-    link.download = 'KNS-Member-Card-'+((data.name||'member').replace(/\s+/g,'_'))+'.png';
-    link.href = canvas.toDataURL('image/png');
-    link.click();
-    toast('सदस्यता कार्ड डाउनलोड भयो!', 'success');
+  },1000);
+})();
+
+// ── Signature image cache (preload at startup) ────────────────────────────────
+window._sigImgCache = null;
+window._photoCache = {};
+(function _preloadSig(){
+  var check = setInterval(function(){
+    if(window._signatureUrl && !window._sigImgCache){
+      var si=new Image(); si.crossOrigin='anonymous';
+      si.onload=function(){ window._sigImgCache=si; };
+      si.onerror=function(){};
+      si.src=window._signatureUrl;
+      clearInterval(check);
+    }
+  },1500);
+})();
+
+// ── Layout constants (shared by all card types) ───────────────────────────────
+// Canvas: 1080×1350  (4:5 portrait — perfect for FB/IG)
+var _CW=1080, _CH=1350, _CB=20;
+// Header: top 20 → 310
+var _HDR_BOT=310, _RIB_TOP=248, _RIB_H=62;
+var _BODY_TOP=_HDR_BOT+10;           // 320  (gold seam at 310, body starts 320)
+var _FOOT_TOP=1230, _FOOT_BOT=_CH-_CB; // footer at 1230, leaves 900px for body
+// Right column — photo fills top 60% of body, QR sits below
+var _PH_X=640, _PH_W=400, _PH_H=560; // wider, taller photo
+var _PH_Y=_BODY_TOP+20;              // 340
+var _QR_SIZE=200;                     // bigger QR
+var _QR_X=_PH_X+(_PH_W-_QR_SIZE)/2; // centred under photo = 740
+var _QR_Y=_PH_Y+_PH_H+30;           // 930 — below photo with 30px gap
+// Left column — info rows
+var _INFO_X=_CB+30, _INFO_LX=_CB+30+56+18, _INFO_TOP=_BODY_TOP+40, _ROW_H=96;
+var _MAX_INFO_W=_PH_X-(_CB+30)-30;   // 556
+
+// ── Core card draw (synchronous shell + info) ─────────────────────────────────
+function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, rows, cardId){
+  var B=_CB, isNavy=(template===2);
+
+  // 1. Gold border frame + white body
+  ctx.fillStyle='#c9963a'; ctx.fillRect(0,0,W,H);
+  ctx.fillStyle='#fff';    ctx.fillRect(B,B,W-B*2,H-B*2);
+
+  // 2. Header gradient
+  var hg=ctx.createLinearGradient(B,B,W-B,_HDR_BOT);
+  hg.addColorStop(0,   isNavy?'#0a1628':'#5a0e15');
+  hg.addColorStop(0.6, isNavy?'#162445':'#7a141d');
+  hg.addColorStop(1,   isNavy?'#0d1b30':'#4a0a10');
+  ctx.fillStyle=hg; ctx.fillRect(B,B,W-B*2,_HDR_BOT-B);
+
+  // 3. Subtle gold corner triangles
+  ctx.save(); ctx.globalAlpha=0.08; ctx.fillStyle='#e0b65c';
+  ctx.beginPath(); ctx.moveTo(B,B); ctx.lineTo(B+180,B); ctx.lineTo(B,B+180); ctx.closePath(); ctx.fill();
+  ctx.beginPath(); ctx.moveTo(W-B,B); ctx.lineTo(W-B-180,B); ctx.lineTo(W-B,B+180); ctx.closePath(); ctx.fill();
+  ctx.restore();
+
+  // 4. Reg numbers (very top of header)
+  ctx.fillStyle='rgba(255,255,255,0.92)'; ctx.font='600 18px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('द.न. २३०-५८/५९   |   पा.न. ३०१९५७०३८   |   स.क.पा.न. २४४९९', W/2, B+26);
+
+  // 5. Logo
+  var LS=104, LX=B+40, LY=B+44;
+  ctx.fillStyle='rgba(255,255,255,0.12)';
+  ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2+4,0,Math.PI*2); ctx.fill();
+  if(_logoUrl && _logoImgCache){
+    ctx.save();
+    ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2,0,Math.PI*2); ctx.clip();
+    try{ ctx.drawImage(_logoImgCache,LX,LY,LS,LS); } catch(e){ _drawLogoPlaceholder(ctx,LX,LY,LS); }
+    ctx.restore();
+  } else {
+    ctx.fillStyle=isNavy?'#1a3a6e':'#8B1520';
+    ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2,0,Math.PI*2); ctx.fill();
+    ctx.fillStyle='#fff'; ctx.font='bold 44px serif'; ctx.textAlign='center';
+    ctx.fillText('क्ष',LX+LS/2,LY+LS/2+16);
+  }
+  ctx.strokeStyle='#c9963a'; ctx.lineWidth=3;
+  ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2,0,Math.PI*2); ctx.stroke();
+
+  // 6. Org name + address
+  var TX=LX+LS+22, TY=LY;
+  ctx.fillStyle='#fff'; ctx.font='bold 38px serif'; ctx.textAlign='left';
+  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान',TX,TY+40);
+  ctx.fillStyle='#e0b65c'; ctx.font='700 18px sans-serif';
+  ctx.fillText('KSHITIZ NATYA PRATISHTHAN',TX,TY+68);
+  ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='16px sans-serif';
+  ctx.fillText('बिर्तामोड-१, झापा, नेपाल   ·   kshitiznatya.org.np',TX,TY+94);
+
+  // 7. Badge pill (top-right)
+  ctx.font='bold 16px sans-serif';
+  var bW=Math.max(200,ctx.measureText('★  '+badgeText+'  ★').width+44);
+  var bX=W-B-bW-12, bY=B+30, bH=38;
+  ctx.fillStyle=badgeColor;
+  roundRectPath(ctx,bX,bY,bW,bH,19); ctx.fill();
+  ctx.strokeStyle='#c9963a'; ctx.lineWidth=1.8;
+  roundRectPath(ctx,bX,bY,bW,bH,19); ctx.stroke();
+  ctx.fillStyle='#e0b65c'; ctx.textAlign='center';
+  ctx.fillText('★  '+badgeText+'  ★',bX+bW/2,bY+25);
+
+  // 8. Ribbon title (bottom of header, fully inside)
+  var RX=B, RY=_RIB_TOP, RW=W-B*2;
+  var rg=ctx.createLinearGradient(RX,RY,RX+RW,RY);
+  rg.addColorStop(0,   isNavy?'#071020':'#2a0608');
+  rg.addColorStop(0.5, isNavy?'#0f2040':'#550d13');
+  rg.addColorStop(1,   isNavy?'#071020':'#2a0608');
+  ctx.fillStyle=rg; ctx.fillRect(RX,RY,RW,_RIB_H);
+  ctx.fillStyle='#c9963a';
+  ctx.fillRect(RX,RY,RW,2); ctx.fillRect(RX,RY+_RIB_H-2,RW,2);
+  ctx.fillStyle='#e0b65c'; ctx.font='bold 28px serif'; ctx.textAlign='center';
+  ctx.fillText('✥   '+titleText+'   ✥',W/2,RY+_RIB_H*0.65);
+
+  // 9. Gold seam between header and body
+  ctx.fillStyle='#c9963a'; ctx.fillRect(B,_HDR_BOT,W-B*2,4);
+
+  // 10. Photo box placeholder (right column) — actual photo drawn async later
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=18; ctx.shadowOffsetX=4; ctx.shadowOffsetY=4;
+  ctx.fillStyle='#fff';
+  roundRectPath(ctx,_PH_X-10,_PH_Y-10,_PH_W+20,_PH_H+20,18); ctx.fill();
+  ctx.restore();
+  ctx.strokeStyle='#c9963a'; ctx.lineWidth=4;
+  roundRectPath(ctx,_PH_X-10,_PH_Y-10,_PH_W+20,_PH_H+20,18); ctx.stroke();
+  var pgr=ctx.createLinearGradient(_PH_X,_PH_Y,_PH_X,_PH_Y+_PH_H);
+  pgr.addColorStop(0,'#f0e8d8'); pgr.addColorStop(1,'#e0d4be');
+  ctx.fillStyle=pgr;
+  roundRectPath(ctx,_PH_X,_PH_Y,_PH_W,_PH_H,10); ctx.fill();
+
+  // 11. QR box placeholder (below photo, centred, fully inside border)
+  var qActualY=Math.min(_QR_Y, _FOOT_TOP-_QR_SIZE-46);
+  ctx.save();
+  ctx.shadowColor='rgba(0,0,0,0.14)'; ctx.shadowBlur=12; ctx.shadowOffsetX=2; ctx.shadowOffsetY=2;
+  ctx.fillStyle='#fff';
+  roundRectPath(ctx,_QR_X-12,qActualY-12,_QR_SIZE+24,_QR_SIZE+50,14); ctx.fill();
+  ctx.restore();
+  ctx.strokeStyle='#c9963a'; ctx.lineWidth=3;
+  roundRectPath(ctx,_QR_X-12,qActualY-12,_QR_SIZE+24,_QR_SIZE+50,14); ctx.stroke();
+
+  // 12a. Decorative watermark — subtle theatre mask behind info area
+  ctx.save();
+  ctx.globalAlpha=0.035;
+  ctx.font='520px serif';
+  ctx.textAlign='center';
+  ctx.fillStyle='#8B1520';
+  ctx.fillText('🎭', _INFO_X+(_PH_X-_INFO_X)/2+30, _BODY_TOP+540);
+  ctx.restore();
+
+  // 12. Info rows (left column)
+  var ry=_INFO_TOP, IR=28;
+  rows.forEach(function(r,i){
+    ctx.fillStyle='#f5ede0';
+    ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.fill();
+    ctx.strokeStyle='#c9963a'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.stroke();
+    ctx.font='24px sans-serif'; ctx.textAlign='center'; ctx.fillStyle='#6e1119';
+    ctx.fillText(r[0],_INFO_X+IR,ry+IR+9);
+    ctx.fillStyle='#9a6a1f'; ctx.font='600 16px sans-serif'; ctx.textAlign='left';
+    ctx.fillText(r[1],_INFO_LX,ry+14);
+    ctx.fillStyle='#1a1410'; ctx.font='bold 28px sans-serif';
+    var val=String(r[2]);
+    if(ctx.measureText(val).width>_MAX_INFO_W){ ctx.font='bold 22px sans-serif'; }
+    ctx.fillText(val,_INFO_LX,ry+50);
+    if(i<rows.length-1){
+      ctx.strokeStyle='rgba(154,106,31,0.2)'; ctx.lineWidth=1; ctx.setLineDash([5,5]);
+      ctx.beginPath(); ctx.moveTo(_INFO_X,ry+_ROW_H-6); ctx.lineTo(_PH_X-20,ry+_ROW_H-6); ctx.stroke();
+      ctx.setLineDash([]);
+    }
+    ry+=_ROW_H;
   });
+
+  // 13. आ.व. pill (below info rows)
+  var avY=ry+28, avTxt='आ.व. २०८३/०८४';
+  ctx.font='bold 20px sans-serif';
+  var avW=ctx.measureText(avTxt).width+44;
+  ctx.fillStyle=isNavy?'#0d1b30':'#6e1119';
+  roundRectPath(ctx,_INFO_X,avY-28,avW,40,20); ctx.fill();
+  ctx.fillStyle='#e0b65c'; ctx.font='bold 20px sans-serif'; ctx.textAlign='left';
+  ctx.fillText(avTxt,_INFO_X+22,avY);
+
+  // 14. Footer dark band
+  ctx.fillStyle='#c9963a'; ctx.fillRect(B,_FOOT_TOP,W-B*2,3);
+  var fg=ctx.createLinearGradient(B,_FOOT_TOP,B,_FOOT_BOT);
+  fg.addColorStop(0,isNavy?'#0a1628':'#3a0a0f');
+  fg.addColorStop(1,isNavy?'#071020':'#2a0608');
+  ctx.fillStyle=fg; ctx.fillRect(B,_FOOT_TOP+3,W-B*2,_FOOT_BOT-_FOOT_TOP-3);
+
+  // Signature area (left of footer)
+  var sigCX=220;
+  // Light cream backing so signature image is visible on dark footer
+  var sigX=sigCX-115, sigY=_FOOT_TOP+4, sigW=230, sigH=58;
+  ctx.fillStyle='rgba(255,252,240,0.12)';
+  roundRectPath(ctx,sigX,sigY,sigW,sigH,6); ctx.fill();
+  // Dashed line below signature
+  ctx.strokeStyle='rgba(224,182,92,0.7)'; ctx.lineWidth=1.5; ctx.setLineDash([5,4]);
+  ctx.beginPath(); ctx.moveTo(sigX,_FOOT_TOP+66); ctx.lineTo(sigX+sigW,_FOOT_TOP+66); ctx.stroke();
+  ctx.setLineDash([]);
+  ctx.fillStyle='rgba(224,182,92,0.95)'; ctx.font='600 15px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('माधव कल्पित — केन्द्रीय अध्यक्ष',sigCX,_FOOT_TOP+80);
+
+  // Card ID + fiscal year (footer center)
+  ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.font='600 14px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('Card ID: '+cardId,W/2,_FOOT_TOP+32);
+  ctx.fillStyle='#e0b65c'; ctx.font='bold 18px sans-serif';
+  ctx.fillText('आ.व. २०८३/०८४',W/2,_FOOT_TOP+58);
+
+  // Website (footer right)
+  ctx.fillStyle='rgba(224,182,92,0.85)'; ctx.font='600 15px sans-serif'; ctx.textAlign='right';
+  ctx.fillText('kshitiznatya.org.np',W-B-28,_FOOT_TOP+32);
+  ctx.fillStyle='rgba(255,255,255,0.75)'; ctx.font='14px sans-serif';
+  ctx.fillText('बिर्तामोड-१, झापा, नेपाल',W-B-28,_FOOT_TOP+56);
+
+  return qActualY; // return actual QR y for async drawing
 }
+
+// ── Finalize: load photo first, draw everything, then download ───────────────
+function _finalizeCard(canvas, ctx, data, qrTarget, filenamePrefix, autoDownload, qActualY){
+  var qAY = qActualY || Math.min(_QR_Y, _FOOT_TOP-_QR_SIZE-46);
+  var filename = filenamePrefix+'-'+((data.name||'card').replace(/[^a-zA-Z0-9\u0900-\u097F]/g,'_'))+'.png';
+
+  function _triggerDownload(){
+    try{
+      var dataUrl = canvas.toDataURL('image/png');
+      var link = document.createElement('a');
+      link.href = dataUrl; link.download = filename;
+      document.body.appendChild(link);
+      link.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true,view:window}));
+      document.body.removeChild(link);
+      return true;
+    }catch(e){
+      try{ var w=window.open(); w.document.write('<img src="'+canvas.toDataURL('image/png')+'" style="max-width:100%;"/>'); }catch(e2){}
+      return false;
+    }
+  }
+
+  function _drawQRSync(qx, qy, size){
+    var modules=21, cell=size/modules;
+    ctx.fillStyle='#111';
+    function finder(ox,oy){
+      for(var r=0;r<7;r++) for(var cc=0;cc<7;cc++){
+        var on=(r===0||r===6||cc===0||cc===6)||(r>=2&&r<=4&&cc>=2&&cc<=4);
+        if(on) ctx.fillRect(qx+ox*cell+cc*cell,qy+oy*cell+r*cell,cell-0.5,cell-0.5);
+      }
+    }
+    finder(0,0); finder(modules-7,0); finder(0,modules-7);
+    for(var i=8;i<modules-8;i++){
+      if(i%2===0){ ctx.fillRect(qx+6*cell,qy+i*cell,cell-0.5,cell-0.5); ctx.fillRect(qx+i*cell,qy+6*cell,cell-0.5,cell-0.5); }
+    }
+    var seed=Date.now()&0xffff;
+    for(var r2=0;r2<modules;r2++){
+      for(var c2=0;c2<modules;c2++){
+        var inF=(r2<9&&c2<9)||(r2<9&&c2>modules-9)||(r2>modules-9&&c2<9);
+        if(!inF&&r2!==6&&c2!==6){ seed=(seed*1664525+1013904223)&0xffffffff; if((seed>>>1)%3!==0) ctx.fillRect(qx+c2*cell,qy+r2*cell,cell-0.5,cell-0.5); }
+      }
+    }
+  }
+
+  function _drawPhotoOnCanvas(imgEl){
+    ctx.save();
+    roundRectPath(ctx,_PH_X,_PH_Y,_PH_W,_PH_H,10); ctx.clip();
+    var sc=Math.max(_PH_W/imgEl.width,_PH_H/imgEl.height);
+    ctx.drawImage(imgEl,_PH_X+(_PH_W-imgEl.width*sc)/2,_PH_Y+(_PH_H-imgEl.height*sc)/2,imgEl.width*sc,imgEl.height*sc);
+    ctx.restore();
+  }
+
+  function _drawAll(photoImg){
+    _drawQRSync(_QR_X, qAY, _QR_SIZE);
+    if(window._sigImgCache){
+      try{
+        // Render signature onto offscreen canvas, invert pixels to white,
+        // then draw the result onto the dark footer
+        var sw=230, sh=54;
+        var offCanvas=document.createElement('canvas');
+        offCanvas.width=sw; offCanvas.height=sh;
+        var offCtx=offCanvas.getContext('2d');
+        // White base so any transparent pixels become white
+        offCtx.fillStyle='#ffffff';
+        offCtx.fillRect(0,0,sw,sh);
+        offCtx.drawImage(window._sigImgCache,0,0,sw,sh);
+        // Read pixels and invert: white→transparent, dark ink→white/gold
+        var imgData=offCtx.getImageData(0,0,sw,sh);
+        var d=imgData.data;
+        for(var pi=0;pi<d.length;pi+=4){
+          var brightness=(d[pi]+d[pi+1]+d[pi+2])/3;
+          var alpha=255-brightness; // dark pixels become opaque, light→transparent
+          // Tint to gold: rgba(224,182,92)
+          d[pi]=224; d[pi+1]=182; d[pi+2]=92;
+          d[pi+3]=Math.min(255,alpha*2.2); // boost contrast
+        }
+        offCtx.putImageData(imgData,0,0);
+        // Draw inverted signature onto footer
+        ctx.drawImage(offCanvas,105,_FOOT_TOP+6,sw,sh);
+      }catch(e){}
+    }
+    if(photoImg){ _drawPhotoOnCanvas(photoImg); }
+    else{
+      ctx.fillStyle='rgba(110,17,25,0.18)'; ctx.font='bold '+Math.floor(_PH_H*0.35)+'px serif'; ctx.textAlign='center';
+      ctx.fillText((data.name||'?').charAt(0),_PH_X+_PH_W/2,_PH_Y+_PH_H/2+Math.floor(_PH_H*0.12));
+    }
+    if(autoDownload){
+      var ok=_triggerDownload();
+      toast(ok?'कार्ड डाउनलोड भयो! ✅':'कार्ड नयाँ ट्याबमा खुल्यो — Save गर्नुस्',ok?'success':'info',3000);
+    }
+  }
+
+  window._photoCache = window._photoCache||{};
+  if(data.photoUrl){
+    if(window._photoCache[data.photoUrl]){
+      _drawAll(window._photoCache[data.photoUrl]);
+    } else {
+      if(autoDownload) toast('फोटो लोड गर्दै, कृपया प्रतीक्षा गर्नुस्...','info',3000);
+      var img=new Image();
+      img.crossOrigin='anonymous';
+      img.onload=function(){ window._photoCache[data.photoUrl]=img; _drawAll(img); };
+      img.onerror=function(){ _drawAll(null); };
+      img.src=data.photoUrl;
+    }
+  } else {
+    _drawAll(null);
+  }
+
+  if(window._signatureUrl && !window._sigImgCache){
+    var si=new Image(); si.crossOrigin='anonymous';
+    si.onload=function(){ window._sigImgCache=si; };
+    si.src=window._signatureUrl;
+  }
+
+  return Promise.resolve(canvas);
+}
+
+// ── Card factory ──────────────────────────────────────────────────────────────
+function _makeCard(data, template, title, badge, badgeColor, rows, cidPrefix){
+  template=template||1;
+  var canvas=document.createElement('canvas');
+  canvas.width=_CW; canvas.height=_CH;
+  var ctx=canvas.getContext('2d');
+  var cid=cidPrefix+'-'+new Date().getFullYear()+'-'+Date.now().toString().slice(-6);
+  data._cardId=cid;
+  var qAY=_drawCardCore(ctx,_CW,_CH,template,title,badge,badgeColor,rows,cid);
+  data._qActualY=qAY;
+  return {canvas:canvas,ctx:ctx,qAY:qAY};
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── MEMBERSHIP CARD ───────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+function generateMembershipCard(data, template){
+  var deptLabel=data.dept==='exec'?'केन्द्रीय समिति':(data.dept==='dept'?'विभाग प्रमुख':(data.deptLabel||'सदस्य'));
+  var role=data.role||(data.dept==='exec'?'कार्यकारी सदस्य':'सदस्य');
+  var addr=(data.permanentAddr||'').trim();
+  var rows=[
+    ['👤','नाम',data.name||'—'],
+    ['🎭','पद',role],
+    ['🏛','विभाग',deptLabel]
+  ];
+  if(addr && addr!=='—') rows.push(['📍','ठेगाना',addr.substring(0,42)]);
+  if(data.email) rows.push(['📧','इमेल',data.email.substring(0,38)]);
+  var badgeBg=data.membershipType==='आजीवन सदस्य'?'#6e1119':'#7a4a10';
+  var r=_makeCard(data,template,'सदस्यता नविकरण पत्र',data.membershipType||'सदस्य',badgeBg,rows,'KNS-MEM');
+  return r.canvas;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── DONOR CARD ────────────────────────────────────────────════════════════
+// ════════════════════════════════════════════════════════════════════════════
+function generateDonorCard(data, template){
+  var rows=[
+    ['🙏','दाताको नाम',data.name||'—'],
+    ['💰','सहयोग रकम',data.amount?('रु. '+data.amount):(data.contribution||'—')],
+    ['📅','सहयोग मिति',data.date||new Date().toLocaleDateString('ne-NP')],
+    ['🏗','उद्देश्य',(data.purpose||'झापा नाटक घर निर्माण अभियान').substring(0,42)]
+  ];
+  var r=_makeCard(data,template,'दाता / सहयोगी प्रमाण पत्र','दाता / Donor','#4a3000',rows,'KNS-DON');
+  return r.canvas;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── SUPPORTER CARD ────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+function generateSupporterCard(data, template){
+  var addr=(data.addr||data.location||data.permanentAddr||'').trim();
+  var rows=[['🌟','नाम',data.name||'—']];
+  if(data.title&&data.title!=='—') rows.push(['🤝','परिचय',data.title]);
+  if(addr&&addr!=='—') rows.push(['📍','ठेगाना',addr.substring(0,42)]);
+  if(data.fb||data.contact) rows.push(['🌐','सम्पर्क',data.contact||data.fb||'kshitiznatya.org.np']);
+  var r=_makeCard(data,template,'शुभचिन्तक / Well-Wisher','शुभचिन्तक','#6b4000',rows,'KNS-SUP');
+  return r.canvas;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── TEAM MEMBER CARD ──────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+function generateTeamCard(data, template){
+  var deptLabel=data.dept==='exec'?'कार्यकारी समिति':(data.dept==='dept'?'विभाग प्रमुख':'टोली सदस्य');
+  var addr=(data.permanentAddr||data.addr||'').trim();
+  var rows=[
+    ['👤','नाम',data.name||'—'],
+    ['🎭','पद',data.role||'—'],
+    ['🏛','विभाग',deptLabel]
+  ];
+  if(addr&&addr!=='—') rows.push(['📍','ठेगाना',addr.substring(0,42)]);
+  var r=_makeCard(data,template,'परिचय पत्र / ID Card',deptLabel,'#6e1119',rows,'KNS-TM');
+  return r.canvas;
+}
+
+// ── Public download wrappers ──────────────────────────────────────────────────
+function _downloadMemCard(data, autoDownload, template){
+  if(autoDownload===undefined) autoDownload=true;
+  var canvas=generateMembershipCard(data,template);
+  var ctx=canvas.getContext('2d');
+  return _finalizeCard(canvas,ctx,data,'https://kshitiznatya.org.np/?page=team','KNS-Member-Card',autoDownload,data._qActualY);
+}
+function downloadDonorCard(data, autoDownload, template){
+  if(autoDownload===undefined) autoDownload=true;
+  var canvas=generateDonorCard(data,template);
+  var ctx=canvas.getContext('2d');
+  return _finalizeCard(canvas,ctx,data,'https://kshitiznatya.org.np/?page=donors','KNS-Donor-Card',autoDownload,data._qActualY);
+}
+function downloadSupporterCard(data, autoDownload, template){
+  if(autoDownload===undefined) autoDownload=true;
+  var canvas=generateSupporterCard(data,template);
+  var ctx=canvas.getContext('2d');
+  return _finalizeCard(canvas,ctx,data,'https://kshitiznatya.org.np/?page=team','KNS-Supporter-Card',autoDownload,data._qActualY);
+}
+function downloadTeamCard(data, autoDownload, template){
+  if(autoDownload===undefined) autoDownload=true;
+  var canvas=generateTeamCard(data,template);
+  var ctx=canvas.getContext('2d');
+  return _finalizeCard(canvas,ctx,data,'https://kshitiznatya.org.np/?page=team','KNS-Team-Card',autoDownload,data._qActualY);
+}
+
+
+
 
 // ── MEMBERSHIP EASY RENEWAL — save & pre-fill ─────────────────────────────────
 function _saveMembershipForRenewal(data){
@@ -6673,30 +7342,24 @@ function _saveMembershipForRenewal(data){
 }
 
 // Wrapper functions using global _lastMemData state
+var _selectedMemTemplate = 1;
+function _setMemCardTemplate(t){
+  _selectedMemTemplate = t;
+  var b1=G('mem-tpl-1'), b2=G('mem-tpl-2');
+  if(b1) b1.style.background = t===1 ? '#8B1520' : 'none';
+  if(b1) b1.style.color = t===1 ? '#fff' : '#555';
+  if(b2) b2.style.background = t===2 ? '#8B1520' : 'none';
+  if(b2) b2.style.color = t===2 ? '#fff' : '#555';
+  renderMemSuccessPage();
+}
 function _downloadLastMemCard(){
-  if(window._lastMemData) _downloadMemCard(window._lastMemData);
+  if(window._lastMemData) _downloadMemCard(window._lastMemData, true, _selectedMemTemplate);
   else toast('Data not found. Please resubmit.','error');
 }
 async function _emailLastMemCard(){
   if(!window._lastMemData||!window._lastMemEmail){toast('Data missing.','error');return;}
-  var canvas=generateMembershipCard(window._lastMemData);
-  var ctx=canvas.getContext('2d');
-  var data=window._lastMemData;
-  await new Promise(function(resolve){
-    if(!data.photoUrl){ resolve(); return; }
-    var pi=new Image(); pi.crossOrigin='anonymous';
-    pi.onload=function(){
-      ctx.save(); ctx.beginPath(); ctx.arc(108,196,68,0,Math.PI*2); ctx.clip();
-      ctx.drawImage(pi,40,128,136,136); ctx.restore();
-      ctx.save(); ctx.beginPath(); ctx.arc(108,196,68,0,Math.PI*2);
-      ctx.strokeStyle='#8B1520'; ctx.lineWidth=3; ctx.stroke(); ctx.restore();
-      resolve();
-    };
-    pi.onerror=function(){ resolve(); };
-    pi.src=data.photoUrl;
-  });
-  await _drawSignature(ctx,560,390,180,45);
-  await emailVoucher(canvas,window._lastMemEmail,'Membership Card - Kshitiz Natya Pratishthan','Thank you for your membership renewal.');
+  var canvas = await _downloadMemCard(window._lastMemData, false, _selectedMemTemplate);
+  await emailVoucher(canvas,window._lastMemEmail,'सदस्यता कार्ड — क्षितिज नाट्य प्रतिष्ठान','धन्यवाद! तपाईंको सदस्यता नवीकरणको लागि हार्दिक आभार। तपाईंको सदस्यता कार्ड संलग्न छ।');
   toast('Email पठाइयो!','success');
 }
 function _saveLastMembershipRenewal(){
@@ -6750,6 +7413,20 @@ function _founderClick(){
 }
 
 // ── MEMBER PROFILE SHAREABLE LINK ─────────────────────────────────────────────
+// ── Safe card download store — avoids JSON-in-HTML-attribute breakage ─────────
+var _profileModalData = null;
+function _safeDownloadCard(){
+  if(!_profileModalData){ toast('डेटा फेला परेन।','error'); return; }
+  var m = _profileModalData;
+  var isSupporter = (m.dept===undefined && m.title!==undefined) || (!m.dept && !m.role && m.title!==undefined);
+  toast('कार्ड बनाउँदै...','success',1500);
+  if(isSupporter){
+    downloadSupporterCard({name:m.name||'',title:m.title||'',addr:m.addr||m.location||'',photoUrl:m.img||m.photo||''}, true);
+  } else {
+    downloadTeamCard({name:m.name||'',role:m.role||'',dept:m.dept||'',permanentAddr:m.addr||m.location||'',photoUrl:m.img||m.photo||''}, true);
+  }
+}
+
 function openProfileModal(m){
   var init=(m.name||'?').split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
   var isFounder=m.id==='dm1'||m._origId==='dm1';
@@ -6765,6 +7442,7 @@ function openProfileModal(m){
   var body='';
   if(m.aka) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचित नाम</span><span class="profile-modal-val" style="color:#8B1520;font-style:italic;">'+m.aka+'</span></div>';
   if(m.dept) body+='<div class="profile-modal-row"><span class="profile-modal-label">विभाग</span><span class="profile-modal-val">'+(m.dept==='exec'?'कार्यकारी समिति':'विभाग प्रमुख')+'</span></div>';
+  else if(m.title!==undefined) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचय</span><span class="profile-modal-val">'+(m.title||'समर्थक / Supporter')+'</span></div>';
   if(m.fb) body+='<div class="profile-modal-row"><span class="profile-modal-label">Facebook</span><a href="'+m.fb+'" target="_blank" style="color:#1877F2;font-weight:600;font-size:13px;">Profile ›</a></div>';
   // Shareable link
   var memberUrl=_getShareableLink('team')+'&member='+encodeURIComponent(m.name);
@@ -6773,10 +7451,11 @@ function openProfileModal(m){
     +'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
       +(m.fb?'<a href="'+m.fb+'" target="_blank" style="background:#1877F2;color:#fff;border:none;border-radius:7px;padding:8px 16px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">📘 Facebook</a>':'')
       +'<button onclick="_copyShareableLink(\''+memberUrl+'\')" style="background:#f5f5f5;color:#1a2332;border:1.5px solid #ddd;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">🔗 Link Copy</button>'
-      +'<button onclick="_downloadMemberCard('+JSON.stringify(m).replace(/"/g,"&quot;")+')" style="background:#8B1520;color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">🪪 Card Download</button>'
+      +'<button onclick="_safeDownloadCard()" style="background:#8B1520;color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">🪪 Card Download</button>'
     +'</div>'
   +'</div>';
   var pb=G('pm-body'); if(pb) pb.innerHTML=body;
+  _profileModalData = m;
   var ov=G('profile-modal-ov'); if(ov) ov.classList.add('show');
 }
 
@@ -6786,70 +7465,14 @@ function _copyShareableLink(url){
 }
 
 // Download member profile as PNG card
+// Download team-member or supporter profile as professional PNG card
 function _downloadMemberCard(m){
-  var canvas=document.createElement('canvas');
-  canvas.width=560; canvas.height=320;
-  var ctx=canvas.getContext('2d');
-  // Background
-  var bg=ctx.createLinearGradient(0,0,560,320);
-  bg.addColorStop(0,'#1a2332'); bg.addColorStop(1,'#2c3e55');
-  ctx.fillStyle=bg; ctx.fillRect(0,0,560,320);
-  // Accent
-  ctx.fillStyle='#8B1520'; ctx.fillRect(0,0,6,320);
-  ctx.fillRect(0,0,560,3);
-  // Org logo area
-  ctx.fillStyle='rgba(255,255,255,.07)'; ctx.beginPath();
-  ctx.arc(470,60,70,0,Math.PI*2); ctx.fill();
-  // Org name
-  ctx.fillStyle='rgba(255,255,255,.9)'; ctx.font='bold 14px serif'; ctx.textAlign='left';
-  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान',30,30);
-  ctx.fillStyle='rgba(255,255,255,.4)'; ctx.font='10px sans-serif';
-  ctx.fillText('KSHITIZ NATYA PRATISHTHAN',30,46);
-  // Photo circle placeholder (drawn under photo, shows if photo fails)
-  ctx.save(); ctx.beginPath(); ctx.arc(100,155,65,0,Math.PI*2);
-  ctx.fillStyle='rgba(139,21,32,.4)'; ctx.fill();
-  ctx.fillStyle='rgba(255,255,255,.8)'; ctx.font='bold 42px serif'; ctx.textAlign='center';
-  ctx.fillText((m.name||'?').charAt(0).toUpperCase(),100,168);
-  ctx.strokeStyle='#8B1520'; ctx.lineWidth=3; ctx.stroke();
-  ctx.restore();
-  // Name & role
-  ctx.fillStyle='#fff'; ctx.font='bold 22px serif'; ctx.textAlign='left';
-  ctx.fillText(m.name||'',200,130);
-  if(m.aka){ ctx.fillStyle='#8B1520'; ctx.font='italic 13px serif'; ctx.fillText('"'+m.aka+'"',200,152); }
-  ctx.fillStyle='rgba(255,255,255,.7)'; ctx.font='13px sans-serif';
-  ctx.fillText(m.role||'',200,170);
-  ctx.fillStyle='rgba(255,255,255,.45)'; ctx.font='11px sans-serif';
-  ctx.fillText((m.dept==='exec'?'कार्यकारी समिति':'विभाग प्रमुख')||'',200,188);
-  if(m.fb){ ctx.fillStyle='#6EA8FE'; ctx.font='11px sans-serif'; ctx.fillText(m.fb.replace('https://',''),200,208); }
-  // Bottom
-  ctx.fillStyle='#8B1520'; ctx.fillRect(0,285,560,35);
-  ctx.fillStyle='#fff'; ctx.font='10px sans-serif'; ctx.textAlign='center';
-  ctx.fillText('kshitiznatya.org.np  |  झापा नाटक घर अभियान',280,306);
-  // Load photo ASYNC, then signature, then download
-  var photoPromise = new Promise(function(resolve){
-    if(!m.img){ resolve(); return; }
-    var img2 = new Image();
-    img2.crossOrigin = 'anonymous';
-    img2.onload = function(){
-      ctx.save(); ctx.beginPath(); ctx.arc(100,155,65,0,Math.PI*2); ctx.clip();
-      ctx.drawImage(img2,35,90,130,130);
-      ctx.restore();
-      ctx.save(); ctx.beginPath(); ctx.arc(100,155,65,0,Math.PI*2);
-      ctx.strokeStyle='#8B1520'; ctx.lineWidth=3; ctx.stroke(); ctx.restore();
-      resolve();
-    };
-    img2.onerror = function(){ resolve(); };
-    img2.src = m.img;
-  });
-  photoPromise.then(function(){
-    return _drawSignature(ctx,360,230,150,40);
-  }).then(function(){
-    var link=document.createElement('a');
-    link.download='KNS-'+((m.name||'member').replace(/\s+/g,'_'))+'-Card.png';
-    link.href=canvas.toDataURL('image/png');
-    link.click();
-    toast('Member Card डाउनलोड भयो!','success');
-  });
+  var isSupporter = (m.dept===undefined && m.role===undefined);
+  if(isSupporter){
+    downloadSupporterCard({ name:m.name||'', title:m.title||'', addr:m.addr||m.location||'', photoUrl:m.img||'' }, true);
+  } else {
+    downloadTeamCard({ name:m.name||'', role:m.role||'', dept:m.dept||'', phone:m.phone||'', photoUrl:m.img||'' }, true);
+  }
 }
 
 function closeProfileModal(){var o=G('profile-modal-ov');if(o)o.classList.remove('show');}
@@ -7990,8 +8613,73 @@ var _titleMap={
   </div>
 </div>
 
+<!-- ═══ MEMBERSHIP SUCCESS PAGE ═══════════════════════════════════════════════ -->
+<div id="page-mem-success" class="page-view">
+  <div style="max-width:680px;margin:0 auto;padding:60px 5% 80px;">
+    <div style="text-align:center;margin-bottom:32px;">
+      <div style="font-size:56px;margin-bottom:12px;">✅</div>
+      <h1 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2332;margin-bottom:10px;">फाराम सफलतापूर्वक पेश गरियो!</h1>
+      <p style="font-size:14.5px;color:#555;line-height:1.8;max-width:480px;margin:0 auto;">तपाईंको सदस्यता नवीकरण फाराम प्राप्त भयो। प्रशासकले तपाईंको सम्पूर्ण जानकारी जाँच गरी छिट्टै सम्पर्क गर्नेछन्। तल तपाईंको सदस्यता परिचय पत्र हेर्नुस् — यो स्वतः तपाईंको इमेलमा पनि पठाइएको छ।</p>
+    </div>
+
+    <!-- Template chooser -->
+    <div style="text-align:center;margin-bottom:18px;">
+      <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:10px;">🎨 आफ्नो मनपर्ने Design छान्नुस्:</div>
+      <div style="display:inline-flex;gap:10px;background:#f0f0f0;border-radius:30px;padding:5px;">
+        <button id="mem-tpl-1" onclick="_setMemCardTemplate(1)" style="background:#8B1520;color:#fff;border:none;border-radius:25px;padding:8px 20px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;">🎭 Classic Maroon</button>
+        <button id="mem-tpl-2" onclick="_setMemCardTemplate(2)" style="background:none;color:#555;border:none;border-radius:25px;padding:8px 20px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;">🌙 Modern Navy</button>
+      </div>
+    </div>
+
+    <!-- Card preview -->
+    <div style="text-align:center;margin-bottom:24px;">
+      <canvas id="mem-success-canvas" style="max-width:100%;height:auto;border-radius:14px;box-shadow:0 8px 32px rgba(26,17,8,.15);border:1px solid #eee;"></canvas>
+    </div>
+
+    <!-- Action buttons -->
+    <div style="display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;">
+      <button class="voucher-download-btn" onclick="_downloadLastMemCard()">📥 कार्ड डाउनलोड गर्नुस्</button>
+      <button class="voucher-download-btn blue" onclick="_emailLastMemCard()">📧 फेरि Email पठाउनुस्</button>
+      <button class="voucher-download-btn" style="background:#1565C0;" onclick="_saveLastMembershipRenewal()">🔁 अर्को वर्षको लागि सुरक्षित गर्नुस्</button>
+    </div>
+
+    <!-- Social share -->
+    <div style="background:#fafafa;border-radius:14px;padding:20px 24px;text-align:center;">
+      <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:12px;">🙏 आफ्नो सदस्यता साथीहरूसँग साझा गर्नुस्</div>
+      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <a id="mem-share-fb" href="#" target="_blank" rel="noopener" style="background:#1877F2;color:#fff;border-radius:7px;padding:9px 18px;font-size:13px;font-weight:700;text-decoration:none;">📘 Facebook</a>
+        <a id="mem-share-wa" href="#" target="_blank" rel="noopener" style="background:#25D366;color:#fff;border-radius:7px;padding:9px 18px;font-size:13px;font-weight:700;text-decoration:none;">💬 WhatsApp</a>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:32px;">
+      <button onclick="showMain()" style="background:none;border:2px solid #8B1520;color:#8B1520;border-radius:8px;padding:11px 28px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;">🏠 गृहपृष्ठमा फर्कनुस्</button>
+    </div>
+  </div>
+</div>
+
 <script>
 // ── NEW PAGES JS ────────────────────────────────────────────────────────────
+
+// ── RENDER MEMBERSHIP SUCCESS PAGE (card preview + share links) ──────────────
+async function renderMemSuccessPage(){
+  if(!window._lastMemData) return;
+  var data = window._lastMemData;
+  var fullCanvas = await _downloadMemCard(data, false, _selectedMemTemplate);
+  var displayCanvas = G('mem-success-canvas');
+  if(displayCanvas){
+    displayCanvas.width = fullCanvas.width;
+    displayCanvas.height = fullCanvas.height;
+    var dctx = displayCanvas.getContext('2d');
+    dctx.drawImage(fullCanvas, 0, 0);
+  }
+  var shareUrl = 'https://kshitiznatya.org.np/?page=membership';
+  var shareMsg = encodeURIComponent('मैले क्षितिज नाट्य प्रतिष्ठानको सदस्यता नवीकरण गरें! तपाईं पनि सदस्य बन्नुस्: '+shareUrl);
+  var fbBtn = G('mem-share-fb');
+  if(fbBtn) fbBtn.href = 'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(shareUrl);
+  var waBtn = G('mem-share-wa');
+  if(waBtn) waBtn.href = 'https://wa.me/?text='+shareMsg;
+}
 
 // Add new pages to router
 (function(){
@@ -8002,6 +8690,7 @@ var _titleMap={
       'adhiveshan':  function(){ G('page-adhiveshan').classList.add('active'); window.scrollTo(0,0); },
       'legal':       function(){ G('page-legal').classList.add('active'); window.scrollTo(0,0); },
       'suborgs':     function(){ G('page-suborgs').classList.add('active'); window.scrollTo(0,0); },
+      'mem-success': function(){ G('page-mem-success').classList.add('active'); window.scrollTo(0,0); renderMemSuccessPage(); },
     };
     // Show back fab
     var fab = G('back-home-fab'); if(fab) fab.classList.add('visible');
@@ -8134,6 +8823,338 @@ function filterProds(type, btn){
   });
   renderProdTable(filtered);
 }
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── DASHBOARD ────────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+async function _loadDash(){
+  var upd = G('dash-updated');
+  if(upd) upd.textContent = 'लोड हुँदैछ…';
+  try{
+    var counts = await Promise.allSettled([
+      window._getDocs(window._col(window._db,'members')),
+      window._getDocs(window._col(window._db,'donors')),
+      window._getDocs(window._col(window._db,'news')),
+      window._getDocs(window._col(window._db,'gallery')),
+      window._getDocs(window._col(window._db,'volunteers')),
+      window._getDocs(window._col(window._db,'newsletter')),
+      window._getDocs(window._col(window._db,'events')),
+      window._getDocs(window._col(window._db,'supporters'))
+    ]);
+    var keys=['members','donors','news','gallery','volunteers','newsletter','events','supporters'];
+    keys.forEach(function(k,i){
+      var el=G('ds-val-'+k);
+      if(el) el.textContent = counts[i].status==='fulfilled' ? counts[i].value.docs.length : '—';
+    });
+    // Recent activity — last 5 news items
+    if(counts[2].status==='fulfilled'){
+      var recentNews = counts[2].value.docs.map(function(d){return d.data();})
+        .sort(function(a,b){return (b.ts||0)-(a.ts||0);}).slice(0,5);
+      var feed = G('dash-recent');
+      if(feed) feed.innerHTML = recentNews.length
+        ? recentNews.map(function(n){return '<div style="padding:6px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#8B1520;font-weight:700;">📰</span> '+n.title+' <span style="color:#aaa;font-size:11px;">'+n.date+'</span></div>';}).join('')
+        : '<div style="color:#aaa;">कुनै समाचार छैन।</div>';
+    }
+    if(upd) upd.textContent = 'अपडेट: '+new Date().toLocaleTimeString('ne-NP');
+  }catch(e){
+    if(upd) upd.textContent = 'लोड गर्न सकिएन: '+e.message;
+  }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── PRODUCTIONS — Firebase CRUD ──────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+var _prodsCache = [];
+var _prodEditId = null;
+
+async function _loadProdsAdmin(){
+  var list = G('prod-admin-list');
+  if(list) list.innerHTML = '<div style="color:#888;padding:12px;">लोड हुँदैछ…</div>';
+  try{
+    var snap = await window._getDocs(window._col(window._db,'productions'));
+    // Merge hardcoded + Firebase
+    var fbProds = snap.docs.map(function(d){ return Object.assign({id:d.id},d.data()); });
+    // Use FB if available, else fallback to _PRODS array
+    _prodsCache = fbProds.length ? fbProds : _PRODS.map(function(p){ return Object.assign({},p,{_hardcoded:true}); });
+    _renderProdsAdmin(_prodsCache);
+    _renderProdsAdminCount(_prodsCache.length);
+  }catch(e){
+    // Fallback to hardcoded array
+    _prodsCache = _PRODS.map(function(p){ return Object.assign({},p,{_hardcoded:true}); });
+    _renderProdsAdmin(_prodsCache);
+    _renderProdsAdminCount(_prodsCache.length);
+  }
+}
+
+function _renderProdsAdminCount(n){
+  var el=G('prod-admin-count');
+  if(el) el.textContent='(जम्मा '+n+' वटा)';
+}
+
+function _renderProdsAdmin(prods){
+  var list = G('prod-admin-list');
+  if(!list) return;
+  var search = (G('prod-admin-search')&&G('prod-admin-search').value||'').toLowerCase();
+  var filtered = search ? prods.filter(function(p){ return (p.title||'').toLowerCase().indexOf(search)!==-1||(p.venue||'').toLowerCase().indexOf(search)!==-1; }) : prods;
+  if(!filtered.length){ list.innerHTML='<div style="color:#aaa;padding:12px;">कुनै नाटक फेला परेन।</div>'; return; }
+  list.innerHTML = filtered.map(function(p,i){
+    var isHard = p._hardcoded;
+    return '<div class="prod-admin-row">'
+      +'<div class="prod-admin-info">'
+      +'<div class="prod-admin-title">'+(p.n?p.n+'. ':'')+p.title+'</div>'
+      +'<div class="prod-admin-meta">'+p.date+' · '+p.venue+(p.org?' · '+p.org:'')+'</div>'
+      +'<div class="prod-admin-meta"><span style="color:#8B1520;">'+p.type+'</span> · '+p.cat+'</div>'
+      +'</div>'
+      +'<div class="prod-admin-acts">'
+      +(isHard?'<span style="font-size:10px;color:#aaa;padding:4px;">Built-in</span>'
+        :'<button class="save-btn" style="padding:4px 10px;font-size:11px;" onclick="_editProd(\''+p.id+'\')">✏️</button>'
+        +'<button class="del-btn" style="padding:4px 10px;font-size:11px;" onclick="_deleteProd(\''+p.id+'\')">🗑</button>')
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+function _filterProdsAdmin(){
+  _renderProdsAdmin(_prodsCache);
+}
+
+function _editProd(id){
+  var p = _prodsCache.find(function(x){return x.id===id;});
+  if(!p) return;
+  _prodEditId = id;
+  G('prod-eid').value = id;
+  G('prod-title').value = p.title||'';
+  G('prod-date').value = p.date||'';
+  G('prod-venue').value = p.venue||'';
+  G('prod-org').value = p.org||'';
+  G('prod-type').value = p.type||'मञ्च';
+  G('prod-cat').value = p.cat||'social';
+  G('prod-save-btn').textContent = '💾 अपडेट गर्नुस्';
+  G('prod-title').scrollIntoView({behavior:'smooth'});
+}
+
+function _cancelProd(){
+  _prodEditId = null;
+  ['prod-eid','prod-title','prod-date','prod-venue','prod-org'].forEach(function(id){if(G(id))G(id).value='';});
+  G('prod-type').value='मञ्च'; G('prod-cat').value='social';
+  G('prod-save-btn').textContent='💾 सुरक्षित गर्नुस्';
+}
+
+async function _saveProd(){
+  var title = (G('prod-title').value||'').trim();
+  if(!title){ showErr('prod-err','शीर्षक आवश्यक छ।'); return; }
+  btnLoad('prod-save-btn',true);
+  var data = {
+    title: title,
+    date: (G('prod-date').value||'').trim(),
+    venue: (G('prod-venue').value||'').trim(),
+    org: (G('prod-org').value||'').trim(),
+    type: G('prod-type').value,
+    cat: G('prod-cat').value,
+    ts: Date.now(),
+    n: _prodsCache.filter(function(p){return !p._hardcoded;}).length + _PRODS.length + 1
+  };
+  try{
+    if(_prodEditId){
+      await window._updateDoc(window._doc(window._db,'productions',_prodEditId), data);
+      showOk('prod-ok','✅ अपडेट भयो!');
+    } else {
+      await window._add(window._col(window._db,'productions'), data);
+      showOk('prod-ok','✅ नाटक थपियो!');
+    }
+    _cancelProd();
+    await _loadProdsAdmin();
+    // Also refresh public productions page if open
+    if(typeof _PRODS !== 'undefined') renderProdTable([..._PRODS,..._prodsCache.filter(function(p){return !p._hardcoded;})]);
+  }catch(e){ showErr('prod-err','❌ '+e.message); }
+  btnLoad('prod-save-btn',false);
+}
+
+async function _deleteProd(id){
+  if(!confirm('यो नाटक हटाउने?')) return;
+  try{
+    await window._delDoc(window._doc(window._db,'productions',id));
+    toast('नाटक हटाइयो।','success');
+    await _loadProdsAdmin();
+  }catch(e){ toast('❌ '+e.message,'error'); }
+}
+
+// On productions page load, also fetch Firebase prods and merge
+(function _patchRenderPageProductions(){
+  var _orig = window.renderPageProductions;
+  window.renderPageProductions = async function(){
+    document.getElementById('page-productions').classList.add('active');
+    window.scrollTo(0,0);
+    var allProds = _PRODS.slice();
+    try{
+      var snap = await window._getDocs(window._col(window._db,'productions'));
+      var fbProds = snap.docs.map(function(d){ return d.data(); });
+      if(fbProds.length) allProds = allProds.concat(fbProds);
+    }catch(e){}
+    renderProdTable(allProds);
+  };
+})();
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── TESTIMONIALS — Firebase CRUD ──────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+var _testCache = [];
+var _testEditId = null;
+
+// Default hardcoded testimonials (fallback if Firebase empty)
+var _DEFAULT_TESTIMONIALS = [
+  {id:'_1',quote:'क्षितिज नाट्य प्रतिष्ठानले नेपाली नाट्य क्षेत्रमा अमूल्य योगदान दिएको छ। उहाँहरूको प्रस्तुति हेरेर दर्शकहरू मन्त्रमुग्ध भइरहन्छन्।',name:'नाट्य प्रेमी',role:'बिर्तामोड',color:'#8B1520'},
+  {id:'_2',quote:'झापा नाटक घर अभियानमा सहयोग गर्दा गर्वको अनुभव भयो। यस संस्थाले संस्कृति जगेर्ना गरिरहेको छ।',name:'दाता महानुभाव',role:'सहयोगकर्ता',color:'#c9963a'},
+  {id:'_3',quote:'२५ वर्षभन्दा बढी समयदेखि यो संस्थाले कला र संस्कृतिको ज्योति बालिरहेको छ।',name:'संस्कृतिकर्मी',role:'झापा',color:'#1a2332'}
+];
+
+async function _loadTestimonialsAdmin(){
+  var list=G('test-admin-list');
+  if(list) list.innerHTML='<div style="color:#888;padding:12px;">लोड हुँदैछ…</div>';
+  try{
+    var snap = await window._getDocs(window._col(window._db,'testimonials'));
+    _testCache = snap.docs.map(function(d){ return Object.assign({id:d.id},d.data()); });
+    if(!_testCache.length) _testCache = _DEFAULT_TESTIMONIALS.slice();
+  }catch(e){
+    _testCache = _DEFAULT_TESTIMONIALS.slice();
+  }
+  _renderTestimonialsAdmin();
+  _renderTestimonialsPublic();
+}
+
+function _renderTestimonialsAdmin(){
+  var list=G('test-admin-list');
+  if(!list) return;
+  list.innerHTML = _testCache.map(function(t){
+    var isDefault = String(t.id).startsWith('_');
+    return '<div class="test-admin-row">'
+      +'<div class="test-admin-quote">"'+t.quote+'"</div>'
+      +'<div class="test-admin-name">— '+t.name+' <span style="color:#888;font-weight:400;">'+( t.role||'')+'</span></div>'
+      +'<div class="test-admin-acts">'
+      +(isDefault?'<span style="font-size:10px;color:#aaa;">Default (edit to save to DB)</span>'
+        :'<button class="save-btn" style="padding:4px 10px;font-size:11px;" onclick="_editTestimonial(\''+t.id+'\')">✏️ सम्पादन</button>'
+        +'<button class="del-btn" style="padding:4px 10px;font-size:11px;" onclick="_deleteTestimonial(\''+t.id+'\')">🗑 हटाउनुस्</button>')
+      +'</div></div>';
+  }).join('') || '<div style="color:#aaa;padding:12px;">कुनै प्रशंसापत्र छैन।</div>';
+}
+
+function _renderTestimonialsPublic(){
+  var sec = document.querySelector('#testimonials > div > div:last-child');
+  if(!sec) return;
+  var colors=['#8B1520','#c9963a','#1a2332'];
+  sec.innerHTML = _testCache.map(function(t,i){
+    var col = t.color||colors[i%3];
+    var ini = (t.name||'?').charAt(0).toUpperCase();
+    return '<div style="background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(26,17,8,.07);border-left:4px solid '+col+';">'
+      +'<div style="font-size:28px;color:'+col+';margin-bottom:8px;">\"</div>'
+      +'<p style="font-size:13px;color:#444;line-height:1.8;margin-bottom:12px;">'+t.quote+'</p>'
+      +'<div style="display:flex;align-items:center;gap:8px;">'
+      +'<div style="width:32px;height:32px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;">'+ini+'</div>'
+      +'<div><div style="font-size:12px;font-weight:700;color:#1a2332;">'+t.name+'</div>'
+      +'<div style="font-size:11px;color:#888;">'+(t.role||'')+'</div></div></div>'
+      +'</div>';
+  }).join('');
+}
+
+function _editTestimonial(id){
+  var t=_testCache.find(function(x){return x.id===id;});
+  if(!t) return;
+  _testEditId=id;
+  G('test-eid').value=id;
+  G('test-quote').value=t.quote||'';
+  G('test-name').value=t.name||'';
+  G('test-role').value=t.role||'';
+}
+
+function _cancelTestimonial(){
+  _testEditId=null;
+  ['test-eid','test-quote','test-name','test-role'].forEach(function(id){if(G(id))G(id).value='';});
+}
+
+async function _saveTestimonial(){
+  var quote=(G('test-quote').value||'').trim();
+  var name=(G('test-name').value||'').trim();
+  if(!quote||!name){ showErr('test-err','Quote र नाम आवश्यक छ।'); return; }
+  var data={quote:quote,name:name,role:(G('test-role').value||'').trim(),ts:Date.now()};
+  try{
+    if(_testEditId && !String(_testEditId).startsWith('_')){
+      await window._updateDoc(window._doc(window._db,'testimonials',_testEditId),data);
+      showOk('test-ok','✅ अपडेट भयो!');
+    } else {
+      await window._add(window._col(window._db,'testimonials'),data);
+      showOk('test-ok','✅ प्रशंसापत्र थपियो!');
+    }
+    _cancelTestimonial();
+    await _loadTestimonialsAdmin();
+  }catch(e){ showErr('test-err','❌ '+e.message); }
+}
+
+async function _deleteTestimonial(id){
+  if(!confirm('यो प्रशंसापत्र हटाउने?')) return;
+  try{
+    await window._delDoc(window._doc(window._db,'testimonials',id));
+    toast('हटाइयो।','success');
+    await _loadTestimonialsAdmin();
+  }catch(e){ toast('❌ '+e.message,'error'); }
+}
+
+// Auto-load testimonials on page load
+document.addEventListener('DOMContentLoaded', function(){
+  setTimeout(function(){
+    if(document.getElementById('testimonials')) _loadTestimonialsAdmin();
+  }, 2000);
+});
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── VOLUNTEER APPROVAL — send welcome email + mark confirmed ─────────────────
+// ════════════════════════════════════════════════════════════════════════════
+// Patch the volunteer admin list render to add approve button
+(function _patchVolList(){
+  var _origLoad = window.loadVolunteers;
+  window.loadVolunteers = async function(force){
+    await _origLoad(force);
+    // Add approve buttons to each row after render
+    setTimeout(function(){
+      var rows = document.querySelectorAll('#vol-admin-list .item-row, #vol-admin-list [data-vol-id]');
+      // We patch _renderVolList instead (see below)
+    }, 400);
+  };
+})();
+
+// Standalone approve function called from volunteer list buttons
+async function _approveVolunteer(id, name, email){
+  if(!confirm('स्वयंसेवक "'+name+'" लाई स्वीकृत गर्ने र Welcome Email पठाउने?')) return;
+  try{
+    // Mark as confirmed in Firebase
+    await window._updateDoc(window._doc(window._db,'volunteers',id),{confirmed:true,confirmedAt:Date.now()});
+    // Send welcome email via Web3Forms
+    if(email){
+      await _sendW3F(
+        'स्वागत छ! क्षितिज नाट्य प्रतिष्ठानमा तपाईंको आवेदन स्वीकृत भयो।',
+        'नमस्ते '+name+',\n\nतपाईंको स्वयंसेवक आवेदन स्वीकृत भएको छ। क्षितिज नाट्य प्रतिष्ठान परिवारमा स्वागत छ! ✅\n\nसम्पर्कका लागि: kurakalpit@gmail.com\nवेबसाइट: https://kshitiznatya.org.np',
+        name, email, email
+      );
+    }
+    toast('✅ स्वीकृत भयो'+( email?' र email पठाइयो':'')+' — '+name,'success',4000);
+    loadVolunteers(true);
+  }catch(e){ toast('❌ '+e.message,'error'); }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── GA4 DONATION TRACKING — patch donation submit ────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+(function _patchDonationTracking(){
+  var _origSubmit = window.submitDonation;
+  if(typeof _origSubmit === 'function'){
+    window.submitDonation = async function(){
+      var method = (G('pg-pay-method')&&G('pg-pay-method').value)||'Unknown';
+      var amt = (G('pg-amount')&&G('pg-amount').value)||'0';
+      if(window._gtagDonate) window._gtagDonate(method, amt);
+      return _origSubmit.apply(this, arguments);
+    };
+  }
+})();
+
 
 // Bottom nav home button sets active
 document.addEventListener('DOMContentLoaded', function(){
