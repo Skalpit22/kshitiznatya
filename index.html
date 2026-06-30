@@ -5,7 +5,11 @@
 <link rel="icon" id="favicon-link" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%238B1520'/><text y='.9em' font-size='72' x='50%25' text-anchor='middle' fill='white' font-family='serif'>क्ष</text></svg>"/>
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%238B1520'/><text y='.9em' font-size='72' x='50%25' text-anchor='middle' fill='white' font-family='serif'>क्ष</text></svg>"/>
 <meta name="theme-color" content="#8B1520"/>
-<!-- ── GOOGLE ANALYTICS 4 ──────────────────────────────────────────────────── -->
+<!-- ════════════════════════════════════════════════════════════
+     🔴 ACTION REQUIRED: Replace G-XXXXXXXXXX with your real GA4 ID
+     Get it from: analytics.google.com → Admin → Data Streams → Web Stream
+     It looks like: G-ABC123XYZ
+     ════════════════════════════════════════════════════════════ -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
 window.dataLayer=window.dataLayer||[];
@@ -37,7 +41,7 @@ window._gtagMembership=function(type){
 <!-- NOTE FOR ADMIN: Replace G-XXXXXXXXXX above with your real GA4 Measurement ID
      Get it from: analytics.google.com → Admin → Data Streams → Web Stream Details -->
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
 <title>क्षितिज नाट्य प्रतिष्ठान — Kshitiz Natya Pratishthan</title>
 <meta name="description" content="क्षितिज नाट्य प्रतिष्ठान — पूर्वी नेपालको अग्रणी नाट्य संस्था। ६२+ मञ्च नाटक, झापा नाटक घर अभियान। बिर्तामोड, झापा, नेपाल।"/>
 <meta property="og:site_name" content="क्षितिज नाट्य प्रतिष्ठान"/>
@@ -628,7 +632,7 @@ body.admin-mode .cover-eBtn{display:inline-block;}
 .hero-content{max-width:820px;animation:fu .7s ease forwards;}
 @keyframes fu{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 .label{font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#8B1520;font-weight:700;margin-bottom:10px;}
-h1{font-family:'Playfair Display',serif;font-size:clamp(36px,7vw,72px);font-weight:700;line-height:1.08;color:#1a2332;margin-bottom:8px;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,72px);font-weight:700;line-height:1.08;color:#1a2332;margin-bottom:8px;}
 .red{color:#8B1520;}
 .origin-tag{font-size:11.5px;background:#ffffff;border-radius:12px;padding:4px 12px;color:#555555;font-weight:600;display:inline-block;margin-bottom:16px;}
 .tagline{font-size:clamp(14px,2vw,17px);color:#555555;max-width:560px;line-height:1.78;margin-bottom:34px;font-style:italic;}
@@ -898,7 +902,8 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
 .arr-btn:hover{opacity:.88;}
 
 /* ═══ MULTI-PAGE ROUTER ═══════════════════════════════════════════════════════ */
-.page-view{display:none;position:fixed;inset:0;background:#ffffff;z-index:150;overflow-y:auto;animation:pgIn .3s ease forwards;}
+.page-view{display:none;position:fixed;inset:0;background:#ffffff;z-index:150;overflow-y:auto;overflow-x:hidden;animation:pgIn .3s ease forwards;}
+@media(max-width:768px){.page-view{padding-bottom:70px;}}
 .page-view.active{display:block;}
 @keyframes pgIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .main-scroll{display:block;}
@@ -948,6 +953,7 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
 /* ═══ GALLERY PAGE ═════════════════════════════════════════════════════════════ */
 .gallery-pg-wrap{max-width:1100px;margin:0 auto;padding:48px 5%;}
 .gal-filter-bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;}
+@media(max-width:768px){.gal-filter-bar{flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}.gal-cat-pill{flex-shrink:0;}}
 .gal-pg-grid{columns:4;gap:16px;}
 @media(max-width:900px){.gal-pg-grid{columns:3;}}
 @media(max-width:600px){.gal-pg-grid{columns:2;}.news-pg-grid{grid-template-columns:1fr;}}
@@ -1543,7 +1549,8 @@ body.dark .bn.active{color:#8B1520;}
 }
 
 /* ── PRODUCTIONS TABLE ────────────────────────────────────────────────────── */
-.prod-filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;}
+.prod-filter-bar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding-bottom:4px;}
+@media(max-width:768px){.prod-filter-bar{flex-wrap:nowrap;}.prod-pill{flex-shrink:0;}}
 .prod-pill{background:#fff8f8;border:1.5px solid #e8e8e8;border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;color:#555555;cursor:pointer;transition:all .2s;}
 .prod-pill.on,.prod-pill:hover{background:#8B1520;color:#fff;border-color:#8B1520;}
 .prod-search{width:100%;margin-bottom:12px;}
@@ -1611,6 +1618,7 @@ body.dark .suborg-desc{color:#888888;}
   box-shadow:0 4px 18px rgba(0,0,0,.35);
 }
 #back-home-fab:hover{border-color:#8B1520;color:#8B1520;transform:translateX(3px);}
+@media(max-width:768px){#back-home-fab{bottom:74px;left:10px;padding:7px 13px;font-size:11.5px;}}
 #back-home-fab.visible{display:flex;}
 
 /* ── STATS EDITOR ────────────────────────────────────────────────────────── */
@@ -1718,6 +1726,11 @@ body.dark .suborg-desc{color:#888888;}
 .share-link-copy:hover{background:#6a0f18;}
 .share-link-copy.copied{background:#4caf50;}
 
+.team-tab{background:rgba(139,21,32,.08);border:1.5px solid rgba(139,21,32,.2);color:#8B1520;border-radius:20px;padding:6px 16px;font-size:12.5px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;}
+.team-tab.on{background:#8B1520;color:#fff;border-color:#8B1520;}
+.team-tab:hover{background:#8B1520;color:#fff;}
+body.dark .team-tab{border-color:rgba(224,182,92,.3);color:#e0b65c;}
+body.dark .team-tab.on{background:#6e1119;}
 /* ── DASHBOARD STAT CARDS ─────────────────────────────────────── */
 .dash-stat-card{background:#fff;border:1px solid #e8e8e8;border-radius:12px;padding:16px 12px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.05);transition:transform .2s;}
 .dash-stat-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(139,21,32,.1);}
@@ -1739,6 +1752,282 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
 .test-admin-quote{font-size:13px;color:#444;margin-bottom:6px;font-style:italic;}
 .test-admin-name{font-size:12px;font-weight:700;color:#8B1520;}
 .test-admin-acts{display:flex;gap:6px;margin-top:8px;}
+
+/* ═══════════════════════════════════════════════════════════════
+   ── MOBILE RESPONSIVE MASTER FIX ────────────────────────────
+   Fixes: menu visibility, zoom issues, overflow, font sizes,
+   grid layouts, admin panel, forms, cards on small screens
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── GLOBAL: prevent horizontal overflow / zoom ── */
+*,*::before,*::after{box-sizing:border-box;}
+html,body{max-width:100%;overflow-x:hidden;}
+img,video,iframe,canvas,svg{max-width:100%;height:auto;}
+
+/* ── BASE MOBILE (≤768px) ── */
+@media(max-width:768px){
+
+  /* NAV */
+  nav{padding:0 4%;}
+  .nav-links{display:none!important;}
+  .ham{display:block!important;}
+  .gov-topbar{font-size:10px;padding:4px 4%;gap:4px;}
+  .gov-topbar-right{gap:8px;}
+
+  /* MOB MENU — full-width, properly padded, visible text */
+  .mob-menu{
+    display:none;flex-direction:column;
+    padding:0 0 70px;
+    background:#fff;
+    border-top:2px solid #8B1520;
+    max-height:80vh;overflow-y:auto;
+    position:fixed;top:64px;left:0;right:0;z-index:199;
+    box-shadow:0 8px 32px rgba(0,0,0,.15);
+  }
+  .mob-menu.open{display:flex;}
+  .mob-menu a{
+    padding:13px 5%;font-size:15px;color:#1a2332;
+    cursor:pointer;text-decoration:none;display:block;
+    border-bottom:1px solid #f0f0f0;
+    min-height:48px;display:flex;align-items:center;
+  }
+  .mob-menu a:active{background:#fff8f8;color:#8B1520;}
+  .mob-menu .mob-section{
+    padding:10px 5% 6px;font-size:10px;font-weight:700;
+    color:#8B1520;text-transform:uppercase;letter-spacing:1px;
+    background:#fafafa;border-bottom:1px solid #e8e8e8;
+  }
+  body.dark .mob-menu{background:#0f1419;border-color:#8B1520;}
+  body.dark .mob-menu a{color:#e8edf2;border-color:#1e2a38;}
+
+  /* HERO */
+  #home{padding:80px 5% 48px;min-height:auto;}
+  h1{font-size:clamp(28px,8vw,48px)!important;}
+  .tagline{font-size:14px;}
+  .btn-r,.btn-g{padding:10px 18px;font-size:13px;width:100%;margin-right:0;margin-bottom:10px;text-align:center;}
+
+  /* STATS BAR */
+  .stats-bar{padding:16px 4%;}
+  .stats-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px;}
+  .stat-n{font-size:18px!important;}
+
+  /* SECTIONS */
+  section{padding:40px 4%;}
+  .si{padding:0;}
+  h2{font-size:clamp(18px,5vw,26px)!important;}
+
+  /* TWO-COL → SINGLE COL */
+  .two-col,.donate-grid,.se-grid,.fi-row,.fi-half,.con-grid{
+    grid-template-columns:1fr!important;
+    gap:16px;
+  }
+
+  /* TEAM GRIDS */
+  .exec-grid{grid-template-columns:repeat(2,1fr)!important;gap:10px;}
+  .dept-grid{grid-template-columns:repeat(3,1fr)!important;gap:8px;}
+  .team-pg-exec-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .team-pg-dept-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* ACTIVITIES GRID */
+  .act-grid,.activity-cards-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* ADHEVESHAN / CRED */
+  .adh-grid,.cred-grid,.suborg-grid{grid-template-columns:1fr!important;}
+
+  /* CARDS */
+  .tc{padding:12px 8px;}
+  .tav{width:64px;height:64px;font-size:18px;}
+  .tn{font-size:11.5px;}
+
+  /* PAGE HERO */
+  .page-hero{padding:80px 4% 36px;margin-top:64px;}
+  .page-hero-title{font-size:clamp(20px,6vw,32px)!important;}
+
+  /* ADMIN PANEL */
+  .ap-body{padding:12px 4%!important;}
+  .ap-tabs{padding:8px!important;gap:5px!important;}
+  .ap-tab{font-size:11px!important;padding:6px 10px!important;}
+  .ap-header{padding:10px 4%!important;flex-wrap:wrap;gap:6px;}
+  .ap-hr{flex-wrap:wrap;gap:6px;}
+
+  /* FORMS */
+  .fi,.cf{font-size:16px;} /* 16px prevents iOS auto-zoom */
+  input,select,textarea{font-size:16px!important;}
+
+  /* MEMBERSHIP FORM type cards */
+  #lbl-type-sansthapak,#lbl-type-kendriyo,#lbl-type-life,#lbl-type-exec,
+  #lbl-type-vibhag,#lbl-type-gen,#lbl-type-manarth{
+    padding:10px 12px;
+  }
+
+  /* NEWSLETTER */
+  .newsletter-form{flex-direction:column;align-items:stretch;}
+  .newsletter-inp{min-width:unset;width:100%;}
+
+  /* DONATE PAGE */
+  .donate-pg-wrap{padding:28px 4%;}
+  .txn-form{padding:14px;}
+
+  /* DONORS TABLE — horizontal scroll */
+  .donors-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .donors-table{font-size:12px;min-width:560px;}
+  .donors-table th,.donors-table td{padding:8px 10px;}
+
+  /* PRODUCTIONS TABLE */
+  .prod-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+  .prod-table{min-width:500px;}
+
+  /* GALLERY PAGE */
+  .gal-pg-grid{columns:2!important;}
+
+  /* NEWS GRID */
+  .news-pg-grid{grid-template-columns:1fr!important;}
+
+  /* EVENT CARDS */
+  .event-card{flex-direction:column;}
+  .event-date-block{flex-direction:row;gap:10px;padding:10px 14px;min-width:unset;align-items:center;}
+  .event-day{font-size:22px;}
+  .event-month,.event-year{font-size:10px;}
+
+  /* VIDEOS GRID */
+  .videos-grid{grid-template-columns:1fr!important;}
+
+  /* REORDER OVERLAY */
+  .reorder-box{width:96vw!important;padding:16px 14px!important;}
+
+  /* PROFILE MODAL */
+  .profile-modal{width:96vw!important;max-width:96vw!important;}
+
+  /* LOGIN BOX */
+  .login-box{width:92vw!important;max-width:92vw!important;padding:24px 18px!important;}
+
+  /* LIGHTBOX */
+  #lb-img{max-width:96vw!important;max-height:60vh!important;}
+  .lb-prev{left:4px!important;}
+  .lb-next{right:4px!important;}
+
+  /* FLOAT DONATE */
+  .float-donate{bottom:70px;right:12px;padding:9px 16px;font-size:12px;}
+
+  /* BACK-HOME FAB */
+  #back-home-fab{bottom:70px;left:10px;padding:7px 12px;font-size:11px;}
+
+  /* FOOTER */
+  .ft-grid{grid-template-columns:1fr!important;gap:20px;}
+  footer{padding:28px 4% 16px;}
+
+  /* STATS STRIP */
+  .stats-grid-strip,.stats-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* AP tabs scroll on mobile */
+  .ap-tabs{overflow-x:auto;flex-wrap:nowrap!important;padding-bottom:4px!important;}
+  .ap-tab{flex-shrink:0;}
+
+  /* sup-banner */
+  .sup-banner-wrap{min-height:120px;}
+
+  /* hide horizontal scroll hint pseudo */
+  .home-hscroll-wrap::after{display:none;}
+
+  /* MEMBERSHIP FORM fi-half */
+  .fi-half{grid-template-columns:1fr!important;}
+
+  /* Volunteer page section */
+  .volunteer-pg-wrap{padding:28px 4%;}
+  .volunteer-form-card{padding:20px 16px;}
+
+  /* Contact wrap */
+  .contact-pg-wrap,.notices-pg-wrap,.search-pg-wrap,.events-pg-wrap,
+  .videos-pg-wrap,.donors-pg-wrap,.donate-pg-wrap,.gallery-pg-wrap,
+  .team-pg-wrap,.news-pg-wrap{padding:28px 4%!important;}
+}
+
+/* ── SMALL MOBILE (≤480px) ── */
+@media(max-width:480px){
+  /* HERO */
+  h1{font-size:clamp(24px,9vw,38px)!important;}
+  .btn-r,.btn-g{font-size:13px;}
+
+  /* TEAM */
+  .exec-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .dept-grid{grid-template-columns:repeat(2,1fr)!important;}
+  .team-pg-exec-grid,.team-pg-dept-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* ACTIVITIES */
+  .act-grid,.activity-cards-grid{grid-template-columns:1fr!important;}
+
+  /* CRED */
+  .cred-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* GALLERY */
+  .gal-pg-grid{columns:1!important;}
+
+  /* PROGRESS STRIP STATS */
+  .stats-grid{grid-template-columns:repeat(2,1fr)!important;}
+
+  /* AP ADMIN GRID */
+  .se-grid,.fi-row{grid-template-columns:1fr!important;}
+
+  /* SUBORG */
+  .suborg-grid{grid-template-columns:1fr!important;}
+
+  /* PAGE HERO */
+  .page-hero{padding:72px 4% 28px;}
+  .breadcrumb{font-size:10px;gap:3px;}
+
+  /* DONOR CARDS */
+  .donors-pg-grid{grid-template-columns:1fr!important;}
+
+  /* MEMBERSHIP type grid */
+  .mem-type-grid{grid-template-columns:1fr!important;}
+
+  /* DASH stat cards */
+  #dash-stats-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+
+/* ── FIX: iOS safari bottom nav overlap ── */
+@supports(padding-bottom:env(safe-area-inset-bottom)){
+  #mob-bottom-nav{padding-bottom:env(safe-area-inset-bottom);}
+  body{padding-bottom:calc(62px + env(safe-area-inset-bottom));}
+}
+
+/* ── Dept/Role checkbox labels ── */
+.dept-check-lbl{
+  display:flex;align-items:center;gap:8px;
+  padding:9px 12px;border:1.5px solid #e8e8e8;border-radius:8px;
+  cursor:pointer;font-size:13.5px;color:#1a2332;font-weight:500;
+  transition:all .18s;user-select:none;
+}
+.dept-check-lbl:hover{border-color:#8B1520;background:#fff8f8;}
+.dept-check-lbl input[type="checkbox"]{
+  width:16px;height:16px;accent-color:#8B1520;flex-shrink:0;cursor:pointer;
+}
+.dept-check-lbl input[type="checkbox"]:checked ~ span{color:#8B1520;font-weight:700;}
+.dept-check-lbl:has(input:checked){border-color:#8B1520;background:#fff8f8;}
+
+/* ── Membership type radio cards ── */
+.mem-type-lbl{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 14px;border:1.5px solid #e8e8e8;border-radius:10px;
+  cursor:pointer;transition:all .18s;
+}
+.mem-type-lbl:hover{border-color:#8B1520;background:#fff8f8;}
+.mem-type-lbl:has(input:checked){border-color:#8B1520;background:#fff8f8;box-shadow:0 0 0 2px rgba(139,21,32,.1);}
+.mem-type-name{font-weight:700;font-size:13px;color:#1a2332;}
+.mem-type-sub{font-size:11px;color:#888;margin-top:2px;}
+
+/* ── Mobile responsive for new dept/role grids ── */
+@media(max-width:600px){
+  #mem-dept-grid, #mem-role-grid{grid-template-columns:1fr 1fr!important;}
+  .mem-type-grid{grid-template-columns:1fr 1fr!important;}
+  .dept-check-lbl{font-size:12.5px;padding:8px 10px;}
+  .mem-type-lbl{padding:9px 10px;}
+  .mem-type-name{font-size:12px;}
+}
+@media(max-width:380px){
+  #mem-dept-grid, #mem-role-grid{grid-template-columns:1fr!important;}
+  .mem-type-grid{grid-template-columns:1fr!important;}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -1755,6 +2044,20 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
   "taxID": "301957038"
 }
 </script>
+<!-- Facebook SDK for Page Plugin -->
+<div id="fb-root"></div>
+<script>
+window.fbAsyncInit=function(){
+  FB.init({xfbml:true,version:'v18.0'});
+};
+(function(d,s,id){
+  var js,fjs=d.getElementsByTagName(s)[0];
+  if(d.getElementById(id)) return;
+  js=d.createElement(s); js.id=id;
+  js.src='https://connect.facebook.net/ne_NP/sdk.js';
+  fjs.parentNode.insertBefore(js,fjs);
+}(document,'script','facebook-jssdk'));
+</script>
 </head>
 <body>
 
@@ -1764,14 +2067,14 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
 
 <!-- ── GOVERNMENT TOP BAR ─────────────────────────────────────────────────────── -->
 <div class="gov-topbar" id="gov-topbar">
-  <span>&#127475;&#127477; क्षितिज नाट्य प्रतिष्ठान, झापा | PAN: ३०१९५७०३८ | स्था. वि.सं. २०५८</span>
+  <span class="gt-main">&#127475;&#127477; क्षितिज नाट्य प्रतिष्ठान, झापा <span class="gt-hide-sm">| PAN: ३०१९५७०३८ | स्था. वि.सं. २०५८</span></span>
   <div class="gov-topbar-right">
     <span onclick="go('contact')" style="cursor:pointer;">&#128222; सम्पर्क</span>
     <span class="gt-divider">|</span>
     <span onclick="go('notices')" style="cursor:pointer;">&#128240; सूचना</span>
-    <span class="gt-divider">|</span>
-    <a href="https://www.facebook.com/KshitizNatyaSamuha/" target="_blank">&#128140; Facebook</a>
-    <span class="gt-divider">|</span>
+    <span class="gt-divider gt-hide-sm">|</span>
+    <a href="https://www.facebook.com/KshitizNatyaSamuha/" target="_blank" class="gt-hide-sm">&#128140; Facebook</a>
+    <span class="gt-divider gt-hide-sm">|</span>
     <a href="https://youtube.com/channel/UC3FkgeY16fyv3Nu05f1RmpA" target="_blank">&#9654; YouTube</a>
   </div>
 </div>
@@ -1879,6 +2182,7 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
       </span>
 
       <span class="nl" onclick="go('donors')" data-ne="दाताहरू" data-en="Donors">दाताहरू</span>
+      <span class="nl" onclick="go('tickets')" data-ne="🎟 टिकट" data-en="🎟 Tickets" style="color:#c9963a;font-weight:800;">🎟 टिकट</span>
       <span class="nl" onclick="go('donate')" data-ne="सहयोग" data-en="Support">सहयोग</span>
       <span class="nl" onclick="go('contact')" data-ne="सम्पर्क" data-en="Contact">सम्पर्क</span>
       <span class="nl" onclick="go('search')" title="खोज्नुस्">🔍</span>
@@ -1923,6 +2227,7 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
     <a onclick="go('membership');closeMob()">📋 सदस्यता नवीकरण</a>
     <div class="mob-section">अन्य</div>
     <a onclick="go('donors');closeMob()">💛 दाताहरू</a>
+    <a onclick="go('tickets');closeMob()" style="color:#c9963a;font-weight:800;">🎟 टिकट बुकिङ</a>
     <a onclick="go('donate');closeMob()">❤️ सहयोग गर्नुस्</a>
     <a onclick="go('contact');closeMob()">📞 सम्पर्क</a>
     <a onclick="go('search');closeMob()">🔍 खोज्नुस्</a>
@@ -1947,7 +2252,7 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
 <section id="home">
   <div class="hero-content">
     <div class="label">बिर्तामोड-१, झापा · कोशी प्रदेश · स्था. २०५८ सा.वि.</div>
-    <h1><span class="red">क्षितिज</span><br/><em>नाट्य समूह</em></h1>
+    <h1><span class="red">क्षितिज</span><br/><em>नाट्य प्रतिष्ठान</em></h1>
     
     <p class="tagline">"सबै जातका थुँगा-थुँगालाई उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा"</p>
     <a class="btn-r" onclick="go('donate')" data-ne="सहयोग गर्नुस्" data-en="Support Us">सहयोग गर्नुस्</a>
@@ -2128,6 +2433,23 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
 </div>
 </section>
 
+<!-- ══ HISTORY / TIMELINE SECTION ══════════════════════════════════════════ -->
+<section id="history" style="background:#1a2332;padding:28px 5%;text-align:center;">
+  <div style="max-width:960px;margin:0 auto;">
+    <div style="color:#e0b65c;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">संस्थाको यात्रा</div>
+    <h3 style="color:#fff;font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;">२०५८ सालदेखि — ७ अधिवेशन, ६२+ नाटक</h3>
+    <p style="color:rgba(255,255,255,.65);font-size:13px;max-width:600px;margin:0 auto 16px;line-height:1.7;">पाँचथर र झापाबाट शुरु भएको यो यात्रा आज राष्ट्रिय र अन्तर्राष्ट्रिय स्तरमा पुगेको छ।</p>
+    <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-bottom:16px;">
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:800;color:#e0b65c;font-family:'Playfair Display',serif;">२०५८</div><div style="font-size:11px;color:rgba(255,255,255,.5);">स्थापना</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:800;color:#e0b65c;font-family:'Playfair Display',serif;">७</div><div style="font-size:11px;color:rgba(255,255,255,.5);">अधिवेशन</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:800;color:#e0b65c;font-family:'Playfair Display',serif;">६२+</div><div style="font-size:11px;color:rgba(255,255,255,.5);">नाटकहरू</div></div>
+      <div style="text-align:center;"><div style="font-size:28px;font-weight:800;color:#e0b65c;font-family:'Playfair Display',serif;">५५२+</div><div style="font-size:11px;color:rgba(255,255,255,.5);">सदस्यहरू</div></div>
+    </div>
+    <button onclick="go('team')" style="background:transparent;border:1.5px solid #e0b65c;color:#e0b65c;border-radius:20px;padding:8px 22px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">हाम्रो टोली हेर्नुस् →</button>
+  </div>
+</section>
+<!-- ══ END HISTORY SECTION ═══════════════════════════════════════════════════ -->
+
 <section id="team" class="alt">
 <div class="si">
   <div class="label" data-ne="टोली" data-en="Team">टोली</div><h2 data-ne="हाम्रो नेतृत्व" data-en="Our Leadership">हाम्रो नेतृत्व</h2><div class="bar"></div>
@@ -2176,19 +2498,19 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
       <img id="appeal-img" src="" alt="Appeal" style="width:100%;max-height:260px;object-fit:cover;border-radius:10px;border:1.5px solid #8B1520;"/>
     </div>
     <!-- Construction Progress Tracker -->
-    <div style="background:linear-gradient(135deg,#1a2332,#2c3e55);border-radius:14px;padding:20px 22px;margin:20px 0;color:#fff;">
+    <div style="background:linear-gradient(135deg,#1a2332,#2c3e55);border-radius:14px;padding:20px 22px;margin:20px 0;color:#fff;" id="natak-section-progress">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px;">
         <div><div style="font-size:11px;letter-spacing:2px;color:#f5c842;font-weight:700;text-transform:uppercase;">🏗 निर्माण प्रगति</div>
         <div style="font-size:17px;font-weight:700;margin-top:4px;">झापा नाटक घर — निर्माणाधीन</div></div>
-        <div style="font-size:32px;font-weight:900;color:#f5c842;">७५%</div>
+        <div style="font-size:32px;font-weight:900;color:#f5c842;" id="natak-progress-label">८०%+</div>
       </div>
       <div style="background:rgba(255,255,255,.15);border-radius:99px;height:12px;overflow:hidden;margin-bottom:12px;">
-        <div style="width:75%;height:100%;background:linear-gradient(90deg,#f5c842,#e5a820);border-radius:99px;"></div>
+        <div id="natak-progress-bar" style="width:82%;height:100%;background:linear-gradient(90deg,#f5c842,#e5a820);border-radius:99px;"></div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px;">
-        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;">१०६+</div><div style="font-size:10px;opacity:.7;">दाताहरू</div></div>
-        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;">३०+</div><div style="font-size:10px;opacity:.7;">धुर भूमिदान</div></div>
-        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;">२७+</div><div style="font-size:10px;opacity:.7;">निर्माण दाता</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;" id="natak-donor-count">१०६+</div><div style="font-size:10px;opacity:.7;">दाताहरू</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;" id="natak-land-count">३०+</div><div style="font-size:10px;opacity:.7;">धुर भूमिदान</div></div>
+        <div style="text-align:center;background:rgba(255,255,255,.08);border-radius:8px;padding:8px;"><div style="font-size:16px;font-weight:700;color:#f5c842;" id="natak-nirman-count">२७+</div><div style="font-size:10px;opacity:.7;">निर्माण दाता</div></div>
       </div>
       <div style="text-align:center;"><button onclick="go('donate')" style="background:#f5c842;color:#1a2332;border:none;border-radius:8px;padding:9px 22px;font-size:13px;font-weight:800;cursor:pointer;font-family:inherit;">❤️ अभियानमा सहभागी हुनुस्</button></div>
     </div>
@@ -2334,19 +2656,104 @@ body.dark .dash-stat-card{background:#1a2332;border-color:#1e2a38;}
   </div>
 </section>
 <!-- Awards -->
+<!-- ══ JHAPA NATAK GHAR PROJECT ════════════════════════════════════════════ -->
+<section id="natak-ghar" style="background:linear-gradient(135deg,#8B1520,#5a0e15);padding:32px 5%;color:#fff;text-align:center;">
+  <div style="max-width:960px;margin:0 auto;">
+    <div style="font-size:13px;color:#e0b65c;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">अभियान</div>
+    <h3 style="font-family:'Playfair Display',serif;font-size:24px;margin-bottom:8px;">झापा नाटक घर निर्माण</h3>
+    <p style="opacity:.9;font-size:13px;margin-bottom:16px;color:rgba(255,255,255,.85);">"हामी सबै जातका थुना-थुनालाई उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा छौं।"</p>
+    <!-- Compact progress -->
+    <div style="max-width:480px;margin:0 auto 16px;">
+      <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;color:#fff;"><span>निर्माण प्रगति</span><strong id="natak-stat-progress-lbl">८०%+</strong></div>
+      <div style="background:rgba(255,255,255,.2);border-radius:20px;height:10px;overflow:hidden;">
+        <div id="natak-stat-progress-bar" style="background:#e0b65c;width:82%;height:100%;border-radius:20px;"></div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-1"><div style="font-size:16px;font-weight:800;" id="natak-stat-1-val">रु. १.७८ करोड+</div><div style="font-size:10px;opacity:.7;" id="natak-stat-1-lbl">सरकारी लगानी</div></div>
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-2"><div style="font-size:16px;font-weight:800;" id="natak-stat-2-val">रु. ६०,०,०,०,०/-</div><div style="font-size:10px;opacity:.7;" id="natak-stat-2-lbl">जमिन खरिद — दाता सहयोग</div></div>
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-3"><div style="font-size:16px;font-weight:800;" id="natak-stat-3-val">३०० सिट</div><div style="font-size:10px;opacity:.7;" id="natak-stat-3-lbl">थिएटर क्षमता</div></div>
+    </div>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+      <button onclick="go('donate')" style="background:#e0b65c;color:#1a1410;border:none;border-radius:8px;padding:11px 24px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">❤️ सहयोग गर्नुस्</button>
+      <button onclick="go('tickets')" style="background:transparent;border:2px solid #e0b65c;color:#e0b65c;border-radius:8px;padding:11px 24px;font-size:14px;font-weight:800;cursor:pointer;font-family:inherit;">🎟 टिकट बुक गर्नुस्</button>
+    </div>
+  </div>
+</section>
+<!-- ══ END NATAK GHAR ════════════════════════════════════════════════════════ -->
+
+<!-- ══ FACEBOOK FEED SECTION ════════════════════════════════════════════ -->
+<section id="facebook-feed" style="background:#f0f4f8;padding:48px 5%;">
+  <div style="max-width:960px;margin:0 auto;">
+    <div class="label" style="text-align:center;">सामाजिक सञ्जाल</div>
+    <h2 style="text-align:center;font-family:'Playfair Display',serif;margin-bottom:6px;" data-ne="हाम्रो Facebook Page" data-en="Our Facebook Page">हाम्रो Facebook Page</h2>
+    <div class="bar" style="margin:0 auto 20px;"></div>
+    <p style="text-align:center;font-size:13.5px;color:#555;margin-bottom:28px;">क्षितिज नाट्य प्रतिष्ठानको आधिकारिक Facebook Page मा गरिएका ताजा पोस्टहरू यहाँ हेर्नुस्।</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start;" class="fb-feed-grid">
+      <!-- Facebook Page Plugin embed — NOTE: Facebook's Page Plugin only renders for
+           genuine Facebook PAGES (facebook.com/PageName), never for personal profiles
+           (profile.php?id=...). That mismatch was why no posts ever appeared. -->
+      <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;gap:12px;">
+        <div id="fb-plugin-wrap" style="width:100%;max-width:480px;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);">
+          <iframe
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKshitizNatyaSamuha&tabs=timeline&width=460&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+            width="460"
+            height="500"
+            style="border:none;overflow:hidden;max-width:100%;border-radius:12px;"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            loading="lazy"
+            title="Facebook Feed">
+          </iframe>
+        </div>
+        <p style="font-size:11px;color:#888;text-align:center;">Embed नदेखिएमा तलको लिंकमा क्लिक गर्नुस्।</p>
+      </div>
+      <!-- Social links + follow CTA -->
+      <div style="padding:20px 0;">
+        <div style="font-size:16px;font-weight:700;color:#1a2332;margin-bottom:12px;">📘 हामीलाई Follow गर्नुस्</div>
+        <p style="font-size:14px;color:#555;line-height:1.8;margin-bottom:20px;">क्षितिज नाट्य प्रतिष्ठानका नयाँ कार्यक्रम, नाटक, र गतिविधिका अपडेट सिधै Facebook मा पाउनुस्।</p>
+        <a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;background:#1877F2;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:12px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          Kshitiz Natya Samuha Page हेर्नुस्
+        </a><br/>
+        <a href="https://www.facebook.com/profile.php?id=100056165594967" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;background:#4267B2;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:12px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          माधव कल्पित Profile हेर्नुस्
+        </a><br/>
+        <a href="https://youtube.com/channel/UC3FkgeY16fyv3Nu05f1RmpA" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;background:#FF0000;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
+          YouTube मा Subscribe गर्नुस्
+        </a>
+        <div style="margin-top:24px;padding:16px;background:#fff;border-radius:10px;border:1px solid #e8e8e8;font-size:12.5px;color:#555;line-height:1.7;">
+          💡 <strong>Note:</strong> Facebook embed देख्न browser मा third-party cookies allow गर्नुपर्न सक्छ। मोबाइलमा सिधै Page link मा जानुस्।
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- ══ END FACEBOOK FEED SECTION ════════════════════════════════════════ -->
+
+
 <section id="awards" style="padding:48px 5%;background:#fff;">
   <div style="max-width:960px;margin:0 auto;">
     <div class="label" style="text-align:center;">उपलब्धि</div>
     <h2 style="text-align:center;font-family:'Playfair Display',serif;margin-bottom:6px;">पुरस्कार तथा उपलब्धिहरू</h2>
     <div class="bar" style="margin:0 auto 28px;"></div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;">
-      <div style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border-radius:12px;padding:16px;text-align:center;border:1px solid #f5c842;"><div style="font-size:28px;margin-bottom:6px;">🏆</div><div style="font-weight:700;color:#1a2332;font-size:13px;">राष्ट्रिय पुरस्कार</div><div style="font-size:11px;color:#666;margin-top:3px;">नाट्य क्षेत्र</div></div>
-      <div style="background:linear-gradient(135deg,#f3e5f5,#e8d5f0);border-radius:12px;padding:16px;text-align:center;border:1px solid #ab47bc;"><div style="font-size:28px;margin-bottom:6px;">🎭</div><div style="font-weight:700;color:#1a2332;font-size:13px;">६२+ नाटक</div><div style="font-size:11px;color:#666;margin-top:3px;">मञ्चन गरिएका</div></div>
-      <div style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:12px;padding:16px;text-align:center;border:1px solid #66bb6a;"><div style="font-size:28px;margin-bottom:6px;">📋</div><div style="font-weight:700;color:#1a2332;font-size:13px;">दर्ता नं.</div><div style="font-size:11px;color:#666;margin-top:3px;">२३०-५८/५९</div></div>
-      <div style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-radius:12px;padding:16px;text-align:center;border:1px solid #42a5f5;"><div style="font-size:28px;margin-bottom:6px;">📅</div><div style="font-weight:700;color:#1a2332;font-size:13px;">२५+ वर्ष</div><div style="font-size:11px;color:#666;margin-top:3px;">सक्रिय संस्था</div></div>
-      <div style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);border-radius:12px;padding:16px;text-align:center;border:1px solid #ef5350;"><div style="font-size:28px;margin-bottom:6px;">🏛</div><div style="font-weight:700;color:#1a2332;font-size:13px;">७ महाधिवेशन</div><div style="font-size:11px;color:#666;margin-top:3px;">सम्पन्न</div></div>
-      <div style="background:linear-gradient(135deg,#e0f7fa,#b2ebf2);border-radius:12px;padding:16px;text-align:center;border:1px solid #26c6da;"><div style="font-size:28px;margin-bottom:6px;">🌍</div><div style="font-weight:700;color:#1a2332;font-size:13px;">PAN दर्ता</div><div style="font-size:11px;color:#666;margin-top:3px;">३०१९५७०३८</div></div>
+    <div id="awards-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;">
+      <!-- Loaded from Firebase awards collection, fallback hardcoded below -->
+      <div class="award-card" style="background:linear-gradient(135deg,#fff8e1,#fff3cd);border-radius:12px;padding:16px;text-align:center;border:1px solid #f5c842;"><div style="font-size:28px;margin-bottom:6px;">🏆</div><div style="font-weight:700;color:#1a2332;font-size:13px;">राष्ट्रिय पुरस्कार</div><div style="font-size:11px;color:#666;margin-top:3px;">नाट्य क्षेत्र</div></div>
+      <div class="award-card" style="background:linear-gradient(135deg,#f3e5f5,#e8d5f0);border-radius:12px;padding:16px;text-align:center;border:1px solid #ab47bc;"><div style="font-size:28px;margin-bottom:6px;">🎭</div><div id="award-natak-count" style="font-weight:700;color:#1a2332;font-size:13px;">६२+ नाटक</div><div style="font-size:11px;color:#666;margin-top:3px;">मञ्चन गरिएका</div></div>
+      <div class="award-card" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9);border-radius:12px;padding:16px;text-align:center;border:1px solid #66bb6a;"><div style="font-size:28px;margin-bottom:6px;">🌏</div><div style="font-weight:700;color:#1a2332;font-size:13px;">अन्तर्राष्ट्रिय</div><div style="font-size:11px;color:#666;margin-top:3px;">भियतनाम, भारत</div></div>
+      <div class="award-card" style="background:linear-gradient(135deg,#fce4ec,#f8bbd0);border-radius:12px;padding:16px;text-align:center;border:1px solid #f06292;"><div style="font-size:28px;margin-bottom:6px;">📅</div><div id="award-year-count" style="font-weight:700;color:#1a2332;font-size:13px;">२५+ वर्ष</div><div style="font-size:11px;color:#666;margin-top:3px;">नाट्य सेवा</div></div>
+      <div class="award-card" style="background:linear-gradient(135deg,#e3f2fd,#bbdefb);border-radius:12px;padding:16px;text-align:center;border:1px solid #42a5f5;"><div style="font-size:28px;margin-bottom:6px;">👥</div><div id="award-member-count" style="font-weight:700;color:#1a2332;font-size:13px;">५५२+ सदस्य</div><div style="font-size:11px;color:#666;margin-top:3px;">सक्रिय सदस्यता</div></div>
+      <div class="award-card" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-radius:12px;padding:16px;text-align:center;border:1px solid #ffa726;"><div style="font-size:28px;margin-bottom:6px;">🎪</div><div style="font-weight:700;color:#1a2332;font-size:13px;">National Box Office</div><div style="font-size:11px;color:#666;margin-top:3px;">Award 2082</div></div>
     </div>
+    <div id="awards-extra" style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:14px;"></div>
   </div>
 </section>
 <section id="contact">
@@ -2427,6 +2834,90 @@ body.admin-mode #stats-edit-btn-wrap{display:block;}
 body.dark .share-link-box{background:#1a2332;border-color:#1e2a38;}
 body.dark .share-link-input{background:#0f1419;border-color:#1e2a38;color:#d0d8e4;}
 body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1419)!important;border-color:#2e7d32!important;}
+
+/* ── Gov-topbar mobile hide ── */
+@media(max-width:480px){
+  .gt-hide-sm{display:none!important;}
+  .gov-topbar{font-size:10px;padding:4px 3%;justify-content:space-between;}
+}
+
+/* ── Facebook feed section mobile ── */
+@media(max-width:768px){
+  .fb-feed-grid{grid-template-columns:1fr!important;}
+  #fb-plugin-wrap{max-width:100%!important;}
+  #fb-plugin-wrap iframe{width:100%!important;max-width:100%!important;}
+}
+
+/* ── Fix text visibility on maroon backgrounds (screenshot 3 issue) ── */
+#facebook-feed .label{color:#8B1520;}
+section[style*="background:linear-gradient(135deg,#8B1520"] .sec-sub,
+section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
+/* सामाजिक सञ्जाल label spacing fix */
+.label{word-spacing:normal;letter-spacing:3px;}
+
+/* ── Ensure page-view pages don't overflow on mobile ── */
+.page-view{overflow-x:hidden!important;}
+
+/* ── Admin panel mobile tab scroll ── */
+@media(max-width:768px){
+  #ap-tabs-wrap{
+    display:flex!important;
+    flex-direction:row!important;
+    flex-wrap:nowrap!important;
+    overflow-x:auto!important;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:6px!important;
+    gap:5px!important;
+  }
+  #ap-tabs-wrap > div{
+    display:none!important; /* hide group label dividers on mobile — too wide */
+  }
+  .ap-tab{
+    flex-shrink:0!important;
+    white-space:nowrap!important;
+    font-size:11px!important;
+    padding:6px 10px!important;
+  }
+}
+
+/* ── Horizontal scroll strips on mobile ── */
+@media(max-width:768px){
+  .home-hscroll{gap:12px;padding-bottom:14px;}
+  .home-hs-card{flex:0 0 240px;}
+  .home-gal-hs-card{flex:0 0 180px;}
+}
+
+/* ── Membership renewal form mobile padding ── */
+@media(max-width:768px){
+  #page-membership .page-hero{padding-top:80px;}
+  #page-membership > div{padding:24px 4%!important;}
+  .bank-gs{grid-template-columns:1fr!important;}
+}
+
+/* ── Stats strip 2-col on mobile ── */
+@media(max-width:768px){
+  .stats-strip{padding:24px 4%;}
+  .stats-grid-strip{grid-template-columns:repeat(2,1fr)!important;gap:12px;}
+  .stat-item{padding:12px 8px;}
+  .stat-num{font-size:clamp(22px,6vw,34px)!important;}
+}
+
+/* ── Exec/dept grid sizes ── */
+@media(max-width:400px){
+  .exec-grid{grid-template-columns:1fr!important;}
+  .dept-grid{grid-template-columns:repeat(2,1fr)!important;}
+}
+
+/* ── Fix 2-col contact form on mobile ── */
+@media(max-width:680px){
+  #page-contact .two-col{grid-template-columns:1fr!important;}
+}
+
+/* ── Card / modal max-width guard ── */
+@media(max-width:500px){
+  .modal-box{padding:18px 14px!important;}
+  .team-pg-wrap,.news-pg-wrap{padding:20px 4%!important;}
+}
 </style>
 
 <!-- Newsletter strip -->
@@ -2460,6 +2951,7 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
         <a onclick="showPage('suborgs')">उप-संस्थाहरू</a>
         <a onclick="go('team')">टोली विवरण</a>
         <a onclick="go('donors')">दाताहरू</a>
+        <a onclick="go('tickets')" style="color:#c9963a;">🎟 टिकट</a>
         <a onclick="go('donate')">सहयोग गर्नुस्</a>
       </div>
     </div>
@@ -2585,8 +3077,36 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
   <div class="team-pg-wrap">
     <h2 class="team-section-title" data-ne="कार्यकारी समिति" data-en="Executive Committee">कार्यकारी समिति</h2>
     <div class="team-pg-exec-grid" id="pg-exec-grid"></div>
-    <h2 class="team-section-title" data-ne="विभाग प्रमुखहरू" data-en="Department Heads">विभाग प्रमुखहरू</h2>
-    <div class="team-pg-dept-grid" id="pg-dept-grid"></div>
+    <!-- Department filter tabs -->
+    <div id="team-dept-tabs" style="display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 20px;padding:0 4px;">
+      <button class="team-tab on" onclick="_teamTab('all',this)">🎭 सबै</button>
+      <button class="team-tab" onclick="_teamTab('natya',this)">नाट्य विभाग</button>
+      <button class="team-tab" onclick="_teamTab('sangeet',this)">संगीत प्रतिष्ठान</button>
+      <button class="team-tab" onclick="_teamTab('sahitya',this)">साहित्य प्रतिष्ठान</button>
+      <button class="team-tab" onclick="_teamTab('nritya',this)">नृत्य विभाग</button>
+      <button class="team-tab" onclick="_teamTab('advisor',this)">सल्लाहकार</button>
+    </div>
+    <!-- Dept sections — each rendered separately -->
+    <div id="pg-dept-natya">
+      <h2 class="team-section-title">🎭 नाट्य विभाग</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-natya"></div>
+    </div>
+    <div id="pg-dept-sangeet">
+      <h2 class="team-section-title">🎵 संगीत साधना प्रतिष्ठान</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-sangeet"></div>
+    </div>
+    <div id="pg-dept-sahitya">
+      <h2 class="team-section-title">📚 साहित्य प्रतिष्ठान</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-sahitya"></div>
+    </div>
+    <div id="pg-dept-nritya">
+      <h2 class="team-section-title">💃 नृत्य विभाग</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-nritya"></div>
+    </div>
+    <div id="pg-dept-advisor">
+      <h2 class="team-section-title">🤝 सल्लाहकार सदस्यहरू</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-advisor"></div>
+    </div>
     <h2 class="team-section-title" data-ne="हाम्रा शुभचिन्तकहरू" data-en="Our Supporters">हाम्रा शुभचिन्तकहरू</h2>
     <div class="sup-pg-grid" id="pg-sup-grid"></div>
   </div>
@@ -2594,6 +3114,92 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
 
 <!-- ═══ DONORS PAGE ══════════════════════════════════════════════════════════════ -->
 
+
+
+<!-- ═══ TICKETS PAGE ════════════════════════════════════════════════════════════ -->
+<div id="page-tickets" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><span onclick="showMain()">⌂ Home</span><span class="sep">›</span><span style="color:rgba(255,255,255,.7);">टिकट</span></div>
+      <div class="page-hero-label">BOOK NOW</div>
+      <h1 class="page-hero-title" data-ne="नाटक टिकट बुकिङ" data-en="Drama Ticket Booking">नाटक टिकट बुकिङ</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub">झापा नाटक घर — ३०० सिट क्षमता। अनलाइन टिकट बुक गर्नुस् र नाट्य अनुभव लिनुस्।</p>
+    </div>
+  </div>
+  <div style="max-width:960px;margin:0 auto;padding:32px 5%;">
+
+    <!-- Live / upcoming shows -->
+    <div id="tickets-upcoming">
+      <div class="ap-card-title" style="font-size:18px;margin-bottom:16px;">🎭 आगामी नाटकहरू</div>
+      <div id="tickets-show-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;"></div>
+      <div id="tickets-empty" style="display:none;text-align:center;padding:48px 20px;color:#888;">
+        <div style="font-size:48px;margin-bottom:12px;">🎭</div>
+        <div style="font-weight:700;font-size:16px;color:#1a2332;margin-bottom:8px;">अहिले कुनै नाटक तालिका छैन</div>
+        <div style="font-size:13px;margin-bottom:16px;">आगामी कार्यक्रमको जानकारीका लागि हाम्रो Facebook पेज फलो गर्नुस्।</div>
+        <a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#1877F2;color:#fff;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;text-decoration:none;">📘 Facebook पेज</a>
+      </div>
+    </div>
+
+    <!-- Booking modal -->
+    <div id="ticket-book-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:9999;display:none;align-items:center;justify-content:center;padding:16px;">
+      <div style="background:#fff;border-radius:16px;max-width:480px;width:100%;padding:28px;position:relative;max-height:90vh;overflow-y:auto;">
+        <button onclick="G('ticket-book-modal').style.display='none'" style="position:absolute;top:14px;right:14px;background:none;border:none;font-size:22px;cursor:pointer;color:#888;">✕</button>
+        <h3 id="tbm-title" style="font-family:'Playfair Display',serif;font-size:20px;color:#1a2332;margin-bottom:4px;"></h3>
+        <div id="tbm-meta" style="font-size:13px;color:#888;margin-bottom:16px;"></div>
+        <div style="background:#f8f4ee;border-radius:10px;padding:14px;margin-bottom:16px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px;"><span>टिकट मूल्य:</span><span id="tbm-price" style="font-weight:700;color:#8B1520;"></span></div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;"><span>उपलब्ध सिट:</span><span id="tbm-seats" style="font-weight:700;"></span></div>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">नाम *</label>
+          <input class="fi" id="tbm-name" placeholder="पूरा नाम"/>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">फोन नं. *</label>
+          <input class="fi" id="tbm-phone" placeholder="९८xxxxxxxx" type="tel"/>
+        </div>
+        <div style="margin-bottom:14px;">
+          <label style="font-size:13px;font-weight:600;display:block;margin-bottom:4px;">टिकट संख्या</label>
+          <select class="fi" id="tbm-qty">
+            <option value="1">१ टिकट</option><option value="2">२ टिकट</option>
+            <option value="3">३ टिकट</option><option value="4">४ टिकट</option>
+            <option value="5">५ टिकट</option>
+          </select>
+        </div>
+        <div style="background:#fff3e0;border-left:3px solid #ff9800;border-radius:0 8px 8px 0;padding:10px 14px;margin-bottom:16px;font-size:12.5px;color:#5a3a00;">
+          <strong>भुक्तानी:</strong> eSewa / Khalti / बैंक ट्रान्सफर<br/>
+          <span id="tbm-payment-info"></span>
+        </div>
+        <button onclick="_submitTicketBooking()" class="save-btn" style="width:100%;padding:14px;font-size:15px;">🎟 टिकट बुक गर्नुस्</button>
+        <div class="ok-msg" id="tbm-ok"></div>
+        <div class="err-msg" id="tbm-err"></div>
+      </div>
+    </div>
+
+    <!-- Digital natak / watch online -->
+    <div style="margin-top:40px;background:#1a2332;border-radius:16px;padding:28px;color:#fff;">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+        <span style="font-size:32px;">🎬</span>
+        <div>
+          <div style="font-weight:700;font-size:18px;">पुराना नाटक हेर्नुस् (Online)</div>
+          <div style="font-size:13px;opacity:.7;margin-top:2px;">डिजिटल आर्काइभ — शुल्क तिरेर हेर्नुस्</div>
+        </div>
+      </div>
+      <p style="font-size:13px;color:rgba(255,255,255,.7);line-height:1.8;margin-bottom:16px;">क्षितिज नाट्य प्रतिष्ठानका ६२+ नाटकमध्ये छनोट गरिएका नाटकहरू अनलाइन हेर्न सकिनेछ। यो सेवा चाँडै सुरु हुँदैछ।</p>
+      <div id="digital-natak-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;"></div>
+      <div style="background:rgba(255,255,255,.08);border-radius:10px;padding:16px;text-align:center;margin-top:12px;">
+        <div style="font-size:28px;margin-bottom:8px;">🚀</div>
+        <div style="font-weight:700;font-size:14px;">चाँडै आउँदैछ!</div>
+        <div style="font-size:12px;opacity:.7;margin-top:4px;">Online natak streaming — Coming soon</div>
+      </div>
+    </div>
+
+    <!-- Contact for tickets -->
+    <div id="ticket-contact-block" style="margin-top:24px;background:#f8f4ee;border-radius:12px;padding:20px;"></div>
+
+  </div>
+</div>
 
 <!-- ═══ CONTACT PAGE ════════════════════════════════════════════════════════════ -->
 <div id="page-contact" class="page-view">
@@ -2709,11 +3315,14 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
       <!-- GROUP 3: Site -->
       <div style="width:100%;font-size:10px;font-weight:700;color:#8B1520;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;margin-top:10px;">⚙️ साइट सेटिङ</div>
       <button class="ap-tab" onclick="tab('t-testimonials',this);_loadTestimonialsAdmin()">💬 प्रशंसापत्र</button>
+      <button class="ap-tab" onclick="tab('t-awards',this);_loadAwardsAdmin()">🏆 पुरस्कार</button>
+      <button class="ap-tab" onclick="tab('t-shows',this);_loadShowsAdmin()">🎟 नाटक / टिकट</button>
       <button class="ap-tab" onclick="tab('t-img',this)">🖼 फोटो/लोगो</button>
       <button class="ap-tab" onclick="tab('t-contact',this)">📞 सम्पर्क</button>
       <button class="ap-tab" onclick="tab('t-stats',this);loadStatsTab()">📊 तथ्याङ्क</button>
       <button class="ap-tab" onclick="tab('t-productions',this);_loadProdsAdmin()">🎬 नाटक सूची</button>
       <button class="ap-tab" onclick="tab('t-activity',this)">🎭 गतिविधि</button>
+      <button class="ap-tab" onclick="tab('t-sitedata',this);_loadSiteDataTab()">📝 साइट डेटा</button>
       <button class="ap-tab" onclick="tab('t-help',this)">❓ सहायता</button>
     </div>
 
@@ -2815,6 +3424,95 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
         <div id="test-admin-list" style="font-size:13px;"></div>
       </div>
     </div>
+
+    <!-- AWARDS ADMIN TAB -->
+    <div class="ap-section" id="t-awards">
+      <div class="ap-card">
+        <div class="ap-card-title">🏆 पुरस्कार तथा उपलब्धि व्यवस्थापन</div>
+        <div style="background:#fff8e1;border-left:3px solid #f5c842;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#5a3a00;">💡 यहाँ थपिएका पुरस्कारहरू homepage मा ६ built-in cards पछि स्वतः देखिनेछन्।</div>
+        <input type="hidden" id="award-eid"/>
+        <div class="fi-row">
+          <input class="fi" id="award-icon" placeholder="Icon (emoji) e.g. 🏆 🎭 🌟"/>
+          <input class="fi" id="award-title" placeholder="पुरस्कारको नाम *"/>
+        </div>
+        <input class="fi" id="award-sub" placeholder="विवरण / वर्ष (e.g. राष्ट्रिय नाट्य महोत्सव, २०८२)"/>
+        <div style="display:flex;gap:8px;">
+          <button class="save-btn" onclick="_saveAward()">💾 सुरक्षित</button>
+          <button class="save-btn" onclick="_cancelAward()" style="background:#888;">रद्द</button>
+        </div>
+        <div class="ok-msg" id="award-ok"></div>
+        <div class="err-msg" id="award-err"></div>
+      </div>
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">पुरस्कारहरूको सूची</div>
+        <div id="award-admin-list" style="font-size:13px;"></div>
+      </div>
+    </div>
+
+
+    <!-- SHOWS / TICKETS ADMIN TAB -->
+    <div class="ap-section" id="t-shows">
+      <div class="ap-card">
+        <div class="ap-card-title">🎭 नयाँ नाटक तालिका थप्नुस्</div>
+        <div style="background:#e8f5e9;border-left:3px solid #4caf50;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:14px;font-size:12.5px;color:#1b5e20;">💡 यहाँ थपिएका नाटकहरू टिकट पृष्ठमा स्वतः देखिनेछन्। झापा नाटक घरमा ३०० सिट उपलब्ध छ।</div>
+        <input type="hidden" id="show-eid"/>
+        <div class="fi-row">
+          <input class="fi" id="show-title" placeholder="नाटकको शीर्षक *"/>
+          <select class="fi" id="show-type">
+            <option value="मञ्च नाटक">🎭 मञ्च नाटक</option>
+            <option value="संगीत कार्यक्रम">🎵 संगीत कार्यक्रम</option>
+            <option value="नृत्य कार्यक्रम">💃 नृत्य कार्यक्रम</option>
+            <option value="विशेष कार्यक्रम">⭐ विशेष कार्यक्रम</option>
+          </select>
+        </div>
+        <div class="fi-row">
+          <input class="fi" id="show-date" placeholder="मिति (e.g. २०८३ असार १५)"/>
+          <input class="fi" id="show-time" placeholder="समय (e.g. ५:०० बजे साँझ)"/>
+        </div>
+        <div class="fi-row">
+          <input class="fi" id="show-price" placeholder="टिकट मूल्य (रु.) *" type="number"/>
+          <input class="fi" id="show-seats" placeholder="कुल सिट" type="number" value="300"/>
+        </div>
+        <div class="fi-row">
+          <input class="fi" id="show-color" type="color" value="#8B1520" style="height:44px;padding:4px;"/>
+          <label style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;">
+            <input type="checkbox" id="show-active" checked/> सक्रिय (टिकट बिक्री खुला)
+          </label>
+        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <button class="save-btn" onclick="_saveShow()">💾 सुरक्षित गर्नुस्</button>
+          <button class="save-btn" onclick="_cancelShow()" style="background:#888;">रद्द</button>
+        </div>
+        <div class="ok-msg" id="show-ok"></div>
+        <div class="err-msg" id="show-err"></div>
+      </div>
+
+      <!-- Payment settings -->
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">💳 भुक्तानी सेटिङ</div>
+        <input class="fi" id="ts-esewa" placeholder="eSewa नं. / ID"/>
+        <input class="fi" id="ts-khalti" placeholder="Khalti नं. / ID"/>
+        <input class="fi" id="ts-bank" placeholder="बैंक खाता नं. / नाम"/>
+        <textarea class="fi" id="ts-payment-info" placeholder="टिकट पृष्ठमा देखाउने भुक्तानी निर्देशन..." style="min-height:70px;"></textarea>
+        <textarea class="fi" id="ts-refund" placeholder="Refund Policy (optional)..." style="min-height:50px;"></textarea>
+        <button class="save-btn" onclick="_saveTicketSettings()">💾 Save Settings</button>
+        <div class="ok-msg" id="ts-ok"></div>
+        <div class="err-msg" id="ts-err"></div>
+      </div>
+
+      <!-- Shows list -->
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">📋 नाटक तालिका <span id="bookings-count" style="font-size:12px;color:#888;font-weight:400;margin-left:8px;"></span></div>
+        <div id="shows-admin-list"></div>
+      </div>
+
+      <!-- Bookings list -->
+      <div class="ap-card" style="margin-top:12px;">
+        <div class="ap-card-title">🎟 बुकिङहरू</div>
+        <div id="bookings-admin-list"></div>
+      </div>
+    </div>
+
     <!-- NEWS TAB -->
     <div class="ap-section on" id="t-news">
 <div style="text-align:right"><button class="arr-btn" onclick="openReorder('news')">&#128256; Arrange News</button></div>
@@ -3211,6 +3909,134 @@ body.dark #mem-renewal-banner>div{background:linear-gradient(135deg,#1a2332,#0f1
     </div>
 
     <!-- HELP TAB -->
+    <!-- ═══ STATIC SITE DATA EDITOR TAB ════════════════════════════════════ -->
+    <div class="ap-section" id="t-sitedata">
+      <div class="ap-card">
+        <div class="ap-card-title">📝 साइटका सम्पूर्ण Static Data सम्पादन गर्नुस्</div>
+        <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:16px;font-size:12.5px;color:#5a2a00;">
+          💡 यहाँ परिवर्तन गरेपछि <strong>सुरक्षित गर्नुस्</strong> थिच्नुस् — सबै परिवर्तन Firebase मा सुरक्षित हुन्छन् र अर्को पटक site खोल्दा स्वतः देखिन्छ।
+        </div>
+
+        <!-- HERO SECTION -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:0 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🏠 Hero Section</div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Hero Title Line 1</label>
+        <input class="fi" id="sd-hero-title1" placeholder="क्षितिज"/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Hero Title Line 2</label>
+        <input class="fi" id="sd-hero-title2" placeholder="नाट्य प्रतिष्ठान"/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Tagline / Quote</label>
+        <input class="fi" id="sd-tagline" placeholder='"सबै जातका थुँगा-थुँगालाई..."'/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Location Label (nav sub-text)</label>
+        <input class="fi" id="sd-location" placeholder="BIRTAMOD · JHAPA"/>
+
+        <!-- ABOUT SECTION -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🏛 हाम्रोबारे Section</div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">स्थापना वर्ष (Nepali)</label>
+        <input class="fi" id="sd-founded" placeholder="२०५८"/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">About Paragraph 1</label>
+        <textarea class="fi" id="sd-about1" style="min-height:70px;"></textarea>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">About Paragraph 2</label>
+        <textarea class="fi" id="sd-about2" style="min-height:60px;"></textarea>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">About Paragraph 3</label>
+        <textarea class="fi" id="sd-about3" style="min-height:60px;"></textarea>
+
+        <!-- REGISTRATION DETAILS -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">📋 दर्ता विवरण</div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">दर्ता नं.</label><input class="fi" id="sd-regno" placeholder="२३०-५८/५९"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">PAN नं.</label><input class="fi" id="sd-pan" placeholder="३०१९५७०३८"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">स.क.पा.न.</label><input class="fi" id="sd-swc" placeholder="२४४९९"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">ठेगाना</label><input class="fi" id="sd-address-org" placeholder="बिर्तामोड-१, झापा"/></div>
+        </div>
+
+        <!-- STATS BAR -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">📊 Stats Bar (Homepage)</div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 1 Number</label><input class="fi" id="sd-stat1-num" placeholder="२०५८"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 1 Label</label><input class="fi" id="sd-stat1-lbl" placeholder="स्थापना"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Number</label><input class="fi" id="sd-stat2-num" placeholder="२५+"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Label</label><input class="fi" id="sd-stat2-lbl" placeholder="वर्ष नाट्यमा"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 3 Number</label><input class="fi" id="sd-stat3-num" placeholder="१,०००+"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 3 Label</label><input class="fi" id="sd-stat3-lbl" placeholder="समुदाय समर्थक"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 4 Number</label><input class="fi" id="sd-stat4-num" placeholder="१००+"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 4 Label</label><input class="fi" id="sd-stat4-lbl" placeholder="पुरस्कार"/></div>
+        </div>
+
+        <!-- NATAK GHAR -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🏛 झापा नाटक घर Section</div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">निर्माण प्रगति %</label><input class="fi" id="sd-natak-progress" placeholder="82" type="number" min="0" max="100"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Progress Label</label><input class="fi" id="sd-natak-progress-lbl" placeholder="८०%+"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 1 Value (सरकारी लगानी)</label><input class="fi" id="sd-natak-s1" placeholder="रु. १.७८ करोड+"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 1 Label</label><input class="fi" id="sd-natak-s1l" placeholder="सरकारी लगानी"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Value</label><input class="fi" id="sd-natak-s2" placeholder="रु. ६०,०,०,०,०/-"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Label</label><input class="fi" id="sd-natak-s2l" placeholder="जमिन खरिद — दाता सहयोग"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 3 Value (सिट)</label><input class="fi" id="sd-natak-s3" placeholder="३०० सिट"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 3 Label</label><input class="fi" id="sd-natak-s3l" placeholder="थिएटर क्षमता"/></div>
+        </div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">दाताहरू count</label><input class="fi" id="sd-natak-donors" placeholder="१०६+"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">धुर भूमिदान count</label><input class="fi" id="sd-natak-land" placeholder="३०+"/></div>
+        </div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">निर्माण दाता count</label>
+        <input class="fi" id="sd-natak-nirman" placeholder="२७+" style="max-width:220px;"/>
+
+        <!-- APPEAL / एक इट्टा -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🧱 एक इट्टा अभियान</div>
+        <div class="fi-row">
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">इट्टाको मूल्य (रु.)</label><input class="fi" id="sd-brick-price" placeholder="20" type="number"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">भूमिदान मूल्य</label><input class="fi" id="sd-land-price" placeholder="रु. २,१०,०००+"/></div>
+        </div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Appeal Letter Quote</label>
+        <textarea class="fi" id="sd-appeal-quote" style="min-height:60px;" placeholder='"कहिलेकाहीँ एउटा सानो इट्टाले..."'></textarea>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Appeal Main Text</label>
+        <textarea class="fi" id="sd-appeal-body" style="min-height:80px;"></textarea>
+
+        <!-- FOOTER -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🔽 Footer</div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Footer About Text</label>
+        <textarea class="fi" id="sd-footer-about" style="min-height:60px;"></textarea>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Footer Tagline</label>
+        <input class="fi" id="sd-footer-tagline" placeholder='"बहुजाति, बहुभाषी, बहुसांस्कृतिक नेपालको सुन्दर माला।"'/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Copyright Text</label>
+        <input class="fi" id="sd-footer-copy" placeholder="© २०८२ क्षितिज नाट्य प्रतिष्ठान"/>
+
+        <!-- SOCIAL LINKS -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">🌐 Social Links</div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Facebook Page URL — drives homepage embed</label>
+        <input class="fi" id="sd-fb-page" placeholder="https://www.facebook.com/KshitizNatyaSamuha"/>
+        <div style="font-size:11px;color:#999;margin:-6px 0 10px;">⚠️ Facebook केवल Page लाई embed गर्न दिन्छ — personal profile कहिल्यै embed हुँदैन।</div>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Facebook Profile URL (link button only, not embeddable)</label>
+        <input class="fi" id="sd-fb-profile" placeholder="https://www.facebook.com/profile.php?id=100056165594967"/>
+        <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">YouTube URL</label>
+        <input class="fi" id="sd-yt" placeholder="https://youtube.com/channel/UC3FkgeY16fyv3Nu05f1RmpA"/>
+
+        <!-- TICKER -->
+        <div style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;color:#8B1520;margin:16px 0 10px;padding-bottom:6px;border-bottom:2px solid #8B1520;">📢 News Ticker Message</div>
+        <input class="fi" id="sd-ticker" placeholder="क्षितिज नाट्य प्रतिष्ठानमा स्वागत छ! झापा नाटक घर निर्माण अभियानमा सहभागी हुनुस्।"/>
+
+        <div class="ok-msg" id="sd-ok" style="display:none;margin-top:12px;"></div>
+        <div class="err-msg" id="sd-err" style="display:none;margin-top:8px;"></div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;">
+          <button class="save-btn" onclick="_saveSiteData()">💾 सबै Data सुरक्षित गर्नुस्</button>
+          <button class="save-btn" style="background:#555;" onclick="_loadSiteDataTab()">🔄 Reload Current Data</button>
+        </div>
+      </div>
+    </div><!-- end t-sitedata -->
+
     <div class="ap-section" id="t-help">
       <div class="ap-card">
         <div class="ap-card-title">🔐 Security & Setup Guide</div>
@@ -3439,6 +4265,9 @@ service cloud.firestore {<br/>
   window._q=function(c){return c;}; window._ob=function(){return {};};
   window._sip=function(){return Promise.reject(new Error('Offline'));};
   window._so=function(){return Promise.resolve();};
+  // Aliases
+  window._getDocs=function(){return Promise.resolve({docs:[]});};
+  window._updateDoc=noop; window._delDoc=noop;
   window._auth=null;
 })();
 </script>
@@ -3464,6 +4293,10 @@ service cloud.firestore {<br/>
     window._upd=updateDoc; window._ts=serverTimestamp; window._q=query; window._ob=orderBy;
     window._sip=signInWithEmailAndPassword; window._so=signOut;
     window._fbReady=true;
+  // Convenient aliases used in dashboard and productions tabs
+  window._getDocs   = getDocs;
+  window._updateDoc = updateDoc;
+  window._delDoc    = deleteDoc;
 
     onAuthStateChanged(auth, function(user){
       window.CU=user; window.AM=!!user;
@@ -3512,17 +4345,115 @@ if(document.readyState==='loading'){
 
 // ── DEFAULT DATA ──────────────────────────────────────────────────────────────
 var DM = [
+  /* ── केन्द्रीय कार्यसमिति (Executive Body) ─────────────────────────────── */
   {id:'dm1',name:'माधव प्रसाद खतिवडा',aka:"माधव 'कल्पित'",role:'केन्द्रीय अध्यक्ष',dept:'exec',img:'',fb:'',color:'av-g'},
   {id:'dm2',name:'हरि प्र. भण्डारी',aka:'',role:'बरिष्ठ उपाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
   {id:'dm3',name:'सुजना खतिवडा',aka:'',role:'उपाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
-  {id:'dm4',name:'राजकुमार भट्टराई',aka:'',role:'का. सचिव',dept:'exec',img:'',fb:'',color:'av-r'},
-  {id:'dm5',name:'मुना प्रसाईं',aka:'',role:'कोषाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
-  {id:'dm6',name:'गजेन्द्र पृथक',aka:'',role:'नाट्य',dept:'dept',img:'',fb:'',color:'av-p'},
-  {id:'dm7',name:'तुलसी प्र. भट्टराई',aka:'',role:'साहित्य',dept:'dept',img:'',fb:'',color:'av-p'},
-  {id:'dm8',name:'निरज पोखरेल',aka:'',role:'संगीत',dept:'dept',img:'',fb:'',color:'av-p'},
-  {id:'dm9',name:'सविता रेग्मी',aka:'',role:'नृत्य',dept:'dept',img:'',fb:'',color:'av-p'},
-  {id:'dm10',name:'कुमार ढकाल',aka:'',role:'संगठन',dept:'dept',img:'',fb:'',color:'av-p'},
-  {id:'dm11',name:'भिमा शिवाकोटी',aka:'',role:'संचार',dept:'dept',img:'',fb:'',color:'av-p'}
+  {id:'dm4',name:'ताराकुमार प्रसाईं',aka:'',role:'महासचिव',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm5',name:'राजकुमार भट्टराई',aka:'',role:'का. सचिव',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm6',name:'मुना प्रसाईं',aka:'',role:'कोषाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm7',name:'माधव प्र. सिटौला',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm8',name:'समीक्षा खतिवडा',aka:'',role:'सदस्य / नाट्य विभाग सचिव',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm9',name:'देवीमाया प्रसाईं',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm10',name:'राजु खरेल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm11',name:'मदन रसाईली',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm12',name:'भिमा खतिवडा',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm13',name:'समिन खतिवडा',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm14',name:'गजेन्द्र पृथक',aka:'',role:'सदस्य / नाट्य विभाग अध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm15',name:'सबिता रेग्मी',aka:'',role:'सदस्य / नृत्य विभाग अध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm16',name:'बबिता पराजुली',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm17',name:'सुस्मिता ढुङ्गाना',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm18',name:'माया सिटौला',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm19',name:'डिल्लीराम हुमागाईं',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm20',name:'तुलसी प्र. मिश्र',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm21',name:'गीता ढुङ्गेल',aka:'',role:'सदस्य / नृत्य विभाग कोषाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm22',name:'राकेश दर्नाल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm23',name:'जनक चापागाईं',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm24',name:'सञ्चीता मनाईली',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm25',name:'कुमार ढकाल',aka:'',role:'संगठन प्रमुख',dept:'sangathan',img:'',fb:'',color:'av-g'},
+  {id:'dm26',name:'निरज पोखरेल',aka:'',role:'सदस्य / संगीत प्रतिष्ठान अध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm27',name:'भुपेन्द्र कुढुङ्गेल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm28',name:'शान्त काफ्ले',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm29',name:'अमृता बिष्ट',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm30',name:'अभिषेक धमला',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm31',name:'बन्दना मिश्र',aka:'',role:'सदस्य / नाट्य विभाग कोषाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm32',name:'पवित्रा ओली',aka:'',role:'सदस्य / संगीत प्रतिष्ठान उपाध्यक्ष',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm33',name:'संगीता प्रसाईं',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm34',name:'लिलादेवी बराल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm35',name:'उमा सङ्ग्रौला',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm36',name:'मधु खनाल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm37',name:'डिल्लीराम अधिकारी',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm38',name:'संगीता कट्टेल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm39',name:'राम चन्द्र बराल',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  {id:'dm40',name:'सुरेश निरौला',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-g'},
+  {id:'dm41',name:'डिकेन्द्र नेपाली',aka:'',role:'सदस्य',dept:'exec',img:'',fb:'',color:'av-r'},
+  /* ── क्षितिज नाट्य विभाग ─────────────────────────────────────────────── */
+  {id:'dn1',name:'गजेन्द्र पृथक',aka:'',role:'अध्यक्ष',dept:'natya',img:'',fb:'',color:'av-g'},
+  {id:'dn2',name:'सृष्टि आचार्य',aka:'',role:'उपाध्यक्ष',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn3',name:'समीक्षा खतिवडा',aka:'',role:'सचिव',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn4',name:'बन्दना मिश्र',aka:'',role:'कोषाध्यक्ष',dept:'natya',img:'',fb:'',color:'av-g'},
+  {id:'dn5',name:'रेशु खरेल',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn6',name:'प्रकाश भट्टराई',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn7',name:'रतन शिगु',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-g'},
+  {id:'dn8',name:'विवेक मिश्र',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn9',name:'गंगा प्रसाईं',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-r'},
+  {id:'dn10',name:'मनिषा अधिकारी',aka:'',role:'सदस्य',dept:'natya',img:'',fb:'',color:'av-g'},
+  /* ── क्षितिज संगीत साधना प्रतिष्ठान ──────────────────────────────────── */
+  {id:'ds1',name:'निरज पोखरेल',aka:'',role:'अध्यक्ष',dept:'sangeet',img:'',fb:'',color:'av-g'},
+  {id:'ds2',name:'पवित्रा ओली',aka:'',role:'उपाध्यक्ष',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds3',name:'जितेन्द्र श्रेष्ठ',aka:'',role:'महासचिव',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds4',name:'सुजन शिवाकोटी',aka:'',role:'सचिव',dept:'sangeet',img:'',fb:'',color:'av-g'},
+  {id:'ds5',name:'गोविन्द रपाल',aka:'',role:'कोषाध्यक्ष',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds6',name:'कृपा पौडेल',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds7',name:'किरण कन्दंगवा',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-g'},
+  {id:'ds8',name:'राजकुमार गुरुङ',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds9',name:'अर्जुन खरेल',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds10',name:'ज्ञानु खड्का',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-g'},
+  {id:'ds11',name:'पुष्पा प्रणामी',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds12',name:'मणि बर्देवा',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-r'},
+  {id:'ds13',name:'धुव कडरिया',aka:'',role:'सदस्य',dept:'sangeet',img:'',fb:'',color:'av-g'},
+  /* ── क्षितिज साहित्य प्रतिष्ठान ──────────────────────────────────────── */
+  {id:'dl1',name:'तुलसी प्र. भट्टराई',aka:'',role:'अध्यक्ष',dept:'sahitya',img:'',fb:'',color:'av-g'},
+  {id:'dl2',name:'दुर्गा प्रसाद सिग्देल',aka:'',role:'उपाध्यक्ष',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl3',name:'डिल्लीराम परदेशी',aka:'',role:'सचिव',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl4',name:'ताराप्रसाद भट्टराई',aka:'',role:'कोषाध्यक्ष',dept:'sahitya',img:'',fb:'',color:'av-g'},
+  {id:'dl5',name:'अञ्चु सुवेदी',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl6',name:'दुर्गा ओली',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl7',name:'जगन्नाथ अधिकारी',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-g'},
+  {id:'dl8',name:'सीताराम भट्टराई',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl9',name:'कृष्ण पोखरेल',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl10',name:'मनु विश्वकर्मा',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-g'},
+  {id:'dl11',name:'विवेक निशानी',aka:'',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  {id:'dl12',name:'टीकाराम धमला',aka:'रञ्जन',role:'सदस्य',dept:'sahitya',img:'',fb:'',color:'av-r'},
+  /* ── क्षितिज नृत्य विभाग ──────────────────────────────────────────────── */
+  {id:'dv1',name:'सबिता रेग्मी',aka:'',role:'अध्यक्ष',dept:'nritya',img:'',fb:'',color:'av-g'},
+  {id:'dv2',name:'माधव भेटवाल',aka:'',role:'उपाध्यक्ष',dept:'nritya',img:'',fb:'',color:'av-r'},
+  {id:'dv3',name:'सरिता अधिकारी',aka:'',role:'महासचिव',dept:'nritya',img:'',fb:'',color:'av-r'},
+  {id:'dv4',name:'चन्दा दहाल',aka:'',role:'सचिव',dept:'nritya',img:'',fb:'',color:'av-g'},
+  {id:'dv5',name:'गीता ढुङ्गेल',aka:'',role:'कोषाध्यक्ष',dept:'nritya',img:'',fb:'',color:'av-r'},
+  {id:'dv6',name:'विनय पाँचकोटी',aka:'',role:'सदस्य',dept:'nritya',img:'',fb:'',color:'av-r'},
+  {id:'dv7',name:'प्रविण खड्का',aka:'',role:'सदस्य',dept:'nritya',img:'',fb:'',color:'av-g'},
+  {id:'dv8',name:'सरोज अधिकारी',aka:'',role:'सदस्य',dept:'nritya',img:'',fb:'',color:'av-r'},
+  {id:'dv9',name:'पुरन विश्वकर्मा',aka:'',role:'सदस्य',dept:'nritya',img:'',fb:'',color:'av-r'},
+  /* ── सल्लाहकार सदस्यहरू ───────────────────────────────────────────────── */
+  {id:'da1',name:'देवराज घिमिरे',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da2',name:'राजकुमार पोखरेल',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da3',name:'पवित्रा महतारा प्रसाईं',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da4',name:'पवित्रा निरौला खरेल',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da5',name:'विमला विश्वकर्मा',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da6',name:'भानुशिवाकोटी',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da7',name:'मीन प्रकाश मनाईली',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da8',name:'गोपी प्रसाईं',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da9',name:'चैतन्य मनाईली',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da10',name:'गणेश खनाल',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da11',name:'बुद्धि घिमिरे',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da12',name:'डम्बरबहादुर बस्नेत',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da13',name:'धुर्वप्रसाद शिवाकोटी',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da14',name:'प्रेम प्रकाश सिटौला',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da15',name:'टिकाराम खरेल',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da16',name:'इन्द्र प्रसाद ओली',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-g'},
+  {id:'da17',name:'हरि प्रसाद भण्डारी',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'},
+  {id:'da18',name:'ओमकृष्ण विमली',aka:'',role:'सल्लाहकार',dept:'advisor',img:'',fb:'',color:'av-r'}
 ];
 var DS = [
   {id:'ds1',name:'केपी शर्मा ओली',title:'पूर्व प्रधानमन्त्री',img:''},
@@ -3539,8 +4470,13 @@ var DB = {holder:'Madhav Prasad Khatiwada',bank:'NIMB',acc:'30205440254489',esew
 
 // ── NAV ───────────────────────────────────────────────────────────────────────
 // go() is defined in the page router section below
-function toggleMob(){ var m=G('mobm'); var o=m.style.display==='flex'; m.style.display=o?'none':'flex'; G('ham').textContent=o?'☰':'✕'; }
-function closeMob(){ G('mobm').style.display='none'; G('ham').textContent='☰'; }
+function toggleMob(){
+  var m=G('mobm');
+  var isOpen=m.classList.contains('open');
+  if(isOpen){ m.classList.remove('open'); m.style.display='none'; G('ham').textContent='☰'; }
+  else{ m.style.display='flex'; setTimeout(function(){m.classList.add('open');},10); G('ham').textContent='✕'; }
+}
+function closeMob(){ var m=G('mobm'); m.classList.remove('open'); m.style.display='none'; G('ham').textContent='☰'; }
 
 // ── LANGUAGE — persistent, defined later in script ────────────────────────────
 // NOTE: full implementation is at bottom of script (_applyLang / toggleLang)
@@ -3669,7 +4605,7 @@ function renderBank(){
     '<p>सहयोगको समन्वयका लागि सम्पर्क गर्नुस्।</p>'+
     '<a href="tel:+9779844637952" style="display:flex;align-items:center;gap:7px;color:#8B1520;text-decoration:none;font-weight:700;font-size:15px;margin:10px 0 3px;">📞 +977-9844637952</a>'+
     '<div style="font-size:12px;color:#888888;margin-bottom:16px;">Madhav Kalpit</div>'+
-    '<div style="display:flex;gap:8px;margin-top:8px;">'+((_CI.fb||_CI.fb2)?'<a href="'+(_CI.fb||_CI.fb2)+'" target="_blank" class="soc fb">f</a>':'<a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" class="soc fb">f</a>')+'<a href="'+(_CI.yt||'https://youtube.com/@expensivelife')+'" target="_blank" class="soc yt">▶</a></div>'+
+    '<div style="display:flex;gap:8px;margin-top:8px;">'+((_CI.fb||_CI.fb2)?'<a href="'+(_CI.fb||_CI.fb2)+'" target="_blank" class="soc fb">f</a>':'<a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" class="soc fb">f</a>')+(_CI.yt?'<a href="'+_CI.yt+'" target="_blank" class="soc yt">▶</a>':'')+'</div>'+
     '</div>';
 }
 function openBankModal(){
@@ -3896,14 +4832,24 @@ function renderDonors(){
 
 // ── TEAM MEMBERS ──────────────────────────────────────────────────────────────
 async function loadMembers(){
+  var PIN_IDS = ['dm1','dm2','dm3','dm5','dm6'];
   try{
     var snap=await window._gets(window._col(window._db,'members'));
     var fetched=snap.docs.map(d=>({id:d.id,...d.data()}));
     var _so=fetched.map(function(f){return f._origId;}).filter(Boolean);
     var _mm={};
+    // Include ALL DM entries (exec + natya + sahitya + nritya + sangeet + advisor)
     DM.forEach(function(dm){if(!_so.includes(dm.id))_mm[dm.id]=Object.assign({},dm);});
     fetched.forEach(function(f){_mm[f.id]=f;});
-    mC=Object.values(_mm).sort(function(a,b){return (a._ord||0)-(b._ord||0);});
+    Object.values(_mm).forEach(function(m){
+      var origId = m._origId || m.id;
+      var pinIdx = PIN_IDS.indexOf(origId);
+      m._pin = pinIdx !== -1 ? pinIdx : 999;
+    });
+    mC=Object.values(_mm).sort(function(a,b){
+      if(a._pin !== b._pin) return a._pin - b._pin;
+      return (a._ord||0)-(b._ord||0);
+    });
   }catch(e){ mC=[...DM]; }
   renderMembers();
 }
@@ -3953,17 +4899,66 @@ async function deleteMember(id){
   try{ await window._del(window._doc(window._db,'members',id)); }catch(e){}
   mC=mC.filter(m=>m.id!==id); renderMembers(); renderManage();
 }
+
+
+function _teamTab(dept, btn){
+  // Update tab buttons
+  document.querySelectorAll('.team-tab').forEach(function(b){b.classList.remove('on');});
+  if(btn) btn.classList.add('on');
+  // Show/hide dept sections
+  var allDepts=['natya','sangeet','sahitya','nritya','advisor'];
+  allDepts.forEach(function(d){
+    var sec=G('pg-dept-'+d);
+    if(sec) sec.style.display=(dept==='all'||dept===d)?'':'none';
+  });
+}
+
+function _openDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[idx]; if(m) openProfileModal(m); }
+function _editDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[idx]; if(m) editMember(m); }
 function renderMembers(){
-  var execAll = mC.filter(function(m){return m.dept==='exec';});
-  var execTop5 = execAll.slice(0,5);
-  var deptAll  = mC.filter(function(m){return m.dept==='dept';});
+  var execAll = mC.filter(function(m){return m.dept==='exec'||m.dept==='sangathan';});
+  // ── PINNED TOP 5: match screenshot order exactly ─────────────────────────
+  // 1.माधव(dm1) 2.हरि(dm2) 3.सुजना(dm3) 4.राजकुमार(dm5) 5.मुना(dm6)
+  var PIN_IDS = ['dm1','dm2','dm3','dm5','dm6'];
+  var pinned = PIN_IDS.map(function(pid){
+    return mC.find(function(m){ return m.id===pid || m._origId===pid; });
+  }).filter(Boolean);
+  var pinnedKeys = pinned.map(function(m){ return m.id; });
+  var rest = execAll.filter(function(m){ return pinnedKeys.indexOf(m.id)===-1; });
+  var execTop5 = pinned.slice(0,5).concat(rest).slice(0,5);
+
+  // ── DEPT HEADS: match by stable ID first (robust against name edits in admin
+  //    panel), falling back to name search only if a record was somehow removed.
+  //    Order matches the live site: गजेन्द्र, कुमार, तुलसी, सविता, निरज, समीक्षा
+  var _deptHeadDefs = [
+    {id:'dn1', find:'गजेन्द्र पृथक',    label:'नाट्य विभाग'},
+    {id:'dm25',find:'कुमार ढकाल',       label:'संगठन विभाग'},
+    {id:'dl1', find:'तुलसी प्र. भट्टराई', label:'साहित्य प्रतिष्ठान'},
+    {id:'dv1', find:'सबिता रेग्मी',     label:'नृत्य विभाग'},
+    {id:'ds1', find:'निरज पोखरेल',      label:'संगीत प्रतिष्ठान'},
+    {id:'dm8', find:'समीक्षा खतिवडा',   label:'संचार विभाग'}
+  ];
+  var deptHeads = _deptHeadDefs.map(function(d){
+    var m = mC.find(function(x){ return x.id===d.id || x._origId===d.id; });
+    if(!m){
+      // Fallback: name search (handles legacy records saved before IDs were stable)
+      var parts = d.find.split(' ');
+      m = mC.find(function(x){ return x.name.indexOf(parts[0])!==-1 && x.name.indexOf(parts[1]||parts[0])!==-1; });
+    }
+    if(m) m._deptLabel = d.label;
+    return m;
+  }).filter(Boolean);
+  // dedupe
+  var _seen={};
+  deptHeads = deptHeads.filter(function(m){ if(_seen[m.id]) return false; _seen[m.id]=1; return true; });
+  window._deptHeadStore = deptHeads;
 
   function execCard(m){
     var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
     var _isF=(m.id==='dm1'||m._origId==='dm1');
     var _isDef=m.id.startsWith('dm')||!!m._origId;
     var col=_isF?'av-g':(m.color||'av-r');
-    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/'/g,"&#39;");
     return '<div class="tc'+(_isF?' gb':'')+'" onclick=\'openProfileModal('+mJson+')\' style="cursor:pointer;">'
       +'<div class="m-acts">'
@@ -3980,7 +4975,7 @@ function renderMembers(){
 
   function deptBtn(m){
     var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
-    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/'/g,"&#39;");
     return '<div class="tc" onclick=\'openProfileModal('+mJson+')\' style="cursor:pointer;border:1.5px solid #e8e8e8;">'
       +'<div class="m-acts">'
@@ -3996,7 +4991,29 @@ function renderMembers(){
   var eg=G('exec-grid');
   if(eg) eg.innerHTML=execTop5.map(execCard).join('');
   var dg=G('dept-grid');
-  if(dg) dg.innerHTML=deptAll.map(deptBtn).join('');
+  if(dg) dg.innerHTML=deptHeads.map(function(m,idx){
+    var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
+    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;" loading="lazy"/>':init;
+    var label = m._deptLabel || 'विभाग प्रमुख';
+    return '<div class="tc" onclick="_openDeptHead('+idx+')" style="cursor:pointer;border:1.5px solid #e8e8e8;">'
+      +'<div class="m-acts"><button class="ma e" onclick="event.stopPropagation();_editDeptHead('+idx+')">✏️</button></div>'
+      +'<div class="tav av-p">'+av+'</div>'
+      +'<div class="tn" style="font-size:12px;">'+m.name+'</div>'
+      +'<div class="tr" style="color:#8B1520;font-size:10.5px;font-weight:700;">'+label+'</div>'
+      +(m.fb?'<a class="tc-fb" href="'+m.fb+'" target="_blank" onclick="event.stopPropagation()">Facebook ›</a>':'')
+      +'<button onclick="event.stopPropagation();go(\'team\')" style="margin-top:6px;background:none;border:1.5px solid #8B1520;color:#8B1520;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;">सदस्यहरू ›</button>'
+      +'</div>';
+  }).join('');
+}
+
+// ── DEPT HEAD HELPERS ────────────────────────────────────────────────────────
+function _openDeptHead(idx){
+  var m=(window._deptHeadStore||[])[idx];
+  if(m) openProfileModal(m);
+}
+function _editDeptHead(idx){
+  var m=(window._deptHeadStore||[])[idx];
+  if(m) editMember(m);
 }
 
 // ── SUPPORTERS ────────────────────────────────────────────────────────────────
@@ -4139,7 +5156,21 @@ async function doLogin(){
   G('lbtn2').disabled=false; G('lbtn2').innerHTML='Login';
 }
 async function doLogout(){ await window._so(window._auth); closeAdmin(); }
-function openAdmin(){ G('admin-panel').classList.add('show'); document.body.classList.add('admin-open'); renderManage(); renderGalAdmin(); fillContactAdminForm(); }
+var _adminTimeout=null;
+function _resetAdminTimeout(){
+  clearTimeout(_adminTimeout);
+  _adminTimeout=setTimeout(function(){
+    if(AM){ doLogout(); toast('निष्क्रियताका कारण Admin बाट logout भयो।','info',4000); }
+  }, 30*60*1000); // 30 minutes
+}
+function openAdmin(){
+  G('admin-panel').classList.add('show');
+  document.body.classList.add('admin-open');
+  renderManage(); renderGalAdmin(); fillContactAdminForm();
+  _resetAdminTimeout();
+  G('admin-panel').addEventListener('click',_resetAdminTimeout,{passive:true});
+  G('admin-panel').addEventListener('keydown',_resetAdminTimeout,{passive:true});
+}
 function closeAdmin(){ G('admin-panel').classList.remove('show'); document.body.classList.remove('admin-open'); }
 function tab(id,btn){
   document.querySelectorAll('.ap-section').forEach(function(s){s.classList.remove('on');});
@@ -4160,6 +5191,8 @@ function tab(id,btn){
   if(id==='t-dash') _loadDash();
   if(id==='t-productions') _loadProdsAdmin();
   if(id==='t-testimonials') _loadTestimonialsAdmin();
+  if(id==='t-awards') _loadAwardsAdmin();
+  if(id==='t-shows') _loadShowsAdmin();
   if(id==='t-stats')     loadStatsTab();
   if(id==='t-gallery')   renderGalAdmin();
   // Scroll to top of admin body
@@ -4460,7 +5493,7 @@ var _CI = {
   maps:'https://maps.app.goo.gl/qGUNG1JPbHXLjWQZ7',
   fb:'https://www.facebook.com/KshitizNatyaSamuha', fb2:'https://www.facebook.com/share/1P4jHSgz7V/',
   fb3:'https://www.facebook.com/profile.php?id=61575793124097',
-  yt:'https://youtube.com/@expensivelife', yt2:''
+  yt:'', yt2:''
 };
 async function loadContactInfo(){
   try{
@@ -4474,7 +5507,7 @@ function renderContactInfo(){
   var html='';
   if(c.phone) html+=`<div class="ci"><div class="ci-ic">📞</div><div><div class="ci-lb">Phone</div><a href="tel:${c.phone.replace(/[^+0-9]/g,'')}" class="ci-vl">${c.phone}</a>${c.phone2?'<div class="ci-sb">'+c.phone2+'</div>':''}<div class="ci-sb">${c.person}</div></div></div>`;
   if(c.email) html+=`<div class="ci"><div class="ci-ic">✉️</div><div><div class="ci-lb">Email</div><a href="mailto:${c.email}" class="ci-vl" style="font-size:13px;">${c.email}</a></div></div>`;
-  if(c.address) html+=`<div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lb">Address</div><div class="ci-vl" style="font-size:14px;">${c.address}</div>${c.maps?'<a href="'+c.maps+'" target="_blank" class="map-lnk">🗺 Google Maps मा हेर्नुस् ›</a>':''}</div></div>`;
+  if(c.address) html+=`<div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lb">Address</div><div class="ci-vl" style="font-size:14px;">${c.address}</div>${c.maps?'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe><a href="'+c.maps+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps मा ठूलो गरेर हेर्नुस् ↗</a></div>':'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q=Birtamod+Jhapa+Nepal&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe></div>'}</div></div>`;
   html+='<div class="soc-row">';
   if(c.fb) html+=`<a href="${c.fb}" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>`;
   if(c.fb2) html+=`<a href="${c.fb2}" target="_blank" class="soc fb" title="Facebook Group" style="opacity:.75;">f</a>`;
@@ -4666,7 +5699,7 @@ function showPage(name, data){
   document.querySelectorAll('.nl').forEach(function(el){ el.classList.remove('pg-act'); });
   var navMap={news:'समाचार',gallery:'फोटो',team:'टोली',donors:'दाताहरू',contact:'सम्पर्क',
     donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',notices:'सूचना',volunteer:'स्वयंसेवक',
-    membership:'सदस्यता',productions:'नाटकहरू'};
+    membership:'सदस्यता',productions:'नाटकहरू',tickets:'🎟 टिकट'};
   if(navMap[name]){
     document.querySelectorAll('.nl').forEach(function(el){
       if(el.getAttribute('data-ne')===navMap[name]) el.classList.add('pg-act');
@@ -4685,6 +5718,7 @@ function showPage(name, data){
   else if(name==='volunteer') renderPageVolunteer();
   else if(name==='membership') renderPageMembership();
   else if(name==='productions') renderPageProductions();
+  else if(name==='tickets') renderPageTickets();
   else if(name==='search') renderPageSearch();
   else if(name==='activity') renderPageActivity(data);
   else if(name==='news-detail' && data) renderNewsDetail(data);
@@ -4701,7 +5735,7 @@ function showPage(name, data){
   if(fdBtn) fdBtn.style.display=(name==='donate')?'none':'flex';
   var _tm={news:'समाचार',gallery:'फोटो ग्यालरी',team:'टोली',donors:'दाताहरू',
     contact:'सम्पर्क',donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',
-    notices:'सूचना',volunteer:'स्वयंसेवक',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची'};
+    notices:'सूचना',volunteer:'स्वयंसेवक',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची',tickets:'टिकट बुकिङ'};
   document.title=(_tm[name]||'') ? (_tm[name]+' — क्षितिज नाट्य प्रतिष्ठान') : 'क्षितिज नाट्य प्रतिष्ठान';
   if(window._gtagPage) window._gtagPage(name);
 }
@@ -4710,11 +5744,11 @@ function showPage(name, data){
 var _origGo = go;
 function go(id){
   var alwaysPage={donate:1,news:1,gallery:1,team:1,donors:1,contact:1,
-    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1,productions:1};
+    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1,productions:1,tickets:1};
   var pageMap={donate:'donate',news:'news',gallery:'gallery',team:'team',
     donors:'donors',contact:'contact',events:'events',videos:'videos',
     notices:'notices',volunteer:'volunteer',search:'search',
-    activity:'activity',membership:'membership',productions:'productions'};
+    activity:'activity',membership:'membership',productions:'productions',tickets:'tickets'};
   if(alwaysPage[id] && pageMap[id]){
     showPage(pageMap[id]);
   } else {
@@ -4874,7 +5908,7 @@ function renderPageTeam(){
     var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
     var isFounder=(m.id==='dm1'||m._origId==='dm1');
     var col=isFounder?'av-g':(m.color||'av-r');
-    var avHtml=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    var avHtml=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/"/g,'&quot;');
     return '<div class="team-pg-card'+(isFounder?' gold':'')+'" onclick="openProfileModal('+mJson+')" style="cursor:pointer;">'
       +'<div class="team-pg-av '+col+'"'+(large?' style="width:100px;height:100px;"':'')+'>'+avHtml+'</div>'
@@ -4887,16 +5921,25 @@ function renderPageTeam(){
   }
 
   var exec = mC.filter(function(m){return m.dept==='exec';});
-  var dept = mC.filter(function(m){return m.dept==='dept';});
+  var depts = ['natya','sangeet','sahitya','nritya','advisor'];
+  var deptLabels = {natya:'🎭 नाट्य विभाग',sangeet:'🎵 संगीत प्रतिष्ठान',sahitya:'📚 साहित्य प्रतिष्ठान',nritya:'💃 नृत्य विभाग',advisor:'🤝 सल्लाहकार'};
+  var dept = mC.filter(function(m){return depts.includes(m.dept);});
 
   var eg=G('pg-exec-grid'); if(eg) eg.innerHTML=exec.map(function(m){return card(m,true);}).join('');
-  var dg=G('pg-dept-grid'); if(dg) dg.innerHTML=dept.map(function(m){return card(m,false);}).join('');
+  // Render each department separately
+  ['natya','sangeet','sahitya','nritya','advisor'].forEach(function(d){
+    var members=mC.filter(function(m){return m.dept===d;});
+    var grid=G('pg-grid-'+d);
+    if(grid) grid.innerHTML=members.map(function(m){return card(m,false);}).join('');
+  });
+  // Keep legacy pg-dept-grid if it exists
+  var dg=G('pg-dept-grid'); if(dg) dg.innerHTML='';
 
   // Supporters grid
   var sg=G('pg-sup-grid');
   if(sg) sg.innerHTML=sC.map(function(s){
     var init=(s.name||'?').charAt(0).toUpperCase();
-    var avHtml=s.img?'<img src="'+s.img+'" alt="'+s.name+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;"/>':init;
+    var avHtml=s.img?'<img src="'+s.img+'" alt="'+s.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var sJson=JSON.stringify(s).replace(/"/g,'&quot;');
     return '<div class="sup-pg-card" onclick="openProfileModal('+sJson+')" style="cursor:pointer;">'
       +'<div class="sup-pg-av">'+avHtml+'</div>'
@@ -4931,7 +5974,7 @@ function renderPageContact(){
   if(c.phone) html+='<div class="ci"><div class="ci-ic">&#128222;</div><div><div class="ci-lb">PHONE</div><a class="ci-vl" href="tel:'+c.phone+'">'+c.phone+'</a>'+(c.phone2?'<br/><a class="ci-vl" href="tel:'+c.phone2+'">'+c.phone2+'</a>':'')+'</div></div>';
   if(c.person) html+='<div class="ci"><div class="ci-ic">&#128100;</div><div><div class="ci-lb">CONTACT PERSON</div><div class="ci-vl">'+c.person+'</div></div></div>';
   if(c.email) html+='<div class="ci"><div class="ci-ic">&#128231;</div><div><div class="ci-lb">EMAIL</div><a class="ci-vl" href="mailto:'+c.email+'">'+c.email+'</a></div></div>';
-  if(c.address) html+='<div class="ci"><div class="ci-ic">&#128205;</div><div><div class="ci-lb">ADDRESS</div><div class="ci-vl">'+c.address+'</div>'+(c.maps?'<a class="map-lnk" href="'+c.maps+'" target="_blank">&#128506; Maps &#8250;</a>':'')+'</div></div>';
+  if(c.address) html+='<div class="ci"><div class="ci-ic">&#128205;</div><div><div class="ci-lb">ADDRESS</div><div class="ci-vl">'+c.address+'</div>'+'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe>'+(c.maps?'<a href="'+c.maps+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps ↗</a>':'')+'</div></div></div></div>';
   html+='<div style="margin-top:12px;"><div class="ci-lb" style="margin-bottom:8px;">SOCIAL</div><div class="soc-row">';
   if(c.fb) html+='<a href="'+c.fb+'" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>';
   if(c.fb2) html+='<a href="'+c.fb2+'" target="_blank" class="soc fb" style="opacity:.75;" title="Facebook Group">f</a>';
@@ -5407,8 +6450,7 @@ function _renderEvList(){
 // ── VIDEOS ────────────────────────────────────────────────────────────────────
 var vidC=[];
 var _vidSeed=[
-  {id:'v1',title:'क्षितिज नाट्य प्रतिष्ठान — परिचय',desc:'संस्थाको परिचयात्मक भिडियो',ytId:'dQw4w9WgXcQ'},
-  {id:'v2',title:'माधव कल्पित — अन्तर्राष्ट्रिय सम्मान',desc:'दानाङ, भियतनाम सम्मान समारोह',ytId:'dQw4w9WgXcQ'}
+  {id:'v1',title:'क्षितिज नाट्य प्रतिष्ठान — परिचय',desc:'संस्थाको परिचयात्मक भिडियो',ytId:'',url:'https://youtube.com/@KshitizNatya'}
 ];
 async function loadVideos(){
   try{
@@ -5419,15 +6461,35 @@ async function loadVideos(){
 }
 function renderPageVideos(){
   loadVideos().then(function(){
-    if(!vidC.length){G('pg-videos-empty').style.display='block';G('pg-videos-grid').innerHTML='';return;}
+    if(!vidC.length){
+      var emptyEl=G('pg-videos-empty');
+      if(emptyEl){
+        emptyEl.style.display='block';
+        emptyEl.innerHTML='<div style="text-align:center;padding:48px 20px;">'
+          +'<div style="font-size:48px;margin-bottom:12px;">🎬</div>'
+          +'<div style="font-weight:700;font-size:16px;color:#1a2332;margin-bottom:8px;">भिडियो थपिएको छैन</div>'
+          +'<div style="font-size:13px;color:#888;margin-bottom:20px;">Admin Panel → भिडियो ट्याबमा YouTube URL थप्नुस्</div>'
+          +'<a href="https://youtube.com/@KshitizNatyaSamuha" target="_blank" style="display:inline-flex;align-items:center;gap:8px;background:#FF0000;color:#fff;border-radius:8px;padding:10px 20px;font-size:13px;font-weight:700;text-decoration:none;">▶ YouTube च्यानल हेर्नुस्</a>'
+          +'</div>';
+      }
+      G('pg-videos-grid').innerHTML=''; return;
+    }
     G('pg-videos-empty').style.display='none';
     G('pg-videos-grid').innerHTML=vidC.map(function(v){
       var ytId=v.ytId||extractYtId(v.url||'');
       var embedSrc=ytId?'https://www.youtube.com/embed/'+ytId+'?rel=0':'';
       return '<div class="video-card">'
-        +'<div class="video-embed">'+(embedSrc?'<iframe src="'+embedSrc+'" allowfullscreen loading="lazy" title="'+v.title+'"></iframe>':'<div style="display:flex;align-items:center;justify-content:center;height:100%;color:#ffffff;font-size:14px;">&#128249; भिडियो उपलब्ध छैन</div>')+'</div>'
-        +'<div class="video-card-body"><div class="video-card-title">'+(v.title||'')+'</div><div class="video-card-desc">'+(v.desc||'')+'</div></div>'
-      +'</div>';
+        +'<div class="video-embed">'
+        +(embedSrc
+          ?'<iframe src="'+embedSrc+'" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" title="'+v.title+'"></iframe>'
+          :'<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#111;color:#fff;gap:8px;"><span style="font-size:36px;">🎬</span><span style="font-size:13px;opacity:.7;">भिडियो उपलब्ध छैन</span></div>')
+        +'</div>'
+        +'<div class="video-card-body">'
+        +'<div class="video-card-title">'+(v.title||'')+'</div>'
+        +(v.desc?'<div class="video-card-desc">'+(v.desc||'')+'</div>':'')
+        +(v.ytId||extractYtId(v.url||'')?'<a href="https://youtube.com/watch?v='+(v.ytId||extractYtId(v.url||''))+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:11px;color:#888;text-decoration:none;">↗ YouTube मा हेर्नुस्</a>':'')
+        +'</div>'
+        +'</div>';
     }).join('');
   });
 }
@@ -5595,8 +6657,12 @@ async function submitMembership(){
      'mem-cit-name','mem-cit-no','mem-cit-dist','mem-cit-date','mem-perm-addr','mem-temp-addr',
      'mem-phone','mem-postal','mem-other-orgs','mem-awards','mem-works','mem-profession','mem-feedback']
      .forEach(function(id){var el=G(id);if(el)el.value='';});
-    G('mem-gender').value=''; G('mem-marital').value=''; G('mem-blood').value=''; G('mem-dept').value=''; G('mem-role').value='';
+    G('mem-gender').value=''; G('mem-marital').value=''; G('mem-blood').value='';
+    _clearDeptRole();
     document.querySelectorAll('input[name="mem-type"]').forEach(function(r){r.checked=false;});
+    document.querySelectorAll('.mem-type-lbl').forEach(function(el){
+      el.style.borderColor='#e8e8e8'; el.style.background='#fff'; el.style.boxShadow='none';
+    });
     // Clear voucher
     if(G('mem-voucher-file'))G('mem-voucher-file').value='';
     if(G('mem-voucher-name'))G('mem-voucher-name').textContent='कुनै फाइल छानिएको छैन';
@@ -7047,27 +8113,52 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   ctx.fillText('🎭', _INFO_X+(_PH_X-_INFO_X)/2+30, _BODY_TOP+540);
   ctx.restore();
 
-  // 12. Info rows (left column)
+  // 12. Info rows (left column) — supports continuation rows (empty icon+label = wrapped 2nd line)
+  // Auto-shrink row height when there are more rows than the default layout allows,
+  // so multi-department / multi-role members (e.g. 5 rows instead of 3) still fit
+  // cleanly above the आ.व. pill and footer.
+  var avPillSpace = 80; // space reserved below rows for the आ.व. pill
+  var availH = (_FOOT_TOP - _INFO_TOP) - avPillSpace;
+  var totalRows = rows.length;
+  var _DYN_ROW_H = Math.min(_ROW_H, Math.floor(availH / Math.max(totalRows,1)));
+  if(_DYN_ROW_H < 54) _DYN_ROW_H = 54; // hard floor so text never overlaps
+
   var ry=_INFO_TOP, IR=28;
   rows.forEach(function(r,i){
-    ctx.fillStyle='#f5ede0';
-    ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.fill();
-    ctx.strokeStyle='#c9963a'; ctx.lineWidth=2;
-    ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.stroke();
-    ctx.font='24px sans-serif'; ctx.textAlign='center'; ctx.fillStyle='#6e1119';
-    ctx.fillText(r[0],_INFO_X+IR,ry+IR+9);
-    ctx.fillStyle='#9a6a1f'; ctx.font='600 16px sans-serif'; ctx.textAlign='left';
-    ctx.fillText(r[1],_INFO_LX,ry+14);
-    ctx.fillStyle='#1a1410'; ctx.font='bold 28px sans-serif';
-    var val=String(r[2]);
-    if(ctx.measureText(val).width>_MAX_INFO_W){ ctx.font='bold 22px sans-serif'; }
-    ctx.fillText(val,_INFO_LX,ry+50);
-    if(i<rows.length-1){
+    var isContinuation = (r[1]==='' && r[0]==='');
+    if(!isContinuation){
+      // Icon circle
+      ctx.fillStyle='#f5ede0';
+      ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.fill();
+      ctx.strokeStyle='#c9963a'; ctx.lineWidth=2;
+      ctx.beginPath(); ctx.arc(_INFO_X+IR,ry+IR,IR,0,Math.PI*2); ctx.stroke();
+      ctx.font='24px sans-serif'; ctx.textAlign='center'; ctx.fillStyle='#6e1119';
+      ctx.fillText(r[0],_INFO_X+IR,ry+IR+9);
+      // Label
+      ctx.fillStyle='#9a6a1f'; ctx.font='600 16px sans-serif'; ctx.textAlign='left';
+      ctx.fillText(r[1],_INFO_LX,ry+14);
+    }
+    // Value — auto-shrink font progressively so long dept/role text always fits the column width
+    ctx.fillStyle='#1a1410'; ctx.textAlign='left';
+    var val=String(r[2]||'');
+    var valY = isContinuation ? (ry+24) : (ry+(_DYN_ROW_H>68?50:42));
+    var fSizes=[28,24,20,17,15];
+    var chosen=fSizes[0];
+    for(var fi=0; fi<fSizes.length; fi++){
+      ctx.font='bold '+fSizes[fi]+'px sans-serif';
+      if(ctx.measureText(val).width<=_MAX_INFO_W){ chosen=fSizes[fi]; break; }
+      chosen=fSizes[fi];
+    }
+    ctx.font='bold '+chosen+'px sans-serif';
+    ctx.fillText(val,_INFO_LX,valY);
+    // Divider line (skip after continuation rows and the very last row)
+    if(i<rows.length-1 && !isContinuation){
       ctx.strokeStyle='rgba(154,106,31,0.2)'; ctx.lineWidth=1; ctx.setLineDash([5,5]);
-      ctx.beginPath(); ctx.moveTo(_INFO_X,ry+_ROW_H-6); ctx.lineTo(_PH_X-20,ry+_ROW_H-6); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(_INFO_X,ry+_DYN_ROW_H-6); ctx.lineTo(_PH_X-20,ry+_DYN_ROW_H-6); ctx.stroke();
       ctx.setLineDash([]);
     }
-    ry+=_ROW_H;
+    // Continuation rows take a shorter slice of vertical space
+    ry += isContinuation ? Math.round(_DYN_ROW_H*0.62) : _DYN_ROW_H;
   });
 
   // 13. आ.व. pill (below info rows)
@@ -7246,18 +8337,46 @@ function _makeCard(data, template, title, badge, badgeColor, rows, cidPrefix){
 // ── MEMBERSHIP CARD ───────────────────────────────────────────────────────
 // ════════════════════════════════════════════════════════════════════════════
 function generateMembershipCard(data, template){
-  var deptLabel=data.dept==='exec'?'केन्द्रीय समिति':(data.dept==='dept'?'विभाग प्रमुख':(data.deptLabel||'सदस्य'));
-  var role=data.role||(data.dept==='exec'?'कार्यकारी सदस्य':'सदस्य');
-  var addr=(data.permanentAddr||'').trim();
-  var rows=[
-    ['👤','नाम',data.name||'—'],
-    ['🎭','पद',role],
-    ['🏛','विभाग',deptLabel]
+  // data.dept and data.role may contain " / " separated multiple values
+  var dept = (data.dept||'सदस्य').trim();
+  var role = (data.role||'सदस्य').trim();
+  var addr = (data.permanentAddr||'').trim();
+
+  var rows = [
+    ['👤','नाम', data.name||'—']
   ];
-  if(addr && addr!=='—') rows.push(['📍','ठेगाना',addr.substring(0,42)]);
-  if(data.email) rows.push(['📧','इमेल',data.email.substring(0,38)]);
-  var badgeBg=data.membershipType==='आजीवन सदस्य'?'#6e1119':'#7a4a10';
-  var r=_makeCard(data,template,'सदस्यता नविकरण पत्र',data.membershipType||'सदस्य',badgeBg,rows,'KNS-MEM');
+
+  // पद — if multiple posts (contains " / "), split across up to 2 rows so it never overflows
+  if(role.length > 30 && role.indexOf(' / ') !== -1){
+    var rParts = role.split(' / ');
+    var rHalf = Math.ceil(rParts.length/2);
+    rows.push(['🎭','पद', rParts.slice(0,rHalf).join(' / ')]);
+    rows.push(['','', rParts.slice(rHalf).join(' / ')]); // continuation row (no icon/label)
+  } else {
+    rows.push(['🎭','पद', role]);
+  }
+
+  // विभाग — same smart split logic
+  if(dept.length > 30 && dept.indexOf(' / ') !== -1){
+    var dParts = dept.split(' / ');
+    var dHalf = Math.ceil(dParts.length/2);
+    rows.push(['🏛','विभाग', dParts.slice(0,dHalf).join(' / ')]);
+    rows.push(['','', dParts.slice(dHalf).join(' / ')]); // continuation row
+  } else {
+    rows.push(['🏛','विभाग', dept]);
+  }
+
+  if(addr && addr!=='—') rows.push(['📍','ठेगाना', addr.substring(0,42)]);
+  if(data.email) rows.push(['📧','इमेल', data.email.substring(0,38)]);
+
+  var _memColors={
+    'साधारण सदस्य':'#7a4a10', 'आजीवन सदस्य':'#6e1119',
+    'कार्यसमिति सदस्य':'#1a3a6e', 'संस्थापक':'#5a0e15',
+    'संस्थापक सदस्य':'#5a0e15', 'केन्द्रीय सदस्य':'#3a1a6e',
+    'विभागीय सदस्य':'#2a5a2a', 'मानार्थ सदस्य':'#4a3a00'
+  };
+  var badgeBg = _memColors[data.membershipType] || '#7a4a10';
+  var r = _makeCard(data, template, 'सदस्यता नविकरण पत्र', data.membershipType||'सदस्य', badgeBg, rows, 'KNS-MEM');
   return r.canvas;
 }
 
@@ -7292,7 +8411,7 @@ function generateSupporterCard(data, template){
 // ── TEAM MEMBER CARD ──────────────────────────────────────────────────────
 // ════════════════════════════════════════════════════════════════════════════
 function generateTeamCard(data, template){
-  var deptLabel=data.dept==='exec'?'कार्यकारी समिति':(data.dept==='dept'?'विभाग प्रमुख':'टोली सदस्य');
+  var deptLabel={exec:'केन्द्रीय कार्यसमिति',natya:'नाट्य विभाग',sangeet:'संगीत प्रतिष्ठान',sahitya:'साहित्य प्रतिष्ठान',nritya:'नृत्य विभाग',advisor:'सल्लाहकार',dept:'विभाग प्रमुख'}[data.dept]||'टोली सदस्य';
   var addr=(data.permanentAddr||data.addr||'').trim();
   var rows=[
     ['👤','नाम',data.name||'—'],
@@ -7341,8 +8460,163 @@ function _saveMembershipForRenewal(data){
   }catch(e){ toast('सुरक्षित गर्न सकिएन।','error'); }
 }
 
+// ── AUTO-UPDATE HOMEPAGE STATS FROM FIREBASE ──────────────────────────────────
+(function _updateHomepageStats(){
+  setTimeout(async function(){
+    try{
+      var [memSnap, prodSnap, donSnap] = await Promise.all([
+        window._getDocs(window._col(window._db,'members')),
+        window._getDocs(window._col(window._db,'productions')),
+        window._getDocs(window._col(window._db,'donors'))
+      ]);
+      // Member count
+      var memCount = memSnap.docs.length;
+      var el = G('award-member-count');
+      if(el && memCount > 50) el.textContent = memCount+'+ सदस्य'; // only update if DB has substantial count
+      // Productions count (Firebase + hardcoded)
+      var prodTotal = (_PRODS ? _PRODS.length : 0) + prodSnap.docs.length;
+      var el2 = G('award-natak-count');
+      if(el2 && prodTotal > 0) el2.textContent = prodTotal+'+ नाटक';
+      // Years of service (founded 2058 BS = 2001 AD)
+      var yearsNow = new Date().getFullYear() - 2001 + 1;
+      var el3 = G('award-year-count');
+      if(el3) el3.textContent = yearsNow+'+ वर्ष';
+      // Load extra Firebase awards
+      try{
+        var awardsSnap = await window._getDocs(window._col(window._db,'awards'));
+        var extras = awardsSnap.docs.map(function(d){return d.data();});
+        var extraGrid = G('awards-extra');
+        if(extraGrid && extras.length){
+          var colors=[['#fff8e1','#fff3cd','#f5c842'],['#f3e5f5','#e8d5f0','#ab47bc'],['#e8f5e9','#c8e6c9','#66bb6a']];
+          extraGrid.innerHTML = extras.map(function(a,i){
+            var col=colors[i%colors.length];
+            return '<div class="award-card" style="background:linear-gradient(135deg,'+col[0]+','+col[1]+');border-radius:12px;padding:16px;text-align:center;border:1px solid '+col[2]+';">'
+              +'<div style="font-size:28px;margin-bottom:6px;">'+(a.icon||'🏅')+'</div>'
+              +'<div style="font-weight:700;color:#1a2332;font-size:13px;">'+a.title+'</div>'
+              +'<div style="font-size:11px;color:#666;margin-top:3px;">'+(a.sub||'')+'</div>'
+              +'</div>';
+          }).join('');
+        }
+      }catch(e){}
+    }catch(e){}
+  }, 2500);
+})();
+
 // Wrapper functions using global _lastMemData state
 var _selectedMemTemplate = 1;
+function _selectMemType(val){
+  var radio = document.querySelector('input[name="mem-type"][value="'+val+'"]');
+  if(radio) radio.checked = true;
+  // All type label IDs — must match HTML
+  ['lbl-type-sansthapak','lbl-type-kendriyo','lbl-type-vibhag','lbl-type-exec',
+   'lbl-type-manarth','lbl-type-life','lbl-type-gen'].forEach(function(id){
+    var el = G(id);
+    if(!el) return;
+    var inp = el.querySelector('input[type="radio"]');
+    var isSelected = inp && inp.value === val;
+    el.style.borderColor = isSelected ? '#8B1520' : '#e8e8e8';
+    el.style.background  = isSelected ? '#fff8f8' : '#fff';
+    el.style.boxShadow   = isSelected ? '0 0 0 2px rgba(139,21,32,.12)' : 'none';
+  });
+}
+
+// ── Multi-select helpers for आबद्ध विभाग ────────────────────────────────────
+function _syncDeptField(){
+  var checked = Array.from(document.querySelectorAll('.mem-dept-cb:checked')).map(function(cb){return cb.value;});
+  var val = checked.join(' / ');
+  var hid = G('mem-dept'); if(hid) hid.value = val;
+  var prev = G('mem-dept-preview');
+  if(prev) prev.innerHTML = val
+    ? '<span style="color:#8B1520;">✅</span> ' + val
+    : '<span style="color:#aaa;">कुनै विभाग छानिएको छैन</span>';
+}
+
+// ── Multi-select helpers for पद ──────────────────────────────────────────────
+function _syncRoleField(){
+  var checked = Array.from(document.querySelectorAll('.mem-role-cb:checked')).map(function(cb){return cb.value;});
+  var val = checked.join(' / ');
+  var hid = G('mem-role'); if(hid) hid.value = val;
+  var prev = G('mem-role-preview');
+  if(prev) prev.innerHTML = val
+    ? '<span style="color:#8B1520;">✅</span> ' + val
+    : '<span style="color:#aaa;">कुनै पद छानिएको छैन</span>';
+}
+
+function _addCustomRole(){
+  var inp = G('mem-role-custom');
+  if(!inp || !inp.value.trim()) return;
+  var val = inp.value.trim();
+  // Check if already has a checkbox for this value
+  var existing = document.querySelector('.mem-role-cb[value="'+val+'"]');
+  if(existing){ existing.checked = true; _syncRoleField(); inp.value = ''; return; }
+  // Add a dynamic checkbox
+  var grid = G('mem-role-grid');
+  if(grid){
+    var lbl = document.createElement('label');
+    lbl.className = 'dept-check-lbl'; lbl.dataset.custom = '1';
+    lbl.innerHTML = '<input type="checkbox" class="mem-role-cb" value="'+val+'" checked/> <span>'+val+'</span>';
+    lbl.querySelector('input').addEventListener('change', _syncRoleField);
+    grid.appendChild(lbl);
+  }
+  inp.value = '';
+  _syncRoleField();
+}
+
+// ── Attach change listeners after DOM ready ─────────────────────────────────
+(function _initDeptRoleListeners(){
+  function _attach(){
+    document.querySelectorAll('.mem-dept-cb').forEach(function(cb){
+      if(!cb.dataset.bound){ cb.dataset.bound='1'; cb.addEventListener('change', _syncDeptField); }
+    });
+    document.querySelectorAll('.mem-role-cb').forEach(function(cb){
+      if(!cb.dataset.bound){ cb.dataset.bound='1'; cb.addEventListener('change', _syncRoleField); }
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', _attach);
+  else setTimeout(_attach, 400);
+})();
+
+// ── Clear all dept/role checkboxes on form reset ────────────────────────────
+function _clearDeptRole(){
+  document.querySelectorAll('.mem-dept-cb,.mem-role-cb').forEach(function(cb){ cb.checked = false; });
+  // Remove custom roles added dynamically
+  document.querySelectorAll('#mem-role-grid label[data-custom]').forEach(function(lbl){ lbl.remove(); });
+  var hd = G('mem-dept'); if(hd) hd.value = '';
+  var hr = G('mem-role'); if(hr) hr.value = '';
+  var pd = G('mem-dept-preview'); if(pd) pd.innerHTML = '';
+  var pr = G('mem-role-preview'); if(pr) pr.innerHTML = '';
+}
+
+// ── Restore dept/role from saved renewal data ───────────────────────────────
+function _restoreDeptRole(deptVal, roleVal){
+  if(deptVal){
+    deptVal.split(' / ').forEach(function(v){
+      var cb = document.querySelector('.mem-dept-cb[value="'+v.trim()+'"]');
+      if(cb) cb.checked = true;
+    });
+    _syncDeptField();
+  }
+  if(roleVal){
+    roleVal.split(' / ').forEach(function(v){
+      v = v.trim(); if(!v) return;
+      var cb = document.querySelector('.mem-role-cb[value="'+v+'"]');
+      if(cb){ cb.checked = true; }
+      else {
+        // Custom role — add dynamically
+        var grid = G('mem-role-grid');
+        if(grid){
+          var lbl = document.createElement('label');
+          lbl.className = 'dept-check-lbl'; lbl.dataset.custom = '1';
+          lbl.innerHTML = '<input type="checkbox" class="mem-role-cb" value="'+v+'" checked/> <span>'+v+'</span>';
+          lbl.querySelector('input').addEventListener('change', _syncRoleField);
+          grid.appendChild(lbl);
+        }
+      }
+    });
+    _syncRoleField();
+  }
+}
+
 function _setMemCardTemplate(t){
   _selectedMemTemplate = t;
   var b1=G('mem-tpl-1'), b2=G('mem-tpl-2');
@@ -7396,12 +8670,8 @@ function _applyRenewalData(){
     Object.keys(map).forEach(function(k){
       var el=G(map[k]); if(el&&saved[k]) el.value=saved[k];
     });
-    if(saved.dept){ var d=G('mem-dept'); if(d) d.value=saved.dept; }
-    if(saved.role){ var r=G('mem-role'); if(r) r.value=saved.role; }
-    if(saved.membershipType){
-      var rb=document.querySelector('input[name="mem-type"][value="'+saved.membershipType+'"]');
-      if(rb) rb.checked=true;
-    }
+    if(saved.dept || saved.role){ _restoreDeptRole(saved.dept, saved.role); }
+    if(saved.membershipType){ _selectMemType(saved.membershipType); }
     toast('गत वर्षको जानकारी भरियो! बाँकी विवरण अपडेट गर्नुस्।','success', 4000);
   }catch(e){}
 }
@@ -7590,7 +8860,193 @@ setTimeout(function(){
   _handleUrlParams();
 }, 400);
 
-// ── FOOTER YEAR AUTO-UPDATE ──────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+// ── STATIC SITE DATA EDITOR ─────────────────────────────────────────────────
+// ══════════════════════════════════════════════════════════════════════════════
+var _SD_DEFAULTS = {
+  heroTitle1: 'क्षितिज',
+  heroTitle2: 'नाट्य प्रतिष्ठान',
+  tagline: '"सबै जातका थुँगा-थुँगालाई उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा"',
+  location: 'BIRTAMOD · JHAPA',
+  founded: '२०५८',
+  about1: 'क्षितिज नाट्य प्रतिष्ठानको स्थापना २०५८ सालमा फिदिम-१, पाँचथरमा भएको थियो।',
+  about2: 'वर्षहरू बित्दै जाँदा संस्था बिस्तारै फैलियो — रेडियो नाटक, सांस्कृतिक महोत्सव, संगीत र नृत्यमा पनि सक्रिय बन्दै।',
+  about3: 'आज यो संस्था पूर्वी नेपालको सबैभन्दा सम्मानित नाट्य संस्था मध्ये एक हो।',
+  regno: '२३०-५८/५९',
+  pan: '३०१९५७०३८',
+  swc: '२४४९९',
+  addressOrg: 'बिर्तामोड-१, झापा',
+  stat1Num: '२०५८', stat1Lbl: 'स्थापना',
+  stat2Num: '२५+',  stat2Lbl: 'वर्ष नाट्यमा',
+  stat3Num: '१,०००+', stat3Lbl: 'समुदाय समर्थक',
+  stat4Num: '१००+', stat4Lbl: 'पुरस्कार',
+  natakProgress: 82,
+  natakProgressLbl: '८०%+',
+  natakS1: 'रु. १.७८ करोड+', natakS1L: 'सरकारी लगानी',
+  natakS2: 'रु. ६०,०,०,०,०/-', natakS2L: 'जमिन खरिद — दाता सहयोग',
+  natakS3: '३०० सिट', natakS3L: 'थिएटर क्षमता',
+  natakDonors: '१०६+', natakLand: '३०+', natakNirman: '२७+',
+  brickPrice: 20, landPrice: 'रु. २,१०,०००+',
+  appealQuote: '"कहिलेकाहीँ एउटा सानो इट्टाले मात्र घर बन्दैन् — त्यसले सपना बोक्छ, आशा जोड्छ र भविष्य निर्माण गर्छ।"',
+  appealBody: '"एक इट्टा–एक पहिचान" को अभियानसहित क्षितिज नाट्य प्रतिष्ठान, झापाले पाँच वर्षअघि सुरु गरेको यो अभियान आज अन्तर्राष्ट्रिय स्तरसम्म पुगेको छ।',
+  footerAbout: 'पूर्वी नेपालको अग्रणी नाट्य संस्था। २०५८ सालदेखि कला, संस्कृति र सामाजिक परिवर्तनका लागि समर्पित।',
+  footerTagline: '"बहुजाति, बहुभाषी, बहुसांस्कृतिक नेपालको सुन्दर माला।"',
+  footerCopy: '© २०८२ क्षितिज नाट्य प्रतिष्ठान, झापा, नेपाल · kshitiznatya.org.np',
+  fbProfile: 'https://www.facebook.com/profile.php?id=100056165594967',
+  fbPage: 'https://www.facebook.com/KshitizNatyaSamuha',
+  yt: 'https://youtube.com/channel/UC3FkgeY16fyv3Nu05f1RmpA',
+  ticker: 'क्षितिज नाट्य प्रतिष्ठानमा स्वागत छ! झापा नाटक घर निर्माण अभियानमा सहभागी हुनुस् — एक इट्टा = रु. २०'
+};
+var _SD = Object.assign({}, _SD_DEFAULTS);
+
+async function _loadSiteDataTab(){
+  try{
+    var snap = await window._get(window._doc(window._db,'settings','sitedata'));
+    if(snap.exists && snap.exists()) _SD = Object.assign({}, _SD_DEFAULTS, snap.data());
+  }catch(e){}
+  // Fill form fields
+  var map = {
+    'sd-hero-title1':'heroTitle1','sd-hero-title2':'heroTitle2','sd-tagline':'tagline',
+    'sd-location':'location','sd-founded':'founded',
+    'sd-about1':'about1','sd-about2':'about2','sd-about3':'about3',
+    'sd-regno':'regno','sd-pan':'pan','sd-swc':'swc','sd-address-org':'addressOrg',
+    'sd-stat1-num':'stat1Num','sd-stat1-lbl':'stat1Lbl',
+    'sd-stat2-num':'stat2Num','sd-stat2-lbl':'stat2Lbl',
+    'sd-stat3-num':'stat3Num','sd-stat3-lbl':'stat3Lbl',
+    'sd-stat4-num':'stat4Num','sd-stat4-lbl':'stat4Lbl',
+    'sd-natak-progress':'natakProgress','sd-natak-progress-lbl':'natakProgressLbl',
+    'sd-natak-s1':'natakS1','sd-natak-s1l':'natakS1L',
+    'sd-natak-s2':'natakS2','sd-natak-s2l':'natakS2L',
+    'sd-natak-s3':'natakS3','sd-natak-s3l':'natakS3L',
+    'sd-natak-donors':'natakDonors','sd-natak-land':'natakLand','sd-natak-nirman':'natakNirman',
+    'sd-brick-price':'brickPrice','sd-land-price':'landPrice',
+    'sd-appeal-quote':'appealQuote','sd-appeal-body':'appealBody',
+    'sd-footer-about':'footerAbout','sd-footer-tagline':'footerTagline','sd-footer-copy':'footerCopy',
+    'sd-fb-profile':'fbProfile','sd-fb-page':'fbPage','sd-yt':'yt','sd-ticker':'ticker'
+  };
+  Object.keys(map).forEach(function(id){ var el=G(id); if(el) el.value=_SD[map[id]]||''; });
+  toast('Data loaded!','success',1500);
+}
+
+async function _saveSiteData(){
+  // Read all form values
+  var d = {};
+  var map = {
+    'sd-hero-title1':'heroTitle1','sd-hero-title2':'heroTitle2','sd-tagline':'tagline',
+    'sd-location':'location','sd-founded':'founded',
+    'sd-about1':'about1','sd-about2':'about2','sd-about3':'about3',
+    'sd-regno':'regno','sd-pan':'pan','sd-swc':'swc','sd-address-org':'addressOrg',
+    'sd-stat1-num':'stat1Num','sd-stat1-lbl':'stat1Lbl',
+    'sd-stat2-num':'stat2Num','sd-stat2-lbl':'stat2Lbl',
+    'sd-stat3-num':'stat3Num','sd-stat3-lbl':'stat3Lbl',
+    'sd-stat4-num':'stat4Num','sd-stat4-lbl':'stat4Lbl',
+    'sd-natak-progress':'natakProgress','sd-natak-progress-lbl':'natakProgressLbl',
+    'sd-natak-s1':'natakS1','sd-natak-s1l':'natakS1L',
+    'sd-natak-s2':'natakS2','sd-natak-s2l':'natakS2L',
+    'sd-natak-s3':'natakS3','sd-natak-s3l':'natakS3L',
+    'sd-natak-donors':'natakDonors','sd-natak-land':'natakLand','sd-natak-nirman':'natakNirman',
+    'sd-brick-price':'brickPrice','sd-land-price':'landPrice',
+    'sd-appeal-quote':'appealQuote','sd-appeal-body':'appealBody',
+    'sd-footer-about':'footerAbout','sd-footer-tagline':'footerTagline','sd-footer-copy':'footerCopy',
+    'sd-fb-profile':'fbProfile','sd-fb-page':'fbPage','sd-yt':'yt','sd-ticker':'ticker'
+  };
+  Object.keys(map).forEach(function(id){
+    var el=G(id); if(el) d[map[id]] = el.value.trim()||_SD_DEFAULTS[map[id]]||'';
+  });
+  d.natakProgress = parseInt(d.natakProgress)||82;
+  d.brickPrice = parseInt(d.brickPrice)||20;
+  try{
+    await window._set(window._doc(window._db,'settings','sitedata'), d, {merge:true});
+    _SD = Object.assign({}, d);
+    _applySiteData(); // apply changes to live page immediately
+    showOk('sd-ok','✅ सबै Data सुरक्षित भयो! परिवर्तन तुरुन्त लागू भयो।');
+    toast('Site data saved!','success');
+  }catch(e){ showErr('sd-err','❌ '+e.message); }
+}
+
+async function _loadAndApplySiteData(){
+  try{
+    var snap = await window._get(window._doc(window._db,'settings','sitedata'));
+    if(snap.exists && snap.exists()) _SD = Object.assign({}, _SD_DEFAULTS, snap.data());
+  }catch(e){ _SD = Object.assign({}, _SD_DEFAULTS); }
+  _applySiteData();
+}
+
+function _applySiteData(){
+  var d = _SD;
+  // Hero
+  var h1=document.querySelector('#home h1');
+  if(h1) h1.innerHTML='<span class="red">'+d.heroTitle1+'</span><br/><em>'+d.heroTitle2+'</em>';
+  var tl=document.querySelector('#home .tagline');
+  if(tl) tl.textContent=d.tagline;
+  var ll=document.querySelector('.logo-sub');
+  if(ll) ll.textContent=d.location;
+  // Stats bar (top 4 stats)
+  var sn=document.querySelectorAll('.stats-bar .stat-n');
+  var sl=document.querySelectorAll('.stats-bar .stat-l');
+  if(sn[0]){sn[0].textContent=d.stat1Num;} if(sl[0]){sl[0].textContent=d.stat1Lbl;}
+  if(sn[1]){sn[1].textContent=d.stat2Num;} if(sl[1]){sl[1].textContent=d.stat2Lbl;}
+  if(sn[2]){sn[2].textContent=d.stat3Num;} if(sl[2]){sl[2].textContent=d.stat3Lbl;}
+  if(sn[3]){sn[3].textContent=d.stat4Num;} if(sl[3]){sl[3].textContent=d.stat4Lbl;}
+  // About paragraphs
+  var ap=document.querySelectorAll('#about .two-col > div:first-child p');
+  if(ap[0]) ap[0].textContent=d.about1;
+  if(ap[1]) ap[1].textContent=d.about2;
+  if(ap[2]) ap[2].textContent=d.about3;
+  // Reg details
+  var rr=document.querySelectorAll('#about .reg-box .rv');
+  if(rr[0]) rr[0].textContent=d.regno;
+  if(rr[1]) rr[1].textContent=d.pan;
+  if(rr[2]) rr[2].textContent=d.swc;
+  if(rr[3]) rr[3].textContent=d.addressOrg;
+  // Natak ghar stats
+  var ns1v=G('natak-stat-1-val'); if(ns1v) ns1v.textContent=d.natakS1;
+  var ns1l=G('natak-stat-1-lbl'); if(ns1l) ns1l.textContent=d.natakS1L;
+  var ns2v=G('natak-stat-2-val'); if(ns2v) ns2v.textContent=d.natakS2;
+  var ns2l=G('natak-stat-2-lbl'); if(ns2l) ns2l.textContent=d.natakS2L;
+  var ns3v=G('natak-stat-3-val'); if(ns3v) ns3v.textContent=d.natakS3;
+  var ns3l=G('natak-stat-3-lbl'); if(ns3l) ns3l.textContent=d.natakS3L;
+  // Progress bars (both instances)
+  var pbar=G('natak-progress-bar');
+  if(pbar) pbar.style.width=(d.natakProgress||82)+'%';
+  var plbl=G('natak-progress-label');
+  if(plbl) plbl.textContent=d.natakProgressLbl||'८०%+';
+  var pbar2=G('natak-stat-progress-bar');
+  if(pbar2) pbar2.style.width=(d.natakProgress||82)+'%';
+  var plbl2=G('natak-stat-progress-lbl');
+  if(plbl2) plbl2.textContent=d.natakProgressLbl||'८०%+';
+  // Donor counts in natak section
+  var dc=document.querySelector('#natak-donor-count'); if(dc) dc.textContent=d.natakDonors;
+  var lc=document.querySelector('#natak-land-count'); if(lc) lc.textContent=d.natakLand;
+  var nc=document.querySelector('#natak-nirman-count'); if(nc) nc.textContent=d.natakNirman;
+  // Brick price
+  document.querySelectorAll('.brick-price-display').forEach(function(el){ el.textContent='रु. '+(d.brickPrice||20); });
+  // Appeal quote + body
+  var aq=document.querySelector('.pq'); if(aq) aq.textContent=d.appealQuote;
+  // Footer
+  var ft=document.querySelector('.ft-about'); if(ft) ft.textContent=d.footerAbout;
+  var ftg=document.querySelector('.ft-tg'); if(ftg) ftg.textContent=d.footerTagline;
+  var fc=document.querySelector('.ft-copy'); if(fc) fc.innerHTML=d.footerCopy;
+  // Social links
+  document.querySelectorAll('a[href*="facebook.com/profile.php"]').forEach(function(a){ if(d.fbProfile) a.href=d.fbProfile; });
+  document.querySelectorAll('a[href*="KshitizNatyaSamuha"]').forEach(function(a){ if(d.fbPage) a.href=d.fbPage; });
+  document.querySelectorAll('a[href*="youtube.com"]').forEach(function(a){ if(d.yt) a.href=d.yt; });
+  // Facebook iframe — must point at a real Facebook PAGE; personal profiles
+  // (profile.php?id=...) are never renderable via the Page Plugin.
+  var fbi=document.querySelector('#fb-plugin-wrap iframe');
+  if(fbi && d.fbPage){
+    var encoded=encodeURIComponent(d.fbPage);
+    fbi.src='https://www.facebook.com/plugins/page.php?href='+encoded+'&tabs=timeline&width=460&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId';
+  }
+  // Ticker
+  if(d.ticker) buildTicker([{title:d.ticker,tag:'',date:''}]);
+  // Also update _STATS for brick price
+  if(window._STATS) window._STATS.brickPrice = d.brickPrice||20;
+}
+
+// Load site data on startup
+document.addEventListener('DOMContentLoaded', function(){ setTimeout(_loadAndApplySiteData, 600); });
+
 (function(){
   var el=document.getElementById('footer-year');
   if(!el) return;
@@ -8051,8 +9507,12 @@ var _titleMap={
       <div style="margin-bottom:16px;"><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">सदस्यता प्रकार</label>
         <select class="fi" id="vol-type">
           <option value="volunteer">स्वयंसेवक (Volunteer)</option>
-          <option value="member">साधारण सदस्य</option>
-          <option value="life">आजीवन सदस्य</option>
+          <option value="संस्थापक सदस्य">संस्थापक सदस्य</option>
+          <option value="आजीवन सदस्य">आजीवन सदस्य</option>
+          <option value="कार्यसमिति सदस्य">कार्यसमिति सदस्य</option>
+          <option value="विभागीय सदस्य">विभागीय सदस्य</option>
+          <option value="साधारण सदस्य">साधारण सदस्य</option>
+          <option value="मानार्थ सदस्य">मानार्थ सदस्य</option>
         </select>
       </div>
       <textarea class="fi" id="vol-msg" placeholder="&#128140; आफ्नो बारे थप जानकारी वा प्रश्न..." style="min-height:80px;"></textarea>
@@ -8279,34 +9739,88 @@ var _titleMap={
 
       <!-- Organisation info -->
       <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#127968; संस्थागत विवरण</div>
-      <div class="fi-half" style="margin-bottom:14px;">
-        <div>
-          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">आबद्ध विभाग *</label>
-          <select class="fi" id="mem-dept">
-            <option value="">— छान्नुस् —</option>
-            <option>संस्थापक</option>
-            <option>केन्द्रीय कार्यसमिति</option>
-            <option>केन्द्रीय समिति</option>
-            <option>विभागीय समिति</option>
-            <option>अन्य</option>
-          </select>
+      <!-- आबद्ध विभाग — full multi-select checkboxes -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">आबद्ध विभाग * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस्)</span></label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;" id="mem-dept-grid">
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संस्थापक"/> <span>संस्थापक</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय कार्यसमिति"/> <span>केन्द्रीय कार्यसमिति</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय समिति"/> <span>केन्द्रीय समिति</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगठन विभाग"/> <span>संगठन विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="विभागीय समिति"/> <span>विभागीय समिति</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="अन्य"/> <span>अन्य</span></label>
         </div>
-        <div>
-          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">पद *</label>
-          <select class="fi" id="mem-role">
-            <option value="">— छान्नुस् —</option>
-            <option>अध्यक्ष</option><option>उपाध्यक्ष</option>
-            <option>महासचिव</option><option>सचिव</option>
-            <option>कोषाध्यक्ष</option><option>सदस्य</option>
-            <option>सल्लाहकार</option><option>अन्य</option>
-          </select>
+        <!-- Hidden field stores combined value -->
+        <input type="hidden" id="mem-dept" value=""/>
+        <div id="mem-dept-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;"></div>
+      </div>
+
+      <!-- पद — multi-select with all posts + custom entry -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">पद * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस् — Multiple posts supported)</span></label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;" id="mem-role-grid">
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="अध्यक्ष"/> <span>अध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="बरिष्ठ उपाध्यक्ष"/> <span>बरिष्ठ उपाध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपाध्यक्ष"/> <span>उपाध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="महासचिव"/> <span>महासचिव</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सचिव"/> <span>सचिव</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="का. सचिव"/> <span>का. सचिव</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="कोषाध्यक्ष"/> <span>कोषाध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपकोषाध्यक्ष"/> <span>उपकोषाध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="केन्द्रीय सदस्य"/> <span>केन्द्रीय सदस्य</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="संस्थापक केन्द्रीय सदस्य"/> <span>संस्थापक केन्द्रीय सदस्य</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग अध्यक्ष"/> <span>विभाग अध्यक्ष</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग सचिव"/> <span>विभाग सचिव</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
         </div>
+        <!-- Custom पद input -->
+        <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <input class="fi" id="mem-role-custom" placeholder="थप पद टाइप गर्नुस् (e.g. संचार विभाग अध्यक्ष)..." style="flex:1;min-width:200px;margin-bottom:0;font-size:14px;"/>
+          <button type="button" onclick="_addCustomRole()" style="background:#8B1520;color:#fff;border:none;border-radius:7px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">+ थप्नुस्</button>
+        </div>
+        <!-- Hidden field stores combined value -->
+        <input type="hidden" id="mem-role" value=""/>
+        <div id="mem-role-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;line-height:1.6;"></div>
       </div>
       <div style="margin-bottom:14px;">
-        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता प्रकार *</label>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <label style="display:flex;align-items:center;gap:6px;font-size:14px;color:#1a2332;cursor:pointer;"><input type="radio" name="mem-type" value="साधारण सदस्य" id="mem-type-gen"/> साधारण सदस्य</label>
-          <label style="display:flex;align-items:center;gap:6px;font-size:14px;color:#1a2332;cursor:pointer;"><input type="radio" name="mem-type" value="आजीवन सदस्य" id="mem-type-life"/> आजीवन सदस्य</label>
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता प्रकार * <span style="color:#8B1520;font-size:10px;">(सबै प्रकारको वार्षिक नवीकरण अनिवार्य छ)</span></label>
+        <div class="mem-type-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px;">
+          <!-- ORDER: संस्थापक / केन्द्रीय / विभागीय / कार्यसमिति / मानार्थ / आजीवन / साधारण -->
+          <label class="mem-type-lbl" id="lbl-type-sansthapak" onclick="_selectMemType('संस्थापक')">
+            <input type="radio" name="mem-type" value="संस्थापक" id="mem-type-sansthapak" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">संस्थापक</div><div class="mem-type-sub">Founding Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-kendriyo" onclick="_selectMemType('केन्द्रीय सदस्य')">
+            <input type="radio" name="mem-type" value="केन्द्रीय सदस्य" id="mem-type-kendriyo" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">केन्द्रीय सदस्य</div><div class="mem-type-sub">Central Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-vibhag" onclick="_selectMemType('विभागीय सदस्य')">
+            <input type="radio" name="mem-type" value="विभागीय सदस्य" id="mem-type-vibhag" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">विभागीय सदस्य</div><div class="mem-type-sub">Departmental Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-exec" onclick="_selectMemType('कार्यसमिति सदस्य')">
+            <input type="radio" name="mem-type" value="कार्यसमिति सदस्य" id="mem-type-exec" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">कार्यसमिति सदस्य</div><div class="mem-type-sub">Executive Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-manarth" onclick="_selectMemType('मानार्थ सदस्य')">
+            <input type="radio" name="mem-type" value="मानार्थ सदस्य" id="mem-type-manarth" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">मानार्थ सदस्य</div><div class="mem-type-sub">Honorary Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-life" onclick="_selectMemType('आजीवन सदस्य')">
+            <input type="radio" name="mem-type" value="आजीवन सदस्य" id="mem-type-life" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">आजीवन सदस्य</div><div class="mem-type-sub">Lifetime Member</div></div>
+          </label>
+          <label class="mem-type-lbl" id="lbl-type-gen" onclick="_selectMemType('साधारण सदस्य')">
+            <input type="radio" name="mem-type" value="साधारण सदस्य" id="mem-type-gen" style="accent-color:#8B1520;flex-shrink:0;"/>
+            <div><div class="mem-type-name">साधारण सदस्य</div><div class="mem-type-sub">General Member</div></div>
+          </label>
         </div>
       </div>
 
@@ -8445,6 +9959,9 @@ var _titleMap={
     </button>
     <button class="bn" onclick="go('news');setBnActive(this)">
       <span class="bn-icon">📰</span><span class="bn-lbl">समाचार</span>
+    </button>
+    <button class="bn" onclick="go('tickets');setBnActive(this)">
+      <span class="bn-ic">🎟</span><span class="bn-lb" data-ne="टिकट" data-en="Tickets">टिकट</span>
     </button>
     <button class="bn" onclick="go('donate');setBnActive(this)">
       <span class="bn-icon">❤️</span><span class="bn-lbl">सहयोग</span>
@@ -9154,6 +10671,360 @@ async function _approveVolunteer(id, name, email){
     };
   }
 })();
+
+
+
+// ── Update FB embed URL from _CI on page load ────────────────────────────────
+(function _updateFBEmbed(){
+  setTimeout(function(){
+    var fbUrl = (window._CI && window._CI.fb) ? window._CI.fb : 'https://www.facebook.com/KshitizNatyaSamuha';
+    var plug=G('fb-page-plugin');
+    if(plug) plug.setAttribute('data-href',fbUrl);
+    var link=G('fb-follow-link');
+    if(link) link.href=fbUrl;
+    if(window.FB && window.FB.XFBML){
+      window.FB.XFBML.parse(document.getElementById('fb-page-embed'));
+    }
+  },2000);
+})();
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── AWARDS — Firebase CRUD ───────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+var _awardsCache = [], _awardEditId = null;
+
+async function _loadAwardsAdmin(){
+  var list=G('award-admin-list');
+  if(list) list.innerHTML='<div style="color:#888;padding:10px;">लोड हुँदैछ…</div>';
+  try{
+    var snap=await window._getDocs(window._col(window._db,'awards'));
+    _awardsCache=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+    _renderAwardsAdmin();
+  }catch(e){
+    if(list) list.innerHTML='<div style="color:#c00;padding:10px;">लोड गर्न सकिएन: '+e.message+'</div>';
+  }
+}
+
+function _renderAwardsAdmin(){
+  var list=G('award-admin-list');
+  if(!list) return;
+  if(!_awardsCache.length){
+    list.innerHTML='<div style="color:#aaa;padding:10px;">कुनै थप पुरस्कार छैन। माथिबाट थप्नुस्।</div>'; return;
+  }
+  list.innerHTML=_awardsCache.map(function(a,idx){
+    return '<div class="prod-admin-row">'
+      +'<div style="font-size:24px;flex-shrink:0;">'+(a.icon||'🏅')+'</div>'
+      +'<div class="prod-admin-info"><div class="prod-admin-title">'+a.title+'</div>'
+      +'<div class="prod-admin-meta">'+(a.sub||'')+'</div></div>'
+      +'<div class="prod-admin-acts">'
+      +'<button class="save-btn" style="padding:4px 10px;font-size:11px;" onclick="_editAwardByIdx('+idx+')">✏️</button>'
+      +'<button class="del-btn" style="padding:4px 10px;font-size:11px;" onclick="_deleteAwardByIdx('+idx+')">🗑</button>'
+      +'</div></div>';
+  }).join('');
+}
+
+function _editAwardByIdx(idx){ _editAward(_awardsCache[idx]&&_awardsCache[idx].id); }
+function _deleteAwardByIdx(idx){ if(_awardsCache[idx]) _deleteAward(_awardsCache[idx].id); }
+function _editAward(id){
+  var a=_awardsCache.find(function(x){return x.id===id;});
+  if(!a) return;
+  _awardEditId=id; G('award-eid').value=id;
+  G('award-icon').value=a.icon||''; G('award-title').value=a.title||''; G('award-sub').value=a.sub||'';
+  G('award-title').scrollIntoView({behavior:'smooth'});
+}
+function _cancelAward(){
+  _awardEditId=null; ['award-eid','award-icon','award-title','award-sub'].forEach(function(id){if(G(id))G(id).value='';});
+}
+async function _saveAward(){
+  var title=(G('award-title').value||'').trim();
+  if(!title){showErr('award-err','नाम आवश्यक छ।');return;}
+  var data={icon:(G('award-icon').value||'🏅').trim(),title:title,sub:(G('award-sub').value||'').trim(),ts:Date.now()};
+  try{
+    if(_awardEditId) await window._updateDoc(window._doc(window._db,'awards',_awardEditId),data);
+    else await window._add(window._col(window._db,'awards'),data);
+    showOk('award-ok','✅ सुरक्षित भयो!');
+    _cancelAward(); await _loadAwardsAdmin();
+  }catch(e){showErr('award-err','❌ '+e.message);}
+}
+async function _deleteAward(id){
+  if(!confirm('यो पुरस्कार हटाउने?')) return;
+  try{
+    await window._delDoc(window._doc(window._db,'awards',id));
+    toast('हटाइयो।','success'); await _loadAwardsAdmin();
+  }catch(e){toast('❌ '+e.message,'error');}
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── FACEBOOK PAGE EMBED — update when admin changes FB URL ───────────────────
+// ════════════════════════════════════════════════════════════════════════════
+function _previewFBEmbed(){
+  var fbUrl=(G('ct-fb')&&G('ct-fb').value)||'';
+  var embed=G('fb-page-embed');
+  if(!embed) return;
+  if(!fbUrl) return;
+  var fbDiv=embed.querySelector('.fb-page');
+  if(fbDiv) fbDiv.setAttribute('data-href',fbUrl);
+  // Reload FB plugin
+  if(window.FB && window.FB.XFBML) window.FB.XFBML.parse(embed);
+}
+
+// Load FB URL into admin field when contact info loads
+(function _patchContactLoad(){
+  var orig=window._loadContactAdmin||window.loadContactAdmin;
+  if(typeof orig==='function'){
+    var _origLoad=orig;
+    window._loadContactAdmin=window.loadContactAdmin=function(){
+      _origLoad.apply(this,arguments);
+      setTimeout(function(){
+        if(G('ct-fb') && window._CI && window._CI.fb) G('ct-fb').value=window._CI.fb;
+      },500);
+    };
+  }
+})();
+
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── TICKET SYSTEM ────────────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+
+// ── Load and render tickets page ─────────────────────────────────────────────
+async function renderPageTickets(){
+  // Load contact info for payment details
+  if(window._CI && window._CI.phone){
+    var cb = G('ticket-contact-block');
+    if(cb) cb.innerHTML = '<div style="font-weight:700;font-size:14px;color:#1a2332;margin-bottom:10px;">📞 टिकटका लागि सम्पर्क</div>'
+      +'<div style="font-size:13px;color:#555;line-height:2;">'
+      +(window._CI.phone?'📱 '+window._CI.phone+'<br/>':'')
+      +(window._CI.email?'📧 '+window._CI.email+'<br/>':'')
+      +(window._CI.address?'📍 '+window._CI.address:'')
+      +'</div>';
+  }
+
+  try{
+    var snap = await window._getDocs(window._col(window._db,'shows'));
+    var shows = snap.docs.map(function(d){ return Object.assign({id:d.id},d.data()); })
+      .filter(function(s){ return s.active && (!s.date || new Date(s.dateIso||'2099') >= new Date()); })
+      .sort(function(a,b){ return (a.dateIso||'')>(b.dateIso||'')?1:-1; });
+
+    var list = G('tickets-show-list');
+    var empty = G('tickets-empty');
+    if(!shows.length){
+      if(list) list.innerHTML='';
+      if(empty) empty.style.display='block';
+      return;
+    }
+    if(empty) empty.style.display='none';
+
+    // Load payment info
+    var paySnap = await window._getDocs(window._col(window._db,'ticket_settings'));
+    var settings = paySnap.docs.length ? paySnap.docs[0].data() : {};
+
+    if(list) list.innerHTML = shows.map(function(s){
+      var soldOut = (s.soldSeats||0) >= (s.totalSeats||300);
+      return '<div style="background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.08);border:1px solid #f0f0f0;">'
+        +'<div style="background:'+(s.color||'#8B1520')+';padding:16px 18px;color:#fff;">'
+        +'<div style="font-size:11px;font-weight:700;opacity:.8;text-transform:uppercase;letter-spacing:.5px;margin-bottom:4px;">'+s.type+'</div>'
+        +'<div style="font-size:18px;font-weight:800;font-family:\'Playfair Display\',serif;line-height:1.3;">'+s.title+'</div>'
+        +'</div>'
+        +'<div style="padding:14px 18px;">'
+        +'<div style="display:flex;flex-direction:column;gap:6px;font-size:13px;color:#555;margin-bottom:14px;">'
+        +(s.date?'<div>📅 <strong>'+s.date+'</strong></div>':'')
+        +(s.time?'<div>⏰ '+s.time+'</div>':'')
+        +'<div>📍 झापा नाटक घर, बिर्तामोड</div>'
+        +'<div>💺 <strong>'+((s.totalSeats||300)-(s.soldSeats||0))+'</strong> सिट बाँकी</div>'
+        +'<div>💰 रु. <strong>'+s.price+'/–</strong> प्रति टिकट</div>'
+        +'</div>'
+        +'<button onclick="_openTicketModal(\''+s.id+'\')" '
+        +'style="width:100%;padding:12px;background:'+(soldOut?'#ccc':'#8B1520')+';color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:'+(soldOut?'not-allowed':'pointer')+';font-family:inherit;"'
+        +(soldOut?' disabled':'')+'>'
+        +(soldOut?'❌ सिट भरियो':'🎟 टिकट बुक गर्नुस्')
+        +'</button>'
+        +'</div></div>';
+    }).join('');
+
+    // Store shows for modal
+    window._ticketShows = {};
+    shows.forEach(function(s){ window._ticketShows[s.id]=s; });
+    window._ticketSettings = settings;
+
+  }catch(e){
+    var list=G('tickets-show-list');
+    if(list) list.innerHTML='<div style="color:#888;padding:20px;text-align:center;">लोड गर्न सकिएन।</div>';
+  }
+}
+
+function _openTicketModal(showId){
+  var s = window._ticketShows && window._ticketShows[showId];
+  if(!s) return;
+  var settings = window._ticketSettings || {};
+  G('tbm-title').textContent = s.title;
+  G('tbm-meta').textContent = (s.date||'') + (s.time?' · '+s.time:'') + ' · झापा नाटक घर';
+  G('tbm-price').textContent = 'रु. '+s.price+'/–';
+  G('tbm-seats').textContent = ((s.totalSeats||300)-(s.soldSeats||0))+' सिट उपलब्ध';
+  G('tbm-payment-info').innerHTML = settings.paymentInfo || 'eSewa: '+(settings.esewa||'—')+' | Khalti: '+(settings.khalti||'—');
+  G('tbm-name').value=''; G('tbm-phone').value=''; G('tbm-qty').value='1';
+  G('tbm-ok').textContent=''; G('tbm-err').textContent='';
+  G('ticket-book-modal')._showId = showId;
+  G('ticket-book-modal').style.display='flex';
+}
+
+async function _submitTicketBooking(){
+  var modal = G('ticket-book-modal');
+  var showId = modal._showId;
+  var name = (G('tbm-name').value||'').trim();
+  var phone = (G('tbm-phone').value||'').trim();
+  var qty = parseInt(G('tbm-qty').value)||1;
+  if(!name||!phone){ G('tbm-err').textContent='नाम र फोन नं. आवश्यक छ।'; return; }
+  var s = window._ticketShows[showId];
+  var total = s.price * qty;
+  try{
+    await window._add(window._col(window._db,'bookings'),{
+      showId:showId, showTitle:s.title, showDate:s.date||'', showTime:s.time||'',
+      name:name, phone:phone, qty:qty, total:total,
+      status:'pending', ts:Date.now()
+    });
+    // Update sold seats
+    await window._updateDoc(window._doc(window._db,'shows',showId),{soldSeats:(s.soldSeats||0)+qty});
+    G('tbm-ok').textContent='✅ बुकिङ सफल! हाम्रो टिम चाँडै सम्पर्क गर्नेछ।';
+    G('tbm-err').textContent='';
+    toast('टिकट बुकिङ सफल! ✅','success',4000);
+    setTimeout(function(){ G('ticket-book-modal').style.display='none'; renderPageTickets(); }, 2500);
+  }catch(e){ G('tbm-err').textContent='❌ '+e.message; }
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// ── ADMIN SHOWS MANAGEMENT ────────────────────────────────────────────────────
+// ════════════════════════════════════════════════════════════════════════════
+var _showsCache=[], _showEditId=null;
+
+async function _loadShowsAdmin(){
+  var list=G('shows-admin-list');
+  if(list) list.innerHTML='<div style="color:#888;padding:10px;">लोड हुँदैछ…</div>';
+  try{
+    var snap=await window._getDocs(window._col(window._db,'shows'));
+    _showsCache=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());})
+      .sort(function(a,b){return (b.ts||0)-(a.ts||0);});
+    _renderShowsAdmin();
+    // Load bookings count
+    var bSnap=await window._getDocs(window._col(window._db,'bookings'));
+    var bCount=G('bookings-count');
+    if(bCount) bCount.textContent=bSnap.docs.length+' बुकिङ';
+    // Load bookings list
+    _renderBookingsList(bSnap.docs.map(function(d){return Object.assign({id:d.id},d.data());}));
+  }catch(e){
+    if(list) list.innerHTML='<div style="color:#c00;padding:10px;">❌ '+e.message+'</div>';
+  }
+}
+
+function _renderShowsAdmin(){
+  var list=G('shows-admin-list');
+  if(!list) return;
+  if(!_showsCache.length){ list.innerHTML='<div style="color:#aaa;padding:10px;">कुनै नाटक तालिका छैन।</div>'; return; }
+  list.innerHTML=_showsCache.map(function(s,idx){
+    return '<div class="prod-admin-row">'
+      +'<div style="flex:1;min-width:0;">'
+      +'<div class="prod-admin-title">'+s.title+'</div>'
+      +'<div class="prod-admin-meta">'+( s.date||'मिति TBD')+' · '+(s.time||'')+'&nbsp;|&nbsp;रु. '+(s.price||0)+'&nbsp;|&nbsp;'+(s.soldSeats||0)+'/'+(s.totalSeats||300)+' सिट</div>'
+      +'<div class="prod-admin-meta"><span style="color:'+(s.active?'#2d7a3d':'#888')+';">'+(s.active?'● सक्रिय':'● निष्क्रिय')+'</span></div>'
+      +'</div>'
+      +'<div class="prod-admin-acts">'
+      +'<button class="save-btn" style="padding:4px 8px;font-size:11px;" onclick="_editShow('+idx+')">✏️</button>'
+      +'<button class="save-btn" style="padding:4px 8px;font-size:11px;background:'+(s.active?'#888':'#2d7a3d')+';" onclick="_toggleShow('+idx+')">'+(s.active?'⏸':'▶')+'</button>'
+      +'<button class="del-btn" style="padding:4px 8px;font-size:11px;" onclick="_deleteShow('+idx+')">🗑</button>'
+      +'</div></div>';
+  }).join('');
+}
+
+function _renderBookingsList(bookings){
+  var list=G('bookings-admin-list');
+  if(!list) return;
+  if(!bookings.length){ list.innerHTML='<div style="color:#aaa;padding:10px;">कुनै बुकिङ छैन।</div>'; return; }
+  bookings.sort(function(a,b){return (b.ts||0)-(a.ts||0);});
+  list.innerHTML=bookings.map(function(b){
+    return '<div class="prod-admin-row">'
+      +'<div style="flex:1;">'
+      +'<div class="prod-admin-title">'+b.name+' — '+b.qty+' टिकट</div>'
+      +'<div class="prod-admin-meta">'+b.showTitle+' · '+(b.showDate||'')+'</div>'
+      +'<div class="prod-admin-meta">📱 '+b.phone+' | रु. '+(b.total||0)+'/– | <span style="color:'+(b.status==='confirmed'?'#2d7a3d':'#8B1520')+';">'+( b.status==='confirmed'?'✅ Confirmed':'⏳ Pending')+'</span></div>'
+      +'</div>'
+      +'<div class="prod-admin-acts">'
+      +(b.status!=='confirmed'?'<button class="save-btn" style="padding:4px 8px;font-size:11px;background:#2d7a3d;" onclick="_confirmBooking(\''+b.id+'\')">✅</button>':'')
+      +'<button class="del-btn" style="padding:4px 8px;font-size:11px;" onclick="_deleteBooking(\''+b.id+'\')">🗑</button>'
+      +'</div></div>';
+  }).join('');
+}
+
+function _editShow(idx){ var s=_showsCache[idx]; if(!s) return; _showEditId=s.id;
+  G('show-title').value=s.title||''; G('show-date').value=s.date||'';
+  G('show-time').value=s.time||''; G('show-price').value=s.price||'';
+  G('show-seats').value=s.totalSeats||300; G('show-type').value=s.type||'मञ्च नाटक';
+  G('show-color').value=s.color||'#8B1520'; G('show-active').checked=!!s.active;
+  G('show-title').scrollIntoView({behavior:'smooth'});
+}
+function _cancelShow(){ _showEditId=null;
+  ['show-title','show-date','show-time','show-price'].forEach(function(id){if(G(id))G(id).value='';});
+  if(G('show-seats')) G('show-seats').value=300; if(G('show-active')) G('show-active').checked=true;
+}
+async function _saveShow(){
+  var title=(G('show-title').value||'').trim();
+  if(!title){ showErr('show-err','शीर्षक आवश्यक छ।'); return; }
+  var price=parseInt(G('show-price').value)||0;
+  if(!price){ showErr('show-err','टिकट मूल्य आवश्यक छ।'); return; }
+  var dateVal=(G('show-date').value||'').trim();
+  var data={title:title, date:dateVal, dateIso:_nepaliToIso(dateVal),
+    time:(G('show-time').value||'').trim(), price:price,
+    totalSeats:parseInt(G('show-seats').value)||300,
+    type:G('show-type').value||'मञ्च नाटक',
+    color:G('show-color').value||'#8B1520',
+    active:G('show-active').checked, ts:Date.now()};
+  try{
+    if(_showEditId) await window._updateDoc(window._doc(window._db,'shows',_showEditId),data);
+    else await window._add(window._col(window._db,'shows'),data);
+    showOk('show-ok','✅ सुरक्षित भयो!'); _cancelShow(); await _loadShowsAdmin();
+  }catch(e){ showErr('show-err','❌ '+e.message); }
+}
+async function _toggleShow(idx){ var s=_showsCache[idx]; if(!s) return;
+  try{ await window._updateDoc(window._doc(window._db,'shows',s.id),{active:!s.active}); await _loadShowsAdmin(); }
+  catch(e){ toast('❌ '+e.message,'error'); }
+}
+async function _deleteShow(idx){ var s=_showsCache[idx]; if(!s||!confirm('हटाउने?')) return;
+  try{ await window._delDoc(window._doc(window._db,'shows',s.id)); toast('हटाइयो।','success'); await _loadShowsAdmin(); }
+  catch(e){ toast('❌ '+e.message,'error'); }
+}
+async function _confirmBooking(id){
+  try{ await window._updateDoc(window._doc(window._db,'bookings',id),{status:'confirmed'});
+    toast('✅ Confirmed!','success'); _loadShowsAdmin(); }
+  catch(e){ toast('❌ '+e.message,'error'); }
+}
+async function _deleteBooking(id){
+  if(!confirm('यो बुकिङ हटाउने?')) return;
+  try{ await window._delDoc(window._doc(window._db,'bookings',id)); _loadShowsAdmin(); }
+  catch(e){ toast('❌ '+e.message,'error'); }
+}
+
+// Save ticket settings (payment info)
+async function _saveTicketSettings(){
+  var data={
+    esewa:(G('ts-esewa').value||'').trim(),
+    khalti:(G('ts-khalti').value||'').trim(),
+    bank:(G('ts-bank').value||'').trim(),
+    paymentInfo:(G('ts-payment-info').value||'').trim(),
+    refundPolicy:(G('ts-refund').value||'').trim(),
+    ts:Date.now()
+  };
+  try{
+    var snap=await window._getDocs(window._col(window._db,'ticket_settings'));
+    if(snap.docs.length) await window._updateDoc(window._doc(window._db,'ticket_settings',snap.docs[0].id),data);
+    else await window._add(window._col(window._db,'ticket_settings'),data);
+    showOk('ts-ok','✅ सुरक्षित भयो!');
+  }catch(e){ showErr('ts-err','❌ '+e.message); }
+}
+
+function _nepaliToIso(nepaliDate){
+  // Simple conversion — just return a placeholder ISO date for sorting
+  // Real implementation would need a BS-AD converter
+  return new Date().toISOString().split('T')[0];
+}
 
 
 // Bottom nav home button sets active
