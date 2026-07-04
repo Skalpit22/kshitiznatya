@@ -1,3 +1,37 @@
+<!--
+════════════════════════════════════════════════════════════════════════════
+  📍 FILE MAP — kshitiznatya.org.np (single-file site)
+  This is a large single HTML file. To jump to a section, use Ctrl+F / Cmd+F
+  and search for the exact marker text below (in quotes). Line numbers shift
+  as the file is edited, so markers are text, not numbers.
+
+  CONFIG / KEYS
+  "EMAILJS CONFIG"            — contact form fallback email service keys
+  "WEB3FORMS CONFIG"          — _W3F_KEY, used for all card/voucher emails
+  "FIREBASE REAL INIT"        — Firebase project config
+
+  PAGES
+  "PAGE ROUTER go()"          — main navigation function
+  "MEMBERSHIP PAGE"           — renewal form page + submitMembership()
+  "page-mem-success"          — post-submit success/card-download page
+  "TEAM PAGE" / "DONORS PAGE" / "GALLERY PAGE" / "CONTACT PAGE"
+
+  ADMIN PANEL
+  "openAdmin"                 — admin panel entry point
+  "MEMBERSHIP ADMIN TAB"      — list of submitted renewal forms (edit/email/card)
+  "MANAGE ALL + INLINE TAB"   — member/supporter management lists
+  "STATISTICS EDITOR"         — site data editor tab
+
+  MEMBERSHIP CARDS (ID cards / PNG generation)
+  "function _makeCard"        — shared card-drawing engine (_CW/_CH = size)
+  "TEAM MEMBER CARD" / "DONOR CARD" — other card types
+  "function emailVoucher"     — sends any card as an email attachment
+
+  DATA
+  "DEFAULT DATA"              — hardcoded fallback content
+  "TEAM MEMBERS" / "DONORS" / "SUPPORTERS" — default arrays (PIN_IDS etc.)
+════════════════════════════════════════════════════════════════════════════
+-->
 <!DOCTYPE html>
 <html lang="ne">
 <head>
@@ -1845,8 +1879,8 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
 
   /* ADMIN PANEL */
   .ap-body{padding:12px 4%!important;}
-  .ap-tabs{padding:8px!important;gap:5px!important;}
-  .ap-tab{font-size:11px!important;padding:6px 10px!important;}
+  .ap-tabs{padding:10px!important;gap:8px!important;}
+  .ap-tab{font-size:13.5px!important;padding:11px 16px!important;min-height:40px;}
   .ap-header{padding:10px 4%!important;flex-wrap:wrap;gap:6px;}
   .ap-hr{flex-wrap:wrap;gap:6px;}
 
@@ -1919,9 +1953,8 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
   /* STATS STRIP */
   .stats-grid-strip,.stats-grid{grid-template-columns:repeat(2,1fr)!important;}
 
-  /* AP tabs scroll on mobile */
-  .ap-tabs{overflow-x:auto;flex-wrap:nowrap!important;padding-bottom:4px!important;}
-  .ap-tab{flex-shrink:0;}
+  /* AP tabs — wrap into rows on mobile instead of one hard-to-slide strip */
+  .ap-tabs{flex-wrap:wrap!important;}
 
   /* sup-banner */
   .sup-banner-wrap{min-height:120px;}
@@ -2684,7 +2717,7 @@ window.fbAsyncInit=function(){
 
 <!-- ══ FACEBOOK FEED SECTION ════════════════════════════════════════════ -->
 <section id="facebook-feed" style="background:#f0f4f8;padding:48px 5%;">
-  <div style="max-width:960px;margin:0 auto;">
+  <div style="max-width:1140px;margin:0 auto;">
     <div class="label" style="text-align:center;">सामाजिक सञ्जाल</div>
     <h2 style="text-align:center;font-family:'Playfair Display',serif;margin-bottom:6px;" data-ne="हाम्रो Facebook Page" data-en="Our Facebook Page">हाम्रो Facebook Page</h2>
     <div class="bar" style="margin:0 auto 20px;"></div>
@@ -2694,11 +2727,11 @@ window.fbAsyncInit=function(){
            genuine Facebook PAGES (facebook.com/PageName), never for personal profiles
            (profile.php?id=...). That mismatch was why no posts ever appeared. -->
       <div style="display:flex;justify-content:center;flex-direction:column;align-items:center;gap:12px;">
-        <div id="fb-plugin-wrap" style="width:100%;max-width:480px;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);">
+        <div id="fb-plugin-wrap" style="width:100%;max-width:560px;overflow:hidden;border-radius:12px;box-shadow:0 4px 20px rgba(0,0,0,.1);">
           <iframe
-            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKshitizNatyaSamuha&tabs=timeline&width=460&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
-            width="460"
-            height="500"
+            src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FKshitizNatyaSamuha&tabs=timeline&width=540&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId"
+            width="540"
+            height="650"
             style="border:none;overflow:hidden;max-width:100%;border-radius:12px;"
             scrolling="no"
             frameborder="0"
@@ -2714,15 +2747,15 @@ window.fbAsyncInit=function(){
       <div style="padding:20px 0;">
         <div style="font-size:16px;font-weight:700;color:#1a2332;margin-bottom:12px;">📘 हामीलाई Follow गर्नुस्</div>
         <p style="font-size:14px;color:#555;line-height:1.8;margin-bottom:20px;">क्षितिज नाट्य प्रतिष्ठानका नयाँ कार्यक्रम, नाटक, र गतिविधिका अपडेट सिधै Facebook मा पाउनुस्।</p>
-        <a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" rel="noopener"
-           style="display:inline-flex;align-items:center;gap:10px;background:#1877F2;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:12px;">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          Kshitiz Natya Samuha Page हेर्नुस्
-        </a><br/>
         <a href="https://www.facebook.com/profile.php?id=100056165594967" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:10px;background:#1877F2;color:#fff;border-radius:10px;padding:14px 26px;font-size:15px;font-weight:700;text-decoration:none;margin-bottom:12px;box-shadow:0 4px 14px rgba(24,119,242,.3);">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          माधव कल्पित Profile हेर्नुस् (हाम्रो आधिकारिक Facebook)
+        </a><br/>
+        <a href="https://www.facebook.com/KshitizNatyaSamuha" target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:10px;background:#4267B2;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;margin-bottom:12px;">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          माधव कल्पित Profile हेर्नुस्
+          Kshitiz Natya Samuha Page हेर्नुस्
         </a><br/>
         <a href="https://youtube.com/channel/UC3FkgeY16fyv3Nu05f1RmpA" target="_blank" rel="noopener"
            style="display:inline-flex;align-items:center;gap:10px;background:#FF0000;color:#fff;border-radius:10px;padding:12px 24px;font-size:14px;font-weight:700;text-decoration:none;">
@@ -2858,25 +2891,22 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
 /* ── Ensure page-view pages don't overflow on mobile ── */
 .page-view{overflow-x:hidden!important;}
 
-/* ── Admin panel mobile tab scroll ── */
+/* ── Admin panel mobile tabs — wrap into easy-to-tap rows ── */
 @media(max-width:768px){
   #ap-tabs-wrap{
     display:flex!important;
     flex-direction:row!important;
-    flex-wrap:nowrap!important;
-    overflow-x:auto!important;
-    -webkit-overflow-scrolling:touch;
-    padding-bottom:6px!important;
-    gap:5px!important;
+    flex-wrap:wrap!important;
+    gap:8px!important;
   }
   #ap-tabs-wrap > div{
-    display:none!important; /* hide group label dividers on mobile — too wide */
+    display:block!important; /* keep group label dividers visible — wrapping handles the width now */
   }
   .ap-tab{
-    flex-shrink:0!important;
     white-space:nowrap!important;
-    font-size:11px!important;
-    padding:6px 10px!important;
+    font-size:13.5px!important;
+    padding:11px 16px!important;
+    min-height:40px;
   }
 }
 
@@ -5587,10 +5617,17 @@ function copyNewsLink(btn){
 }
 
 var _roSection=null,_roItems=[],_roDragIdx=null;
+var _roDeptFilter='all', _roDeptSlots=null;
 function openReorder(section){
   _roSection=section;
+  _roDeptFilter='all'; _roDeptSlots=null;
+  var deptWrap=G('ro-dept-filter-wrap');
+  if(section==='members'){
+    if(deptWrap) deptWrap.style.display='block';
+    var sel=G('ro-dept-filter'); if(sel) sel.value='all';
+  } else if(deptWrap) deptWrap.style.display='none';
   var items=[];
-  if(section==='members')    items=mC.map(function(m,i){return{id:m.id,label:m.name,sub:m.role||'',img:m.img||'',_ord:m._ord!==undefined?m._ord:i};});
+  if(section==='members')    items=mC.map(function(m,i){return{id:m.id,label:m.name,sub:m.role||'',img:m.img||'',dept:m.dept||'',_ord:m._ord!==undefined?m._ord:i};});
   if(section==='supporters') items=sC.map(function(s,i){return{id:s.id,label:s.name,sub:s.role||s.org||'',img:s.img||'',_ord:s._ord!==undefined?s._ord:i};});
   if(section==='news')       items=nC.map(function(n,i){return{id:n.id,label:n.title||'News',sub:n.date||'',img:n.img||'',_ord:n._ord!==undefined?n._ord:i};});
   if(section==='donors')     items=dC.map(function(d,i){return{id:d.id,label:d.name,sub:d.type||'',img:'',_ord:d._ord!==undefined?d._ord:i};});
@@ -5601,6 +5638,20 @@ function openReorder(section){
   G('ro-title').textContent='Arrange — '+(titles[section]||section);
   _roRender();
   G('reorder-overlay').classList.add('show');
+}
+// Rebuild the drag list to show only one department's members.
+// The full sorted _ord list is kept in _roDeptSlots; on save, those exact
+// slot values get reassigned to the filtered items in their new order —
+// so reordering within a department never moves members of other departments.
+function _roFilterMembersByDept(deptVal){
+  _roDeptFilter=deptVal;
+  var all=mC.map(function(m,i){return{id:m.id,label:m.name,sub:m.role||'',img:m.img||'',dept:m.dept||'',_ord:m._ord!==undefined?m._ord:i};});
+  all.sort(function(a,b){return a._ord-b._ord;});
+  if(deptVal==='all'){ _roDeptSlots=null; _roItems=all; _roRender(); return; }
+  var filtered=all.filter(function(it){return it.dept===deptVal;});
+  _roDeptSlots=filtered.map(function(it){return it._ord;});
+  _roItems=filtered;
+  _roRender();
 }
 function _roRender(){
   var list=G('ro-list');list.innerHTML='';
@@ -5623,10 +5674,16 @@ function _roRender(){
     list.appendChild(div);
   });
 }
-function closeReorder(){G('reorder-overlay').classList.remove('show');_roSection=null;_roItems=[];}
+function closeReorder(){G('reorder-overlay').classList.remove('show');_roSection=null;_roItems=[];_roDeptFilter='all';_roDeptSlots=null;}
 async function saveReorder(){
   var btn=G('ro-save-btn');btn.disabled=true;btn.textContent='Saving...';
-  _roItems.forEach(function(it,i){it._ord=i;});
+  if(_roSection==='members' && _roDeptSlots){
+    // Department-filtered reorder: reuse the exact _ord slots this department already
+    // occupied, just in the new order — other departments' positions are untouched.
+    _roItems.forEach(function(it,i){it._ord=_roDeptSlots[i];});
+  } else {
+    _roItems.forEach(function(it,i){it._ord=i;});
+  }
   try{
     if(_roSection==='members'){
       for(var i=0;i<_roItems.length;i++){
@@ -6076,7 +6133,6 @@ function _patchHomeNewsCards(){
 // ── DONORS TABLE PAGE ────────────────────────────────────────────────────────
 var _donorsSeed = {
   bhumidan: [
-    {sn:'',name:'मनोज निरौला',addr:'बिर्तामोड-५, झापा',date:'२०७५/०७६',amount:'',type:'६७ धुर'},
     {sn:'१',name:'सुजना खतिवडा',addr:'बिर्तामोड-२, झापा',date:'२०७५/०७६',amount:'',type:'१ धुर'},
     {sn:'२',name:'स्व. ज्ञानुराम प्रसाइ',addr:'बिर्तामोड-५, झापा',date:'२०७६/०७७',amount:'',type:'१ धुर'},
     {sn:'३',name:'मदन रसाइली',addr:'बिर्तामोड-५, झापा',date:'२०७६/०७७',amount:'',type:'१ धुर'},
@@ -6572,11 +6628,32 @@ function renderPageMembership(){
   _prefillMembershipFromSaved();
   // Show shareable link
   _showShareLinkBox('membership','mem-share-link-box');
+  _loadPublicSubmittedMembers();
   if(document.body.classList.contains('admin-mode')){
     var adminEl=G('pg-mem-admin');
     if(adminEl) adminEl.style.display='block';
     loadMemberships();
   }
+}
+// Public grid: name + photo of everyone who has submitted a renewal
+async function _loadPublicSubmittedMembers(){
+  var grid=G('pg-mem-submitted-grid'); if(!grid) return;
+  try{
+    var snap=await window._gets(window._col(window._db,'memberships'));
+    var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+    if(!mems.length){ grid.innerHTML='<div style="grid-column:1/-1;color:#888888;font-size:13px;">अहिलेसम्म कोही पेश गर्नुभएको छैन।</div>'; return; }
+    mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
+    grid.innerHTML='';
+    mems.forEach(function(m){
+      var cell=document.createElement('div');
+      cell.style.cssText='text-align:center;';
+      var imgHtml = m.photoUrl
+        ? '<img src="'+m.photoUrl+'" alt="'+(m.name||'')+'" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2.5px solid #8B1520;margin:0 auto;display:block;"/>'
+        : '<div style="width:72px;height:72px;border-radius:50%;background:#f0e8d8;border:2.5px solid #8B1520;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:26px;color:#8B1520;">&#128100;</div>';
+      cell.innerHTML=imgHtml+'<div style="font-size:11.5px;color:#1a2332;font-weight:600;margin-top:6px;line-height:1.3;">'+(m.name||'—')+'</div>';
+      grid.appendChild(cell);
+    });
+  }catch(e){ grid.innerHTML='<div style="grid-column:1/-1;color:#8B1520;font-size:12px;">लोड गर्न सकिएन।</div>'; }
 }
 
 async function submitMembership(){
@@ -6739,9 +6816,9 @@ async function loadMemberships(){
       confirmBtn.style.cssText='display:block;margin-top:6px;flex-shrink:0;';
       confirmBtn.onclick=function(){confirmMembership(m.id,row);};
       var delBtn=document.createElement('button');
-      delBtn.className='ma d'; delBtn.textContent='🗑'; delBtn.title='Delete';
-      delBtn.style.cssText='display:block;margin-top:4px;flex-shrink:0;';
-      delBtn.onclick=function(){deleteMembership(m.id,row);};
+      delBtn.className='ma'; delBtn.textContent='✏️'; delBtn.title='Edit';
+      delBtn.style.cssText='display:block;margin-top:4px;flex-shrink:0;background:#1565C0;color:#fff;border:none;';
+      delBtn.onclick=function(){_editMembershipEntry(m,row);};
       var btnsDiv=document.createElement('div');
       btnsDiv.appendChild(confirmBtn); btnsDiv.appendChild(delBtn);
       row.appendChild(btnsDiv);
@@ -6761,6 +6838,41 @@ async function deleteMembership(id,row){
   if(!confirm('यो दर्ता मेट्ने?')) return;
   try{await window._del(window._doc(window._db,'memberships',id));}catch(e){}
   if(row) row.remove();
+}
+
+// ── EDIT membership entry (replaces the old Delete option in the admin list) ──
+var _meEditId=null, _meEditRow=null;
+function _editMembershipEntry(m,row){
+  _meEditId=m.id; _meEditRow=row;
+  G('me-name').value=m.name||''; G('me-email').value=m.email||''; G('me-phone').value=m.phone||'';
+  G('me-role').value=m.role||''; G('me-dept').value=m.dept||'';
+  G('me-membershipType').value=m.membershipType||'साधारण सदस्य';
+  G('me-permanentAddr').value=m.permanentAddr||''; G('me-temporaryAddr').value=m.temporaryAddr||'';
+  G('me-bloodGroup').value=m.bloodGroup||'';
+  G('medit-overlay').classList.add('show');
+}
+function closeMembershipEdit(){ G('medit-overlay').classList.remove('show'); _meEditId=null; _meEditRow=null; }
+async function saveMembershipEdit(){
+  if(!_meEditId) return;
+  var btn=G('me-save-btn'); btn.disabled=true; btn.textContent='Saving...';
+  var data={
+    name:G('me-name').value.trim(), email:G('me-email').value.trim(), phone:G('me-phone').value.trim(),
+    role:G('me-role').value.trim(), dept:G('me-dept').value.trim(),
+    membershipType:G('me-membershipType').value,
+    permanentAddr:G('me-permanentAddr').value.trim(), temporaryAddr:G('me-temporaryAddr').value.trim(),
+    bloodGroup:G('me-bloodGroup').value.trim()
+  };
+  try{
+    await window._upd(window._doc(window._db,'memberships',_meEditId),data);
+    if(window._allMembershipsCache){
+      var idx=window._allMembershipsCache.findIndex(function(x){return x.id===_meEditId;});
+      if(idx>=0) Object.assign(window._allMembershipsCache[idx],data);
+    }
+    toast('✅ विवरण अपडेट भयो!','success');
+    closeMembershipEdit();
+    _loadMembershipAdmin();
+  }catch(e){ toast('❌ Error: '+e.message,'error'); }
+  btn.disabled=false; btn.textContent='Save Changes';
 }
 
 // ── MEMBERSHIP ADMIN TAB RELOAD ───────────────────────────────────────────────
@@ -6797,8 +6909,9 @@ async function _loadMembershipAdmin(){
       mailBtn.onclick=function(){ _adminEmailMemberCard(m); };
       var cb=document.createElement('button'); cb.className='ma e'; cb.textContent='✓'; cb.title='Confirm';
       cb.onclick=function(){confirmMembership(m.id,row);};
-      var db2=document.createElement('button'); db2.className='ma d'; db2.textContent='🗑';
-      db2.onclick=function(){deleteMembership(m.id,row);};
+      var db2=document.createElement('button'); db2.className='ma'; db2.textContent='✏️'; db2.title='सम्पादन गर्नुस्';
+      db2.style.cssText='background:#1565C0;color:#fff;border:none;';
+      db2.onclick=function(){ _editMembershipEntry(m,row); };
       btns.appendChild(cardBtn); btns.appendChild(mailBtn); btns.appendChild(cb); btns.appendChild(db2); row.appendChild(btns);
       el.appendChild(row);
     });
@@ -6826,7 +6939,7 @@ async function _adminEmailMemberCard(m){
     'तपाईंको सदस्यता परिचय पत्र — क्षितिज नाट्य प्रतिष्ठान',
     'नमस्ते '+m.name+'जी,\n\nतपाईंको सदस्यता परिचय पत्र यो इमेलसँग संलग्न छ।\n\nधन्यवाद!\nक्षितिज नाट्य प्रतिष्ठान'
   );
-  toast(ok?'✅ Email पठाइयो!':'❌ Email पठाउन सकिएन।', ok?'success':'error');
+  toast(ok?'✅ Email पठाइयो!':('❌ Email पठाउन सकिएन: '+(window._lastEmailError||'अज्ञात त्रुटि')), ok?'success':'error', ok?3000:6000);
 }
 
 // ── ADMIN: Bulk-generate and email cards to ALL old members who have email ──
@@ -7756,7 +7869,7 @@ async function _adminEmailDonorCard(r){
     'तपाईंको दाता प्रमाण पत्र — क्षितिज नाट्य प्रतिष्ठान',
     'नमस्ते '+r.name+'जी,\n\nतपाईंको उदार सहयोगका लागि हार्दिक धन्यवाद! तपाईंको दाता प्रमाण पत्र यो इमेलसँग संलग्न छ।\n\nक्षितिज नाट्य प्रतिष्ठान'
   );
-  toast(ok?'✅ Email पठाइयो!':'❌ Email पठाउन सकिएन।', ok?'success':'error');
+  toast(ok?'✅ Email पठाइयो!':('❌ Email पठाउन सकिएन: '+(window._lastEmailError||'अज्ञात त्रुटि')), ok?'success':'error', ok?3000:6000);
 }
 
 // ── UPDATE renderDonatePage to load history ───────────────────────────────
@@ -7883,12 +7996,18 @@ function generateDonationVoucher(name, amount, method, txnId, contact){
 // ── VOUCHER HELPERS (full implementations below) ──────────────────────────────
 
 // Send voucher via email (embed as data URL in email body)
+window._lastEmailError = '';
 async function emailVoucher(canvas, toEmail, subject, bodyText){
-  if(!toEmail || !toEmail.includes('@')){ toast('इमेल ठेगाना दिनुस्।','error'); return false; }
-  if(!_W3F_KEY || _W3F_KEY.startsWith('PASTE')) return false;
+  window._lastEmailError='';
+  if(!toEmail || !toEmail.includes('@')){ window._lastEmailError='इमेल ठेगाना छैन।'; toast('इमेल ठेगाना दिनुस्।','error'); return false; }
+  if(!_W3F_KEY || _W3F_KEY.startsWith('PASTE')){ window._lastEmailError='Email सेवा configure गरिएको छैन।'; return false; }
   try{
-    // Convert canvas to a Blob (real PNG file) for proper email attachment
-    var blob = await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/png'); });
+    // Convert canvas to a compressed JPEG (PNG cards with photos can be 1-3MB and
+    // fail to send as an attachment); JPEG at 0.85 quality is ~150-400KB and still
+    // looks great on screen and in print.
+    var blob = await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/jpeg', 0.85); });
+    if(!blob){ window._lastEmailError='कार्ड इमेज तयार गर्न सकिएन।'; return false; }
+    if(blob.size > 4.5*1024*1024){ window._lastEmailError='कार्ड फाइल साइज धेरै ठूलो भयो (' + Math.round(blob.size/1024/1024) + 'MB).'; return false; }
     var fd = new FormData();
     fd.append('access_key', _W3F_KEY);
     fd.append('subject', '🎭 ' + subject);
@@ -7898,11 +8017,12 @@ async function emailVoucher(canvas, toEmail, subject, bodyText){
     fd.append('replyto', toEmail);
     // Send TO the member's email by setting it as the form recipient field Web3Forms checks
     fd.append('to_email', toEmail);
-    fd.append('attachment', blob, 'membership-card.png');
+    fd.append('attachment', blob, 'membership-card.jpg');
     var res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
     var data = await res.json();
+    if(data.success !== true){ window._lastEmailError = data.message || 'अज्ञात त्रुटि (Web3Forms)।'; }
     return data.success === true;
-  } catch(e){ console.warn('emailVoucher:', e); return false; }
+  } catch(e){ console.warn('emailVoucher:', e); window._lastEmailError = e.message || 'नेटवर्क त्रुटि।'; return false; }
 }
 
 // Draw signature onto canvas (async — loads image)
@@ -8018,18 +8138,92 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   hg.addColorStop(1,   isNavy?'#0d1b30':'#4a0a10');
   ctx.fillStyle=hg; ctx.fillRect(B,B,W-B*2,_HDR_BOT-B);
 
-  // 3. Subtle gold corner triangles
-  ctx.save(); ctx.globalAlpha=0.08; ctx.fillStyle='#e0b65c';
-  ctx.beginPath(); ctx.moveTo(B,B); ctx.lineTo(B+180,B); ctx.lineTo(B,B+180); ctx.closePath(); ctx.fill();
-  ctx.beginPath(); ctx.moveTo(W-B,B); ctx.lineTo(W-B-180,B); ctx.lineTo(W-B,B+180); ctx.closePath(); ctx.fill();
+  // 3. Himalaya horizon scene — sunrise glow + snow peaks + temple skyline
+  // ("क्षितिज" = horizon/zenith, so the sunrise-over-mountains motif directly
+  // reflects the organisation's name.)
+  ctx.save();
+  var peakX=W-B-300, peakY=_RIB_TOP-96; // tallest peak position — sun sits right behind it
+  var sun=ctx.createRadialGradient(peakX,peakY,4,peakX,peakY,180);
+  sun.addColorStop(0,'rgba(255,224,150,0.55)');
+  sun.addColorStop(0.5,'rgba(224,182,92,0.22)');
+  sun.addColorStop(1,'rgba(224,182,92,0)');
+  ctx.fillStyle=sun; ctx.fillRect(B,B,W-B*2,_HDR_BOT-B);
+  // faint light rays fanning from the sun
+  ctx.globalAlpha=0.10; ctx.strokeStyle='#ffe096'; ctx.lineWidth=2;
+  for(var ray=0;ray<7;ray++){
+    var ang=(-Math.PI*0.75)+ray*(Math.PI*0.5/6);
+    ctx.beginPath(); ctx.moveTo(peakX,peakY);
+    ctx.lineTo(peakX+Math.cos(ang)*170,peakY+Math.sin(ang)*170); ctx.stroke();
+  }
+  ctx.globalAlpha=1;
+  function _mtnLayer(pts, alpha, color){
+    ctx.globalAlpha=alpha; ctx.fillStyle=color;
+    ctx.beginPath(); ctx.moveTo(B,_RIB_TOP);
+    pts.forEach(function(p){ ctx.lineTo(p[0],p[1]); });
+    ctx.lineTo(W-B,_RIB_TOP); ctx.closePath(); ctx.fill();
+  }
+  // Back range (hazy, gold-tinted)
+  _mtnLayer([[B,_RIB_TOP-30],[B+140,_RIB_TOP-70],[B+260,_RIB_TOP-38],[peakX-60,_RIB_TOP-108],
+             [peakX,_RIB_TOP-140],[peakX+70,_RIB_TOP-96],[W-B-120,_RIB_TOP-58],[W-B,_RIB_TOP-34]],
+            0.16, '#e0b65c');
+  // Front range (darker, closer)
+  var frontColor=isNavy?'#0a1628':'#2a0608';
+  _mtnLayer([[B,_RIB_TOP-14],[B+110,_RIB_TOP-44],[B+230,_RIB_TOP-20],[peakX-90,_RIB_TOP-78],
+             [peakX-10,_RIB_TOP-118],[peakX+90,_RIB_TOP-64],[W-B-150,_RIB_TOP-34],[W-B,_RIB_TOP-16]],
+            0.26, frontColor);
+  // Snow caps on the front range's higher peaks
+  ctx.globalAlpha=0.30; ctx.fillStyle='#fdf6e6';
+  [[peakX-10,_RIB_TOP-118,26],[B+230,_RIB_TOP-20,14],[peakX+90,_RIB_TOP-64,16]].forEach(function(s){
+    ctx.beginPath(); ctx.moveTo(s[0]-s[2],s[1]+s[2]*0.55); ctx.lineTo(s[0],s[1]); ctx.lineTo(s[0]+s[2],s[1]+s[2]*0.55);
+    ctx.lineTo(s[0]+s[2]*0.4,s[1]+s[2]*0.4); ctx.lineTo(s[0],s[1]+s[2]*0.7); ctx.lineTo(s[0]-s[2]*0.4,s[1]+s[2]*0.4);
+    ctx.closePath(); ctx.fill();
+  });
+  ctx.globalAlpha=1;
+  // Pagoda / temple skyline along the base
+  ctx.globalAlpha=0.17; ctx.fillStyle=isNavy?'#0a1628':'#2a0608';
+  function _pagoda(px,tiers,scale){
+    var py=_RIB_TOP;
+    for(var t=0;t<tiers;t++){
+      var tw=(30-t*7)*scale, th=12*scale;
+      ctx.beginPath();
+      ctx.moveTo(px-tw/2, py-t*13*scale);
+      ctx.lineTo(px+tw/2, py-t*13*scale);
+      ctx.lineTo(px, py-t*13*scale-th);
+      ctx.closePath(); ctx.fill();
+    }
+    ctx.fillRect(px-3*scale, py-2, 6*scale, 2); // base line
+  }
+  [[B+130,3,1],[B+185,2,0.7],[B+430,4,1.15],[B+500,2,0.75],[W-B-460,3,0.9],[W-B-390,2,0.65]]
+    .forEach(function(p){ _pagoda(p[0],p[1],p[2]); });
   ctx.restore();
 
-  // 4. Reg numbers (very top of header)
-  ctx.fillStyle='rgba(255,255,255,0.92)'; ctx.font='600 18px sans-serif'; ctx.textAlign='center';
-  ctx.fillText('द.न. २३०-५८/५९   |   पा.न. ३०१९५७०३८   |   स.क.पा.न. २४४९९', W/2, B+26);
+  // Subtle twin theatre-mask watermark near the title
+  ctx.save(); ctx.globalAlpha=0.10; ctx.textAlign='center'; ctx.font='54px sans-serif';
+  ctx.fillText('🎭', W-B-360, B+120);
+  ctx.restore();
 
-  // 5. Logo
-  var LS=104, LX=B+40, LY=B+44;
+  // 4. Slogan — top line of header
+  var slogan='"हामी सबै जातका थुँङ्गा थुँङ्गालाई उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा छौं।"';
+  ctx.fillStyle='#e0b65c'; ctx.textAlign='center';
+  var slW=W-B*2-100;
+  ctx.font='italic 600 19px sans-serif';
+  if(ctx.measureText(slogan).width<=slW){
+    ctx.fillText(slogan, W/2, B+24);
+  } else {
+    ctx.font='italic 600 16px sans-serif';
+    var _slWords=slogan.split(' '), _slMid=Math.ceil(_slWords.length/2);
+    ctx.fillText(_slWords.slice(0,_slMid).join(' '), W/2, B+18);
+    ctx.fillText(_slWords.slice(_slMid).join(' '), W/2, B+38);
+  }
+  ctx.strokeStyle='rgba(224,182,92,0.35)'; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(W/2-90,B+52); ctx.lineTo(W/2+90,B+52); ctx.stroke();
+
+  // 5. Reg numbers
+  ctx.fillStyle='rgba(255,255,255,0.85)'; ctx.font='600 15px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('द.न. २३०-५८/५९   |   पा.न. ३०१९५७०३८   |   स.क.पा.न. २४४९९', W/2, B+74);
+
+  // 6. Logo
+  var LS=92, LX=B+40, LY=B+92;
   ctx.fillStyle='rgba(255,255,255,0.12)';
   ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2+4,0,Math.PI*2); ctx.fill();
   if(_logoUrl && _logoImgCache){
@@ -8040,31 +8234,31 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   } else {
     ctx.fillStyle=isNavy?'#1a3a6e':'#8B1520';
     ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2,0,Math.PI*2); ctx.fill();
-    ctx.fillStyle='#fff'; ctx.font='bold 44px serif'; ctx.textAlign='center';
-    ctx.fillText('क्ष',LX+LS/2,LY+LS/2+16);
+    ctx.fillStyle='#fff'; ctx.font='bold 40px serif'; ctx.textAlign='center';
+    ctx.fillText('क्ष',LX+LS/2,LY+LS/2+14);
   }
   ctx.strokeStyle='#c9963a'; ctx.lineWidth=3;
   ctx.beginPath(); ctx.arc(LX+LS/2,LY+LS/2,LS/2,0,Math.PI*2); ctx.stroke();
 
-  // 6. Org name + address
+  // 7. Org name + address
   var TX=LX+LS+22, TY=LY;
-  ctx.fillStyle='#fff'; ctx.font='bold 38px serif'; ctx.textAlign='left';
-  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान',TX,TY+40);
-  ctx.fillStyle='#e0b65c'; ctx.font='700 18px sans-serif';
-  ctx.fillText('KSHITIZ NATYA PRATISHTHAN',TX,TY+68);
-  ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='16px sans-serif';
-  ctx.fillText('बिर्तामोड-१, झापा, नेपाल   ·   kshitiznatya.org.np',TX,TY+94);
+  ctx.fillStyle='#fff'; ctx.font='bold 34px serif'; ctx.textAlign='left';
+  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान',TX,TY+30);
+  ctx.fillStyle='#e0b65c'; ctx.font='700 16px sans-serif';
+  ctx.fillText('KSHITIZ NATYA PRATISHTHAN',TX,TY+54);
+  ctx.fillStyle='rgba(255,255,255,0.65)'; ctx.font='14px sans-serif';
+  ctx.fillText('बिर्तामोड-१, झापा, नेपाल   ·   kshitiznatya.org.np',TX,TY+76);
 
-  // 7. Badge pill (top-right)
-  ctx.font='bold 16px sans-serif';
-  var bW=Math.max(200,ctx.measureText('★  '+badgeText+'  ★').width+44);
-  var bX=W-B-bW-12, bY=B+30, bH=38;
+  // 8. Badge pill (top-right, aligned with org row)
+  ctx.font='bold 15px sans-serif';
+  var bW=Math.max(190,ctx.measureText('★  '+badgeText+'  ★').width+40);
+  var bX=W-B-bW-12, bY=LY+6, bH=34;
   ctx.fillStyle=badgeColor;
-  roundRectPath(ctx,bX,bY,bW,bH,19); ctx.fill();
-  ctx.strokeStyle='#c9963a'; ctx.lineWidth=1.8;
-  roundRectPath(ctx,bX,bY,bW,bH,19); ctx.stroke();
-  ctx.fillStyle='#e0b65c'; ctx.textAlign='center';
-  ctx.fillText('★  '+badgeText+'  ★',bX+bW/2,bY+25);
+  roundRectPath(ctx,bX,bY,bW,bH,17); ctx.fill();
+  ctx.strokeStyle='#c9963a'; ctx.lineWidth=1.6;
+  roundRectPath(ctx,bX,bY,bW,bH,17); ctx.stroke();
+  ctx.fillStyle='#e0b65c'; ctx.textAlign='center'; ctx.font='bold 15px sans-serif';
+  ctx.fillText('★  '+badgeText+'  ★',bX+bW/2,bY+23);
 
   // 8. Ribbon title (bottom of header, fully inside)
   var RX=B, RY=_RIB_TOP, RW=W-B*2;
@@ -8094,6 +8288,15 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   ctx.fillStyle=pgr;
   roundRectPath(ctx,_PH_X,_PH_Y,_PH_W,_PH_H,10); ctx.fill();
 
+  // 10b. Premium corner ornaments on the photo frame
+  ctx.save(); ctx.strokeStyle='#e0b65c'; ctx.lineWidth=3; ctx.lineCap='round';
+  var ocL=26, ox1=_PH_X-10, oy1=_PH_Y-10, ox2=_PH_X+_PH_W+10, oy2=_PH_Y+_PH_H+10;
+  [[ox1,oy1,1,1],[ox2,oy1,-1,1],[ox1,oy2,1,-1],[ox2,oy2,-1,-1]].forEach(function(c){
+    var cx=c[0],cy=c[1],dx=c[2],dy=c[3];
+    ctx.beginPath(); ctx.moveTo(cx+dx*ocL,cy); ctx.lineTo(cx,cy); ctx.lineTo(cx,cy+dy*ocL); ctx.stroke();
+  });
+  ctx.restore();
+
   // 11. QR box placeholder (below photo, centred, fully inside border)
   var qActualY=Math.min(_QR_Y, _FOOT_TOP-_QR_SIZE-46);
   ctx.save();
@@ -8103,6 +8306,17 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   ctx.restore();
   ctx.strokeStyle='#c9963a'; ctx.lineWidth=3;
   roundRectPath(ctx,_QR_X-12,qActualY-12,_QR_SIZE+24,_QR_SIZE+50,14); ctx.stroke();
+  // Corner ornaments to match the photo frame
+  ctx.save(); ctx.strokeStyle='#e0b65c'; ctx.lineWidth=2.5; ctx.lineCap='round';
+  var qcL=16, qx1=_QR_X-12, qy1=qActualY-12, qx2=_QR_X+_QR_SIZE+12, qy2=qActualY+_QR_SIZE+38;
+  [[qx1,qy1,1,1],[qx2,qy1,-1,1],[qx1,qy2,1,-1],[qx2,qy2,-1,-1]].forEach(function(c){
+    var cx=c[0],cy=c[1],dx=c[2],dy=c[3];
+    ctx.beginPath(); ctx.moveTo(cx+dx*qcL,cy); ctx.lineTo(cx,cy); ctx.lineTo(cx,cy+dy*qcL); ctx.stroke();
+  });
+  ctx.restore();
+  // Verification caption in the reserved space below the QR pattern
+  ctx.fillStyle='#6e1119'; ctx.font='bold 13px sans-serif'; ctx.textAlign='center';
+  ctx.fillText('🔍 प्रमाणीकरणका लागि स्क्यान गर्नुस्', _QR_X+_QR_SIZE/2, qActualY+_QR_SIZE+26);
 
   // 12a. Decorative watermark — subtle theatre mask behind info area
   ctx.save();
@@ -8176,6 +8390,7 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   fg.addColorStop(0,isNavy?'#0a1628':'#3a0a0f');
   fg.addColorStop(1,isNavy?'#071020':'#2a0608');
   ctx.fillStyle=fg; ctx.fillRect(B,_FOOT_TOP+3,W-B*2,_FOOT_BOT-_FOOT_TOP-3);
+  ctx.fillStyle='rgba(224,182,92,0.4)'; ctx.fillRect(B,_FOOT_TOP+8,W-B*2,1);
 
   // Signature area (left of footer)
   var sigCX=220;
@@ -8632,9 +8847,10 @@ function _downloadLastMemCard(){
 }
 async function _emailLastMemCard(){
   if(!window._lastMemData||!window._lastMemEmail){toast('Data missing.','error');return;}
+  toast('कार्ड बनाई Email पठाउँदै...','success',2000);
   var canvas = await _downloadMemCard(window._lastMemData, false, _selectedMemTemplate);
-  await emailVoucher(canvas,window._lastMemEmail,'सदस्यता कार्ड — क्षितिज नाट्य प्रतिष्ठान','धन्यवाद! तपाईंको सदस्यता नवीकरणको लागि हार्दिक आभार। तपाईंको सदस्यता कार्ड संलग्न छ।');
-  toast('Email पठाइयो!','success');
+  var ok = await emailVoucher(canvas,window._lastMemEmail,'सदस्यता कार्ड — क्षितिज नाट्य प्रतिष्ठान','धन्यवाद! तपाईंको सदस्यता नवीकरणको लागि हार्दिक आभार। तपाईंको सदस्यता कार्ड संलग्न छ।');
+  toast(ok?'✅ Email पठाइयो!':('❌ Email पठाउन सकिएन: '+(window._lastEmailError||'अज्ञात त्रुटि')), ok?'success':'error', ok?3000:6000);
 }
 function _saveLastMembershipRenewal(){
   if(window._lastMemData) _saveMembershipForRenewal(window._lastMemData);
@@ -9036,7 +9252,7 @@ function _applySiteData(){
   var fbi=document.querySelector('#fb-plugin-wrap iframe');
   if(fbi && d.fbPage){
     var encoded=encodeURIComponent(d.fbPage);
-    fbi.src='https://www.facebook.com/plugins/page.php?href='+encoded+'&tabs=timeline&width=460&height=500&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId';
+    fbi.src='https://www.facebook.com/plugins/page.php?href='+encoded+'&tabs=timeline&width=540&height=650&small_header=false&adapt_container_width=true&hide_cover=false&show_facepile=true&appId';
   }
   // Ticker
   if(d.ticker) buildTicker([{title:d.ticker,tag:'',date:''}]);
@@ -9302,10 +9518,57 @@ var _titleMap={
   <div class="reorder-box">
     <div class="reorder-title" id="ro-title">Arrange Order</div>
     <div class="reorder-sub">Drag &amp; drop to reorder. Top = appears first on site.</div>
+    <div id="ro-dept-filter-wrap" style="display:none;margin-bottom:10px;">
+      <select id="ro-dept-filter" class="fi" style="width:100%;font-size:13px;padding:8px 10px;" onchange="_roFilterMembersByDept(this.value)">
+        <option value="all">🗂 सबै विभाग (All Departments)</option>
+        <option value="exec">केन्द्रीय कार्यसमिति</option>
+        <option value="natya">नाट्य विभाग</option>
+        <option value="sangeet">संगीत प्रतिष्ठान</option>
+        <option value="sahitya">साहित्य प्रतिष्ठान</option>
+        <option value="nritya">नृत्य विभाग</option>
+        <option value="advisor">सल्लाहकार</option>
+        <option value="dept">विभाग प्रमुख</option>
+      </select>
+      <div style="font-size:11px;color:#888;margin-top:5px;">💡 विभाग छान्नुस् — त्यो विभागका सदस्यहरू मात्र देखिनेछन्, arrange गर्न सजिलो हुन्छ। क्रम अरू विभागमा असर गर्दैन।</div>
+    </div>
     <div class="reorder-list" id="ro-list"></div>
     <div class="reorder-footer">
       <button class="ro-cancel-btn" onclick="closeReorder()">Cancel</button>
       <button class="ro-save-btn" id="ro-save-btn" onclick="saveReorder()">Save Order</button>
+    </div>
+  </div>
+</div>
+
+<div class="reorder-overlay" id="medit-overlay">
+  <div class="reorder-box" style="max-width:520px;">
+    <div class="reorder-title">✏️ सदस्यता विवरण सम्पादन</div>
+    <div class="reorder-sub">सदस्यको विवरण हेर्नुस् वा आवश्यक भए सम्पादन गर्नुस्।</div>
+    <div style="overflow-y:auto;max-height:60vh;padding-right:4px;">
+      <label style="font-size:12px;color:#888;">नाम</label>
+      <input type="text" id="me-name" class="fi"/>
+      <label style="font-size:12px;color:#888;">इमेल</label>
+      <input type="email" id="me-email" class="fi"/>
+      <label style="font-size:12px;color:#888;">फोन</label>
+      <input type="text" id="me-phone" class="fi"/>
+      <label style="font-size:12px;color:#888;">पद</label>
+      <input type="text" id="me-role" class="fi"/>
+      <label style="font-size:12px;color:#888;">विभाग</label>
+      <input type="text" id="me-dept" class="fi"/>
+      <label style="font-size:12px;color:#888;">सदस्यता प्रकार</label>
+      <select id="me-membershipType" class="fi">
+        <option>संस्थापक सदस्य</option><option>केन्द्रीय सदस्य</option><option>विभागीय सदस्य</option>
+        <option>कार्यसमिति सदस्य</option><option>मानार्थ सदस्य</option><option>आजीवन सदस्य</option><option>साधारण सदस्य</option>
+      </select>
+      <label style="font-size:12px;color:#888;">स्थायी ठेगाना</label>
+      <input type="text" id="me-permanentAddr" class="fi"/>
+      <label style="font-size:12px;color:#888;">अस्थायी ठेगाना</label>
+      <input type="text" id="me-temporaryAddr" class="fi"/>
+      <label style="font-size:12px;color:#888;">रगत समूह</label>
+      <input type="text" id="me-bloodGroup" class="fi"/>
+    </div>
+    <div class="reorder-footer">
+      <button class="ro-cancel-btn" onclick="closeMembershipEdit()">Cancel</button>
+      <button class="ro-save-btn" id="me-save-btn" onclick="saveMembershipEdit()">Save Changes</button>
     </div>
   </div>
 </div>
@@ -9882,6 +10145,15 @@ var _titleMap={
       <div class="err-msg" id="mem-err" style="display:none;margin-top:10px;"></div>
     </div>
 
+    <!-- Public: everyone who has submitted a renewal (name + photo) -->
+    <div id="pg-mem-submitted-public" style="margin-top:40px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#127917; नवीकरण गर्नुभएका सदस्यहरू</div>
+      <p style="font-size:12.5px;color:#888888;margin-bottom:16px;">फाराम पेश गर्नुभएका सबै सदस्यहरू यहाँ देखिनुहुन्छ।</p>
+      <div id="pg-mem-submitted-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:16px;">
+        <div style="grid-column:1/-1;color:#888888;font-size:13px;">लोड हुँदैछ...</div>
+      </div>
+    </div>
+
     <!-- Admin: view submissions -->
     <div id="pg-mem-admin" style="display:none;margin-top:36px;">
       <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:14px;">&#128203; सदस्यता दर्ता भएका व्यक्तिहरू</div>
@@ -10222,7 +10494,7 @@ async function renderMemSuccessPage(){
 (function(){
   var _go = window.go;
   window.go = function(id){
-    var newPageIds = {productions:1, adhiveshan:1, legal:1, suborgs:1};
+    var newPageIds = {productions:1, adhiveshan:1, legal:1, suborgs:1, 'mem-success':1};
     if(newPageIds[id]){ window.showPage(id); return; }
     _go.apply(this, arguments);
   };
