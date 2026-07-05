@@ -40,16 +40,16 @@
 <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='18' fill='%238B1520'/><text y='.9em' font-size='72' x='50%25' text-anchor='middle' fill='white' font-family='serif'>क्ष</text></svg>"/>
 <meta name="theme-color" content="#8B1520"/>
 <!-- ════════════════════════════════════════════════════════════
-     🔴 ACTION REQUIRED: Replace G-XXXXXXXXXX with your real GA4 ID
+     ✅ GA4 configured: G-M0DY7KXNSR
      Get it from: analytics.google.com → Admin → Data Streams → Web Stream
      It looks like: G-ABC123XYZ
      ════════════════════════════════════════════════════════════ -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-M0DY7KXNSR"></script>
 <script>
 window.dataLayer=window.dataLayer||[];
 function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());
-gtag('config','G-XXXXXXXXXX',{
+gtag('config','G-M0DY7KXNSR',{
   page_title:document.title,
   send_page_view:true
 });
@@ -72,7 +72,7 @@ window._gtagMembership=function(type){
   }
 };
 </script>
-<!-- NOTE FOR ADMIN: Replace G-XXXXXXXXXX above with your real GA4 Measurement ID
+<!-- NOTE FOR ADMIN: Replace G-M0DY7KXNSR above with your real GA4 Measurement ID
      Get it from: analytics.google.com → Admin → Data Streams → Web Stream Details -->
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
@@ -2209,7 +2209,8 @@ window.fbAsyncInit=function(){
       <span class="nl has-drop" data-ne="सहभागिता" data-en="Join">सहभागिता ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="go('team')">👥 टोली</button>
-          <button class="drop-item" onclick="go('volunteer')">🙋 स्वयंसेवक</button>
+          <button class="drop-item" onclick="go('newmember')">🆕 नयाँ सदस्यता</button>
+          <button class="drop-item" onclick="go('volunteer')">🙋 स्वयंसेवक दर्ता</button>
           <button class="drop-item" onclick="go('membership')">📋 सदस्यता नवीकरण</button>
         </div>
       </span>
@@ -2256,7 +2257,8 @@ window.fbAsyncInit=function(){
     <a onclick="go('notices');closeMob()">📢 सूचनाहरू</a>
     <div class="mob-section">सहभागिता</div>
     <a onclick="go('team');closeMob()">👥 टोली</a>
-    <a onclick="go('volunteer');closeMob()">🙋 स्वयंसेवक</a>
+    <a onclick="go('newmember');closeMob()">🆕 नयाँ सदस्यता</a>
+    <a onclick="go('volunteer');closeMob()">🙋 स्वयंसेवक दर्ता</a>
     <a onclick="go('membership');closeMob()">📋 सदस्यता नवीकरण</a>
     <div class="mob-section">अन्य</div>
     <a onclick="go('donors');closeMob()">💛 दाताहरू</a>
@@ -3341,6 +3343,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
       <button class="ap-tab" onclick="tab('t-sup',this)">🤝 शुभचिन्तक</button>
       <button class="ap-tab" onclick="tab('t-donor',this)">💰 दाता</button>
       <button class="ap-tab" onclick="tab('t-volunteer',this)">🙋 स्वयंसेवक</button>
+      <button class="ap-tab" onclick="tab('t-newmember',this)">🆕 नयाँ सदस्यता</button>
       <button class="ap-tab" onclick="tab('t-membership',this)">📋 सदस्यता</button>
       <!-- GROUP 3: Site -->
       <div style="width:100%;font-size:10px;font-weight:700;color:#8B1520;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;margin-top:10px;">⚙️ साइट सेटिङ</div>
@@ -4070,7 +4073,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
     <div class="ap-section" id="t-help">
       <div class="ap-card">
         <div class="ap-card-title">🔐 Security & Setup Guide</div>
-        <div style="background:#e8f5e9;border-left:3px solid #4caf50;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#1b5e20;"><b>📊 GA4 Analytics Setup:</b><br/>1. analytics.google.com → Create Property → Web Stream → Copy Measurement ID (G-XXXXXXXX)<br/>2. Find "G-XXXXXXXXXX" in this file (2 places) → replace with your real ID<br/>3. Upload → live traffic visible within 24 hrs.</div>
+        <div style="background:#e8f5e9;border-left:3px solid #4caf50;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#1b5e20;"><b>📊 GA4 Analytics Setup:</b><br/>1. analytics.google.com → Create Property → Web Stream → Copy Measurement ID (G-XXXXXXXX)<br/>2. Find "G-M0DY7KXNSR" in this file (2 places) → replace with your real ID<br/>3. Upload → live traffic visible within 24 hrs.</div>
         <div style="background:#fff3e0;border-left:3px solid #ff9800;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#e65100;"><b>🖼 OG Banner (Facebook share image):</b><br/>Create 1200×630px image at canva.com → download as <code>og-banner.jpg</code> → upload to hosting root alongside index.html.</div>
         <div style="line-height:2;font-size:14px;color:#1a2332;">
           <p><strong>Security:</strong> API keys are split across JS variables so simple scrapers cannot extract them. The real protection is <strong>Firebase Security Rules</strong> — only authenticated admin users can write data. All visitors can only read.</p>
@@ -4178,10 +4181,21 @@ service cloud.firestore {<br/>
     <div class="ap-section" id="t-volunteer">
       <div class="ap-card">
         <div class="ap-card-title">🤝 Join Us / Volunteer Registrations</div>
-        <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the Join Us form appear below. You can confirm or delete entries.</p>
+        <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the Volunteer Registration form (fee रु १,०००/वर्ष) appear below.</p>
         <button class="save-btn" onclick="loadVolunteers(true)" style="margin-bottom:14px;">🔄 Refresh List</button>
         <div id="vol-admin-list"><div style="color:#888888;font-size:13px;padding:12px;">Click Refresh to load registrations.</div></div>
-        <div style="font-size:12px;color:#888;margin-top:8px;">✅ = Approve (sends welcome email)&nbsp;&nbsp;🗑 = Delete</div>
+        <div style="font-size:12px;color:#888;margin-top:8px;">🗑 = Delete</div>
+      </div>
+    </div>
+
+    <!-- NEW MEMBER ADMIN TAB -->
+    <div class="ap-section" id="t-newmember">
+      <div class="ap-card">
+        <div class="ap-card-title">🆕 New Member Registrations</div>
+        <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the नयाँ सदस्यता form (fee रु ५,१००/-) appear below.</p>
+        <button class="save-btn" onclick="loadNewMembers(true)" style="margin-bottom:14px;">🔄 Refresh List</button>
+        <div id="nm-admin-list"><div style="color:#888888;font-size:13px;padding:12px;">Click Refresh to load registrations.</div></div>
+        <div style="font-size:12px;color:#888;margin-top:8px;">🗑 = Delete</div>
       </div>
     </div>
 
@@ -5217,6 +5231,7 @@ function tab(id,btn){
   if(id==='t-videos')    loadVideos().then(renderVidAdminList);
   if(id==='t-notices')   loadNotices().then(renderNotAdminList);
   if(id==='t-volunteer') loadVolunteers(true);
+  if(id==='t-newmember') loadNewMembers(true);
   if(id==='t-membership') _loadMembershipAdmin();
   if(id==='t-dash') _loadDash();
   if(id==='t-productions') _loadProdsAdmin();
@@ -5773,6 +5788,7 @@ function showPage(name, data){
   else if(name==='videos') renderPageVideos();
   else if(name==='notices') renderPageNotices();
   else if(name==='volunteer') renderPageVolunteer();
+  else if(name==='newmember') renderPageNewmember();
   else if(name==='membership') renderPageMembership();
   else if(name==='productions') renderPageProductions();
   else if(name==='tickets') renderPageTickets();
@@ -5792,7 +5808,7 @@ function showPage(name, data){
   if(fdBtn) fdBtn.style.display=(name==='donate')?'none':'flex';
   var _tm={news:'समाचार',gallery:'फोटो ग्यालरी',team:'टोली',donors:'दाताहरू',
     contact:'सम्पर्क',donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',
-    notices:'सूचना',volunteer:'स्वयंसेवक',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची',tickets:'टिकट बुकिङ'};
+    notices:'सूचना',volunteer:'स्वयंसेवक दर्ता',newmember:'नयाँ सदस्यता',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची',tickets:'टिकट बुकिङ'};
   document.title=(_tm[name]||'') ? (_tm[name]+' — क्षितिज नाट्य प्रतिष्ठान') : 'क्षितिज नाट्य प्रतिष्ठान';
   if(window._gtagPage) window._gtagPage(name);
 }
@@ -5801,11 +5817,11 @@ function showPage(name, data){
 var _origGo = go;
 function go(id){
   var alwaysPage={donate:1,news:1,gallery:1,team:1,donors:1,contact:1,
-    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1,productions:1,tickets:1};
+    events:1,videos:1,notices:1,volunteer:1,search:1,activity:1,membership:1,productions:1,tickets:1,newmember:1};
   var pageMap={donate:'donate',news:'news',gallery:'gallery',team:'team',
     donors:'donors',contact:'contact',events:'events',videos:'videos',
     notices:'notices',volunteer:'volunteer',search:'search',
-    activity:'activity',membership:'membership',productions:'productions',tickets:'tickets'};
+    activity:'activity',membership:'membership',productions:'productions',tickets:'tickets',newmember:'newmember'};
   if(alwaysPage[id] && pageMap[id]){
     showPage(pageMap[id]);
   } else {
@@ -6588,39 +6604,205 @@ function renderPageNotices(){
 
 // ── VOLUNTEER ─────────────────────────────────────────────────────────────────
 function toggleRole(btn){btn.classList.toggle('on');}
-// ── VOLUNTEER/JOIN → kurakalpit@gmail.com ────────────────────────────────────
-async function submitVolunteer(){
-  var name  = G('vol-name').value.trim();
-  var phone = G('vol-phone').value.trim();
-  if(!name||!phone){ G('vol-err').textContent='कृपया नाम र फोन नम्बर भर्नुस्।'; G('vol-err').style.display='block'; return; }
-  G('vol-err').style.display='none';
-  var roles  = Array.from(document.querySelectorAll('#vol-roles .role-pill.on')).map(function(b){return b.textContent.trim();});
-  var email  = G('vol-email').value.trim();
-  var data   = {name, phone, email, address:G('vol-addr').value.trim(), roles, type:G('vol-type').value, message:G('vol-msg').value.trim(), createdAt:new Date().toISOString()};
-  try{
-    await window._add(window._col(window._db,'volunteers'), data);
-    var emailBody = _buildEmailBody('नयाँ स्वयंसेवक/सदस्य दर्ता', {
-      'नाम'       : name,
-      'फोन'       : phone,
-      'इमेल'      : email || '—',
-      'ठेगाना'    : data.address || '—',
-      'सदस्यता'   : data.type   || '—',
-      'रुचिका क्षेत्रहरू': roles.join(', ') || '—',
-      'सन्देश'    : data.message || '—'
-    });
-    await _sendW3F('नयाँ स्वयंसेवक: ' + name, emailBody, name, email||undefined, email||undefined);
-    G('vol-ok').style.display='block';
-    ['vol-name','vol-phone','vol-email','vol-addr','vol-msg'].forEach(function(id){ G(id).value=''; });
-    document.querySelectorAll('#vol-roles .role-pill.on').forEach(function(b){ b.classList.remove('on'); });
-  }catch(e){ G('vol-err').textContent='Error: '+e.message; G('vol-err').style.display='block'; }
+// ── Generic multi-select checkbox helpers (shared by नयाँ सदस्य + स्वयंसेवक forms) ──
+function _syncMultiField(cbClass, hiddenId, previewId, emptyText){
+  var checked = Array.from(document.querySelectorAll('.'+cbClass+':checked')).map(function(cb){return cb.value;});
+  var val = checked.join(' / ');
+  var hid=G(hiddenId); if(hid) hid.value=val;
+  var prev=G(previewId);
+  if(prev) prev.innerHTML = val ? '<span style="color:#8B1520;">✅</span> '+val : '<span style="color:#aaa;">'+(emptyText||'छानिएको छैन')+'</span>';
 }
-function renderPageVolunteer(){
-  // Show volunteer list to admin
+function _addCustomToGrid(inputId, gridId, cbClass, syncArgs){
+  var inp=G(inputId); if(!inp||!inp.value.trim()) return;
+  var val=inp.value.trim();
+  var existing=document.querySelector('.'+cbClass+'[value="'+val+'"]');
+  if(existing){ existing.checked=true; _syncMultiField.apply(null,syncArgs); inp.value=''; return; }
+  var grid=G(gridId);
+  if(grid){
+    var lbl=document.createElement('label');
+    lbl.className='dept-check-lbl'; lbl.dataset.custom='1';
+    lbl.innerHTML='<input type="checkbox" class="'+cbClass+'" value="'+val+'" checked/> <span>'+val+'</span>';
+    lbl.querySelector('input').addEventListener('change', function(){ _syncMultiField.apply(null,syncArgs); });
+    grid.appendChild(lbl);
+  }
+  inp.value='';
+  _syncMultiField.apply(null,syncArgs);
+}
+function _addCustomRoleNM(){ _addCustomToGrid('nm-role-custom','nm-role-grid','nm-role-cb',['nm-role-cb','nm-role','nm-role-preview','कुनै पद छानिएको छैन']); }
+function _addCustomRoleVol(){ _addCustomToGrid('vol-role-custom','vol-role-grid','vol-role-cb',['vol-role-cb','vol-role','vol-role-preview','कुनै पद छानिएको छैन']); }
+(function _initNmVolListeners(){
+  function attach(){
+    [['nm-dept-cb','nm-dept','nm-dept-preview','कुनै विभाग छानिएको छैन'],
+     ['nm-role-cb','nm-role','nm-role-preview','कुनै पद छानिएको छैन'],
+     ['vol-dept-cb','vol-dept','vol-dept-preview','कुनै विभाग छानिएको छैन'],
+     ['vol-role-cb','vol-role','vol-role-preview','कुनै पद छानिएको छैन']
+    ].forEach(function(cfg){
+      document.querySelectorAll('.'+cfg[0]).forEach(function(cb){
+        if(!cb.dataset.bound){ cb.dataset.bound='1'; cb.addEventListener('change',function(){ _syncMultiField.apply(null,cfg); }); }
+      });
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',attach);
+  else setTimeout(attach,400);
+})();
+
+// ── Shared helper: gather all comprehensive-form fields for a given prefix ──
+function _gatherFullForm(p){
+  return {
+    email:G(p+'-email').value.trim(), name:G(p+'-name').value.trim(), gender:G(p+'-gender').value,
+    dob:G(p+'-dob').value, mother:G(p+'-mother').value.trim(), father:G(p+'-father').value.trim(),
+    marital:G(p+'-marital').value, spouse:G(p+'-spouse').value.trim(), children:G(p+'-children').value.trim(),
+    edu:G(p+'-edu').value.trim(), bloodGroup:G(p+'-blood').value,
+    citName:G(p+'-cit-name').value.trim(), citNo:G(p+'-cit-no').value.trim(),
+    citDist:G(p+'-cit-dist').value.trim(), citDate:G(p+'-cit-date').value.trim(),
+    permanentAddr:G(p+'-perm-addr').value.trim(), temporaryAddr:G(p+'-temp-addr').value.trim(),
+    phone:G(p+'-phone').value.trim(), postal:G(p+'-postal').value.trim(),
+    dept:G(p+'-dept').value, role:G(p+'-role').value,
+    otherOrgs:G(p+'-other-orgs').value.trim(), awards:G(p+'-awards').value.trim(),
+    works:G(p+'-works').value.trim(), profession:G(p+'-profession').value.trim(),
+    feedback:G(p+'-feedback').value.trim(),
+    photoUrl: (function(){ var pv=G(p+'-photo-prev'); return (pv && pv.src && pv.style.display!=='none') ? pv.src : ''; })()
+  };
+}
+function _clearFullForm(p){
+  ['email','name','gender','dob','mother','father','marital','spouse','children','edu','blood',
+   'cit-name','cit-no','cit-dist','cit-date','perm-addr','temp-addr','phone','postal',
+   'other-orgs','awards','works','profession','feedback'].forEach(function(f){
+    var el=G(p+'-'+f); if(el) el.value='';
+  });
+  document.querySelectorAll('.'+p+'-dept-cb,.'+p+'-role-cb').forEach(function(cb){ cb.checked=false; });
+  document.querySelectorAll('input[name="'+p+'-type"]').forEach(function(r){ r.checked=false; });
+  document.querySelectorAll('#'+p+'-role-grid label[data-custom]').forEach(function(l){ l.remove(); });
+  var hd=G(p+'-dept'); if(hd) hd.value='';
+  var hr=G(p+'-role'); if(hr) hr.value='';
+  var pd=G(p+'-dept-preview'); if(pd) pd.innerHTML='';
+  var pr=G(p+'-role-preview'); if(pr) pr.innerHTML='';
+  var prev=G(p+'-photo-prev'); if(prev){ prev.style.display='none'; prev.src=''; }
+  var pname=G(p+'-photo-name'); if(pname) pname.textContent='कुनै फोटो छानिएको छैन';
+}
+
+// ── नयाँ सदस्य (New Member) — fee रु ५,१००/- ──────────────────────────────────
+async function submitNewMember(){
+  var d = _gatherFullForm('nm');
+  var typeEl = document.querySelector('input[name="nm-type"]:checked');
+  if(!d.name||!d.phone||!typeEl){ G('nm-err').textContent='कृपया नाम, फोन नम्बर र सदस्यता प्रकार छान्नुस्।'; G('nm-err').style.display='block'; return; }
+  G('nm-err').style.display='none';
+  var photoFile = G('nm-photo-file') && G('nm-photo-file').files[0];
+  if(photoFile){
+    try{ d.photoUrl = await cloudUpload(photoFile); }
+    catch(e){ /* keep base64 fallback from _gatherFullForm if Cloudinary fails */ }
+  }
+  var nmType = typeEl.value;
+  var nmFee = nmType==='आजीवन सदस्य' ? 51000 : 5100;
+  var data = Object.assign({}, d, {membershipType:nmType, fee:nmFee, createdAt:new Date().toISOString()});
+  try{
+    await window._add(window._col(window._db,'newMembers'), data);
+    var emailBody = _buildEmailBody('नयाँ सदस्यता दर्ता (रु ५,१००/-)', {
+      'नाम':data.name,'फोन':data.phone,'इमेल':data.email||'—','ठेगाना':data.permanentAddr||'—',
+      'विभाग':data.dept||'—','पद':data.role||'—','सुझाव':data.feedback||'—'
+    });
+    await _sendW3F('नयाँ सदस्यता दर्ता: '+data.name, emailBody, data.name, data.email||undefined, data.email||undefined);
+    G('nm-ok').style.display='block'; G('nm-ok').textContent='✔ दर्ता सफल भयो! तपाईंको ID कार्ड तयार हुँदैछ...';
+    window._lastNMData = { name:data.name, role:data.role||nmType, dept:data.dept||nmType,
+      membershipType:nmType, permanentAddr:data.permanentAddr, email:data.email, photoUrl:data.photoUrl };
+    window._lastNMEmail = data.email;
+    var canvas=G('nm-card-canvas'); canvas.width=1080; canvas.height=1500;
+    var shell=generateMembershipCard(window._lastNMData,1);
+    canvas.getContext('2d').drawImage(shell,0,0);
+    await _finalizeCard(canvas, canvas.getContext('2d'), window._lastNMData,
+      'https://kshitiznatya.org.np/?page=newmember','KNS-New-Member-Card', false, window._lastNMData._qActualY);
+    G('nm-card-box').style.display='block';
+    G('nm-card-box').scrollIntoView({behavior:'smooth',block:'start'});
+    _clearFullForm('nm');
+  }catch(e){ G('nm-err').textContent='Error: '+e.message; G('nm-err').style.display='block'; }
+}
+function _downloadNMCard(){
+  var canvas=G('nm-card-canvas');
+  var link=document.createElement('a'); link.download='KNS-New-Member-Card.jpg';
+  link.href=canvas.toDataURL('image/jpeg',0.92); link.click();
+}
+async function _emailNMCard(){
+  if(!window._lastNMEmail){ toast('इमेल ठेगाना छैन।','error'); return; }
+  toast('कार्ड बनाई Email पठाउँदै...','success',2000);
+  var ok = await emailVoucher(G('nm-card-canvas'), window._lastNMEmail,
+    'तपाईंको सदस्यता ID कार्ड — क्षितिज नाट्य प्रतिष्ठान',
+    'नमस्ते '+(window._lastNMData?window._lastNMData.name:'')+'जी,\n\nहाम्रो परिवारमा नयाँ सदस्यको रूपमा सामेल हुनुभएकोमा धन्यवाद! तपाईंको ID कार्ड तलको लिंकमा उपलब्ध छ।\n\nक्षितिज नाट्य प्रतिष्ठान'
+  );
+  toast(ok?'✅ Email पठाइयो!':('❌ Email पठाउन सकिएन: '+(window._lastEmailError||'अज्ञात त्रुटि')), ok?'success':'error', ok?3000:6000);
+}
+function renderPageNewmember(){
+  _loadApprovedPublicGrid('newMembers','pg-nm-approved-grid');
   if(document.body.classList.contains('admin-mode')){
-    loadVolunteers();
+    var el=G('pg-nm-admin-embed'); if(el) el.style.display='block';
+    if(typeof loadNewMembers==='function') loadNewMembers(true);
   }
 }
-// loadVolunteers — single authoritative definition below (see admin section)
+
+// ── स्वयंसेवक (Volunteer) — simplified form, donation appreciated (not mandatory) ──
+async function submitVolunteerFull(){
+  var name=G('vol-name').value.trim(), phone=G('vol-phone').value.trim();
+  if(!name||!phone){ G('vol-err').textContent='कृपया नाम र फोन नम्बर भर्नुस्।'; G('vol-err').style.display='block'; return; }
+  G('vol-err').style.display='none';
+  var photoPrev=G('vol-photo-prev');
+  var photoUrl=(photoPrev && photoPrev.src && photoPrev.style.display!=='none') ? photoPrev.src : '';
+  var photoFile = G('vol-photo-file') && G('vol-photo-file').files[0];
+  if(photoFile){
+    try{ photoUrl = await cloudUpload(photoFile); }
+    catch(e){ /* keep base64 preview fallback if Cloudinary upload fails */ }
+  }
+  var data = {
+    name:name, phone:phone, email:G('vol-email').value.trim(), permanentAddr:G('vol-addr').value.trim(),
+    dept:G('vol-dept').value, feedback:G('vol-feedback').value.trim(), photoUrl:photoUrl,
+    membershipType:'स्वयंसेवक', status:'pending', createdAt:new Date().toISOString()
+  };
+  try{
+    await window._add(window._col(window._db,'volunteers'), data);
+    var emailBody = _buildEmailBody('नयाँ स्वयंसेवक दर्ता', {
+      'नाम':data.name,'फोन':data.phone,'इमेल':data.email||'—','ठेगाना':data.permanentAddr||'—',
+      'रुचिको क्षेत्र':data.dept||'—','सन्देश':data.feedback||'—'
+    });
+    await _sendW3F('नयाँ स्वयंसेवक: '+data.name, emailBody, data.name, data.email||undefined, data.email||undefined);
+    G('vol-ok').style.display='block'; G('vol-ok').textContent='✔ दर्ता सफल भयो! तपाईंको ID कार्ड तयार हुँदैछ...';
+    window._lastVolData = { name:data.name, role:'स्वयंसेवक', dept:data.dept||'स्वयंसेवक टोली',
+      membershipType:'स्वयंसेवक', permanentAddr:data.permanentAddr, email:data.email, photoUrl:data.photoUrl };
+    window._lastVolEmail = data.email;
+    var canvas=G('vol-card-canvas'); canvas.width=1080; canvas.height=1500;
+    var shell=generateMembershipCard(window._lastVolData,1);
+    canvas.getContext('2d').drawImage(shell,0,0);
+    await _finalizeCard(canvas, canvas.getContext('2d'), window._lastVolData,
+      'https://kshitiznatya.org.np/?page=volunteer','KNS-Volunteer-Card', false, window._lastVolData._qActualY);
+    G('vol-card-box').style.display='block';
+    G('vol-card-box').scrollIntoView({behavior:'smooth',block:'start'});
+    ['vol-name','vol-phone','vol-email','vol-addr','vol-feedback'].forEach(function(id){ var el=G(id); if(el) el.value=''; });
+    document.querySelectorAll('.vol-dept-cb').forEach(function(cb){ cb.checked=false; });
+    var vp=G('vol-dept-preview'); if(vp) vp.innerHTML='';
+    var vd=G('vol-dept'); if(vd) vd.value='';
+    if(G('vol-photo-file')) G('vol-photo-file').value='';
+    if(G('vol-photo-name')) G('vol-photo-name').textContent='कुनै फोटो छानिएको छैन';
+    if(photoPrev){ photoPrev.style.display='none'; photoPrev.src=''; }
+  }catch(e){ G('vol-err').textContent='Error: '+e.message; G('vol-err').style.display='block'; }
+}
+function _downloadVOLCard(){
+  var canvas=G('vol-card-canvas');
+  var link=document.createElement('a'); link.download='KNS-Volunteer-Card.jpg';
+  link.href=canvas.toDataURL('image/jpeg',0.92); link.click();
+}
+async function _emailVOLCard(){
+  if(!window._lastVolEmail){ toast('इमेल ठेगाना छैन।','error'); return; }
+  toast('कार्ड बनाई Email पठाउँदै...','success',2000);
+  var ok = await emailVoucher(G('vol-card-canvas'), window._lastVolEmail,
+    'तपाईंको ID कार्ड — क्षितिज नाट्य प्रतिष्ठान',
+    'नमस्ते '+(window._lastVolData?window._lastVolData.name:'')+'जी,\n\nहाम्रो परिवारमा स्वयंसेवकको रूपमा सामेल हुनुभएकोमा धन्यवाद! तपाईंको ID कार्ड तलको लिंकमा उपलब्ध छ।\n\nक्षितिज नाट्य प्रतिष्ठान'
+  );
+  toast(ok?'✅ Email पठाइयो!':('❌ Email पठाउन सकिएन: '+(window._lastEmailError||'अज्ञात त्रुटि')), ok?'success':'error', ok?3000:6000);
+}
+function renderPageVolunteer(){
+  _loadApprovedPublicGrid('volunteers','pg-vol-approved-grid');
+  if(document.body.classList.contains('admin-mode')){
+    var el=G('pg-vol-admin'); if(el) el.style.display='block';
+    if(typeof loadVolunteers==='function') loadVolunteers(true);
+  }
+}
 
 // ── MEMBERSHIP PAGE ──────────────────────────────────────────────────────────
 function renderPageMembership(){
@@ -6636,12 +6818,13 @@ function renderPageMembership(){
   }
 }
 // Public grid: name + photo of everyone who has submitted a renewal
-async function _loadPublicSubmittedMembers(){
-  var grid=G('pg-mem-submitted-grid'); if(!grid) return;
+async function _loadApprovedPublicGrid(collectionName, gridId){
+  var grid=G(gridId); if(!grid) return;
   try{
-    var snap=await window._gets(window._col(window._db,'memberships'));
+    var snap=await window._gets(window._col(window._db,collectionName));
     var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
-    if(!mems.length){ grid.innerHTML='<div style="grid-column:1/-1;color:#888888;font-size:13px;">अहिलेसम्म कोही पेश गर्नुभएको छैन।</div>'; return; }
+    mems = mems.filter(function(m){ return m.status==='confirmed'; });
+    if(!mems.length){ grid.innerHTML='<div style="grid-column:1/-1;color:#888888;font-size:13px;">अहिलेसम्म कोही स्वीकृत भएको छैन।</div>'; return; }
     mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
     grid.innerHTML='';
     mems.forEach(function(m){
@@ -6654,6 +6837,9 @@ async function _loadPublicSubmittedMembers(){
       grid.appendChild(cell);
     });
   }catch(e){ grid.innerHTML='<div style="grid-column:1/-1;color:#8B1520;font-size:12px;">लोड गर्न सकिएन।</div>'; }
+}
+async function _loadPublicSubmittedMembers(){
+  await _loadApprovedPublicGrid('memberships','pg-mem-submitted-grid');
 }
 
 async function submitMembership(){
@@ -6670,8 +6856,20 @@ async function submitMembership(){
   }
   G('mem-err').style.display='none';
   var memType=typeEl.value;
+  var btn=document.querySelector('#page-membership .btn-r[onclick*="submitMembership"]');
+  if(btn){btn.disabled=true;btn.textContent='फोटो अपलोड हुँदैछ...';}
+  // Upload photo to Cloudinary FIRST — storing raw base64 photos directly in the
+  // Firestore document was the cause of missing submissions: any photo over a
+  // few hundred KB pushed the document past Firestore's 1MB limit and the save
+  // failed silently, while the separate admin email still went through fine.
   var _memPhotoPrevEl = G('mem-photo-prev');
-  var _memPhotoData = (_memPhotoPrevEl && _memPhotoPrevEl.src && _memPhotoPrevEl.style.display!=='none') ? _memPhotoPrevEl.src : '';
+  var _memPhotoFile = G('mem-photo-file') && G('mem-photo-file').files[0];
+  var _memPhotoData = '';
+  if(_memPhotoFile){
+    try{ _memPhotoData = await cloudUpload(_memPhotoFile); }
+    catch(e){ _memPhotoData = (_memPhotoPrevEl && _memPhotoPrevEl.src && _memPhotoPrevEl.style.display!=='none') ? _memPhotoPrevEl.src : ''; }
+  }
+  if(btn){btn.textContent='पेश गर्दै...';}
   var data={
     name, email, phone, gender:G('mem-gender').value, dob:G('mem-dob').value,
     mother:G('mem-mother').value.trim(), father:G('mem-father').value.trim(),
@@ -6689,14 +6887,19 @@ async function submitMembership(){
     photoUrl:_memPhotoData,
     status:'pending', createdAt:new Date().toISOString()
   };
-  var btn=document.querySelector('#page-membership .btn-r[onclick*="submitMembership"]');
-  if(btn){btn.disabled=true;btn.textContent='पेश गर्दै...';}
-  // Save to Firestore
-  var saved=false;
+  // Save to Firestore — this must succeed. If it fails, stop here and tell the
+  // person clearly instead of silently continuing as if it worked.
+  var saved=false, saveErr='';
   try{
     await window._add(window._col(window._db,'memberships'),data);
     saved=true;
-  }catch(e){}
+  }catch(e){ saveErr = e.message || 'अज्ञात त्रुटि'; }
+  if(!saved){
+    if(btn){btn.disabled=false;btn.textContent='🚀 सदस्यता फाराम पेश गर्नुस्';}
+    G('mem-err').textContent='❌ फाराम बुझाउन सकिएन — कृपया फेरि प्रयास गर्नुस्। (Error: '+saveErr+')';
+    G('mem-err').style.display='block';
+    return;
+  }
   // Email notification via Web3Forms → kurakalpit@gmail.com
   var emailSent=false;
   var emailBody = _buildEmailBody('नयाँ सदस्यता फाराम — ' + name, {
@@ -6727,7 +6930,7 @@ async function submitMembership(){
     'नयाँ सदस्यता: '+name+' ('+memType+')',
     email
   );
-  if(btn){btn.disabled=false;btn.textContent='&#128640; सदस्यता फाराम पेश गर्नुस्';}
+  if(btn){btn.disabled=false;btn.textContent='🚀 सदस्यता फाराम पेश गर्नुस्';}
   if(saved||emailSent){
     // Reset form
     ['mem-email','mem-name','mem-mother','mem-father','mem-spouse','mem-children','mem-edu',
@@ -6841,6 +7044,9 @@ async function deleteMembership(id,row){
 }
 
 // ── EDIT membership entry (replaces the old Delete option in the admin list) ──
+// Also doubles as a "manually add member" form — used to recover any
+// submissions that were lost to the base64-photo/Firestore-size bug (their
+// details are still in the admin email notifications).
 var _meEditId=null, _meEditRow=null;
 function _editMembershipEntry(m,row){
   _meEditId=m.id; _meEditRow=row;
@@ -6849,6 +7055,16 @@ function _editMembershipEntry(m,row){
   G('me-membershipType').value=m.membershipType||'साधारण सदस्य';
   G('me-permanentAddr').value=m.permanentAddr||''; G('me-temporaryAddr').value=m.temporaryAddr||'';
   G('me-bloodGroup').value=m.bloodGroup||'';
+  G('medit-overlay').querySelector('.reorder-title').textContent='✏️ सदस्यता विवरण सम्पादन';
+  G('me-save-btn').textContent='Save Changes';
+  G('medit-overlay').classList.add('show');
+}
+function _addMembershipManually(){
+  _meEditId='__NEW__'; _meEditRow=null;
+  ['me-name','me-email','me-phone','me-role','me-dept','me-permanentAddr','me-temporaryAddr','me-bloodGroup'].forEach(function(id){ G(id).value=''; });
+  G('me-membershipType').value='साधारण सदस्य';
+  G('medit-overlay').querySelector('.reorder-title').textContent='➕ सदस्य म्यानुअल थप्नुस्';
+  G('me-save-btn').textContent='Add Member';
   G('medit-overlay').classList.add('show');
 }
 function closeMembershipEdit(){ G('medit-overlay').classList.remove('show'); _meEditId=null; _meEditRow=null; }
@@ -6863,12 +7079,18 @@ async function saveMembershipEdit(){
     bloodGroup:G('me-bloodGroup').value.trim()
   };
   try{
-    await window._upd(window._doc(window._db,'memberships',_meEditId),data);
-    if(window._allMembershipsCache){
-      var idx=window._allMembershipsCache.findIndex(function(x){return x.id===_meEditId;});
-      if(idx>=0) Object.assign(window._allMembershipsCache[idx],data);
+    if(_meEditId==='__NEW__'){
+      data.status='pending'; data.createdAt=new Date().toISOString(); data.photoUrl='';
+      await window._add(window._col(window._db,'memberships'),data);
+      toast('✅ सदस्य म्यानुअल थपियो!','success');
+    } else {
+      await window._upd(window._doc(window._db,'memberships',_meEditId),data);
+      if(window._allMembershipsCache){
+        var idx=window._allMembershipsCache.findIndex(function(x){return x.id===_meEditId;});
+        if(idx>=0) Object.assign(window._allMembershipsCache[idx],data);
+      }
+      toast('✅ विवरण अपडेट भयो!','success');
     }
-    toast('✅ विवरण अपडेट भयो!','success');
     closeMembershipEdit();
     _loadMembershipAdmin();
   }catch(e){ toast('❌ Error: '+e.message,'error'); }
@@ -6887,6 +7109,7 @@ async function _loadMembershipAdmin(){
     el.innerHTML='<div style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;">'
       +'<div style="font-size:13px;font-weight:700;color:#8B1520;">जम्मा '+mems.length+' दर्ता</div>'
       +'<button onclick="_adminBulkEmailAllCards()" style="background:#1565C0;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">📧 सबैलाई कार्ड Email गर्नुस्</button>'
+      +'<button onclick="_addMembershipManually()" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">➕ म्यानुअल थप्नुस्</button>'
       +'</div>';
     window._allMembershipsCache = mems;
     mems.forEach(function(m,i){
@@ -7581,52 +7804,76 @@ function renderNotAdminList(){
 // tab() events/videos/notices hook merged into main tab()
 
 // ── loadVolunteers — authoritative ───────────────────────────────────────────
+function _renderRegistrationRows(items, targets, opts){
+  var rowsHtml = !items.length ? '<div style="color:#888888;padding:12px;">अहिलेसम्म कुनै दर्ता छैन।</div>' : '';
+  targets.forEach(function(elId){
+    var el=G(elId); if(!el) return;
+    el.innerHTML='';
+    if(!items.length){ el.innerHTML=rowsHtml; return; }
+    items.forEach(function(m,i){
+      var row=document.createElement('div'); row.className='manage-row'; row.style.alignItems='flex-start';
+      var addr = m.permanentAddr || m.address || '';
+      var roleTxt = m.role || (m.roles&&m.roles.length?m.roles.join(' / '):'') || '';
+      var roles = roleTxt ? '<div style="margin-top:4px;"><span class="vr-role-tag">'+roleTxt+'</span></div>' : '';
+      var statusBg=m.status==='confirmed'?'#E8F5E9':'#FFF3E0';
+      var statusColor=m.status==='confirmed'?'#2E7D32':'#E65100';
+      row.innerHTML='<div style="flex:1;">'
+        +'<div class="manage-name">'+(i+1)+'. '+m.name+' <span style="font-size:11px;background:'+statusBg+';color:'+statusColor+';padding:2px 7px;border-radius:8px;font-weight:700;">'+(m.status==='confirmed'?'स्वीकृत':'pending')+'</span> <span style="font-size:11px;background:rgba(139,21,32,.1);color:#8B1520;padding:2px 7px;border-radius:8px;font-weight:700;">'+(m.membershipType||opts.defaultType)+'</span></div>'
+        +'<div class="manage-meta">'+m.phone+(m.email?' · '+m.email:'')+(addr?' · '+addr:'')+(m.dept?' · '+m.dept:'')+'</div>'
+        +roles+'</div>';
+      var btns=document.createElement('div'); btns.className='manage-acts';
+      if(m.status!=='confirmed'){
+        var cb=document.createElement('button'); cb.className='ma e'; cb.textContent='✓'; cb.title='स्वीकृत गर्नुस्';
+        cb.onclick=function(){ opts.onApprove(m.id); };
+        btns.appendChild(cb);
+      }
+      var db=document.createElement('button'); db.className='ma d'; db.textContent='🗑'; db.title='Delete';
+      db.onclick=function(){ opts.onDelete(m.id); };
+      btns.appendChild(db);
+      row.appendChild(btns);
+      el.appendChild(row);
+    });
+  });
+}
 async function loadVolunteers(adminMode){
   try{
     var snap=await window._gets(window._col(window._db,'volunteers'));
     var vols=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
     vols.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
-
-    // Always update public page list if visible
-    var pgList=G('pg-vol-list'), pgRows=G('pg-vol-rows');
-    if(pgRows){
-      if(!vols.length){ if(pgList) pgList.style.display='none'; }
-      else{
-        if(pgList) pgList.style.display='block';
-        pgRows.innerHTML=vols.map(function(v){
-          return '<div class="volunteer-record-row">'
-            +'<div class="vr-av">'+(v.name||'?').charAt(0).toUpperCase()+'</div>'
-            +'<div style="flex:1;min-width:0;"><div style="font-weight:700;font-size:14px;color:#1a2332;">'+v.name+'</div>'
-            +'<div style="font-size:12px;color:#888888;">'+v.phone+(v.address?' · '+v.address:'')+'</div>'
-            +(v.roles&&v.roles.length?'<div style="margin-top:3px;">'+v.roles.map(function(r){return '<span class="vr-role-tag">'+r+'</span>';}).join('')+'</div>':'')
-            +'</div>'
-            +'<span style="font-size:11px;background:rgba(74,42,138,.1);color:#4a2a8a;padding:3px 8px;border-radius:8px;font-weight:700;">'+(v.type||'volunteer')+'</span>'
-          +'</div>';
-        }).join('');
-      }
-    }
-
-    // Admin list
     if(!adminMode) return;
-    var el=G('vol-admin-list'); if(!el) return;
-    el.innerHTML='';
-    if(!vols.length){el.innerHTML='<div style="color:#888888;padding:12px;">अहिलेसम्म कुनै दर्ता छैन।</div>';return;}
-    vols.forEach(function(v,i){
-      var row=document.createElement('div'); row.className='manage-row'; row.style.alignItems='flex-start';
-      var roles=v.roles&&v.roles.length?'<div style="margin-top:4px;">'+v.roles.map(function(r){return '<span class="vr-role-tag">'+r+'</span>';}).join('')+'</div>':'';
-      row.innerHTML='<div style="flex:1;">'
-        +'<div class="manage-name">'+(i+1)+'. '+v.name+' <span style="font-size:11px;background:rgba(74,42,138,.1);color:#4a2a8a;padding:2px 7px;border-radius:8px;font-weight:700;">'+(v.type||'volunteer')+'</span></div>'
-        +'<div class="manage-meta">'+v.phone+(v.email?' · '+v.email:'')+(v.address?' · '+v.address:'')+'</div>'
-        +roles+'</div><button class="ma d">🗑</button>';
-      row.querySelector('.ma.d').onclick=function(){deleteVolunteer(v.id);};
-      el.appendChild(row);
-    });
-  }catch(e){var el=G('vol-admin-list');if(el)el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';}
+    _renderRegistrationRows(vols, ['vol-admin-list','pg-vol-rows'], {defaultType:'स्वयंसेवक', onApprove:_approveVolunteer, onDelete:deleteVolunteer});
+  }catch(e){['vol-admin-list','pg-vol-rows'].forEach(function(id){var el=G(id);if(el)el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';});}
+}
+async function _approveVolunteer(id){
+  try{ await window._upd(window._doc(window._db,'volunteers',id),{status:'confirmed'}); toast('✅ स्वीकृत भयो!','success'); }
+  catch(e){ toast('❌ Error: '+e.message,'error'); }
+  loadVolunteers(true);
+  _loadApprovedPublicGrid('volunteers','pg-vol-approved-grid');
 }
 async function deleteVolunteer(id){
   if(!confirm('Remove this registration?')) return;
   try{await window._del(window._doc(window._db,'volunteers',id));}catch(e){}
   loadVolunteers(true);
+}
+async function loadNewMembers(adminMode){
+  try{
+    var snap=await window._gets(window._col(window._db,'newMembers'));
+    var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+    mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
+    if(!adminMode) return;
+    _renderRegistrationRows(mems, ['nm-admin-list','nm-admin-list-embed'], {defaultType:'नयाँ सदस्य', onApprove:_approveNewMember, onDelete:deleteNewMember});
+  }catch(e){['nm-admin-list','nm-admin-list-embed'].forEach(function(id){var el=G(id);if(el)el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';});}
+}
+async function _approveNewMember(id){
+  try{ await window._upd(window._doc(window._db,'newMembers',id),{status:'confirmed'}); toast('✅ स्वीकृत भयो!','success'); }
+  catch(e){ toast('❌ Error: '+e.message,'error'); }
+  loadNewMembers(true);
+  _loadApprovedPublicGrid('newMembers','pg-nm-approved-grid');
+}
+async function deleteNewMember(id){
+  if(!confirm('Remove this registration?')) return;
+  try{await window._del(window._doc(window._db,'newMembers',id));}catch(e){}
+  loadNewMembers(true);
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
@@ -7995,29 +8242,29 @@ function generateDonationVoucher(name, amount, method, txnId, contact){
 
 // ── VOUCHER HELPERS (full implementations below) ──────────────────────────────
 
-// Send voucher via email (embed as data URL in email body)
+// Send voucher via email — uploads the card image to Cloudinary and emails a
+// link to it. (Web3Forms' free plan does not support file attachments at all —
+// that's a paid-only feature — so a direct attachment can never succeed on the
+// free tier regardless of file size.)
 window._lastEmailError = '';
 async function emailVoucher(canvas, toEmail, subject, bodyText){
   window._lastEmailError='';
   if(!toEmail || !toEmail.includes('@')){ window._lastEmailError='इमेल ठेगाना छैन।'; toast('इमेल ठेगाना दिनुस्।','error'); return false; }
   if(!_W3F_KEY || _W3F_KEY.startsWith('PASTE')){ window._lastEmailError='Email सेवा configure गरिएको छैन।'; return false; }
   try{
-    // Convert canvas to a compressed JPEG (PNG cards with photos can be 1-3MB and
-    // fail to send as an attachment); JPEG at 0.85 quality is ~150-400KB and still
-    // looks great on screen and in print.
-    var blob = await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/jpeg', 0.85); });
+    var blob = await new Promise(function(resolve){ canvas.toBlob(resolve, 'image/jpeg', 0.9); });
     if(!blob){ window._lastEmailError='कार्ड इमेज तयार गर्न सकिएन।'; return false; }
-    if(blob.size > 4.5*1024*1024){ window._lastEmailError='कार्ड फाइल साइज धेरै ठूलो भयो (' + Math.round(blob.size/1024/1024) + 'MB).'; return false; }
+    var cardUrl;
+    try{ cardUrl = await cloudUpload(blob); }
+    catch(upErr){ window._lastEmailError='कार्ड अपलोड गर्न सकिएन: '+upErr.message; return false; }
     var fd = new FormData();
     fd.append('access_key', _W3F_KEY);
     fd.append('subject', '🎭 ' + subject);
     fd.append('from_name', 'क्षितिज नाट्य प्रतिष्ठान');
     fd.append('email', 'noreply@kshitiznatya.org.np');
-    fd.append('message', bodyText);
+    fd.append('message', bodyText + '\n\n🪪 तपाईंको कार्ड यहाँ हेर्नुस् / डाउनलोड गर्नुस्:\n' + cardUrl);
     fd.append('replyto', toEmail);
-    // Send TO the member's email by setting it as the form recipient field Web3Forms checks
     fd.append('to_email', toEmail);
-    fd.append('attachment', blob, 'membership-card.jpg');
     var res = await fetch('https://api.web3forms.com/submit', { method:'POST', body: fd });
     var data = await res.json();
     if(data.success !== true){ window._lastEmailError = data.message || 'अज्ञात त्रुटि (Web3Forms)।'; }
@@ -8091,6 +8338,12 @@ var _logoImgCache = null;
   },1000);
 })();
 
+// ── Header mountain-band image (real photo, embedded — matches reference design) ──
+var _mtnBandImg = new Image();
+var _mtnBandReady = false;
+_mtnBandImg.onload = function(){ _mtnBandReady = true; };
+_mtnBandImg.src = 'data:image/jpeg;base64,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';
+
 // ── Signature image cache (preload at startup) ────────────────────────────────
 window._sigImgCache = null;
 window._photoCache = {};
@@ -8108,17 +8361,17 @@ window._photoCache = {};
 
 // ── Layout constants (shared by all card types) ───────────────────────────────
 // Canvas: 1080×1350  (4:5 portrait — perfect for FB/IG)
-var _CW=1080, _CH=1350, _CB=20;
+var _CW=1080, _CH=1500, _CB=20;
 // Header: top 20 → 310
-var _HDR_BOT=310, _RIB_TOP=248, _RIB_H=62;
+var _HDR_BOT=480, _RIB_TOP=418, _RIB_H=62;
 var _BODY_TOP=_HDR_BOT+10;           // 320  (gold seam at 310, body starts 320)
-var _FOOT_TOP=1230, _FOOT_BOT=_CH-_CB; // footer at 1230, leaves 900px for body
+var _FOOT_TOP=1380, _FOOT_BOT=_CH-_CB; // footer moved down for the taller card
 // Right column — photo fills top 60% of body, QR sits below
-var _PH_X=640, _PH_W=400, _PH_H=560; // wider, taller photo
+var _PH_X=640, _PH_W=400, _PH_H=540; // wider, tall photo — fits comfortably in the taller card
 var _PH_Y=_BODY_TOP+20;              // 340
 var _QR_SIZE=200;                     // bigger QR
 var _QR_X=_PH_X+(_PH_W-_QR_SIZE)/2; // centred under photo = 740
-var _QR_Y=_PH_Y+_PH_H+30;           // 930 — below photo with 30px gap
+var _QR_Y=_PH_Y+_PH_H+10+30+12;     // photo ornament bottom (+10) + real 30px gap + QR box top padding (12)
 // Left column — info rows
 var _INFO_X=_CB+30, _INFO_LX=_CB+30+56+18, _INFO_TOP=_BODY_TOP+40, _ROW_H=96;
 var _MAX_INFO_W=_PH_X-(_CB+30)-30;   // 556
@@ -8138,63 +8391,25 @@ function _drawCardCore(ctx, W, H, template, titleText, badgeText, badgeColor, ro
   hg.addColorStop(1,   isNavy?'#0d1b30':'#4a0a10');
   ctx.fillStyle=hg; ctx.fillRect(B,B,W-B*2,_HDR_BOT-B);
 
-  // 3. Himalaya horizon scene — sunrise glow + snow peaks + temple skyline
+  // 3. Himalaya horizon scene — real photo band + sunrise glow
   // ("क्षितिज" = horizon/zenith, so the sunrise-over-mountains motif directly
   // reflects the organisation's name.)
   ctx.save();
-  var peakX=W-B-300, peakY=_RIB_TOP-96; // tallest peak position — sun sits right behind it
-  var sun=ctx.createRadialGradient(peakX,peakY,4,peakX,peakY,180);
-  sun.addColorStop(0,'rgba(255,224,150,0.55)');
-  sun.addColorStop(0.5,'rgba(224,182,92,0.22)');
+  var mtnTop=225, mtnH=_RIB_TOP-mtnTop; // band sits below the org text with a safe buffer, above the ribbon
+  if(_mtnBandReady){
+    ctx.drawImage(_mtnBandImg, B, mtnTop, W-B*2, mtnH);
+  } else {
+    // Fallback while the embedded image is still decoding (near-instant in practice)
+    ctx.fillStyle=isNavy?'#0a1628':'#2a0608';
+    ctx.fillRect(B, mtnTop, W-B*2, mtnH);
+  }
+  // Warm sunrise glow over the image, upper-right — reinforces the horizon motif
+  var peakX=W-B-300, peakY=mtnTop+18;
+  var sun=ctx.createRadialGradient(peakX,peakY,4,peakX,peakY,170);
+  sun.addColorStop(0,'rgba(255,224,150,0.35)');
+  sun.addColorStop(0.5,'rgba(224,182,92,0.14)');
   sun.addColorStop(1,'rgba(224,182,92,0)');
-  ctx.fillStyle=sun; ctx.fillRect(B,B,W-B*2,_HDR_BOT-B);
-  // faint light rays fanning from the sun
-  ctx.globalAlpha=0.10; ctx.strokeStyle='#ffe096'; ctx.lineWidth=2;
-  for(var ray=0;ray<7;ray++){
-    var ang=(-Math.PI*0.75)+ray*(Math.PI*0.5/6);
-    ctx.beginPath(); ctx.moveTo(peakX,peakY);
-    ctx.lineTo(peakX+Math.cos(ang)*170,peakY+Math.sin(ang)*170); ctx.stroke();
-  }
-  ctx.globalAlpha=1;
-  function _mtnLayer(pts, alpha, color){
-    ctx.globalAlpha=alpha; ctx.fillStyle=color;
-    ctx.beginPath(); ctx.moveTo(B,_RIB_TOP);
-    pts.forEach(function(p){ ctx.lineTo(p[0],p[1]); });
-    ctx.lineTo(W-B,_RIB_TOP); ctx.closePath(); ctx.fill();
-  }
-  // Back range (hazy, gold-tinted)
-  _mtnLayer([[B,_RIB_TOP-30],[B+140,_RIB_TOP-70],[B+260,_RIB_TOP-38],[peakX-60,_RIB_TOP-108],
-             [peakX,_RIB_TOP-140],[peakX+70,_RIB_TOP-96],[W-B-120,_RIB_TOP-58],[W-B,_RIB_TOP-34]],
-            0.16, '#e0b65c');
-  // Front range (darker, closer)
-  var frontColor=isNavy?'#0a1628':'#2a0608';
-  _mtnLayer([[B,_RIB_TOP-14],[B+110,_RIB_TOP-44],[B+230,_RIB_TOP-20],[peakX-90,_RIB_TOP-78],
-             [peakX-10,_RIB_TOP-118],[peakX+90,_RIB_TOP-64],[W-B-150,_RIB_TOP-34],[W-B,_RIB_TOP-16]],
-            0.26, frontColor);
-  // Snow caps on the front range's higher peaks
-  ctx.globalAlpha=0.30; ctx.fillStyle='#fdf6e6';
-  [[peakX-10,_RIB_TOP-118,26],[B+230,_RIB_TOP-20,14],[peakX+90,_RIB_TOP-64,16]].forEach(function(s){
-    ctx.beginPath(); ctx.moveTo(s[0]-s[2],s[1]+s[2]*0.55); ctx.lineTo(s[0],s[1]); ctx.lineTo(s[0]+s[2],s[1]+s[2]*0.55);
-    ctx.lineTo(s[0]+s[2]*0.4,s[1]+s[2]*0.4); ctx.lineTo(s[0],s[1]+s[2]*0.7); ctx.lineTo(s[0]-s[2]*0.4,s[1]+s[2]*0.4);
-    ctx.closePath(); ctx.fill();
-  });
-  ctx.globalAlpha=1;
-  // Pagoda / temple skyline along the base
-  ctx.globalAlpha=0.17; ctx.fillStyle=isNavy?'#0a1628':'#2a0608';
-  function _pagoda(px,tiers,scale){
-    var py=_RIB_TOP;
-    for(var t=0;t<tiers;t++){
-      var tw=(30-t*7)*scale, th=12*scale;
-      ctx.beginPath();
-      ctx.moveTo(px-tw/2, py-t*13*scale);
-      ctx.lineTo(px+tw/2, py-t*13*scale);
-      ctx.lineTo(px, py-t*13*scale-th);
-      ctx.closePath(); ctx.fill();
-    }
-    ctx.fillRect(px-3*scale, py-2, 6*scale, 2); // base line
-  }
-  [[B+130,3,1],[B+185,2,0.7],[B+430,4,1.15],[B+500,2,0.75],[W-B-460,3,0.9],[W-B-390,2,0.65]]
-    .forEach(function(p){ _pagoda(p[0],p[1],p[2]); });
+  ctx.fillStyle=sun; ctx.fillRect(B,mtnTop,W-B*2,mtnH);
   ctx.restore();
 
   // Subtle twin theatre-mask watermark near the title
@@ -9733,63 +9948,370 @@ var _titleMap={
 <div id="page-volunteer" class="page-view">
   <div class="page-hero">
     <div class="page-hero-content">
-      <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">स्वयंसेवक / सदस्यता</span></div>
-      <div class="page-hero-label">JOIN OUR FAMILY</div>
-      <h1 class="page-hero-title">हाम्रो परिवारमा सामेल हुनुस्</h1>
+      <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">स्वयंसेवक दर्ता</span></div>
+      <div class="page-hero-label">VOLUNTEER REGISTRATION</div>
+      <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>स्वयंसेवक दर्ता फाराम</h1>
       <div class="page-hero-bar"></div>
-      <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठानमा स्वयंसेवकको रूपमा काम गर्न वा सदस्यता लिन इच्छुक हुनुहुन्छ? आफ्नो जानकारी पठाउनुस्।</p>
+      <p class="page-hero-sub">हाम्रो कार्यक्रम तथा गतिविधिहरूमा स्वयंसेवाका लागि सामेल हुन चाहनुहुने सबैलाई हार्दिक स्वागत छ।</p>
     </div>
   </div>
-  <div class="volunteer-pg-wrap">
-    <div class="volunteer-form-card">
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#128100; दर्ता फाराम</div>
-      <div style="font-size:13px;color:#888888;margin-bottom:20px;">तल आफ्नो जानकारी भर्नुस् — हामी छिट्टै सम्पर्क गर्नेछौं।</div>
-      <div class="fi-half" style="margin-bottom:12px;">
-        <div><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">पूरा नाम *</label><input class="fi" id="vol-name" placeholder="नाम थर"/></div>
-        <div><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">फोन नम्बर *</label><input class="fi" id="vol-phone" placeholder="+977-98XXXXXXXX"/></div>
-      </div>
-      <div class="fi-half" style="margin-bottom:12px;">
-        <div><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">इमेल</label><input class="fi" id="vol-email" placeholder="email@example.com"/></div>
-        <div><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">ठेगाना</label><input class="fi" id="vol-addr" placeholder="जिल्ला / ठेगाना"/></div>
-      </div>
-      <div style="margin-bottom:16px;">
-        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">रुचि क्षेत्र (एक वा बढी छान्नुस्)</label>
-        <div class="role-pills" id="vol-roles">
-          <button class="role-pill" onclick="toggleRole(this)">&#127917; अभिनय</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#9997;&#65039; लेखन</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#127932; संगीत</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#128248; फोटोग्राफी</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#128104;&#8205;&#128187; प्रविधि</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#127775; निर्देशन</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#127775; नृत्य</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#128240; मिडिया</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#128200; व्यवस्थापन</button>
-          <button class="role-pill" onclick="toggleRole(this)">&#128170; स्वयंसेवक सहयोग</button>
-        </div>
-      </div>
-      <div style="margin-bottom:16px;"><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">सदस्यता प्रकार</label>
-        <select class="fi" id="vol-type">
-          <option value="volunteer">स्वयंसेवक (Volunteer)</option>
-          <option value="संस्थापक सदस्य">संस्थापक सदस्य</option>
-          <option value="आजीवन सदस्य">आजीवन सदस्य</option>
-          <option value="कार्यसमिति सदस्य">कार्यसमिति सदस्य</option>
-          <option value="विभागीय सदस्य">विभागीय सदस्य</option>
-          <option value="साधारण सदस्य">साधारण सदस्य</option>
-          <option value="मानार्थ सदस्य">मानार्थ सदस्य</option>
-        </select>
-      </div>
-      <textarea class="fi" id="vol-msg" placeholder="&#128140; आफ्नो बारे थप जानकारी वा प्रश्न..." style="min-height:80px;"></textarea>
-      <button class="btn-r" style="width:100%;margin-top:16px;" onclick="submitVolunteer()">&#128640; दर्ता पठाउनुस्</button>
-      <div class="ok-msg" id="vol-ok" style="display:none;margin-top:10px;">&#10003; दर्ता सफलतापूर्वक पठाइयो! हामी छिट्टै सम्पर्क गर्नेछौं।</div>
-      <div class="err-msg" id="vol-err" style="display:none;margin-top:10px;"></div>
+  <div style="max-width:760px;margin:0 auto;padding:48px 5%;">
+
+    <!-- Soft donation note (not a mandatory fee) -->
+    <div style="background:linear-gradient(135deg,#fff8f8,#fffde8);border:2px solid #8B1520;border-radius:14px;padding:20px;margin-bottom:28px;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;margin-bottom:8px;">🙏 स्वयंसेवाको लागि हार्दिक धन्यवाद!</div>
+      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.8;">स्वयंसेवकको रूपमा दर्ता हुन कुनै अनिवार्य शुल्क छैन। यदि तपाईं चाहनुहुन्छ भने, हाम्रो कामलाई सहयोग गर्न <strong>रु. १,०००/-</strong> जति योगदान गर्नुभयो भने हामी आभारी हुनेछौं। यो पूर्णतः स्वैच्छिक हो।</p>
     </div>
-    <!-- Volunteer list (admin only) -->
-    <div id="pg-vol-list" style="display:none;">
-      <div style="font-family:\"Playfair Display\",serif;font-size:17px;font-weight:700;color:#1a2332;margin-bottom:14px;">दर्ता भएका व्यक्तिहरू</div>
+
+    <input class="fi" id="vol-name" placeholder="&#128100; पूरा नाम *"/>
+    <input class="fi" id="vol-phone" placeholder="&#128222; फोन नम्बर *"/>
+    <input class="fi" id="vol-email" type="email" placeholder="&#9993; इमेल"/>
+    <input class="fi" id="vol-addr" placeholder="&#128205; ठेगाना"/>
+
+    <div style="margin-bottom:8px;"><label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">कुन क्षेत्रमा सहयोग गर्न चाहनुहुन्छ?</label>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px;" id="vol-dept-grid">
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
+        <label class="dept-check-lbl"><input type="checkbox" class="vol-dept-cb" value="सामान्य सहयोग"/> <span>सामान्य सहयोग</span></label>
+      </div>
+      <div id="vol-dept-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;line-height:1.6;"></div>
+      <input type="hidden" id="vol-role" value=""/>
+      <input type="hidden" id="vol-dept" value=""/>
+    </div>
+
+    <!-- Photo for ID card -->
+    <div style="background:#fff8f0;border:2px dashed #8B1520;border-radius:10px;padding:16px;margin-bottom:20px;margin-top:12px;">
+      <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:10px;">📷 तपाईंको फोटो (ऐच्छिक)</div>
+      <p style="font-size:12.5px;color:#5a3a1a;margin-bottom:12px;">यो फोटो तपाईंको ID कार्डमा देखिनेछ।</p>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+        <label style="display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+          <input type="file" id="vol-photo-file" accept="image/*" style="display:none;" onchange="previewVoucher(this,'vol-photo-prev','vol-photo-name')"/>
+          📷 फोटो छान्नुस्
+        </label>
+        <span id="vol-photo-name" style="font-size:12px;color:#555555;">कुनै फोटो छानिएको छैन</span>
+      </div>
+      <img id="vol-photo-prev" src="" alt="" style="display:none;width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #8B1520;margin-top:12px;"/>
+    </div>
+
+    <textarea class="fi" id="vol-feedback" placeholder="&#128172; सन्देश (ऐच्छिक)" style="min-height:70px;"></textarea>
+
+    <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:10px 14px;margin:14px 0;font-size:12.5px;color:#5a2a00;">
+      📞 कुनै जिज्ञासाको लागि सम्पर्क: <strong>+977 984-4637952</strong> (माधव कल्पित — केन्द्रीय अध्यक्ष)
+    </div>
+
+    <button class="btn-r" style="width:100%;font-size:15px;padding:14px;" onclick="submitVolunteerFull()">&#128640; फाराम पेश गर्नुस्</button>
+    <div class="ok-msg" id="vol-ok" style="display:none;margin-top:14px;padding:16px;font-size:14px;line-height:1.7;"></div>
+    <div class="err-msg" id="vol-err" style="display:none;margin-top:10px;"></div>
+
+    <!-- ID card preview after successful submission -->
+    <div id="vol-card-box" style="display:none;margin-top:24px;text-align:center;border-top:1px dashed #ddd;padding-top:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a2332;margin-bottom:12px;">🪪 तपाईंको ID कार्ड तयार भयो!</div>
+      <canvas id="vol-card-canvas" style="max-width:100%;height:auto;border-radius:14px;box-shadow:0 8px 32px rgba(26,17,8,.15);border:1px solid #eee;"></canvas>
+      <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-r" onclick="_downloadVOLCard()">⬇️ डाउनलोड गर्नुस्</button>
+        <button class="btn-r" style="background:#1565C0;" onclick="_emailVOLCard()">📧 Email गर्नुस्</button>
+      </div>
+    </div>
+
+    <!-- Approved volunteers (public) -->
+    <div id="pg-vol-approved-public" style="margin-top:40px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#127917; हाम्रा स्वयंसेवकहरू</div>
+      <div id="pg-vol-approved-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:16px;">
+        <div style="grid-column:1/-1;color:#888888;font-size:13px;">लोड हुँदैछ...</div>
+      </div>
+    </div>
+
+    <!-- Admin: view submissions -->
+    <div id="pg-vol-admin" style="display:none;margin-top:36px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:14px;">&#128203; स्वयंसेवक दर्ता भएका व्यक्तिहरू</div>
       <div id="pg-vol-rows"></div>
+      <button class="save-btn" onclick="loadVolunteers(true)" style="margin-top:10px;">&#8635; Refresh</button>
     </div>
   </div>
 </div>
+
+
+<!-- ═══ NEW MEMBER REGISTRATION PAGE ══════════════════════════════════════ -->
+<div id="page-newmember" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">नयाँ सदस्यता</span></div>
+      <div class="page-hero-label">NEW MEMBER REGISTRATION — रु ५,१००/-</div>
+      <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>नयाँ सदस्यता दर्ता फाराम</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub">हाम्रो परिवारमा नयाँ सदस्यको रूपमा सामेल हुन चाहनुहुने सबैलाई हार्दिक स्वागत छ।</p>
+    </div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:48px 5%;">
+
+    <!-- Payment info banner -->
+    <div style="background:linear-gradient(135deg,#fff8f8,#fffde8);border:2px solid #8B1520;border-radius:14px;padding:22px 20px;margin-bottom:32px;">
+      <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;margin-bottom:10px;">&#128181; सदस्यता शुल्क भुक्तानी जानकारी</div>
+      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.9;margin-bottom:12px;">नयाँ सदस्यता दर्ता शुल्क <strong>रु. ५,१००/-</strong> तल उल्लेखित बैंक खातामा जम्मा गरी भाैचर यसै फाराममा समाबेश गर्नुहुन अनुरोध छ।</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;">
+        <div class="bank-c"><div class="bl">खाता नम्बर</div><div class="bv">00100200001742000002</div><div class="bs2">A/C Holder: KSHITIZ NATYA SAMUHA</div><div class="bs2">Excel Development Bank Ltd.</div></div>
+        <div class="bank-c"><div class="bl">खाता नम्बर (RBBBL)</div><div class="bv">2620100002729001</div><div class="bs2">KSHITYZ NATYA SAMUHA JHAPA NATAK GH</div><div class="bs2">Rastriya Banijya Bank Ltd.</div></div>
+      </div>
+      <div style="margin-top:12px;font-size:12.5px;color:#7a5a10;background:rgba(201,150,58,.12);border-radius:8px;padding:9px 12px;">&#128231; भाैचर / Screenshot पठाउनुहोस्: <a href="mailto:kurakalpit@gmail.com" style="color:#8B1520;font-weight:700;">kurakalpit@gmail.com</a></div>
+    </div>
+
+    <!-- Membership form card -->
+    <div style="background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:30px 24px;box-shadow:0 3px 18px rgba(26,17,8,.07);">
+      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#128100; व्यक्तिगत विवरण</div>
+      <div style="font-size:12.5px;color:#888888;margin-bottom:22px;">* चिह्न भएका सबै क्षेत्र अनिवार्य छन्</div>
+
+      <!-- Email -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">इमेल *</label>
+        <input class="fi" id="nm-email" placeholder="example@gmail.com" type="email"/>
+      </div>
+      <!-- Full name -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">पूरा नाम-थर *</label>
+        <input class="fi" id="nm-name" placeholder="पूरा नाम लेख्नुस्"/>
+      </div>
+      <!-- Gender + DOB -->
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">लिङ्ग *</label>
+          <select class="fi" id="nm-gender">
+            <option value="">— छान्नुस् —</option>
+            <option value="पुरुष">पुरुष (Male)</option>
+            <option value="महिला">महिला (Female)</option>
+            <option value="अन्य">अन्य (Other)</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">जन्म मिति (A.D.) *</label>
+          <input class="fi" id="nm-dob" placeholder="e.g. January 7, 1990" type="date"/>
+        </div>
+      </div>
+      <!-- Mother / Father -->
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">आमाको नाम *</label>
+          <input class="fi" id="nm-mother" placeholder="आमाको नाम"/>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">बुबाको नाम *</label>
+          <input class="fi" id="nm-father" placeholder="बुबाको नाम"/>
+        </div>
+      </div>
+      <!-- Marital + Spouse -->
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">वैबाहिक अवस्था *</label>
+          <select class="fi" id="nm-marital">
+            <option value="">— छान्नुस् —</option>
+            <option value="छ">छ (Married)</option>
+            <option value="छैन">छैन (Unmarried)</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">पति/पत्नीको नाम</label>
+          <input class="fi" id="nm-spouse" placeholder="(विवाहित भए)"/>
+        </div>
+      </div>
+      <!-- Children + Education -->
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">छोरा-छोरीको नाम</label>
+          <input class="fi" id="nm-children" placeholder="नाम (optional)"/>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">शैक्षिक योग्यता *</label>
+          <input class="fi" id="nm-edu" placeholder="e.g. स्नातक, SLC..."/>
+        </div>
+      </div>
+      <!-- Blood group -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">रक्त समूह *</label>
+        <select class="fi" id="nm-blood" style="max-width:200px;">
+          <option value="">— छान्नुस् —</option>
+          <option>A+</option><option>A-</option>
+          <option>B+</option><option>B-</option>
+          <option>O+</option><option>O-</option>
+          <option>AB+</option><option>AB-</option>
+        </select>
+      </div>
+
+      <!-- Citizenship section -->
+      <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#128195; नागरिकता विवरण</div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">नागरिकतामा भएको नाम-थर *</label>
+        <input class="fi" id="nm-cit-name" placeholder="नागरिकतामा लेखिएको नाम"/>
+      </div>
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">नागरिकता नम्बर *</label>
+          <input class="fi" id="nm-cit-no" placeholder="नागरिकता नम्बर"/>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">नागरिकता जारी जिल्ला *</label>
+          <input class="fi" id="nm-cit-dist" placeholder="जिल्ला"/>
+        </div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">नागरिकता जारी मिति *</label>
+        <input class="fi" id="nm-cit-date" placeholder="मिति (e.g. 2060/05/10)"/>
+      </div>
+
+      <!-- Address -->
+      <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#128205; ठेगाना</div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">स्थायी ठेगाना *</label>
+        <input class="fi" id="nm-perm-addr" placeholder="Zone, District, V.D.C/Municipality &amp; Village"/>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">अस्थायी ठेगाना *</label>
+        <input class="fi" id="nm-temp-addr" placeholder="Street Address, City &amp; Country"/>
+      </div>
+      <div class="fi-half" style="margin-bottom:14px;">
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">फोन नम्बर *</label>
+          <input class="fi" id="nm-phone" placeholder="+977-98XXXXXXXX" type="tel"/>
+        </div>
+        <div>
+          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">हुलाक ठेगाना</label>
+          <input class="fi" id="nm-postal" placeholder="e.g. Charpane, Birtamode, Jhapa 57204"/>
+        </div>
+      </div>
+
+      <!-- Organisation info -->
+      <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#127968; संस्थागत विवरण</div>
+      <!-- आबद्ध विभाग — full multi-select checkboxes -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">आबद्ध विभाग * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस्)</span></label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;" id="nm-dept-grid">
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
+        </div>
+        <!-- Hidden field stores combined value -->
+        <input type="hidden" id="nm-dept" value=""/>
+        <div id="nm-dept-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;"></div>
+      </div>
+
+      <!-- पद — multi-select with all posts + custom entry -->
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">पद * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस् — Multiple posts supported)</span></label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;" id="nm-role-grid">
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
+          <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
+        </div>
+        <!-- Hidden field stores combined value -->
+        <input type="hidden" id="nm-role" value=""/>
+        <div id="nm-role-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;line-height:1.6;"></div>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता प्रकार *</label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
+          <label class="mem-type-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="nm-type" value="साधारण सदस्य"/>
+            <span><strong style="color:#1a2332;">⭐ साधारण सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५,१००/-</span></span>
+          </label>
+          <label class="mem-type-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="nm-type" value="आजीवन सदस्य"/>
+            <span><strong style="color:#1a2332;">💎 आजीवन सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५१,०००/-</span></span>
+          </label>
+        </div>
+      </div>
+      <!-- Helpdesk / inquiry note -->
+      <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 6px 6px 0;padding:10px 14px;margin-bottom:14px;font-size:12.5px;color:#5a2a00;">
+        📞 कुनै जिज्ञासाको लागि सम्पर्क: <strong>+977 984-4637952</strong> (माधव कल्पित — केन्द्रीय अध्यक्ष)<br/>
+        ℹ️ <strong>नोट:</strong> कुनै पनि सदस्यले विभागीय समितिमा कम्तिमा ५ वर्ष सेवा गरेपछि मात्र केन्द्रीय समितिको सदस्य हुन योग्य हुनुहुन्छ।
+      </div>
+      <!-- Additional info -->
+      <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#128221; थप विवरण (ऐच्छिक)</div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">अन्य आबद्ध संस्थाहरू</label>
+        <input class="fi" id="nm-other-orgs" placeholder="हालसम्म आबद्ध संस्थाहरू"/>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">प्राप्त सम्मान तथा उपाधिहरू</label>
+        <input class="fi" id="nm-awards" placeholder="पुरस्कार, सम्मान, उपाधि..."/>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">अभिनित नाटक, चलचित्र, Music Video वा अन्य</label>
+        <input class="fi" id="nm-works" placeholder="काम गरेका नाटक/चलचित्रको नाम..."/>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">अन्य पेसा</label>
+        <input class="fi" id="nm-profession" placeholder="पेसा/व्यवसाय..."/>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">सुझाव / प्रतिक्रिया</label>
+        <textarea class="fi" id="nm-feedback" placeholder="संस्थागत विकासका लागि तपाईंको अमूल्य सुझाभ, सल्लाह र प्रतिक्रिया..." style="min-height:80px;"></textarea>
+      </div>
+
+      <!-- Member's own photo for membership card / voucher -->
+      <div style="background:#fff8f0;border:2px dashed #8B1520;border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:10px;">📷 तपाईंको फोटो / Your Photo</div>
+        <p style="font-size:12.5px;color:#5a3a1a;margin-bottom:12px;">यो फोटो तपाईंको सदस्यता कार्ड र भौचरमा देखिनेछ।</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <label style="display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+            <input type="file" id="nm-photo-file" accept="image/*" style="display:none;" onchange="previewVoucher(this,'nm-photo-prev','nm-photo-name')"/>
+            📷 फोटो छान्नुस्
+          </label>
+          <span id="nm-photo-name" style="font-size:12px;color:#555555;">कुनै फोटो छानिएको छैन</span>
+        </div>
+        <img id="nm-photo-prev" src="" alt="" style="display:none;width:110px;height:110px;object-fit:cover;border-radius:50%;border:3px solid #8B1520;margin-top:12px;"/>
+        <p style="font-size:11px;color:#888888;margin:8px 0 0;">JPG, PNG स्वीकार्य। Passport size वा clear face photo राख्नुस्।</p>
+      </div>
+
+      <!-- Payment voucher upload (sends to kurakalpit@gmail.com) -->
+      <div style="background:#f5f5f5;border-radius:10px;padding:16px;margin-bottom:20px;">
+        <div style="font-size:13px;font-weight:700;color:#1a2332;margin-bottom:10px;">&#128247; भुक्तानी प्रमाण / Payment Proof</div>
+        <p style="font-size:12.5px;color:#5a3a1a;margin-bottom:12px;">Bank Voucher वा eSewa/Khalti Screenshot यहाँ अपलोड गर्नुस् — कुरैकल्पित@gmail.com मा स्वतः पुग्नेछ।</p>
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+          <label style="display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border-radius:7px;padding:8px 16px;font-size:13px;font-weight:600;cursor:pointer;">
+            <input type="file" id="nm-voucher-file" accept="image/*,application/pdf" style="display:none;" onchange="previewVoucher(this,'nm-voucher-prev','nm-voucher-name')"/>
+            &#128247; Photo/File छान्नुस्
+          </label>
+          <span id="nm-voucher-name" style="font-size:12px;color:#555555;">कुनै फाइल छानिएको छैन</span>
+        </div>
+        <img id="nm-voucher-prev" src="" alt="" style="display:none;max-width:100%;max-height:160px;object-fit:contain;border-radius:8px;border:1px solid #8B1520;margin-top:10px;"/>
+        <p style="font-size:11px;color:#888888;margin:8px 0 0;">JPG, PNG, PDF स्वीकार्य। अधिकतम 5MB।</p>
+      </div>
+
+      <button class="btn-r" style="width:100%;font-size:15px;padding:14px;" onclick="submitNewMember()">&#128640; फाराम पेश गर्नुस्</button>
+      <div class="ok-msg" id="nm-ok" style="display:none;margin-top:14px;padding:16px;font-size:14px;line-height:1.7;"></div>
+      <div class="err-msg" id="nm-err" style="display:none;margin-top:10px;"></div>
+    </div>
+
+    <!-- ID card preview after successful submission -->
+    <div id="nm-card-box" style="display:none;margin-top:24px;text-align:center;border-top:1px dashed #ddd;padding-top:20px;">
+      <div style="font-family:'Playfair Display',serif;font-size:17px;font-weight:700;color:#1a2332;margin-bottom:12px;">🪪 तपाईंको ID कार्ड तयार भयो!</div>
+      <canvas id="nm-card-canvas" style="max-width:100%;height:auto;border-radius:14px;box-shadow:0 8px 32px rgba(26,17,8,.15);border:1px solid #eee;"></canvas>
+      <div style="margin-top:14px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+        <button class="btn-r" onclick="_downloadNMCard()">⬇️ डाउनलोड गर्नुस्</button>
+        <button class="btn-r" style="background:#1565C0;" onclick="_emailNMCard()">📧 Email गर्नुस्</button>
+      </div>
+    </div>
+
+    <!-- Approved new members (public) -->
+    <div id="pg-nm-approved-public" style="margin-top:40px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#127917; हाम्रा नयाँ सदस्यहरू</div>
+      <div id="pg-nm-approved-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:16px;">
+        <div style="grid-column:1/-1;color:#888888;font-size:13px;">लोड हुँदैछ...</div>
+      </div>
+    </div>
+
+    <!-- Admin: view submissions -->
+    <div id="pg-nm-admin-embed" style="display:none;margin-top:36px;">
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:14px;">&#128203; नयाँ सदस्यता दर्ता भएका व्यक्तिहरू</div>
+      <div id="nm-admin-list-embed"></div>
+      <button class="save-btn" onclick="loadNewMembers(true)" style="margin-top:10px;">&#8635; Refresh</button>
+    </div>
+  </div>
+</div>
+
 
 <!-- ═══ SEARCH PAGE ══════════════════════════════════════════════════════════ -->
 <div id="page-search" class="page-view">
@@ -10295,7 +10817,7 @@ var _titleMap={
       <div class="page-hero-label">HISTORY — इतिहास</div>
       <h1 class="page-hero-title">महाधिवेशन इतिहास</h1>
       <div class="page-hero-bar"></div>
-      <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठानको स्थापना (२०५८) देखि हालसम्म सम्पन्न ७ वटा महाधिवेशनहरूको विवरण।</p>
+      <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठानको स्थापना (२०५८) देखि हालसम्म सम्पन्न ८ वटा महाधिवेशनहरूको विवरण।</p>
     </div>
   </div>
   <div style="padding:36px 5%;max-width:1080px;margin:0 auto;">
@@ -10306,7 +10828,8 @@ var _titleMap={
       <div class="adh-card"><div class="adh-header"><div class="adh-num">४</div><div><div class="adh-year">२०६५ फागुन २६</div><div class="adh-title">चौथो महाधिवेशन</div></div></div><div class="adh-detail">स्थान: फिदिम, पाँचथर<br/>अध्यक्ष: माधव कल्पित | उपाध्यक्ष: कुमार ढकाल<br/>महासचिव: सुजना खतिवडा | सचिव: गजेन्द्र पृथक<br/>कोषाध्यक्ष: मातृका गौतम</div></div>
       <div class="adh-card"><div class="adh-header"><div class="adh-num">५</div><div><div class="adh-year">२०६८ आषाढ २३</div><div class="adh-title">पाँचौं महाधिवेशन — झापा</div></div></div><div class="adh-detail">स्थान: बिर्तामोड, झापा (पहिलो पटक झापामा)<br/>अध्यक्ष: माधव कल्पित | उपाध्यक्ष: गजेन्द्र पृथक<br/>महासचिव: नरेश जंग सुब्बा | सचिव: राजकुमार भट्टराई<br/>कोषाध्यक्ष: सुजना खतिवडा</div></div>
       <div class="adh-card"><div class="adh-header"><div class="adh-num">६</div><div><div class="adh-year">२०७० मंसिर ५</div><div class="adh-title">छैटौं महाधिवेशन</div></div></div><div class="adh-detail">स्थान: बिर्तामोड-२, झापा<br/>अध्यक्ष: माधव कल्पित | उपाध्यक्ष: कुमार ढकाल, नरेश जंग सुब्बा<br/>महासचिव: गजेन्द्र पृथक | सचिव: राजकुमार भट्टराई<br/>कोषाध्यक्ष: माया सिटौला</div></div>
-      <div class="adh-card" style="border-left-color:#FFD700;"><div class="adh-header"><div class="adh-num" style="background:#1a2332;">७</div><div><div class="adh-year">२०७५ भाद्र ११ — हालको</div><div class="adh-title">सातौं महाधिवेशन (वर्तमान)</div></div></div><div class="adh-detail">स्थान: आदर्श बेकुइट, झापा<br/>अध्यक्ष: माधव कल्पित | ब.उपाध्यक्ष: हरि भण्डारी<br/>उपाध्यक्ष: सुजना खतिवडा | महासचिव: ताराकुमार प्रसाइ<br/>सचिव: राजकुमार भट्टराई | कोषाध्यक्ष: मुना प्रसाइ<br/><strong style="color:#8B1520;">४२ जना केन्द्रीय सदस्यहरू</strong></div></div>
+      <div class="adh-card"><div class="adh-header"><div class="adh-num">७</div><div><div class="adh-year">२०७५ भाद्र ११</div><div class="adh-title">सातौं महाधिवेशन</div></div></div><div class="adh-detail">स्थान: आदर्श बेकुइट, झापा<br/>अध्यक्ष: माधव कल्पित | ब.उपाध्यक्ष: हरि भण्डारी<br/>उपाध्यक्ष: सुजना खतिवडा | महासचिव: ताराकुमार प्रसाइ<br/>सचिव: राजकुमार भट्टराई | कोषाध्यक्ष: मुना प्रसाइ<br/><strong style="color:#8B1520;">४२ जना केन्द्रीय सदस्यहरू</strong></div></div>
+      <div class="adh-card" style="border-left-color:#FFD700;"><div class="adh-header"><div class="adh-num" style="background:#1a2332;">८</div><div><div class="adh-year">२०८० भाद्र २३ — हालको</div><div class="adh-title">आठौं महाधिवेशन तथा वार्षिक साधारण सभा (वर्तमान)</div></div></div><div class="adh-detail">स्थान: क्षितिज नाट्य प्रतिष्ठानको आफ्नै भवन, बिर्तामोड, झापा<br/>अध्यक्ष: माधव कल्पित | वरिष्ठ उपाध्यक्ष: हरि प्रसाद भण्डारी<br/>उपाध्यक्ष: सुजना खतिवडा | सचिव: राजकुमार भट्टराई<br/>कोषाध्यक्ष: मुना प्रसाई<br/>सदस्यहरू: मदन रसाईली, माधब प्रसाद सिटौला, देवीमाया प्रसाई, भिमा खतिवडा<br/><strong style="color:#8B1520;">४२ जना साधारण सदस्यहरू</strong></div></div>
     </div>
     <div style="margin-top:32px;background:#f8f9fa;border:1px solid #e8e8e8;border-radius:6px;padding:24px;">
       <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#1a2332;margin-bottom:16px;border-bottom:2px solid #8B1520;padding-bottom:8px;">🏗️ झापा नाटक घर निर्माण व्यवस्थापन समिति (२०७५)</h3>
