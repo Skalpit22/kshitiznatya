@@ -2038,6 +2038,32 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
 .dept-check-lbl input[type="checkbox"]:checked ~ span{color:#8B1520;font-weight:700;}
 .dept-check-lbl:has(input:checked){border-color:#8B1520;background:#fff8f8;}
 
+/* ── Compact multi-select dropdown (replaces the big checkbox grids) ── */
+.msdd{position:relative;margin-bottom:10px;}
+.msdd-box{
+  display:flex;align-items:center;justify-content:space-between;gap:8px;
+  border:1.5px solid #e8e8e8;border-radius:7px;padding:11px 14px;
+  cursor:pointer;background:#fff;font-size:13.5px;color:#1a2332;transition:border-color .15s;
+}
+.msdd-box:hover{border-color:#8B1520;}
+.msdd.open .msdd-box{border-color:#8B1520;box-shadow:0 0 0 2px rgba(139,21,32,.1);}
+.msdd-text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;}
+.msdd-text.placeholder{color:#aaa;}
+.msdd-arrow{color:#8B1520;font-size:11px;transition:transform .15s;flex-shrink:0;}
+.msdd.open .msdd-arrow{transform:rotate(180deg);}
+.msdd-panel{
+  display:none;position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:40;
+  background:#fff;border:1.5px solid #8B1520;border-radius:8px;
+  box-shadow:0 8px 24px rgba(0,0,0,.15);padding:8px;
+  max-height:260px;overflow-y:auto;
+}
+.msdd.open .msdd-panel{display:block;}
+.msdd-panel .dept-check-lbl{border:none;padding:8px 6px;border-radius:6px;}
+.msdd-panel .dept-check-lbl:hover{background:#fff8f8;}
+.msdd-panel-foot{display:flex;gap:8px;padding:6px 6px 2px;border-top:1px solid #f0f0f0;margin-top:4px;}
+.msdd-panel-foot input{flex:1;border:1.5px solid #e8e8e8;border-radius:6px;padding:7px 10px;font-size:13px;font-family:inherit;}
+.msdd-panel-foot button{background:#8B1520;color:#fff;border:none;border-radius:6px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;}
+
 /* ── Membership type radio cards ── */
 .mem-type-lbl{
   display:flex;align-items:center;gap:10px;
@@ -6611,7 +6637,21 @@ function _syncMultiField(cbClass, hiddenId, previewId, emptyText){
   var hid=G(hiddenId); if(hid) hid.value=val;
   var prev=G(previewId);
   if(prev) prev.innerHTML = val ? '<span style="color:#8B1520;">✅</span> '+val : '<span style="color:#aaa;">'+(emptyText||'छानिएको छैन')+'</span>';
+  var ddText=G(hiddenId+'-dd-text');
+  if(ddText){
+    if(val){ ddText.textContent=val; ddText.classList.remove('placeholder'); }
+    else { ddText.textContent=emptyText||'-- छान्नुस् --'; ddText.classList.add('placeholder'); }
+  }
 }
+// Toggle a multi-select dropdown open/closed, closing any other open ones
+function _toggleMultiDD(ddId, evt){
+  if(evt) evt.stopPropagation();
+  document.querySelectorAll('.msdd.open').forEach(function(el){ if(el.id!==ddId) el.classList.remove('open'); });
+  var dd=G(ddId); if(dd) dd.classList.toggle('open');
+}
+document.addEventListener('click', function(e){
+  if(!e.target.closest('.msdd')){ document.querySelectorAll('.msdd.open').forEach(function(el){ el.classList.remove('open'); }); }
+});
 function _addCustomToGrid(inputId, gridId, cbClass, syncArgs){
   var inp=G(inputId); if(!inp||!inp.value.trim()) return;
   var val=inp.value.trim();
@@ -6848,7 +6888,8 @@ async function submitMembership(){
   var phone=G('mem-phone').value.trim();
   var dept=G('mem-dept').value;
   var role=G('mem-role').value;
-  var typeEl=document.querySelector('input[name="mem-type"]:checked');
+  var typeEl=G('mem-type-select');
+  if(typeEl && !typeEl.value) typeEl=null;
   if(!name||!email||!phone||!dept||!role||!typeEl){
     G('mem-err').textContent='कृपया सबै अनिवार्य क्षेत्र (*) भर्नुस्।';
     G('mem-err').style.display='block';
@@ -7048,6 +7089,60 @@ async function deleteMembership(id,row){
 // submissions that were lost to the base64-photo/Firestore-size bug (their
 // details are still in the admin email notifications).
 var _meEditId=null, _meEditRow=null;
+// ── Recover the 6 members lost to the base64/Firestore-size bug ──────────────
+// Data extracted directly from the admin notification email screenshots Sa provided.
+// None of these emails included the member's photo (only a payment voucher image),
+// so photoUrl is empty for all — add photos individually via ✏️ Edit once available.
+var _recoveredMembersData = [
+  { name:'सावित्रा देवी राजवंशी', email:'sabitrarajbanshi12@gmail.com', phone:'9824074894',
+    gender:'महिला', dob:'1995-06-30', mother:'सितला राजवंशी', father:'मरचनिया राजवंशी',
+    marital:'छ', bloodGroup:'B+', citizenshipNo:'04-01-71-08929', citizenshipDist:'झापा',
+    permanentAddr:'बाह्रदशी गा.पा. १ झापा', temporaryAddr:'बाह्रदशी १ बोक्राझाडी झापा',
+    dept:'केन्द्रीय समिति', role:'सदस्य', membershipType:'केन्द्रीय सदस्य', education:'बि. एड', feedback:'' },
+  { name:'Madan Rasaily', email:'kurakalpit@gmail.com', phone:'9842730926',
+    gender:'पुरुष', dob:'1979-06-15', mother:'Purna Maya Rasaily', father:'Lal Bdr Rasaily',
+    marital:'छ', bloodGroup:'B+', citizenshipNo:'2056/10/26/01282814', citizenshipDist:'Jhapa',
+    permanentAddr:'Birtamode 6', temporaryAddr:'Birtamode5',
+    dept:'केन्द्रीय कार्यसमिति', role:'सदस्य', membershipType:'केन्द्रीय सदस्य', education:'S.L.C', feedback:'Na' },
+  { name:'Samin Khatiwada', email:'saminkhatiwada4@gmail.com', phone:'14376605039',
+    gender:'पुरुष', dob:'1998-08-26', mother:'Sujana Khatiwada', father:'Madhav Pd Khatiwada',
+    marital:'छ', bloodGroup:'O+', citizenshipNo:'12485932', citizenshipDist:'Jhapa',
+    permanentAddr:'Birtamode-2, Jhapa, Nepal', temporaryAddr:'98 Laurel Ave, ON, Canada',
+    dept:'केन्द्रीय समिति', role:'सदस्य', membershipType:'आजीवन सदस्य', education:'Master', feedback:'' },
+  { name:'माधब कल्पित', email:'kurakalpit@gmail.com', phone:'9844637952',
+    gender:'पुरुष', dob:'1975-05-18', mother:'Ratna Kumari Khatiwada', father:'Abhi Chandra Khatiwada',
+    marital:'छ', bloodGroup:'A+', citizenshipNo:'437078968', citizenshipDist:'Ilam',
+    permanentAddr:'वितामोड-२, झापा', temporaryAddr:'वितामोड-२, झापा',
+    dept:'संस्थापक / केन्द्रीय कार्यसमिति', role:'अध्यक्ष', membershipType:'आजीवन सदस्य', education:'+2', feedback:'' },
+  { name:'Hari Prasad Bhandari', email:'kurakalpit@gmail.com', phone:'9852673120.#9824906021',
+    gender:'पुरुष', dob:'1952-01-12', mother:'Renuka Bhandari', father:'Jagyanidhi Bhandari',
+    marital:'छ', bloodGroup:'O+', citizenshipNo:'04-01-67-04972', citizenshipDist:'Jhapa',
+    permanentAddr:'Birtamode 1', temporaryAddr:'Birtamode 1',
+    dept:'केन्द्रीय समिति', role:'बरिष्ठ उपाध्यक्ष', membershipType:'केन्द्रीय सदस्य', education:'S.L.C.',
+    feedback:'विश्वभरि छरिएर रहनुहुने सम्पूर्ण महानुभावहरूलाई कला साहित्यप्रति समर्पित हुन आह्वान गर्दछु!' },
+  { name:'Muna Prasai', email:'kurakalpit@gmail.com', phone:'9813552535',
+    gender:'महिला', dob:'1984-04-18', mother:'Jorakala Prasai', father:'Dinanath Prasai',
+    marital:'छ', bloodGroup:'O+', citizenshipNo:'35411308', citizenshipDist:'Jhapa',
+    permanentAddr:'Goldhap 1', temporaryAddr:'Birtamode 1',
+    dept:'केन्द्रीय कार्यसमिति', role:'कोषाध्यक्ष', membershipType:'केन्द्रीय सदस्य', education:'Slc', feedback:'Na' }
+];
+async function _importRecoveredMembers(){
+  if(!confirm('हराएका ६ जना सदस्यको विवरण थप्ने? (फोटो पछि छुट्टै थप्नुपर्नेछ)')) return;
+  var existing = window._allMembershipsCache||[];
+  var added=0, skipped=0;
+  for(var i=0;i<_recoveredMembersData.length;i++){
+    var rec=_recoveredMembersData[i];
+    var dup = existing.some(function(m){ return m.name===rec.name && m.phone===rec.phone; });
+    if(dup){ skipped++; continue; }
+    var data=Object.assign({}, rec, {photoUrl:'', status:'pending', createdAt:new Date().toISOString()});
+    try{ await window._add(window._col(window._db,'memberships'), data); added++; }
+    catch(e){ console.warn('Recover import failed for', rec.name, e); }
+  }
+  window._recoveredMembersImported = true;
+  toast('✅ '+added+' जना थपियो'+(skipped?(', '+skipped+' जना पहिल्यै थियो'):'')+'!','success',5000);
+  _loadMembershipAdmin();
+}
+
 function _editMembershipEntry(m,row){
   _meEditId=m.id; _meEditRow=row;
   G('me-name').value=m.name||''; G('me-email').value=m.email||''; G('me-phone').value=m.phone||'';
@@ -7055,6 +7150,10 @@ function _editMembershipEntry(m,row){
   G('me-membershipType').value=m.membershipType||'साधारण सदस्य';
   G('me-permanentAddr').value=m.permanentAddr||''; G('me-temporaryAddr').value=m.temporaryAddr||'';
   G('me-bloodGroup').value=m.bloodGroup||'';
+  if(G('me-photo-file')) G('me-photo-file').value='';
+  var mePrev=G('me-photo-prev');
+  if(m.photoUrl){ mePrev.src=m.photoUrl; mePrev.style.display='block'; G('me-photo-name').textContent='हालको फोटो (बदल्न नयाँ छान्नुस्)'; }
+  else { mePrev.src=''; mePrev.style.display='none'; G('me-photo-name').textContent='कुनै फोटो छैन'; }
   G('medit-overlay').querySelector('.reorder-title').textContent='✏️ सदस्यता विवरण सम्पादन';
   G('me-save-btn').textContent='Save Changes';
   G('medit-overlay').classList.add('show');
@@ -7063,6 +7162,9 @@ function _addMembershipManually(){
   _meEditId='__NEW__'; _meEditRow=null;
   ['me-name','me-email','me-phone','me-role','me-dept','me-permanentAddr','me-temporaryAddr','me-bloodGroup'].forEach(function(id){ G(id).value=''; });
   G('me-membershipType').value='साधारण सदस्य';
+  if(G('me-photo-file')) G('me-photo-file').value='';
+  var mePrev=G('me-photo-prev'); mePrev.src=''; mePrev.style.display='none';
+  G('me-photo-name').textContent='कुनै फोटो छानिएको छैन';
   G('medit-overlay').querySelector('.reorder-title').textContent='➕ सदस्य म्यानुअल थप्नुस्';
   G('me-save-btn').textContent='Add Member';
   G('medit-overlay').classList.add('show');
@@ -7078,9 +7180,17 @@ async function saveMembershipEdit(){
     permanentAddr:G('me-permanentAddr').value.trim(), temporaryAddr:G('me-temporaryAddr').value.trim(),
     bloodGroup:G('me-bloodGroup').value.trim()
   };
+  var photoFile = G('me-photo-file') && G('me-photo-file').files[0];
+  if(photoFile){
+    btn.textContent='फोटो अपलोड हुँदैछ...';
+    try{ data.photoUrl = await cloudUpload(photoFile); }
+    catch(e){ toast('❌ फोटो अपलोड गर्न सकिएन: '+e.message,'error'); btn.disabled=false; btn.textContent='Save Changes'; return; }
+    btn.textContent='Saving...';
+  }
   try{
     if(_meEditId==='__NEW__'){
-      data.status='pending'; data.createdAt=new Date().toISOString(); data.photoUrl='';
+      data.status='pending'; data.createdAt=new Date().toISOString();
+      if(!data.photoUrl) data.photoUrl='';
       await window._add(window._col(window._db,'memberships'),data);
       toast('✅ सदस्य म्यानुअल थपियो!','success');
     } else {
@@ -7097,6 +7207,7 @@ async function saveMembershipEdit(){
   btn.disabled=false; btn.textContent='Save Changes';
 }
 
+
 // ── MEMBERSHIP ADMIN TAB RELOAD ───────────────────────────────────────────────
 async function _loadMembershipAdmin(){
   var el=G('mem-admin-list'); if(!el) return;
@@ -7110,6 +7221,7 @@ async function _loadMembershipAdmin(){
       +'<div style="font-size:13px;font-weight:700;color:#8B1520;">जम्मा '+mems.length+' दर्ता</div>'
       +'<button onclick="_adminBulkEmailAllCards()" style="background:#1565C0;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">📧 सबैलाई कार्ड Email गर्नुस्</button>'
       +'<button onclick="_addMembershipManually()" style="background:#2e7d32;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">➕ म्यानुअल थप्नुस्</button>'
+      +(window._recoveredMembersImported?'':'<button onclick="_importRecoveredMembers()" style="background:#E65100;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;">&#128260; हराएका ६ जना Recover गर्नुस्</button>')
       +'</div>';
     window._allMembershipsCache = mems;
     mems.forEach(function(m,i){
@@ -8935,19 +9047,8 @@ function _saveMembershipForRenewal(data){
 // Wrapper functions using global _lastMemData state
 var _selectedMemTemplate = 1;
 function _selectMemType(val){
-  var radio = document.querySelector('input[name="mem-type"][value="'+val+'"]');
-  if(radio) radio.checked = true;
-  // All type label IDs — must match HTML
-  ['lbl-type-sansthapak','lbl-type-kendriyo','lbl-type-vibhag','lbl-type-exec',
-   'lbl-type-manarth','lbl-type-life','lbl-type-gen'].forEach(function(id){
-    var el = G(id);
-    if(!el) return;
-    var inp = el.querySelector('input[type="radio"]');
-    var isSelected = inp && inp.value === val;
-    el.style.borderColor = isSelected ? '#8B1520' : '#e8e8e8';
-    el.style.background  = isSelected ? '#fff8f8' : '#fff';
-    el.style.boxShadow   = isSelected ? '0 0 0 2px rgba(139,21,32,.12)' : 'none';
-  });
+  var sel = G('mem-type-select');
+  if(sel) sel.value = val;
 }
 
 // ── Multi-select helpers for आबद्ध विभाग ────────────────────────────────────
@@ -8959,6 +9060,11 @@ function _syncDeptField(){
   if(prev) prev.innerHTML = val
     ? '<span style="color:#8B1520;">✅</span> ' + val
     : '<span style="color:#aaa;">कुनै विभाग छानिएको छैन</span>';
+  var ddText=G('mem-dept-dd-text');
+  if(ddText){
+    if(val){ ddText.textContent=val; ddText.classList.remove('placeholder'); }
+    else { ddText.textContent='-- विभाग छान्नुस् --'; ddText.classList.add('placeholder'); }
+  }
 }
 
 // ── Multi-select helpers for पद ──────────────────────────────────────────────
@@ -8970,6 +9076,11 @@ function _syncRoleField(){
   if(prev) prev.innerHTML = val
     ? '<span style="color:#8B1520;">✅</span> ' + val
     : '<span style="color:#aaa;">कुनै पद छानिएको छैन</span>';
+  var ddText=G('mem-role-dd-text');
+  if(ddText){
+    if(val){ ddText.textContent=val; ddText.classList.remove('placeholder'); }
+    else { ddText.textContent='-- पद छान्नुस् --'; ddText.classList.add('placeholder'); }
+  }
 }
 
 function _addCustomRole(){
@@ -9780,6 +9891,15 @@ var _titleMap={
       <input type="text" id="me-temporaryAddr" class="fi"/>
       <label style="font-size:12px;color:#888;">रगत समूह</label>
       <input type="text" id="me-bloodGroup" class="fi"/>
+      <label style="font-size:12px;color:#888;">फोटो (ID कार्डमा देखिने)</label>
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px;">
+        <label style="display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border-radius:7px;padding:8px 14px;font-size:12.5px;font-weight:600;cursor:pointer;">
+          <input type="file" id="me-photo-file" accept="image/*" style="display:none;" onchange="previewVoucher(this,'me-photo-prev','me-photo-name')"/>
+          📷 फोटो छान्नुस्
+        </label>
+        <span id="me-photo-name" style="font-size:11.5px;color:#555555;">कुनै फोटो छानिएको छैन</span>
+      </div>
+      <img id="me-photo-prev" src="" alt="" style="display:none;width:90px;height:90px;object-fit:cover;border-radius:50%;border:3px solid #8B1520;margin-bottom:10px;"/>
     </div>
     <div class="reorder-footer">
       <button class="ro-cancel-btn" onclick="closeMembershipEdit()">Cancel</button>
@@ -10182,32 +10302,48 @@ var _titleMap={
 
       <!-- Organisation info -->
       <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#127968; संस्थागत विवरण</div>
-      <!-- आबद्ध विभाग — full multi-select checkboxes -->
+      <!-- आबद्ध विभाग — compact dropdown -->
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">आबद्ध विभाग * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस्)</span></label>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;" id="nm-dept-grid">
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
+        <div class="msdd" id="nm-dept-msdd">
+          <div class="msdd-box" onclick="_toggleMultiDD('nm-dept-msdd',event)">
+            <span class="msdd-text placeholder" id="nm-dept-dd-text">-- विभाग छान्नुस् --</span>
+            <span class="msdd-arrow">▾</span>
+          </div>
+          <div class="msdd-panel" onclick="event.stopPropagation()">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:4px;" id="nm-dept-grid">
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
+            </div>
+          </div>
         </div>
         <!-- Hidden field stores combined value -->
         <input type="hidden" id="nm-dept" value=""/>
-        <div id="nm-dept-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;"></div>
+        <div id="nm-dept-preview" style="display:none;"></div>
       </div>
 
-      <!-- पद — multi-select with all posts + custom entry -->
+      <!-- पद — compact dropdown -->
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">पद * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस् — Multiple posts supported)</span></label>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;" id="nm-role-grid">
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
+        <div class="msdd" id="nm-role-msdd">
+          <div class="msdd-box" onclick="_toggleMultiDD('nm-role-msdd',event)">
+            <span class="msdd-text placeholder" id="nm-role-dd-text">-- पद छान्नुस् --</span>
+            <span class="msdd-arrow">▾</span>
+          </div>
+          <div class="msdd-panel" onclick="event.stopPropagation()">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:4px;" id="nm-role-grid">
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="nm-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
+            </div>
+          </div>
         </div>
         <!-- Hidden field stores combined value -->
         <input type="hidden" id="nm-role" value=""/>
-        <div id="nm-role-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;line-height:1.6;"></div>
+        <div id="nm-role-preview" style="display:none;"></div>
       </div>
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता प्रकार *</label>
@@ -10524,89 +10660,83 @@ var _titleMap={
 
       <!-- Organisation info -->
       <div style="margin:24px 0 16px;font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;border-top:1px solid #e8e8e8;padding-top:18px;">&#127968; संस्थागत विवरण</div>
-      <!-- आबद्ध विभाग — full multi-select checkboxes -->
+      <!-- आबद्ध विभाग — compact dropdown, click to expand and multi-select -->
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">आबद्ध विभाग * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस्)</span></label>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:8px;" id="mem-dept-grid">
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संस्थापक"/> <span>संस्थापक</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय कार्यसमिति"/> <span>केन्द्रीय कार्यसमिति</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय समिति"/> <span>केन्द्रीय समिति</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगठन विभाग"/> <span>संगठन विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="विभागीय समिति"/> <span>विभागीय समिति</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="अन्य"/> <span>अन्य</span></label>
+        <div class="msdd" id="mem-dept-msdd">
+          <div class="msdd-box" onclick="_toggleMultiDD('mem-dept-msdd',event)">
+            <span class="msdd-text placeholder" id="mem-dept-dd-text">-- विभाग छान्नुस् --</span>
+            <span class="msdd-arrow">▾</span>
+          </div>
+          <div class="msdd-panel" onclick="event.stopPropagation()">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:4px;" id="mem-dept-grid">
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संस्थापक"/> <span>संस्थापक</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय कार्यसमिति"/> <span>केन्द्रीय कार्यसमिति</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="केन्द्रीय समिति"/> <span>केन्द्रीय समिति</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नाट्य विभाग"/> <span>नाट्य विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="नृत्य विभाग"/> <span>नृत्य विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगीत प्रतिष्ठान"/> <span>संगीत प्रतिष्ठान</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="साहित्य प्रतिष्ठान"/> <span>साहित्य प्रतिष्ठान</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संगठन विभाग"/> <span>संगठन विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="संचार विभाग"/> <span>संचार विभाग</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="विभागीय समिति"/> <span>विभागीय समिति</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="सल्लाहकार समिति"/> <span>सल्लाहकार समिति</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-dept-cb" value="अन्य"/> <span>अन्य</span></label>
+            </div>
+          </div>
         </div>
         <!-- Hidden field stores combined value -->
         <input type="hidden" id="mem-dept" value=""/>
-        <div id="mem-dept-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;"></div>
+        <div id="mem-dept-preview" style="display:none;"></div>
       </div>
 
-      <!-- पद — multi-select with all posts + custom entry -->
+      <!-- पद — compact dropdown with custom entry -->
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">पद * <span style="color:#8B1520;font-size:10px;">(एक वा बढी छान्नुस् — Multiple posts supported)</span></label>
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px;" id="mem-role-grid">
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="अध्यक्ष"/> <span>अध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="बरिष्ठ उपाध्यक्ष"/> <span>बरिष्ठ उपाध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपाध्यक्ष"/> <span>उपाध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="महासचिव"/> <span>महासचिव</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सचिव"/> <span>सचिव</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="का. सचिव"/> <span>का. सचिव</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="कोषाध्यक्ष"/> <span>कोषाध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपकोषाध्यक्ष"/> <span>उपकोषाध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="केन्द्रीय सदस्य"/> <span>केन्द्रीय सदस्य</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="संस्थापक केन्द्रीय सदस्य"/> <span>संस्थापक केन्द्रीय सदस्य</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग अध्यक्ष"/> <span>विभाग अध्यक्ष</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग सचिव"/> <span>विभाग सचिव</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
-          <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
-        </div>
-        <!-- Custom पद input -->
-        <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
-          <input class="fi" id="mem-role-custom" placeholder="थप पद टाइप गर्नुस् (e.g. संचार विभाग अध्यक्ष)..." style="flex:1;min-width:200px;margin-bottom:0;font-size:14px;"/>
-          <button type="button" onclick="_addCustomRole()" style="background:#8B1520;color:#fff;border:none;border-radius:7px;padding:10px 16px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;">+ थप्नुस्</button>
+        <div class="msdd" id="mem-role-msdd">
+          <div class="msdd-box" onclick="_toggleMultiDD('mem-role-msdd',event)">
+            <span class="msdd-text placeholder" id="mem-role-dd-text">-- पद छान्नुस् --</span>
+            <span class="msdd-arrow">▾</span>
+          </div>
+          <div class="msdd-panel" onclick="event.stopPropagation()">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:4px;" id="mem-role-grid">
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="अध्यक्ष"/> <span>अध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="बरिष्ठ उपाध्यक्ष"/> <span>बरिष्ठ उपाध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपाध्यक्ष"/> <span>उपाध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="महासचिव"/> <span>महासचिव</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सचिव"/> <span>सचिव</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="का. सचिव"/> <span>का. सचिव</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="कोषाध्यक्ष"/> <span>कोषाध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="उपकोषाध्यक्ष"/> <span>उपकोषाध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="केन्द्रीय सदस्य"/> <span>केन्द्रीय सदस्य</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="संस्थापक केन्द्रीय सदस्य"/> <span>संस्थापक केन्द्रीय सदस्य</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग अध्यक्ष"/> <span>विभाग अध्यक्ष</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="विभाग सचिव"/> <span>विभाग सचिव</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सदस्य"/> <span>सदस्य</span></label>
+              <label class="dept-check-lbl"><input type="checkbox" class="mem-role-cb" value="सल्लाहकार"/> <span>सल्लाहकार</span></label>
+            </div>
+            <div class="msdd-panel-foot">
+              <input id="mem-role-custom" placeholder="थप पद टाइप गर्नुस्..."/>
+              <button type="button" onclick="_addCustomRole()">+ थप्नुस्</button>
+            </div>
+          </div>
         </div>
         <!-- Hidden field stores combined value -->
         <input type="hidden" id="mem-role" value=""/>
-        <div id="mem-role-preview" style="margin-top:8px;font-size:12px;color:#8B1520;font-weight:600;min-height:18px;line-height:1.6;"></div>
+        <div id="mem-role-preview" style="display:none;"></div>
       </div>
       <div style="margin-bottom:14px;">
         <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता प्रकार * <span style="color:#8B1520;font-size:10px;">(सबै प्रकारको वार्षिक नवीकरण अनिवार्य छ)</span></label>
-        <div class="mem-type-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:9px;">
-          <!-- ORDER: संस्थापक / केन्द्रीय / विभागीय / कार्यसमिति / मानार्थ / आजीवन / साधारण -->
-          <label class="mem-type-lbl" id="lbl-type-sansthapak" onclick="_selectMemType('संस्थापक')">
-            <input type="radio" name="mem-type" value="संस्थापक" id="mem-type-sansthapak" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">संस्थापक</div><div class="mem-type-sub">Founding Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-kendriyo" onclick="_selectMemType('केन्द्रीय सदस्य')">
-            <input type="radio" name="mem-type" value="केन्द्रीय सदस्य" id="mem-type-kendriyo" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">केन्द्रीय सदस्य</div><div class="mem-type-sub">Central Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-vibhag" onclick="_selectMemType('विभागीय सदस्य')">
-            <input type="radio" name="mem-type" value="विभागीय सदस्य" id="mem-type-vibhag" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">विभागीय सदस्य</div><div class="mem-type-sub">Departmental Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-exec" onclick="_selectMemType('कार्यसमिति सदस्य')">
-            <input type="radio" name="mem-type" value="कार्यसमिति सदस्य" id="mem-type-exec" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">कार्यसमिति सदस्य</div><div class="mem-type-sub">Executive Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-manarth" onclick="_selectMemType('मानार्थ सदस्य')">
-            <input type="radio" name="mem-type" value="मानार्थ सदस्य" id="mem-type-manarth" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">मानार्थ सदस्य</div><div class="mem-type-sub">Honorary Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-life" onclick="_selectMemType('आजीवन सदस्य')">
-            <input type="radio" name="mem-type" value="आजीवन सदस्य" id="mem-type-life" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">आजीवन सदस्य</div><div class="mem-type-sub">Lifetime Member</div></div>
-          </label>
-          <label class="mem-type-lbl" id="lbl-type-gen" onclick="_selectMemType('साधारण सदस्य')">
-            <input type="radio" name="mem-type" value="साधारण सदस्य" id="mem-type-gen" style="accent-color:#8B1520;flex-shrink:0;"/>
-            <div><div class="mem-type-name">साधारण सदस्य</div><div class="mem-type-sub">General Member</div></div>
-          </label>
-        </div>
+        <select class="fi" id="mem-type-select">
+          <option value="">-- सदस्यता प्रकार छान्नुस् --</option>
+          <option value="संस्थापक">संस्थापक (Founding Member)</option>
+          <option value="केन्द्रीय सदस्य">केन्द्रीय सदस्य (Central Member)</option>
+          <option value="विभागीय सदस्य">विभागीय सदस्य (Departmental Member)</option>
+          <option value="कार्यसमिति सदस्य">कार्यसमिति सदस्य (Executive Member)</option>
+          <option value="मानार्थ सदस्य">मानार्थ सदस्य (Honorary Member)</option>
+          <option value="आजीवन सदस्य">आजीवन सदस्य (Lifetime Member)</option>
+          <option value="साधारण सदस्य">साधारण सदस्य (General Member)</option>
+        </select>
       </div>
 
       <!-- Additional info -->
