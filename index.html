@@ -2191,6 +2191,7 @@ window.fbAsyncInit=function(){
           <button class="drop-item" onclick="go('about')">🏛 संस्थाबारे</button>
           <button class="drop-item" onclick="go('founder')">👤 संस्थापक माधव 'कल्पित'</button>
           <button class="drop-item" onclick="go('journey')">📜 इतिहास र यात्रा</button>
+          <button class="drop-item" onclick="showPage('yatra-katha')">📖 पूर्ण यात्रा कथा</button>
           <button class="drop-item" onclick="showPage('adhiveshan')">🗓 अधिवेशनहरू</button>
           <div class="drop-divider"></div>
           <button class="drop-item" onclick="showPage('legal')">📋 कानुनी विवरण</button>
@@ -2261,6 +2262,7 @@ window.fbAsyncInit=function(){
     <a onclick="go('about');closeMob()">🏛 संस्थाबारे</a>
     <a onclick="go('founder');closeMob()">👤 संस्थापक माधव 'कल्पित'</a>
     <a onclick="go('journey');closeMob()">📜 इतिहास र यात्रा</a>
+    <a onclick="showPage('yatra-katha');closeMob()">📖 पूर्ण यात्रा कथा</a>
     <a onclick="showPage('adhiveshan');closeMob()">🗓 महाधिवेशनहरू</a>
     <a onclick="showPage('legal');closeMob()">📋 कानुनी विवरण</a>
     <a onclick="showPage('suborgs');closeMob()">🌿 उप-संस्थाहरू</a>
@@ -2355,7 +2357,7 @@ window.fbAsyncInit=function(){
 </div>
 <!-- About section optional image (set from admin Images tab) -->
 <div id="about-img-wrap" style="margin-top:28px;display:none;">
-  <img id="about-img" src="" alt="About" style="width:100%;max-height:320px;object-fit:cover;border-radius:12px;border:1.5px solid #e8e8e8;"/>
+  <img id="about-img" src="" alt="About" loading="lazy" style="width:100%;max-height:320px;object-fit:cover;border-radius:12px;border:1.5px solid #e8e8e8;"/>
 </div>
 </div>
 </section>
@@ -2365,17 +2367,23 @@ window.fbAsyncInit=function(){
   <div class="label" data-ne="इतिहास र विकास" data-en="History & Growth">इतिहास र विकास</div><h2 data-ne="हाम्रो यात्रा" data-en="Our Journey">हाम्रो यात्रा</h2><div class="bar"></div>
   <p style="margin-top:16px;margin-bottom:36px;max-width:620px;">पाँचथरका पहाडमा उत्साही कलाकारहरूको सानो समूहदेखि झापामा आफ्नै नाटक घर भएको संस्था बन्नसम्मको कथा।</p>
   <div class="timeline">
-    <div class="tm"><div class="tm-y">२०५८</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">फिदिममा स्थापना</div><div class="tm-x">फिदिम-१, पाँचथरमा सडक नाटक र मञ्च प्रदर्शन शुरू भए।</div></div></div>
-    <div class="tm"><div class="tm-y">२०६० दशक</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">विस्तार र वृद्धि</div><div class="tm-x">रेडियो नाटक, सांस्कृतिक कार्यक्रम विस्तार। कोशी प्रदेशभर मान्यता।</div></div></div>
+    <div class="tm"><div class="tm-y">२०५८</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">फिदिममा स्थापना</div><div class="tm-x">फिदिम-१, पाँचथरमा सडक नाटक र मञ्च प्रदर्शन शुरू भए। विराटनगरमा रमपम नाट्य महोत्सवमा सहभागिता।</div></div></div>
+    <div class="tm"><div class="tm-y">२०५९</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">पूर्वाञ्चलमा पहिचान</div><div class="tm-x">धरानमा सम्पन्न पूर्वाञ्चल राष्ट्रिय नाट्य महोत्सवमा सहभागिताले क्षितिजलाई पूर्वी नेपालको आशालाग्दो नाट्य संस्थाका रूपमा चिनायो।</div></div></div>
+    <div class="tm"><div class="tm-y">२०६४</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">आरोहण गुरुकुल र राष्ट्रिय आवाज</div><div class="tm-x">आरोहण गुरुकुलको मञ्चमा राष्ट्रस्तरीय नाटक प्रदर्शन। साथै मेची अञ्चलभर संविधानसभा निर्वाचन सचेतनामूलक १२०+ सडक नाटक मञ्चन।</div></div></div>
+    <div class="tm"><div class="tm-y">२०६० दशक</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">विस्तार र वृद्धि</div><div class="tm-x">पूर्वाञ्चलभरि १८ शाखा/उपशाखा विस्तार। बाल, युवा र ज्येष्ठ गरी ५५२+ कलाकार आबद्ध।</div></div></div>
     <div class="tm"><div class="tm-y">२०६५+</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">झापामा जरा जमाउँदै</div><div class="tm-x">बिर्तामोड-१, झापामा केन्द्रीय कार्यालय स्थापना।</div></div></div>
-    <div class="tm"><div class="tm-y">२०७५+</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">एक इट्टा अभियान</div><div class="tm-x">हजारौं समर्थकहरूको सहयोगमा झापा नाटक घर निर्माण। अभियान जारी।</div></div></div>
-    <div class="tm"><div class="tm-y">२०८२</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">झापा नाटक घर — अन्तिम चरण</div><div class="tm-x">पूर्वी नेपालको पहिलो नाट्य संस्था स्वामित्वको नाटक घर।</div></div></div>
-    <div class="tm"><div class="tm-y">२०८२</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">अन्तर्राष्ट्रिय सम्मान</div><div class="tm-x">दानाङ, भियतनाममा माधव 'कल्पित'लाई अन्तर्राष्ट्रिय सम्मान।</div></div></div>
-    <div class="tm"><div class="tm-y g">भविष्य</div><div class="tm-d g"></div><div class="tm-b"><div class="tm-t g">बहुसांस्कृतिक संग्रहालय</div><div class="tm-x">बहुजाति, बहुभाषी, बहुसांस्कृतिक संग्रहालय निर्माणको सपना।</div></div></div>
+    <div class="tm"><div class="tm-y">२०६० उत्तरार्ध</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">टेलिभिजनमा उपस्थिति</div><div class="tm-x">"कुरा अर्को छ" र "बिहानी" टेलिचलचित्र निर्माण — हिमशिखर, सूर्योदय हुँदै नेपाल टेलिभिजनसम्म प्रसारण।</div></div></div>
+    <div class="tm"><div class="tm-y">२०७४</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">एक इट्टा अभियान सुरु</div><div class="tm-x">बहुजातीय सांस्कृतिक संग्रहालयसहितको झापा नाटक घर निर्माण अभियान गाउँ-गाउँ, घर-घर पुगेर सुरु।</div></div></div>
+    <div class="tm"><div class="tm-y">२०८१/०८२</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">झापा नाटक घर सम्पन्न</div><div class="tm-x">करिब ३ करोड ५० लाखको लागतमा बनेको नाटक घर — पूर्वी नेपालको पहिलो नाट्य संस्था स्वामित्वको नाटक घर, हजारौं नागरिकको योगदानबाट।</div></div></div>
+    <div class="tm"><div class="tm-y">२०२६ मार्च ८</div><div class="tm-d"></div><div class="tm-b"><div class="tm-t">अन्तर्राष्ट्रिय सम्मान</div><div class="tm-x">भियतनाम सरकारद्वारा दानाङ सहरमा माधव 'कल्पित'लाई नेपाली कला-संस्कृति संरक्षण र पुस्तान्तरणमा योगदानका लागि अन्तर्राष्ट्रिय सम्मान।</div></div></div>
+    <div class="tm"><div class="tm-y g">भविष्य</div><div class="tm-d g"></div><div class="tm-b"><div class="tm-t g">बहुजातीय सांस्कृतिक संग्रहालय</div><div class="tm-x">१ धुर भूमिदान अभियानमार्फत हालसम्म १४५ धुर जग्गा संकलन। नेपालका सबै जातजाति, भाषा र संस्कृति संरक्षणको लक्ष्य।</div></div></div>
+  </div>
+  <div style="margin-top:24px;text-align:center;">
+    <button onclick="showPage('yatra-katha')" style="background:#8B1520;color:#fff;border:none;border-radius:24px;padding:10px 24px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;">📖 पूरा कथा पढ्नुहोस् →</button>
   </div>
 <!-- Journey section optional image -->
 <div id="journey-img-wrap" style="margin-top:28px;display:none;">
-  <img id="journey-img" src="" alt="Journey" style="width:100%;max-height:300px;object-fit:cover;border-radius:12px;border:1.5px solid #e8e8e8;"/>
+  <img id="journey-img" src="" alt="Journey" loading="lazy" style="width:100%;max-height:300px;object-fit:cover;border-radius:12px;border:1.5px solid #e8e8e8;"/>
 </div>
 </div>
 </section>
@@ -2439,7 +2447,7 @@ window.fbAsyncInit=function(){
 
   <!-- Hero photo full width -->
   <div class="n-ph" style="margin-top:24px;min-height:200px;">
-    <img id="natak-cover-img" src="" class="natak-cover" style="display:none;"/>
+    <img id="natak-cover-img" src="" alt="झापा नाटक घर" loading="lazy" class="natak-cover" style="display:none;"/>
     <div class="n-ph-content">
       <div style="font-size:52px;margin-bottom:8px;">🏛</div>
       <div style="font-size:15px;color:#555;font-weight:700;margin-bottom:4px;">Jhapa Natak Ghar</div>
@@ -2482,7 +2490,7 @@ window.fbAsyncInit=function(){
     </div>
     <div class="sup-banner-wrap" id="sup-banner-wrap">
       <div id="sup-banner-placeholder" class="sup-banner-placeholder"><span style="font-size:36px;">📷</span><span>सहयोगीहरूको फोटो राख्नुस्</span></div>
-      <img id="sup-banner-img" src="" alt="Supporters" class="sup-banner-img" style="display:none;"/>
+      <img id="sup-banner-img" src="" alt="Supporters" loading="lazy" class="sup-banner-img" style="display:none;"/>
       <div id="sup-banner-caption" class="sup-banner-caption" style="display:none;"></div>
       <button class="sup-banner-edit-btn" onclick="openSupBannerModal()">✎ फोटो सम्पादन गर्नुस्</button>
     </div>
@@ -2556,7 +2564,7 @@ window.fbAsyncInit=function(){
     </div>
     <!-- Appeal optional image -->
     <div id="appeal-img-wrap" style="margin:16px 0;display:none;">
-      <img id="appeal-img" src="" alt="Appeal" style="width:100%;max-height:260px;object-fit:cover;border-radius:10px;border:1.5px solid #8B1520;"/>
+      <img id="appeal-img" src="" alt="Appeal" loading="lazy" style="width:100%;max-height:260px;object-fit:cover;border-radius:10px;border:1.5px solid #8B1520;"/>
     </div>
     <!-- Construction Progress Tracker -->
     <div style="background:linear-gradient(135deg,#1a2332,#2c3e55);border-radius:14px;padding:20px 22px;margin:20px 0;color:#fff;" id="natak-section-progress">
@@ -2624,7 +2632,7 @@ window.fbAsyncInit=function(){
 <!-- LIGHTBOX -->
 <div id="lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.92);z-index:800;align-items:center;justify-content:center;flex-direction:column;">
   <button onclick="closeLB()" style="position:absolute;top:18px;right:22px;background:none;border:none;color:#fff;font-size:32px;cursor:pointer;z-index:801;">✕</button>
-  <img id="lb-img" src="" style="max-width:92vw;max-height:78vh;border-radius:10px;object-fit:contain;"/>
+  <img id="lb-img" src="" alt="ग्यालरी फोटो" style="max-width:92vw;max-height:78vh;border-radius:10px;object-fit:contain;"/>
   <div id="lb-caption" style="color:#ffffff;font-size:15px;margin-top:14px;text-align:center;max-width:600px;padding:0 20px;"></div>
   <div id="lb-meta" style="color:#888888;font-size:12px;margin-top:5px;"></div>
 </div>
@@ -3332,7 +3340,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <input class="fi" id="bk-qr-paste" placeholder="https://..." style="margin-bottom:0;" oninput="pasteImgUrl(this,'bk-qr','bk-qrp')"/>
         </div>
       </div>
-      <img class="img-pv" id="bk-qrp" style="margin-top:8px;"/>
+      <img class="img-pv" id="bk-qrp" alt="" style="margin-top:8px;"/>
       <input type="hidden" id="bk-qr"/>
     </div>
     <div class="modal-acts">
@@ -3605,7 +3613,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
               <input class="fi" id="n-img-paste" placeholder="https://..." style="margin-bottom:5px;" oninput="pasteImgUrl(this,'n-img','n-ipv')"/>
             </div>
           </div>
-          <img class="img-pv" id="n-ipv" style="margin-top:8px;"/>
+          <img class="img-pv" id="n-ipv" alt="" style="margin-top:8px;"/>
           <input type="hidden" id="n-img"/>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
@@ -3702,7 +3710,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
               <input class="fi" id="m-img-paste" placeholder="https://..." style="margin-bottom:5px;" oninput="pasteImgUrl(this,'m-img','m-ipv')"/>
             </div>
           </div>
-          <img class="img-pv" id="m-ipv" style="margin-top:8px;"/>
+          <img class="img-pv" id="m-ipv" alt="" style="margin-top:8px;"/>
           <input type="hidden" id="m-img"/>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
@@ -3745,7 +3753,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
               <input class="fi" id="s-img-paste" placeholder="https://..." style="margin-bottom:5px;" oninput="pasteImgUrl(this,'s-img','s-ipv')"/>
             </div>
           </div>
-          <img class="img-pv" id="s-ipv" style="margin-top:8px;"/>
+          <img class="img-pv" id="s-ipv" alt="" style="margin-top:8px;"/>
           <input type="hidden" id="s-img"/>
         </div>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
@@ -3753,6 +3761,10 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <button class="save-btn" style="background:#888888;display:none;" id="s-cancel" onclick="cancelEdit('sup')">✕ Cancel</button>
         </div>
         <div class="ok-msg" id="s-ok"></div><div class="err-msg" id="s-err"></div>
+      </div>
+      <div class="ap-card">
+        <div class="ap-card-title">🤝 हालका शुभचिन्तकहरू</div>
+        <div id="mg-sup-tab"></div>
       </div>
     </div>
 
@@ -3767,7 +3779,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">🖼 Cover / Banner Photo</div><div class="ssub">Large top banner photo</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-cover" src="" class="sth" style="display:none;"/>
+            <img id="th-cover" src="" alt="" class="sth" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'cover')"/>📁 Upload</label>
             <input class="fi" id="si-cover-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'cover')"/>
@@ -3780,7 +3792,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">👤 Founder Photo (Madhav Kalpit)</div><div class="ssub">Circular photo — founder section</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-founder" src="" class="sth circle" style="display:none;"/>
+            <img id="th-founder" src="" alt="" class="sth circle" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'founder')"/>📁 Upload</label>
             <input class="fi" id="si-founder-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'founder')"/>
@@ -3793,7 +3805,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">🏛 Theatre / Natak Ghar Photo</div><div class="ssub">Background of Natak Ghar card</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-natak" src="" class="sth" style="display:none;"/>
+            <img id="th-natak" src="" alt="" class="sth" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'natak')"/>📁 Upload</label>
             <input class="fi" id="si-natak-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'natak')"/>
@@ -3806,7 +3818,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">🔵 Logo (nav circle)</div><div class="ssub">Small circular logo in navbar</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-logo" src="" class="sth circle" style="display:none;"/>
+            <img id="th-logo" src="" alt="" class="sth circle" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'logo')"/>📁 Upload</label>
             <input class="fi" id="si-logo-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'logo')"/>
@@ -3819,7 +3831,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">📖 About Section Image</div><div class="ssub">Optional photo in हाम्रोबारे section</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-about" src="" class="sth" style="display:none;"/>
+            <img id="th-about" src="" alt="" class="sth" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'about')"/>📁 Upload</label>
             <input class="fi" id="si-about-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'about')"/>
@@ -3832,7 +3844,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">🗺 Journey Section Image</div><div class="ssub">Optional photo in यात्रा (Timeline) section</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-journey" src="" class="sth" style="display:none;"/>
+            <img id="th-journey" src="" alt="" class="sth" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'journey')"/>📁 Upload</label>
             <input class="fi" id="si-journey-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'journey')"/>
@@ -3845,12 +3857,38 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="srow">
           <div><div class="slbl">🧱 Appeal / अपिल Section Image</div><div class="ssub">Optional photo inside the appeal letter</div></div>
           <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-            <img id="th-appeal" src="" class="sth" style="display:none;"/>
+            <img id="th-appeal" src="" alt="" class="sth" style="display:none;"/>
             <div style="display:flex;flex-direction:column;gap:5px;">
             <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'appeal')"/>📁 Upload</label>
             <input class="fi" id="si-appeal-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'appeal')"/>
           </div>
             <button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:6px 10px;font-size:11px;" onclick="removeSI('appeal')">🗑 Remove</button>
+          </div>
+        </div>
+
+        <!-- Full journey story page — chairman photo -->
+        <div class="srow">
+          <div><div class="slbl">📖 पूर्ण यात्रा कथा — अध्यक्षको फोटो</div><div class="ssub">Chairman portrait photo shown on the full story page</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <img id="th-yatra1" src="" alt="" class="sth" style="display:none;"/>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+            <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'yatra1')"/>📁 Upload</label>
+            <input class="fi" id="si-yatra1-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'yatra1')"/>
+          </div>
+            <button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:6px 10px;font-size:11px;" onclick="removeSI('yatra1')">🗑 Remove</button>
+          </div>
+        </div>
+
+        <!-- Full journey story page — building/award photo -->
+        <div class="srow">
+          <div><div class="slbl">📖 पूर्ण यात्रा कथा — भवन/सम्मान फोटो</div><div class="ssub">Building or award-ceremony photo shown on the full story page</div></div>
+          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+            <img id="th-yatra2" src="" alt="" class="sth" style="display:none;"/>
+            <div style="display:flex;flex-direction:column;gap:5px;">
+            <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'yatra2')"/>📁 Upload</label>
+            <input class="fi" id="si-yatra2-url" placeholder="Or paste image URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'yatra2')"/>
+          </div>
+            <button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:6px 10px;font-size:11px;" onclick="removeSI('yatra2')">🗑 Remove</button>
           </div>
         </div>
 
@@ -3863,7 +3901,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <div class="srow">
             <div><div class="slbl">✍️ Signature Image</div><div class="ssub">Used in vouchers &amp; membership cards</div></div>
             <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
-              <img id="th-signature" src="" class="sth" style="display:none;max-width:120px;border:1px solid #e8e8e8;border-radius:4px;"/>
+              <img id="th-signature" src="" alt="" class="sth" style="display:none;max-width:120px;border:1px solid #e8e8e8;border-radius:4px;"/>
               <div style="display:flex;flex-direction:column;gap:5px;">
                 <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'signature')"/>📁 Upload</label>
                 <input class="fi" id="si-signature-url" placeholder="Or paste URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'signature')"/>
@@ -3873,7 +3911,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           </div>
           <div id="sig-preview-wrap" style="margin-top:12px;display:none;background:#f8f9fa;border:1px solid #e8e8e8;border-radius:8px;padding:16px;text-align:right;">
             <div style="font-size:11px;color:#888;margin-bottom:6px;">Preview — as it will appear on vouchers:</div>
-            <img id="sig-preview-img" src="" style="max-height:60px;max-width:200px;object-fit:contain;"/>
+            <img id="sig-preview-img" src="" alt="" style="max-height:60px;max-width:200px;object-fit:contain;"/>
             <div style="font-size:12px;color:#1a2332;font-weight:700;margin-top:4px;">माधव कल्पित</div>
             <div style="font-size:11px;color:#888;">केन्द्रीय अध्यक्ष, क्षितिज नाट्य प्रतिष्ठान</div>
           </div>
@@ -3917,7 +3955,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
               <input class="fi" id="gal-img-paste" placeholder="https://..." style="margin-bottom:5px;" oninput="pasteImgUrl(this,'gal-img','gal-ipv')"/>
             </div>
           </div>
-          <img class="img-pv" id="gal-ipv" style="margin-top:8px;"/>
+          <img class="img-pv" id="gal-ipv" alt="" style="margin-top:8px;"/>
           <input type="hidden" id="gal-img"/>
         </div>
         <p style="font-size:12px;color:#888888;margin-bottom:10px;">You can add multiple photos one by one. Each photo is saved instantly.</p>
@@ -4250,7 +4288,7 @@ service cloud.firestore {<br/>
           <input class="fi" id="act-editor-img" placeholder="Image URL (from Cloudinary or paste any URL)"/>
           <label class="img-ul" style="width:auto;padding:6px 14px;font-size:12px;"><input type="file" accept="image/*" onchange="uploadImg(this,'act-editor-img','act-editor-ipv','act-editor-pf')"/>📁 Upload Photo</label>
           <div class="uprog" id="act-editor-uprog" style="margin-top:4px;">Uploading...<div class="pbar"><div class="pfill" id="act-editor-pf" style="width:0%"></div></div></div>
-          <img class="img-pv" id="act-editor-ipv" style="margin-top:8px;"/>
+          <img class="img-pv" id="act-editor-ipv" alt="" style="margin-top:8px;"/>
           <input class="fi" id="act-editor-img-caption" placeholder="Photo caption (optional)" style="margin-top:8px;"/>
           <button class="save-btn" onclick="addActivityPhoto()" style="margin-top:8px;">➕ Add This Photo</button>
         </div>
@@ -4554,14 +4592,15 @@ function closeMob(){ var m=G('mobm'); m.classList.remove('open'); m.style.displa
 var _lang = localStorage.getItem('kns_lang') || 'ne';
 
 // ── CLOUDINARY UPLOAD ─────────────────────────────────────────────────────────
-async function cloudUpload(file, fillId){
+async function cloudUpload(file, fillId, resourceType){
   var k=window.__K().c;
   var fd=new FormData();
   fd.append('file',file);
   fd.append('upload_preset',k.p);
+  var rt = resourceType || 'image';
   return new Promise((res,rej)=>{
     var xhr=new XMLHttpRequest();
-    xhr.open('POST','https://api.cloudinary.com/v1_1/'+k.n+'/image/upload');
+    xhr.open('POST','https://api.cloudinary.com/v1_1/'+k.n+'/'+rt+'/upload');
     xhr.upload.onprogress=e=>{ if(e.lengthComputable&&fillId){ G(fillId).style.width=(e.loaded/e.total*100)+'%'; } };
     xhr.onload=()=>{ var r=JSON.parse(xhr.responseText); if(r.secure_url) res(r.secure_url); else rej(new Error(r.error?.message||'Upload failed')); };
     xhr.onerror=()=>rej(new Error('Network error'));
@@ -4598,17 +4637,17 @@ var _logoUrl = '';
 async function loadImages(){
   try{
     var snap=await window._get(window._doc(window._db,'settings','images'));
-    if(snap.exists()){ var d=snap.data(); ['cover','founder','natak','logo','about','journey','appeal','signature'].forEach(function(t){ if(d[t]) applyImg(t,d[t]); }); }
+    if(snap.exists()){ var d=snap.data(); ['cover','founder','natak','logo','about','journey','appeal','signature','yatra1','yatra2'].forEach(function(t){ if(d[t]) applyImg(t,d[t]); }); }
   }catch(e){}
 }
 function applyImg(type,url){
   if(type==='cover'){ var el=G('site-cover'); el.src=url; el.style.display='block'; var th=G('th-cover'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='founder'){ G('founder-av').innerHTML='<img src="'+url+'" alt="Founder" style="width:100%;height:100%;object-fit:cover;"/>'; var th=G('th-founder'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='natak'){ var el=G('natak-cover-img'); el.src=url; el.style.display='block'; var th=G('th-natak'); if(th){th.src=url;th.style.display='block';} }
-  else if(type==='logo'){ G('nav-logo').innerHTML='<img src="'+url+'"/>';
+  else if(type==='logo'){ G('nav-logo').innerHTML='<img src="'+url+'" alt="क्षितिज नाट्य प्रतिष्ठान लोगो"/>';
     _logoUrl = url;
     var fv=document.getElementById('favicon-link'); if(fv) fv.href=url;
-    var og=document.getElementById('og-image-meta'); if(og) og.content=url; var fl=G('footer-logo'); if(fl) fl.innerHTML='<img src="'+url+'" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>'; var th=G('th-logo'); if(th){th.src=url;th.style.display='block';} }
+    var og=document.getElementById('og-image-meta'); if(og) og.content=url; var fl=G('footer-logo'); if(fl) fl.innerHTML='<img src="'+url+'" alt="क्षितिज नाट्य प्रतिष्ठान लोगो" style="width:100%;height:100%;object-fit:cover;border-radius:50%;"/>'; var th=G('th-logo'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='about'){ var w=G('about-img-wrap'),i=G('about-img'); if(w&&i){i.src=url;w.style.display='block';} var th=G('th-about'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='journey'){ var w=G('journey-img-wrap'),i=G('journey-img'); if(w&&i){i.src=url;w.style.display='block';} var th=G('th-journey'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='appeal'){ var w=G('appeal-img-wrap'),i=G('appeal-img'); if(w&&i){i.src=url;w.style.display='block';} var th=G('th-appeal'); if(th){th.src=url;th.style.display='block';} }
@@ -4618,6 +4657,8 @@ function applyImg(type,url){
     var prev=G('sig-preview-img'); if(prev){prev.src=url;}
     var wrap=G('sig-preview-wrap'); if(wrap) wrap.style.display='block';
   }
+  else if(type==='yatra1'){ var i1=G('yatra1-img'),p1=G('yatra1-ph'); if(i1){i1.src=url;i1.style.display='block';} if(p1)p1.style.display='none'; var th=G('th-yatra1'); if(th){th.src=url;th.style.display='block';} }
+  else if(type==='yatra2'){ var i2=G('yatra2-img'),p2=G('yatra2-ph'); if(i2){i2.src=url;i2.style.display='block';} if(p2)p2.style.display='none'; var th=G('th-yatra2'); if(th){th.src=url;th.style.display='block';} }
 }
 function removeImg(type){
   if(type==='cover'){ var el=G('site-cover'); el.src=''; el.style.display='none'; var th=G('th-cover'); if(th){th.src='';th.style.display='none';} }
@@ -4633,6 +4674,8 @@ function removeImg(type){
     var prev=G('sig-preview-img'); if(prev) prev.src='';
     var wrap=G('sig-preview-wrap'); if(wrap) wrap.style.display='none';
   }
+  else if(type==='yatra1'){ var i1=G('yatra1-img'),p1=G('yatra1-ph'); if(i1){i1.src='';i1.style.display='none';} if(p1)p1.style.display='flex'; var th=G('th-yatra1'); if(th){th.src='';th.style.display='none';} }
+  else if(type==='yatra2'){ var i2=G('yatra2-img'),p2=G('yatra2-ph'); if(i2){i2.src='';i2.style.display='none';} if(p2)p2.style.display='flex'; var th=G('th-yatra2'); if(th){th.src='';th.style.display='none';} }
 }
 async function saveSI(type,url){
   try{
@@ -4808,7 +4851,7 @@ function editDonor(item){
   G('d-date').value=item.date||'';
   G('d-cancel').style.display='inline-block';
   G('d-form-title').textContent='💰 Edit Donor';
-  tab('t-donor',document.querySelectorAll('.ap-tab')[1]);
+  tab('t-donor',_apTabBtn('t-donor'));
 }
 async function saveDonor(){
   var name=G('d-name').value.trim(), amount=G('d-amount').value.trim(),
@@ -4925,6 +4968,8 @@ async function loadMembers(){
 }
 var _mEdit=null;
 function editMember(item){
+  var ap=G('admin-panel');
+  if(ap && !ap.classList.contains('show')) openAdmin();
   _mEdit=item.id;
   G('m-name').value=item.name||''; G('m-role').value=item.role||'';
   G('m-aka').value=item.aka||''; G('m-dept').value=item.dept||'exec';
@@ -4932,7 +4977,7 @@ function editMember(item){
   if(item.img){ G('m-ipv').src=item.img; G('m-ipv').style.display='block'; }
   G('m-cancel').style.display='inline-block';
   G('m-form-title').textContent='👥 Edit Member: '+item.name;
-  tab('t-team',document.querySelectorAll('.ap-tab')[2]);
+  tab('t-team',_apTabBtn('t-team'));
 }
 async function saveMember(){
   var name=G('m-name').value.trim(), role=G('m-role').value.trim(),
@@ -4995,7 +5040,10 @@ function renderMembers(){
   }).filter(Boolean);
   var pinnedKeys = pinned.map(function(m){ return m.id; });
   var rest = execAll.filter(function(m){ return pinnedKeys.indexOf(m.id)===-1; });
-  var execTop5 = pinned.slice(0,5).concat(rest).slice(0,5);
+  // Homepage preview only shows the pinned top-5 + department heads — the FULL
+  // committee list lives on the "सम्पूर्ण सदस्य सूची" team page (renderPageTeam(),
+  // #pg-exec-grid), which already includes everyone. Do not remove this cap.
+  var execTop5 = pinned.slice(0,5);
 
   // ── DEPT HEADS: match by stable ID first (robust against name edits in admin
   //    panel), falling back to name search only if a record was somehow removed.
@@ -5107,7 +5155,7 @@ function editSupporter(item){
   if(item.img){ G('s-ipv').src=item.img; G('s-ipv').style.display='block'; }
   G('s-cancel').style.display='inline-block';
   G('s-form-title').textContent='🤝 Edit: '+item.name;
-  tab('t-sup',document.querySelectorAll('.ap-tab')[3]);
+  tab('t-sup',_apTabBtn('t-sup'));
 }
 async function saveSupporter(){
   var name=G('s-name').value.trim(), title=G('s-title').value.trim(), img=G('s-img').value.trim();
@@ -5171,32 +5219,53 @@ function renderSupporters(){
 // ── MANAGE ALL + INLINE TAB LISTS ────────────────────────────────────────────
 function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc){
   return '<div class="item-row">'
-    +(imgSrc?'<img src="'+imgSrc+'" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
+    +(imgSrc?'<img src="'+imgSrc+'" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
     +'<div class="item-info"><div class="item-title">'+title+'</div><div class="item-sub">'+sub+'</div></div>'
     +'<div class="item-acts">'
-      +'<button class="sec-btn or" onclick=\''+editFn+'\'>✏️ सम्पादन</button>'
+      +'<button class="sec-btn or" onclick="'+editFn+'">✏️ सम्पादन</button>'
       +(canDelete?'<button class="sec-btn" style="color:#8B1520;border-color:#8B1520;" onclick="'+deleteFn+'">🗑</button>':'')
     +'</div></div>';
 }
 function renderManage(){
   var newsHtml = nC.map(function(n){
     return _makeItemRow(n.title, n.tag+' · '+n.date,
-      'editNews('+JSON.stringify(n).replace(/'/g,"&#39;")+');tab(\'t-news\',document.querySelector(\'.ap-tab\'))',
+      'editNews('+JSON.stringify(n).replace(/"/g,"&quot;")+');tab(\'t-news\',_apTabBtn(\'t-news\'))',
       'deleteNews(\''+n.id+'\')', !n.id.startsWith('s'));
   }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै समाचार छैन।</p>';
   var donorHtml = dC.map(function(d){
     return _makeItemRow(d.name, (d.amount||'')+(d.type?' · '+d.type:'')+(d.date?' · '+d.date:''),
-      'editDonor('+JSON.stringify(d).replace(/'/g,"&#39;")+');tab(\'t-donor\',document.querySelectorAll(\'.ap-tab\')[2])',
+      'editDonor('+JSON.stringify(d).replace(/"/g,"&quot;")+');tab(\'t-donor\',_apTabBtn(\'t-donor\'))',
       'deleteDonor(\''+d.id+'\')', true);
   }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै दाता छैन।</p>';
-  var teamHtml = mC.map(function(m){
-    return _makeItemRow(m.name, m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
-      'editMember('+JSON.stringify(m).replace(/'/g,"&#39;")+');tab(\'t-team\',document.querySelectorAll(\'.ap-tab\')[5])',
-      'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img);
-  }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै सदस्य छैन।</p>';
+  var _deptLabels = {exec:'🏛 केन्द्रीय कार्यसमिति', natya:'🎭 नाट्य विभाग', sangeet:'🎵 संगीत विभाग',
+    sahitya:'📖 साहित्य विभाग', nritya:'💃 नृत्य विभाग', sangathan:'🧭 संगठन विभाग', advisor:'🎓 सल्लाहकार'};
+  var _deptOrder = ['exec','natya','sangeet','sahitya','nritya','sangathan','advisor'];
+  var teamHtml = '';
+  _deptOrder.forEach(function(dk){
+    var group = mC.filter(function(m){ return (m.dept||'exec')===dk; });
+    if(!group.length) return;
+    teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#8B1520;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #f0e0e0;">'+(_deptLabels[dk]||dk)+' ('+group.length+')</div>';
+    teamHtml += group.map(function(m){
+      return _makeItemRow(m.name, m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
+        'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img);
+    }).join('');
+  });
+  // Anything with an unrecognized dept value still shows up, ungrouped, at the end
+  var _knownDepts = _deptOrder;
+  var _leftover = mC.filter(function(m){ return _knownDepts.indexOf(m.dept||'exec')===-1; });
+  if(_leftover.length){
+    teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#888;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #eee;">अन्य</div>';
+    teamHtml += _leftover.map(function(m){
+      return _makeItemRow(m.name, m.role+' · '+(m.dept||'—'),
+        'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img);
+    }).join('');
+  }
+  teamHtml = teamHtml || '<p style="color:#888888;font-size:14px;padding:10px;">कुनै सदस्य छैन।</p>';
   var supHtml = sC.map(function(s){
     return _makeItemRow(s.name, s.title||'—',
-      'editSupporter('+JSON.stringify(s).replace(/'/g,"&#39;")+');tab(\'t-sup\',document.querySelectorAll(\'.ap-tab\')[6])',
+      'editSupporter('+JSON.stringify(s).replace(/"/g,"&quot;")+');tab(\'t-sup\',_apTabBtn(\'t-sup\'))',
       'deleteSupporter(\''+s.id+'\')', true, s.img);
   }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै शुभचिन्तक छैन।</p>';
   // Legacy manage-all containers
@@ -5208,6 +5277,7 @@ function renderManage(){
   var mt_n=G('mg-news-tab'); if(mt_n) mt_n.innerHTML=newsHtml;
   var mt_d=G('mg-donors-tab'); if(mt_d) mt_d.innerHTML=donorHtml;
   var mt_t=G('mg-team-tab'); if(mt_t) mt_t.innerHTML=teamHtml;
+  var mt_s=G('mg-sup-tab'); if(mt_s) mt_s.innerHTML=supHtml;
 }
 
 // ── AUTH ──────────────────────────────────────────────────────────────────────
@@ -5242,6 +5312,12 @@ function openAdmin(){
   G('admin-panel').addEventListener('keydown',_resetAdminTimeout,{passive:true});
 }
 function closeAdmin(){ G('admin-panel').classList.remove('show'); document.body.classList.remove('admin-open'); }
+// Looks up an admin tab BUTTON by the section id it opens, instead of a hardcoded
+// array index — hardcoded indices silently point at the wrong button (and thus
+// highlight the wrong tab) whenever a tab is added/reordered.
+function _apTabBtn(id){
+  return document.querySelector('.ap-tab[onclick*="tab(\''+id+'\'"]');
+}
 function tab(id,btn){
   document.querySelectorAll('.ap-section').forEach(function(s){s.classList.remove('on');});
   document.querySelectorAll('.ap-tab').forEach(function(b){b.classList.remove('on');});
@@ -5253,6 +5329,7 @@ function tab(id,btn){
   if(id==='t-news')      { renderManage(); }  // inline list in news tab
   if(id==='t-donor')     { renderManage(); }  // inline list in donor tab
   if(id==='t-team')      { renderManage(); }  // inline list in team tab
+  if(id==='t-sup')       { renderManage(); }  // inline list in supporter tab
   if(id==='t-events')    loadEvents().then(renderEvAdminList);
   if(id==='t-videos')    loadVideos().then(renderVidAdminList);
   if(id==='t-notices')   loadNotices().then(renderNotAdminList);
@@ -5532,7 +5609,7 @@ function renderGalAdmin(){
   el.innerHTML=gC.length?gC.map(g=>`
     <div class="item-row">
       <div style="display:flex;align-items:center;gap:10px;flex:1;">
-        <img src="${g.img}" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display=\\'none\\'" />
+        <img src="${g.img}" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display=\\'none\\'" />
         <div class="item-info">
           <div class="item-title">${g.cat||'—'}</div>
           <div class="item-sub">${g.caption||'(no caption)'} ${g.date?'· '+g.date:''}</div>
@@ -5834,7 +5911,8 @@ function showPage(name, data){
   if(fdBtn) fdBtn.style.display=(name==='donate')?'none':'flex';
   var _tm={news:'समाचार',gallery:'फोटो ग्यालरी',team:'टोली',donors:'दाताहरू',
     contact:'सम्पर्क',donate:'सहयोग',events:'कार्यक्रम',videos:'भिडियो',
-    notices:'सूचना',volunteer:'स्वयंसेवक दर्ता',newmember:'नयाँ सदस्यता',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची',tickets:'टिकट बुकिङ'};
+    notices:'सूचना',volunteer:'स्वयंसेवक दर्ता',newmember:'नयाँ सदस्यता',search:'खोज्नुस्',activity:'गतिविधि',productions:'नाटक सूची',tickets:'टिकट बुकिङ',
+    'yatra-katha':'क्षितिजको यात्रा',adhiveshan:'महाधिवेशन इतिहास',legal:'कानुनी विवरण',suborgs:'उप-संस्थाहरू'};
   document.title=(_tm[name]||'') ? (_tm[name]+' — क्षितिज नाट्य प्रतिष्ठान') : 'क्षितिज नाट्य प्रतिष्ठान';
   if(window._gtagPage) window._gtagPage(name);
 }
@@ -6730,7 +6808,13 @@ async function submitNewMember(){
   var photoFile = G('nm-photo-file') && G('nm-photo-file').files[0];
   if(photoFile){
     try{ d.photoUrl = await cloudUpload(photoFile); }
-    catch(e){ /* keep base64 fallback from _gatherFullForm if Cloudinary fails */ }
+    catch(e){
+      // No base64 fallback — a large embedded photo is what silently pushed
+      // past Firestore's 1MB limit and dropped submissions before.
+      G('nm-err').textContent='❌ फोटो अपलोड गर्न सकिएन। कृपया इन्टरनेट जडान जाँच गरी फेरि प्रयास गर्नुस्।';
+      G('nm-err').style.display='block';
+      return;
+    }
   }
   var nmType = typeEl.value;
   var nmFee = nmType==='आजीवन सदस्य' ? 51000 : 5100;
@@ -6788,7 +6872,12 @@ async function submitVolunteerFull(){
   var photoFile = G('vol-photo-file') && G('vol-photo-file').files[0];
   if(photoFile){
     try{ photoUrl = await cloudUpload(photoFile); }
-    catch(e){ /* keep base64 preview fallback if Cloudinary upload fails */ }
+    catch(e){
+      // No base64 fallback — same 1MB Firestore document-size failure mode as before.
+      G('vol-err').textContent='❌ फोटो अपलोड गर्न सकिएन। कृपया इन्टरनेट जडान जाँच गरी फेरि प्रयास गर्नुस्।';
+      G('vol-err').style.display='block';
+      return;
+    }
   }
   var data = {
     name:name, phone:phone, email:G('vol-email').value.trim(), permanentAddr:G('vol-addr').value.trim(),
@@ -6863,7 +6952,7 @@ async function _loadApprovedPublicGrid(collectionName, gridId){
   try{
     var snap=await window._gets(window._col(window._db,collectionName));
     var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
-    mems = mems.filter(function(m){ return m.status==='confirmed'; });
+    mems = mems.filter(function(m){ return m.status==='confirmed' && m.visible!==false; });
     if(!mems.length){ grid.innerHTML='<div style="grid-column:1/-1;color:#888888;font-size:13px;">अहिलेसम्म कोही स्वीकृत भएको छैन।</div>'; return; }
     mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
     grid.innerHTML='';
@@ -6871,7 +6960,7 @@ async function _loadApprovedPublicGrid(collectionName, gridId){
       var cell=document.createElement('div');
       cell.style.cssText='text-align:center;';
       var imgHtml = m.photoUrl
-        ? '<img src="'+m.photoUrl+'" alt="'+(m.name||'')+'" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2.5px solid #8B1520;margin:0 auto;display:block;"/>'
+        ? '<img src="'+m.photoUrl+'" alt="'+(m.name||'')+'" loading="lazy" style="width:72px;height:72px;border-radius:50%;object-fit:cover;border:2.5px solid #8B1520;margin:0 auto;display:block;"/>'
         : '<div style="width:72px;height:72px;border-radius:50%;background:#f0e8d8;border:2.5px solid #8B1520;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:26px;color:#8B1520;">&#128100;</div>';
       cell.innerHTML=imgHtml+'<div style="font-size:11.5px;color:#1a2332;font-weight:600;margin-top:6px;line-height:1.3;">'+(m.name||'—')+'</div>';
       grid.appendChild(cell);
@@ -6908,7 +6997,32 @@ async function submitMembership(){
   var _memPhotoData = '';
   if(_memPhotoFile){
     try{ _memPhotoData = await cloudUpload(_memPhotoFile); }
-    catch(e){ _memPhotoData = (_memPhotoPrevEl && _memPhotoPrevEl.src && _memPhotoPrevEl.style.display!=='none') ? _memPhotoPrevEl.src : ''; }
+    catch(e){
+      // Do NOT fall back to embedding the raw photo as base64 — that is exactly
+      // what caused submissions to silently vanish before (Firestore's 1MB
+      // document limit). Stop and tell the person clearly instead.
+      if(btn){btn.disabled=false;btn.textContent='🚀 सदस्यता फाराम पेश गर्नुस्';}
+      G('mem-err').textContent='❌ फोटो अपलोड गर्न सकिएन। कृपया इन्टरनेट जडान जाँच गरी फेरि प्रयास गर्नुस्।';
+      G('mem-err').style.display='block';
+      return;
+    }
+  }
+  // Upload the payment voucher (proof of payment) to Cloudinary too, same as the
+  // photo, so admin can see it directly in the Admin Panel instead of only in
+  // the notification email.
+  var _memVoucherFile = G('mem-voucher-file') && G('mem-voucher-file').files[0];
+  var _memVoucherData = '';
+  if(_memVoucherFile){
+    if(btn) btn.textContent='भुक्तानी प्रमाण अपलोड हुँदैछ...';
+    // 'auto' (not 'image') — the voucher is often a PDF bank receipt, and
+    // Cloudinary's /image/upload endpoint silently rejects non-image files.
+    try{ _memVoucherData = await cloudUpload(_memVoucherFile, null, 'auto'); }
+    catch(e){
+      if(btn){btn.disabled=false;btn.textContent='🚀 सदस्यता फाराम पेश गर्नुस्';}
+      G('mem-err').textContent='❌ भुक्तानी प्रमाण अपलोड गर्न सकिएन। कृपया इन्टरनेट जडान जाँच गरी फेरि प्रयास गर्नुस्।';
+      G('mem-err').style.display='block';
+      return;
+    }
   }
   if(btn){btn.textContent='पेश गर्दै...';}
   var data={
@@ -6926,6 +7040,8 @@ async function submitMembership(){
     works:G('mem-works').value.trim(), profession:G('mem-profession').value.trim(),
     feedback:G('mem-feedback').value.trim(),
     photoUrl:_memPhotoData,
+    voucherUrl:_memVoucherData,
+    visible:true,
     status:'pending', createdAt:new Date().toISOString()
   };
   // Save to Firestore — this must succeed. If it fails, stop here and tell the
@@ -6963,13 +7079,11 @@ async function submitMembership(){
     'शैक्षिक योग्यता'  : data.education||'—',
     'सुझाव/प्रतिक्रिया': data.feedback||'—'
   });
-  emailSent = await _uploadAndSendVoucher(
-    G('mem-voucher-file'),
-    'membership',
-    name,
-    emailBody,
+  var _memEmailBodyWithVoucher = _memVoucherData ? (emailBody+'\n\n📎 भुक्तानी प्रमाण:\n'+_memVoucherData) : emailBody;
+  emailSent = await _sendW3F(
     'नयाँ सदस्यता: '+name+' ('+memType+')',
-    email
+    _memEmailBodyWithVoucher,
+    name, email, email
   );
   if(btn){btn.disabled=false;btn.textContent='🚀 सदस्यता फाराम पेश गर्नुस्';}
   if(saved||emailSent){
@@ -7044,15 +7158,16 @@ async function loadMemberships(){
     mems.forEach(function(m,i){
       var row=document.createElement('div');
       row.className='manage-row';
-      row.style.cssText='display:flex;align-items:flex-start;gap:12px;padding:12px;background:#fff;border:1px solid #e8e8e8;border-radius:10px;margin-bottom:8px;';
+      row.style.cssText='display:flex;align-items:flex-start;gap:12px;padding:12px;background:#fff;border:1px solid #e8e8e8;border-radius:10px;margin-bottom:8px;'+(m.visible===false?'opacity:.55;':'');
       var statusBg=m.status==='confirmed'?'#E8F5E9':'#FFF3E0';
       var statusColor=m.status==='confirmed'?'#2E7D32':'#E65100';
       row.innerHTML='<div style="flex:1;min-width:0;">'
-        +'<div style="font-weight:700;font-size:14px;color:#1a2332;">'+(i+1)+'. '+m.name+'</div>'
+        +'<div style="font-weight:700;font-size:14px;color:#1a2332;">'+(i+1)+'. '+m.name+(m.visible===false?' <span style="font-size:10px;color:#999;font-weight:600;">(लुकाइएको)</span>':'')+'</div>'
         +'<div style="font-size:12px;color:#888888;">'+m.email+' · '+m.phone+'</div>'
         +'<div style="font-size:12px;color:#555555;margin-top:2px;">'+m.dept+' — '+m.role+' ('+m.membershipType+')</div>'
         +'<div style="font-size:11px;color:#8B1520;margin-top:2px;">'+m.permanentAddr+'</div>'
         +(m.feedback?'<div style="font-size:11.5px;color:#5a3a1a;margin-top:4px;font-style:italic;">"'+m.feedback+'"</div>':'')
+        +(m.voucherUrl?'<div style="margin-top:6px;"><a href="'+m.voucherUrl+'" target="_blank" rel="noopener" style="font-size:11.5px;color:#1565C0;font-weight:700;text-decoration:none;">🧾 भुक्तानी प्रमाण हेर्नुस् →</a></div>':'<div style="margin-top:6px;font-size:11px;color:#aaa;">🧾 भुक्तानी प्रमाण छैन</div>')
         +'</div>'
         +'<span style="font-size:11px;padding:3px 9px;border-radius:10px;font-weight:700;background:'+statusBg+';color:'+statusColor+';flex-shrink:0;">'+(m.status||'pending')+'</span>';
       var confirmBtn=document.createElement('button');
@@ -7063,18 +7178,34 @@ async function loadMemberships(){
       delBtn.className='ma'; delBtn.textContent='✏️'; delBtn.title='Edit';
       delBtn.style.cssText='display:block;margin-top:4px;flex-shrink:0;background:#1565C0;color:#fff;border:none;';
       delBtn.onclick=function(){_editMembershipEntry(m,row);};
+      var visBtn=document.createElement('button');
+      visBtn.className='ma'; visBtn.textContent=(m.visible===false?'👁️ देखाउनुस्':'🚫 लुकाउनुस्');
+      visBtn.title='सार्वजनिक सूचीमा फोटो र नाम देखाउने/लुकाउने — नक्कल वा गल्तीले भरिएका प्रविष्टिको लागि';
+      visBtn.style.cssText='display:block;margin-top:4px;flex-shrink:0;background:'+(m.visible===false?'#2E7D32':'#888')+';color:#fff;border:none;font-size:11px;';
+      visBtn.onclick=function(){_toggleMembershipVisibility(m,row,visBtn);};
       var btnsDiv=document.createElement('div');
-      btnsDiv.appendChild(confirmBtn); btnsDiv.appendChild(delBtn);
+      btnsDiv.appendChild(confirmBtn); btnsDiv.appendChild(delBtn); btnsDiv.appendChild(visBtn);
       row.appendChild(btnsDiv);
       el.appendChild(row);
     });
   }catch(e){el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';}
 }
+async function _toggleMembershipVisibility(m,row,btn){
+  var target = (m.visible===false) ? true : false; // toggle current state
+  try{
+    await window._upd(window._doc(window._db,'memberships',m.id),{visible:target});
+    m.visible=target;
+    row.style.opacity = target===false ? '.55' : '1';
+    btn.textContent = target===false ? '👁️ देखाउनुस्' : '🚫 लुकाउनुस्';
+    btn.style.background = target===false ? '#2E7D32' : '#888';
+    toast(target===false ? 'सार्वजनिक सूचीबाट लुकाइयो' : 'सार्वजनिक सूचीमा देखाइयो','success');
+  }catch(e){ toast('Error: '+e.message,'error'); }
+}
 async function confirmMembership(id,row){
   try{
     await window._upd(window._doc(window._db,'memberships',id),{status:'confirmed'});
     toast('सदस्यता पुष्टि गरियो!','success');
-    var span=row.querySelector('span[style*="border-radius:10px"]');
+    var span=row.querySelector('span[style*="border-radius:10px"], span[style*="border-radius:8px"]');
     if(span){span.textContent='confirmed';span.style.background='#E8F5E9';span.style.color='#2E7D32';}
   }catch(e){toast('Error: '+e.message,'error');}
 }
@@ -7227,13 +7358,15 @@ async function _loadMembershipAdmin(){
     mems.forEach(function(m,i){
       var row=document.createElement('div');
       row.className='manage-row';
+      if(m.visible===false) row.style.opacity='.55';
       var statusBg=m.status==='confirmed'?'#E8F5E9':'#FFF3E0';
       var statusColor=m.status==='confirmed'?'#2E7D32':'#E65100';
       row.innerHTML='<div style="flex:1;min-width:0;">'
-        +'<div class="manage-name">'+(i+1)+'. '+m.name+' <span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px;background:'+statusBg+';color:'+statusColor+'">'+(m.status||'pending')+'</span></div>'
+        +'<div class="manage-name">'+(i+1)+'. '+m.name+(m.visible===false?' <span style="font-size:10px;color:#999;font-weight:600;">(लुकाइएको)</span>':'')+' <span style="font-size:11px;font-weight:700;padding:2px 7px;border-radius:8px;background:'+statusBg+';color:'+statusColor+'">'+(m.status||'pending')+'</span></div>'
         +'<div class="manage-meta">'+m.email+' · '+m.phone+'</div>'
         +'<div class="manage-meta">'+m.dept+' — '+m.role+' | '+m.membershipType+'</div>'
         +'<div style="font-size:11px;color:#8B1520;">'+m.permanentAddr+'</div>'
+        +(m.voucherUrl?'<div style="margin-top:4px;"><a href="'+m.voucherUrl+'" target="_blank" rel="noopener" style="font-size:11.5px;color:#1565C0;font-weight:700;text-decoration:none;">🧾 भुक्तानी प्रमाण हेर्नुस् →</a></div>':'<div style="margin-top:4px;font-size:11px;color:#aaa;">🧾 भुक्तानी प्रमाण छैन</div>')
       +'</div>';
       var btns=document.createElement('div'); btns.className='manage-acts';
       var cardBtn=document.createElement('button'); cardBtn.className='ma'; cardBtn.textContent='🪪'; cardBtn.title='कार्ड डाउनलोड गर्नुस्';
@@ -7247,7 +7380,11 @@ async function _loadMembershipAdmin(){
       var db2=document.createElement('button'); db2.className='ma'; db2.textContent='✏️'; db2.title='सम्पादन गर्नुस्';
       db2.style.cssText='background:#1565C0;color:#fff;border:none;';
       db2.onclick=function(){ _editMembershipEntry(m,row); };
-      btns.appendChild(cardBtn); btns.appendChild(mailBtn); btns.appendChild(cb); btns.appendChild(db2); row.appendChild(btns);
+      var visBtn=document.createElement('button'); visBtn.className='ma';
+      visBtn.textContent=(m.visible===false?'👁️':'🚫'); visBtn.title='सार्वजनिक सूचीमा फोटो/नाम देखाउने वा लुकाउने — नक्कल/गल्ती प्रविष्टिको लागि';
+      visBtn.style.cssText='background:'+(m.visible===false?'#2E7D32':'#888')+';color:#fff;border:none;';
+      visBtn.onclick=function(){ _toggleMembershipVisibility(m,row,visBtn); };
+      btns.appendChild(cardBtn); btns.appendChild(mailBtn); btns.appendChild(cb); btns.appendChild(db2); btns.appendChild(visBtn); row.appendChild(btns);
       el.appendChild(row);
     });
   }catch(e){el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';}
@@ -7478,7 +7615,7 @@ function renderActEditorPhotos(){
   if(!_actEditorPhotos.length){ wrap.innerHTML='<div style="color:#888888;font-size:12px;grid-column:1/-1;">अहिलेसम्म कुनै फोटो थपिएको छैन।</div>'; return; }
   wrap.innerHTML=_actEditorPhotos.map(function(p,i){
     return '<div style="position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:#eee;">'
-      +'<img src="'+(p.url||p)+'" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">'
+      +'<img src="'+(p.url||p)+'" alt="" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.display=\'none\'">'
       +'<button onclick="removeActPhoto('+i+')" style="position:absolute;top:4px;right:4px;background:rgba(176,28,46,.9);color:#fff;border:none;border-radius:50%;width:22px;height:22px;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;">✕</button>'
       +(p.caption?'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:10px;padding:3px 5px;">'+p.caption+'</div>':'')
       +'</div>';
@@ -8762,7 +8899,7 @@ function _finalizeCard(canvas, ctx, data, qrTarget, filenamePrefix, autoDownload
       document.body.removeChild(link);
       return true;
     }catch(e){
-      try{ var w=window.open(); w.document.write('<img src="'+canvas.toDataURL('image/png')+'" style="max-width:100%;"/>'); }catch(e2){}
+      try{ var w=window.open(); w.document.write('<img src="'+canvas.toDataURL('image/png')+'" alt="हस्ताक्षर" style="max-width:100%;"/>'); }catch(e2){}
       return false;
     }
   }
@@ -8838,28 +8975,39 @@ function _finalizeCard(canvas, ctx, data, qrTarget, filenamePrefix, autoDownload
   }
 
   window._photoCache = window._photoCache||{};
-  if(data.photoUrl){
-    if(window._photoCache[data.photoUrl]){
-      _drawAll(window._photoCache[data.photoUrl]);
-    } else {
-      if(autoDownload) toast('फोटो लोड गर्दै, कृपया प्रतीक्षा गर्नुस्...','info',3000);
+
+  // Both the member photo and the signature load asynchronously (Image.onload).
+  // The old code returned Promise.resolve(canvas) immediately, so any code that
+  // awaited this function (like the renewal-form email) captured the canvas
+  // before the photo/signature/QR were actually drawn onto it — the card was
+  // sent blank. Now we wait for both to finish loading before drawing anything.
+  function _loadPhoto(){
+    return new Promise(function(resolve){
+      if(!data.photoUrl){ resolve(null); return; }
+      if(window._photoCache[data.photoUrl]){ resolve(window._photoCache[data.photoUrl]); return; }
       var img=new Image();
       img.crossOrigin='anonymous';
-      img.onload=function(){ window._photoCache[data.photoUrl]=img; _drawAll(img); };
-      img.onerror=function(){ _drawAll(null); };
+      img.onload=function(){ window._photoCache[data.photoUrl]=img; resolve(img); };
+      img.onerror=function(){ resolve(null); };
       img.src=data.photoUrl;
-    }
-  } else {
-    _drawAll(null);
+    });
   }
-
-  if(window._signatureUrl && !window._sigImgCache){
-    var si=new Image(); si.crossOrigin='anonymous';
-    si.onload=function(){ window._sigImgCache=si; };
-    si.src=window._signatureUrl;
+  function _loadSignature(){
+    return new Promise(function(resolve){
+      if(window._sigImgCache){ resolve(window._sigImgCache); return; }
+      if(!window._signatureUrl){ resolve(null); return; }
+      var si=new Image(); si.crossOrigin='anonymous';
+      si.onload=function(){ window._sigImgCache=si; resolve(si); };
+      si.onerror=function(){ resolve(null); };
+      si.src=window._signatureUrl;
+    });
   }
+  if(autoDownload && data.photoUrl && !window._photoCache[data.photoUrl]) toast('फोटो लोड गर्दै, कृपया प्रतीक्षा गर्नुस्...','info',3000);
 
-  return Promise.resolve(canvas);
+  return Promise.all([_loadPhoto(), _loadSignature()]).then(function(res){
+    _drawAll(res[0]);
+    return canvas;
+  });
 }
 
 // ── Card factory ──────────────────────────────────────────────────────────────
@@ -10843,7 +10991,7 @@ var _titleMap={
     <div style="font-size:11px;color:#888888;margin-bottom:8px;">वा फाइल Upload गर्नुस्:</div>
     <label class="img-ul" style="margin-bottom:12px;"><input type="file" accept="image/*" onchange="uploadSupBanner(this)"/>&#128193; Choose File</label>
     <input class="fi" id="sup-banner-caption-input" placeholder="Caption / शीर्षक (optional)" style="margin-bottom:16px;"/>
-    <div id="sup-banner-preview" style="margin-bottom:14px;display:none;"><img id="sup-banner-prev-img" src="" style="width:100%;border-radius:8px;max-height:200px;object-fit:cover;"/></div>
+    <div id="sup-banner-preview" style="margin-bottom:14px;display:none;"><img id="sup-banner-prev-img" src="" alt="" style="width:100%;border-radius:8px;max-height:200px;object-fit:cover;"/></div>
     <div style="display:flex;gap:8px;">
       <button onclick="closeSupBannerModal()" style="background:#f0e8d8;color:#5a3a1a;border:none;border-radius:7px;padding:10px 16px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;">Cancel</button>
       <button onclick="saveSupBanner()" style="flex:1;background:#8B1520;color:#fff;border:none;border-radius:7px;padding:10px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;">&#9989; Save</button>
@@ -10964,6 +11112,86 @@ var _titleMap={
     <div style="margin-top:32px;background:#f8f9fa;border:1px solid #e8e8e8;border-radius:6px;padding:24px;">
       <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#1a2332;margin-bottom:16px;border-bottom:2px solid #8B1520;padding-bottom:8px;">🏗️ झापा नाटक घर निर्माण व्यवस्थापन समिति (२०७५)</h3>
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;color:#555;"><div>संयोजक: ज्ञानुराम प्रसाइ<br/>सह-संयोजक: कुमार भट्टराई<br/>सचिव: माधव कल्पित</div><div>सदस्य: अग्नि प्र. पाण्डे, प्रकाश शिवाकोटी, सुभाष भट्टराई, धृव शिवाकोटी, उत्तम खनाल, डिल्लीराम सिटौला, विशाल थापा र अन्य</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ FULL JOURNEY STORY PAGE ══════════════════════════════════════════════ -->
+<div id="page-yatra-katha" class="page-view">
+  <div class="page-hero">
+    <div class="page-hero-content">
+      <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>हाम्रोबारे</span><span class="sep">›</span><span>पूर्ण यात्रा कथा</span></div>
+      <div class="page-hero-label">HISTORY — इतिहास</div>
+      <h1 class="page-hero-title">क्षितिजको यात्रा : सडकदेखि अन्तर्राष्ट्रिय मञ्चसम्मको इतिहास</h1>
+      <div class="page-hero-bar"></div>
+      <p class="page-hero-sub">एक इट्टाबाट सुरु भएको अभियान आज कोशी प्रदेशकै रंगमञ्चीय आकाशको इतिहास बनेको छ।</p>
+    </div>
+  </div>
+  <div style="padding:36px 5%;max-width:840px;margin:0 auto;">
+
+    <div style="position:relative;max-width:280px;margin:0 auto 28px;">
+      <img id="yatra1-img" src="" alt="माधव कल्पित" loading="lazy" style="width:100%;border-radius:8px;border:1.5px solid #e8e8e8;display:none;"/>
+      <div id="yatra1-ph" style="width:100%;aspect-ratio:3/4;background:#f2f2f2;border-radius:8px;border:1.5px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px;">फोटो थपिएको छैन</div>
+      <button class="cover-eBtn" onclick="qup('yatra1')" style="top:8px;right:8px;">📷 फोटो थप्नुस्</button>
+    </div>
+
+    <p style="font-style:italic;color:#555;border-left:3px solid #8B1520;padding-left:14px;margin-bottom:20px;line-height:1.8;">"इतिहास आफैँ बन्दैन, इतिहास बनाउन दशकौँसम्म संघर्ष गर्नुपर्छ।"</p>
+
+    <p style="line-height:1.9;color:#333;margin-bottom:18px;">जब मानिसहरूले झापाको बिर्तामोड-१ मा निर्मित नाटक घर देख्छन्, अन्तर्राष्ट्रिय सम्मानको समाचार सुन्छन् वा क्षितिज नाट्य प्रतिष्ठानको नाम लिन्छन्, उनीहरूले सफलताको उज्यालो पक्ष मात्र देख्छन्। तर त्यो उज्यालोको पछाडि दशकौँसम्मको संघर्ष, अभाव, अपमान, अस्वीकार, त्याग, समर्पण र अटल विश्वासको लामो यात्रा लुकेको छ।</p>
+
+    <p style="line-height:1.9;color:#333;margin-bottom:28px;">विक्रम संवत् २०५८ सालमा स्थापित क्षितिज नाट्य समूह कुनै सम्पन्न संस्थाका रूपमा जन्मिएको थिएन। यो केही सपना बोकेका युवाहरूको साहस, समाजप्रतिको उत्तरदायित्व र कला–संस्कृतिप्रतिको समर्पणबाट जन्मिएको एउटा सांस्कृतिक अभियान थियो।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ सडकदेखि सुरु भएको यात्रा</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">हाम्रो यात्रा पाँचथरको फिदिमबाट सडक रेडियो र स्टेज नाटक मार्फत सुरु भयो। गाउँका चौतारी, बजारका चोक, विद्यालयका प्राङ्गण र खुला सडकहरू नै हाम्रो रंगमञ्च बने। दर्शकहरू नै हाम्रो शक्ति बने। त्यही सडकले हामीलाई सिकायो — कला केवल मनोरञ्जनको माध्यम होइन, समाज परिवर्तनको प्रभावकारी अस्त्र पनि हो।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ राष्ट्रियस्तरमा पहिचान</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">सुरुवाती दिनदेखि नै हामीले जिल्ला, अञ्चल र क्षेत्रीय नाट्य अभियानहरूमा सक्रिय भूमिका निर्वाह गर्यौं। २०५८ सालमा विराटनगरमा आयोजित रमपम नाट्य महोत्सव र २०५९ सालमा धरानमा सम्पन्न पूर्वाञ्चल राष्ट्रिय नाट्य महोत्सवमा हाम्रो सहभागिताले क्षितिजलाई पूर्वी नेपालको आशालाग्दो नाट्य संस्थाका रूपमा चिनायो।</p>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">२०६४ साल हाम्रो यात्राको एउटा ऐतिहासिक मोड बन्यो। आरोहण गुरुकुलको प्रतिष्ठित मञ्चमा राष्ट्रस्तरीय नाटक प्रदर्शन गर्ने अवसर प्राप्त भयो। त्यो प्रस्तुति केवल एउटा नाटक थिएन; त्यो पाँचथरको माटोबाट उठेको एउटा सशक्त सांस्कृतिक आवाज थियो, जसले राष्ट्रिय रंगमञ्चमा क्षितिजको पहिचानलाई अझ सुदृढ बनायो। त्यही साल हामीले संविधानसभा निर्वाचनको मुल्य र मान्यता अनि मतदान प्रक्रियाबारे मेची अञ्चलका झापा, इलाम, पाँचथर र ताप्लेजुङभरि १२० भन्दा बढी सचेतनामूलक सडक नाटक मञ्चन गर्ने मौका पनि मिल्न पुग्यो।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ फैलिँदै गएको अभियान</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">त्यसपछि क्षितिजको यात्रा झन् फराकिलो बन्दै गयो। पूर्वाञ्चलभरि १८ वटा शाखा तथा उपशाखा विस्तार गरिए। बाल, युवा र ज्येष्ठ कलाकार गरी ५५२ भन्दा बढी प्रतिभाहरूलाई एउटै सांस्कृतिक परिवारमा आबद्ध गर्दै "क्षितिज जस्तै अनन्त" बन्ने सपना बोकेर संस्था पूर्वी नेपालको अग्रणी नाट्य अभियानका रूपमा विकसित हुँदै गयो।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ टेलिभिजनमा उपस्थिति</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">यस अवधिमा "कुरा अर्को छ" र "बिहानी" जस्ता टेलिचलचित्रहरूको निर्माण गरियो। सामाजिक चेतना, संस्कृति र समसामयिक विषयवस्तुमा आधारित सिर्जनाहरूले हिमशिखर टेलिभिजन, सूर्योदय टेलिभिजन हुँदै नेपाल टेलिभिजनसम्म स्थान पाए। यसले प्रमाणित गर्यो — गाउँबाट सुरु भएको एउटा सपना राष्ट्रिय सञ्चारमाध्यमसम्म पुग्न सक्छ, यदि त्यसमा समर्पण र निरन्तरता हुन्छ भने।</p>
+
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">तर हाम्रो सबैभन्दा ठूलो सपना अझै अधुरो थियो — झापामा आफ्नै नाटक घर निर्माण गर्ने सपना।</p>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">त्यो सपना कुनै धनी व्यक्तिको लगानीले पूरा भएको होइन। त्यो सपना हजारौँ सर्वसाधारण नागरिकको विश्वासले बनेको हो। हामी गाउँ–गाउँ, टोल–टोल, घर–घर पुग्यौं। "एक इट्टा सहयोग गरिदिनुहोस्" भन्ने अभियान लिएर सडकमा निस्कियौं। कतै सम्मान पाइयो, कतै उपहास सहनुपर्‍यो। कतै सहयोगका हात बढे, कतै ढोका बन्द भए। तर हाम्रो पाइला कहिल्यै रोकिएन।</p>
+
+    <div style="position:relative;margin:0 0 24px;">
+      <img id="yatra2-img" src="" alt="झापा नाटक घर" loading="lazy" style="width:100%;border-radius:8px;border:1.5px solid #e8e8e8;display:none;"/>
+      <div id="yatra2-ph" style="width:100%;aspect-ratio:16/9;background:#f2f2f2;border-radius:8px;border:1.5px dashed #ccc;display:flex;align-items:center;justify-content:center;color:#aaa;font-size:12px;">फोटो थपिएको छैन</div>
+      <button class="cover-eBtn" onclick="qup('yatra2')" style="top:8px;right:8px;">📷 फोटो थप्नुस्</button>
+    </div>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ एक इट्टा अभियान, ऐतिहासिक सफलता</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">२०७४ सालदेखि सुरु भएको बहुजातीय सांस्कृतिक संग्रहालयसहितको झापा नाटक घर निर्माण अभियान २०८१/०८२ सम्म आइपुग्दा ऐतिहासिक उपलब्धिमा परिणत भयो। हजारौँ नागरिकको सानो–सानो योगदानबाट बनेको यो नाटक घर केवल एउटा भवन होइन; यो नेपाली समाजको एकता, सहकार्य, सांस्कृतिक चेतना र सामूहिक संकल्पको जीवन्त स्मारक हो।</p>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">यस यात्रामा सडकदेखि सदनसम्म आवाज उठाइयो। स्थानीय समुदायदेखि राष्ट्रिय तहसम्म पहल गरियो। कलाकार, साहित्यकार, अभियन्ता, शुभेच्छुक, मजदुर, किसान, विद्यार्थी र सर्वसाधारणको पसिनाले यो सपना साकार भयो। त्यसैले यो भवन कुनै व्यक्ति वा संस्थाको निजी सम्पत्ति होइन; यो सम्पूर्ण समाजको साझा गौरव हो।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ अन्तर्राष्ट्रिय सम्मान</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">यसै अभियान, समर्पण र सांस्कृतिक योगदानको सम्मानस्वरूप ८ मार्च २०२६ मा भियतनाम सरकारले संस्थाका जन्मदाता तथा अभियन्ता माधव कल्पितलाई दानाङ सहरमा आमन्त्रण गरी नेपाली कला, साहित्य र संस्कृतिको संरक्षण, सम्बर्द्धन र पुस्तान्तरणको क्षेत्रमा विशिष्ट योगदान पुर्‍याउन सफल भएको भन्दै अन्तर्राष्ट्रिय सम्मान प्रदान गर्‍यो। त्यो सम्मान केवल एउटा व्यक्तिको उपलब्धि थिएन; त्यो नेपाली रंगमञ्च, नेपाली कलाकार, झापा र सम्पूर्ण नेपालको सांस्कृतिक गौरवको सम्मान थियो।</p>
+
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;font-weight:700;">तर हाम्रो यात्रा यहाँ समाप्त भएको छैन।</p>
+
+    <h3 style="font-family:'Playfair Display',serif;font-size:18px;color:#8B1520;border-bottom:2px solid #f0e0e0;padding-bottom:8px;margin-bottom:14px;">■ अबको लक्ष्य</h3>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">अब हाम्रो अर्को लक्ष्य अझ व्यापक छ — बहुजातीय सांस्कृतिक संग्रहालय निर्माण, जहाँ नेपालका सबै जातजाति, भाषा, कला, संस्कृति, लोकपरम्परा, इतिहास र जीवनशैलीलाई संरक्षण गरिनेछ। साथै, कलाकारलाई सिर्जनामात्र होइन, व्यवसाय र आत्मनिर्भरतासँग जोड्दै "कलाबाट कलाकार बचाउने" अभियानलाई नयाँ उचाइमा पुर्‍याइनेछ।</p>
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">हामी विश्वास गर्छौं, कला मञ्चमा सीमित हुनु हुँदैन। यसले समाजलाई जोड्नुपर्छ, इतिहास जोगाउनुपर्छ, संस्कृतिलाई पुस्तान्तरण गर्नुपर्छ, नयाँ पुस्तामा पहिचानप्रतिको गर्व जगाउनुपर्छ र राष्ट्र निर्माणमा सक्रिय भूमिका खेल्नुपर्छ।</p>
+
+    <div style="background:#f8f9fa;border:1px solid #e8e8e8;border-radius:8px;padding:22px;margin-bottom:24px;">
+      <h3 style="font-family:'Playfair Display',serif;font-size:16px;color:#1a2332;margin-bottom:12px;">📢 संघर्ष जारी छ...</h3>
+      <p style="line-height:1.9;color:#333;margin-bottom:0;">आज पनि हाम्रो यात्रा जारी छ। संघर्ष समाप्त भएको छैन। सपना अझै बाँकी छन्। हामीलाई अझै धेरै इट्टा जोड्न बाँकी छ। सडकमा १५ रुपैयाँको १ थान इट्टा सहयोग मागेर ३ करोड ५० लाखको झापा नाटक घर निर्माण भएको छ भने सांस्कृतिक संग्रहालय निर्माणका लागि १ धुर भूमिदान मार्फत प्रतिष्ठानले अहिलेसम्म १४५ धुर जमिन आफ्नो नाममा पुर्‍याउन सफल भएको छ। अब भवनका होइन, चेतनाका; अब पर्खालका होइन, पुस्तालाई जोड्ने विश्वासका इट्टा र मानिस एकताका इट्टा जोड्ने अभियान निरन्तर सडकमै संघर्षरत रहिनैरहेको छ।</p>
+    </div>
+
+    <p style="line-height:1.9;color:#333;margin-bottom:24px;">क्षितिज नाट्य प्रतिष्ठानको कथा एउटा संस्थाको इतिहास मात्र होइन; यो हजारौँ नागरिकको विश्वास, कलाकारहरूको समर्पण, संस्कृतिप्रतिको प्रेम र सामूहिक संघर्षबाट लेखिएको नेपाली सांस्कृतिक आन्दोलनको जीवित दस्तावेज हो।</p>
+    <p style="line-height:1.9;color:#333;margin-bottom:32px;">एक इट्टाबाट सुरु भएको अभियान आज कोशी प्रदेशकै रंगमञ्चीय आकाशको इतिहास बनेको छ। अब यही इतिहासलाई भविष्यका पुस्ताका लागि प्रेरणाको ज्योतिमा रूपान्तरण गर्नु र निरन्तरता प्रदान गर्नु नै हाम्रो साझा दायित्व हो।</p>
+
+    <div style="text-align:right;border-top:2px solid #8B1520;padding-top:16px;max-width:280px;margin-left:auto;">
+      <div style="font-family:'Playfair Display',serif;font-weight:700;color:#1a2332;font-size:16px;">माधव कल्पित</div>
+      <div style="color:#666;font-size:13px;">अध्यक्ष</div>
+      <div style="color:#666;font-size:13px;">क्षितिज नाट्य प्रतिष्ठान, झापा</div>
+    </div>
+
+    <div style="text-align:center;margin-top:36px;">
+      <button onclick="go('donate')" style="background:#8B1520;color:#fff;border:none;border-radius:24px;padding:12px 28px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;">🧱 एक इट्टा सहयोग गर्नुहोस्</button>
     </div>
   </div>
 </div>
