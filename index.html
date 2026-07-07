@@ -2740,7 +2740,7 @@ window.fbAsyncInit=function(){
     </div>
     <div style="display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:20px;">
       <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-1"><div style="font-size:16px;font-weight:800;" id="natak-stat-1-val">रु. १.७८ करोड+</div><div style="font-size:10px;opacity:.7;" id="natak-stat-1-lbl">सरकारी लगानी</div></div>
-      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-2"><div style="font-size:16px;font-weight:800;" id="natak-stat-2-val">रु. ६०,०,०,०,०/-</div><div style="font-size:10px;opacity:.7;" id="natak-stat-2-lbl">जमिन खरिद — दाता सहयोग</div></div>
+      <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-2"><div style="font-size:16px;font-weight:800;" id="natak-stat-2-val">रु. ६०,००,०००/-</div><div style="font-size:10px;opacity:.7;" id="natak-stat-2-lbl">जमिन खरिद — दाता सहयोग</div></div>
       <div style="background:rgba(255,255,255,.12);border-radius:10px;padding:10px 16px;text-align:center;" id="natak-stat-3"><div style="font-size:16px;font-weight:800;" id="natak-stat-3-val">३०० सिट</div><div style="font-size:10px;opacity:.7;" id="natak-stat-3-lbl">थिएटर क्षमता</div></div>
     </div>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
@@ -3691,8 +3691,13 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <div class="fi-row">
           <input class="fi" id="m-aka" placeholder="Pen name (optional)"/>
           <select class="fi" id="m-dept">
-            <option value="exec">Executive Committee</option>
-            <option value="dept">Department Head</option>
+            <option value="exec">🏛 केन्द्रीय कार्यसमिति</option>
+            <option value="natya">🎭 नाट्य विभाग</option>
+            <option value="sangeet">🎵 संगीत विभाग</option>
+            <option value="sahitya">📖 साहित्य विभाग</option>
+            <option value="nritya">💃 नृत्य विभाग</option>
+            <option value="sangathan">🧭 संगठन विभाग</option>
+            <option value="advisor">🎓 सल्लाहकार</option>
           </select>
         </div>
         <input class="fi" id="m-fb" placeholder="Facebook URL (optional) https://facebook.com/..."/>
@@ -3719,12 +3724,27 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         </div>
         <div class="ok-msg" id="m-ok"></div><div class="err-msg" id="m-err"></div>
       </div>
+      <!-- Homepage pin / department-head configuration -->
+      <div class="ap-card" style="margin-top:14px;">
+        <div class="ap-card-title">🏠 होमपेजमा देखिने व्यक्तिहरू</div>
+        <p style="font-size:12.5px;color:#888;margin-bottom:12px;">यहाँ छनोट गर्नुभएका व्यक्तिहरू मात्र होमपेजको "कार्यकारी समिति" र "विभाग प्रमुख" ग्रिडमा देखिन्छन्। बाँकी सबै सदस्य "📋 सम्पूर्ण सदस्य सूची" पेजमा देखिन्छन् — त्यहाँबाट कोही हराउँदैन।</p>
+        <div style="font-size:12.5px;font-weight:700;color:#8B1520;margin-bottom:6px;">⭐ शीर्ष ५ (पिन गरिएका कार्यकारी) — क्रम अनुसार</div>
+        <div id="th-pin-rows"></div>
+        <div style="font-size:12.5px;font-weight:700;color:#8B1520;margin:16px 0 6px;">🏷 विभाग प्रमुखहरू</div>
+        <div id="th-head-rows"></div>
+        <button class="sec-btn" style="margin-top:6px;font-size:12px;" onclick="_addTeamHeadRow()">+ थप्नुस्</button>
+        <div style="margin-top:14px;">
+          <button class="save-btn" onclick="_saveTeamHomeCfg()">✅ होमपेज छनोट सेभ गर्नुस्</button>
+        </div>
+        <div class="ok-msg" id="th-ok"></div><div class="err-msg" id="th-err"></div>
+      </div>
       <!-- Inline member management -->
       <div class="ap-card" style="margin-top:14px;">
         <div class="ap-card-title" style="display:flex;align-items:center;justify-content:space-between;">
           <span>📋 टोली सदस्यहरू</span>
           <button class="arr-btn" onclick="openReorder('members')">&#128256; क्रम मिलाउनुस्</button>
         </div>
+        <input class="fi" id="team-search" placeholder="🔍 नाम खोज्नुस्..." style="margin-bottom:10px;" oninput="_filterTeamList(this.value)"/>
         <div id="mg-team-tab"></div>
       </div>
     </div>
@@ -4077,7 +4097,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 1 Label</label><input class="fi" id="sd-natak-s1l" placeholder="सरकारी लगानी"/></div>
         </div>
         <div class="fi-row">
-          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Value</label><input class="fi" id="sd-natak-s2" placeholder="रु. ६०,०,०,०,०/-"/></div>
+          <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Value</label><input class="fi" id="sd-natak-s2" placeholder="रु. ६०,००,०००/-"/></div>
           <div><label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:3px;text-transform:uppercase;">Stat 2 Label</label><input class="fi" id="sd-natak-s2l" placeholder="जमिन खरिद — दाता सहयोग"/></div>
         </div>
         <div class="fi-row">
@@ -4258,6 +4278,7 @@ service cloud.firestore {<br/>
         <div class="ap-card-title">🆕 New Member Registrations</div>
         <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the नयाँ सदस्यता form (fee रु ५,१००/-) appear below.</p>
         <button class="save-btn" onclick="loadNewMembers(true)" style="margin-bottom:14px;">🔄 Refresh List</button>
+        <div id="nm-recover-btn-wrap"></div>
         <div id="nm-admin-list"><div style="color:#888888;font-size:13px;padding:12px;">Click Refresh to load registrations.</div></div>
         <div style="font-size:12px;color:#888;margin-top:8px;">🗑 = Delete</div>
       </div>
@@ -4944,8 +4965,36 @@ function renderDonors(){
 }
 
 // ── TEAM MEMBERS ──────────────────────────────────────────────────────────────
+// ── Homepage पिन/विभाग-प्रमुख configuration ───────────────────────────────────
+// Previously these were hardcoded arrays in code (PIN_IDS, _deptHeadDefs), so
+// changing who appears on the homepage required asking a developer. Now it's
+// stored in Firestore and editable from the Admin Panel — these are just the
+// fallback defaults used until an admin saves their own selection.
+var _defaultTeamHomeCfg = {
+  pinnedIds: ['dm1','dm2','dm3','dm5','dm6'],
+  deptHeads: [
+    {id:'dn1', label:'नाट्य विभाग'},
+    {id:'dm25',label:'संगठन विभाग'},
+    {id:'dl1', label:'साहित्य प्रतिष्ठान'},
+    {id:'dv1', label:'नृत्य विभाग'},
+    {id:'ds1', label:'संगीत प्रतिष्ठान'},
+    {id:'dm8', label:'संचार विभाग'}
+  ]
+};
+window._teamHomeCfg = JSON.parse(JSON.stringify(_defaultTeamHomeCfg));
+async function _loadTeamHomeCfg(){
+  try{
+    var snap=await window._get(window._doc(window._db,'settings','teamHomeConfig'));
+    if(snap.exists()){
+      var d=snap.data();
+      if(d.pinnedIds && d.pinnedIds.length) window._teamHomeCfg.pinnedIds=d.pinnedIds;
+      if(d.deptHeads && d.deptHeads.length) window._teamHomeCfg.deptHeads=d.deptHeads;
+    }
+  }catch(e){ /* keep defaults if settings can't be read */ }
+}
 async function loadMembers(){
-  var PIN_IDS = ['dm1','dm2','dm3','dm5','dm6'];
+  await _loadTeamHomeCfg();
+  var PIN_IDS = window._teamHomeCfg.pinnedIds;
   try{
     var snap=await window._gets(window._col(window._db,'members'));
     var fetched=snap.docs.map(d=>({id:d.id,...d.data()}));
@@ -4965,6 +5014,7 @@ async function loadMembers(){
     });
   }catch(e){ mC=[...DM]; }
   renderMembers();
+  if(G('admin-panel') && G('admin-panel').classList.contains('show')) _renderTeamHomeCfgUI();
 }
 var _mEdit=null;
 function editMember(item){
@@ -5003,7 +5053,7 @@ async function saveMember(){
       var ref=await window._add(window._col(window._db,'members'),data);
       mC.push({id:ref.id,...data});
     }
-    cancelEdit('member'); showOk('m-ok','✅ Saved!'); renderMembers(); renderManage();
+    cancelEdit('member'); showOk('m-ok','✅ Saved!'); renderMembers(); renderManage(); _renderTeamHomeCfgUI();
   }catch(e){ showErr('m-err','❌ '+e.message); }
   btnLoad('m-save',false);
 }
@@ -5012,7 +5062,7 @@ async function deleteMember(id){
   if(_ddm&&(id.startsWith('dm')||_ddm._origId)){ alert('Default members cannot be deleted. Use Edit to update.'); return; }
   if(!confirm('Remove this member?')) return;
   try{ await window._del(window._doc(window._db,'members',id)); }catch(e){}
-  mC=mC.filter(m=>m.id!==id); renderMembers(); renderManage();
+  mC=mC.filter(m=>m.id!==id); renderMembers(); renderManage(); _renderTeamHomeCfgUI();
 }
 
 
@@ -5032,9 +5082,9 @@ function _openDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[
 function _editDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[idx]; if(m) editMember(m); }
 function renderMembers(){
   var execAll = mC.filter(function(m){return m.dept==='exec'||m.dept==='sangathan';});
-  // ── PINNED TOP 5: match screenshot order exactly ─────────────────────────
-  // 1.माधव(dm1) 2.हरि(dm2) 3.सुजना(dm3) 4.राजकुमार(dm5) 5.मुना(dm6)
-  var PIN_IDS = ['dm1','dm2','dm3','dm5','dm6'];
+  // ── PINNED TOP 5 — configurable via Admin Panel (settings/teamHomeConfig),
+  // falls back to the original curated order if nothing has been saved yet.
+  var PIN_IDS = window._teamHomeCfg.pinnedIds;
   var pinned = PIN_IDS.map(function(pid){
     return mC.find(function(m){ return m.id===pid || m._origId===pid; });
   }).filter(Boolean);
@@ -5045,24 +5095,10 @@ function renderMembers(){
   // #pg-exec-grid), which already includes everyone. Do not remove this cap.
   var execTop5 = pinned.slice(0,5);
 
-  // ── DEPT HEADS: match by stable ID first (robust against name edits in admin
-  //    panel), falling back to name search only if a record was somehow removed.
-  //    Order matches the live site: गजेन्द्र, कुमार, तुलसी, सविता, निरज, समीक्षा
-  var _deptHeadDefs = [
-    {id:'dn1', find:'गजेन्द्र पृथक',    label:'नाट्य विभाग'},
-    {id:'dm25',find:'कुमार ढकाल',       label:'संगठन विभाग'},
-    {id:'dl1', find:'तुलसी प्र. भट्टराई', label:'साहित्य प्रतिष्ठान'},
-    {id:'dv1', find:'सबिता रेग्मी',     label:'नृत्य विभाग'},
-    {id:'ds1', find:'निरज पोखरेल',      label:'संगीत प्रतिष्ठान'},
-    {id:'dm8', find:'समीक्षा खतिवडा',   label:'संचार विभाग'}
-  ];
+  // ── DEPT HEADS — also configurable via Admin Panel now (settings/teamHomeConfig).
+  var _deptHeadDefs = window._teamHomeCfg.deptHeads;
   var deptHeads = _deptHeadDefs.map(function(d){
     var m = mC.find(function(x){ return x.id===d.id || x._origId===d.id; });
-    if(!m){
-      // Fallback: name search (handles legacy records saved before IDs were stable)
-      var parts = d.find.split(' ');
-      m = mC.find(function(x){ return x.name.indexOf(parts[0])!==-1 && x.name.indexOf(parts[1]||parts[0])!==-1; });
-    }
     if(m) m._deptLabel = d.label;
     return m;
   }).filter(Boolean);
@@ -5217,6 +5253,73 @@ function renderSupporters(){
 }
 
 // ── MANAGE ALL + INLINE TAB LISTS ────────────────────────────────────────────
+function _filterTeamList(q){
+  q=(q||'').trim().toLowerCase();
+  document.querySelectorAll('#mg-team-tab .team-member-row').forEach(function(row){
+    row.style.display = (!q || row.dataset.mname.indexOf(q)!==-1) ? '' : 'none';
+  });
+  document.querySelectorAll('#mg-team-tab .team-dept-group').forEach(function(grp){
+    var anyVisible = Array.prototype.some.call(grp.querySelectorAll('.team-member-row'), function(r){ return r.style.display!=='none'; });
+    grp.style.display = anyVisible ? '' : 'none';
+  });
+}
+function _renderTeamHomeCfgUI(){
+  var pinWrap=G('th-pin-rows'), headWrap=G('th-head-rows');
+  if(!pinWrap||!headWrap) return;
+  var execPool = mC.filter(function(m){ return m.dept==='exec'||m.dept==='sangathan'; });
+  var allPool = mC;
+  function memberOptions(pool, selectedId){
+    return pool.map(function(m){
+      return '<option value="'+m.id+'"'+(m.id===selectedId?' selected':'')+'>'+m.name+' — '+(m.role||'')+'</option>';
+    }).join('');
+  }
+  var pins = window._teamHomeCfg.pinnedIds.slice(0,5);
+  while(pins.length<5) pins.push('');
+  pinWrap.innerHTML = pins.map(function(pid,i){
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">'
+      +'<span style="font-size:12px;font-weight:700;color:#888;width:18px;">'+(i+1)+'.</span>'
+      +'<select class="fi th-pin-sel" style="margin-bottom:0;flex:1;"><option value="">— छनोट गर्नुस् —</option>'+memberOptions(execPool,pid)+'</select>'
+      +'</div>';
+  }).join('');
+  headWrap.innerHTML = window._teamHomeCfg.deptHeads.map(function(dh,i){
+    return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;" class="th-head-row">'
+      +'<select class="fi th-head-sel" style="margin-bottom:0;flex:1.3;"><option value="">— सदस्य छनोट गर्नुस् —</option>'+memberOptions(allPool,dh.id)+'</select>'
+      +'<input class="fi th-head-label" value="'+(dh.label||'').replace(/"/g,'&quot;')+'" placeholder="लेबल (जस्तै: नाट्य विभाग)" style="margin-bottom:0;flex:1;"/>'
+      +'<button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:5px 9px;font-size:11px;" onclick="this.closest(\'.th-head-row\').remove()">🗑</button>'
+      +'</div>';
+  }).join('');
+}
+function _addTeamHeadRow(){
+  var headWrap=G('th-head-rows'); if(!headWrap) return;
+  var allPool = mC;
+  var div=document.createElement('div');
+  div.style.cssText='display:flex;align-items:center;gap:8px;margin-bottom:6px;';
+  div.className='th-head-row';
+  div.innerHTML='<select class="fi th-head-sel" style="margin-bottom:0;flex:1.3;"><option value="">— सदस्य छनोट गर्नुस् —</option>'
+    +allPool.map(function(m){return '<option value="'+m.id+'">'+m.name+' — '+(m.role||'')+'</option>';}).join('')
+    +'</select>'
+    +'<input class="fi th-head-label" placeholder="लेबल (जस्तै: नाट्य विभाग)" style="margin-bottom:0;flex:1;"/>'
+    +'<button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:5px 9px;font-size:11px;" onclick="this.closest(\'.th-head-row\').remove()">🗑</button>';
+  headWrap.appendChild(div);
+}
+async function _saveTeamHomeCfg(){
+  var pinIds = Array.prototype.map.call(document.querySelectorAll('#th-pin-rows .th-pin-sel'), function(s){return s.value;}).filter(Boolean);
+  var heads = Array.prototype.map.call(document.querySelectorAll('#th-head-rows .th-head-row'), function(row){
+    var id=row.querySelector('.th-head-sel').value;
+    var label=row.querySelector('.th-head-label').value.trim();
+    return (id && label) ? {id:id,label:label} : null;
+  }).filter(Boolean);
+  if(!pinIds.length){ G('th-err').textContent='❌ कम्तिमा १ जना पिन गर्नुहोस्।'; G('th-err').style.display='block'; return; }
+  try{
+    await window._set(window._doc(window._db,'settings','teamHomeConfig'),{pinnedIds:pinIds,deptHeads:heads});
+    window._teamHomeCfg.pinnedIds=pinIds;
+    window._teamHomeCfg.deptHeads=heads;
+    G('th-ok').textContent='✅ सेभ भयो! होमपेज अपडेट हुँदैछ...'; G('th-ok').style.display='block';
+    G('th-err').style.display='none';
+    loadMembers();
+    setTimeout(function(){ G('th-ok').style.display='none'; },3000);
+  }catch(e){ G('th-err').textContent='❌ Error: '+e.message; G('th-err').style.display='block'; }
+}
 function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc){
   return '<div class="item-row">'
     +(imgSrc?'<img src="'+imgSrc+'" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
@@ -5240,27 +5343,44 @@ function renderManage(){
   var _deptLabels = {exec:'🏛 केन्द्रीय कार्यसमिति', natya:'🎭 नाट्य विभाग', sangeet:'🎵 संगीत विभाग',
     sahitya:'📖 साहित्य विभाग', nritya:'💃 नृत्य विभाग', sangathan:'🧭 संगठन विभाग', advisor:'🎓 सल्लाहकार'};
   var _deptOrder = ['exec','natya','sangeet','sahitya','nritya','sangathan','advisor'];
+  // Rank common committee roles so each department group reads top-down by
+  // seniority instead of raw insertion order — much easier to scan/manage.
+  var _roleRank = {'अध्यक्ष':1,'उपाध्यक्ष':2,'बरिष्ठ उपाध्यक्ष':2,'महासचिव':3,'सचिव':4,'सह-सचिव':5,
+    'कोषाध्यक्ष':6,'सह-कोषाध्यक्ष':7,'सल्लाहकार':8,'प्रमुख':9,'सदस्य':12};
+  function _roleSortKey(role){
+    if(!role) return 30;
+    for(var k in _roleRank){ if(role.indexOf(k)!==-1) return _roleRank[k]; }
+    return 20;
+  }
   var teamHtml = '';
   _deptOrder.forEach(function(dk){
     var group = mC.filter(function(m){ return (m.dept||'exec')===dk; });
     if(!group.length) return;
+    group = group.slice().sort(function(a,b){
+      var rk=_roleSortKey(a.role)-_roleSortKey(b.role);
+      return rk!==0 ? rk : (a.name||'').localeCompare(b.name||'');
+    });
+    teamHtml += '<div class="team-dept-group" data-dept-group="'+dk+'">';
     teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#8B1520;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #f0e0e0;">'+(_deptLabels[dk]||dk)+' ('+group.length+')</div>';
     teamHtml += group.map(function(m){
-      return _makeItemRow(m.name, m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
+      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'">'+_makeItemRow(m.name, m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
         'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
-        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img);
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img)+'</div>';
     }).join('');
+    teamHtml += '</div>';
   });
   // Anything with an unrecognized dept value still shows up, ungrouped, at the end
   var _knownDepts = _deptOrder;
   var _leftover = mC.filter(function(m){ return _knownDepts.indexOf(m.dept||'exec')===-1; });
   if(_leftover.length){
+    teamHtml += '<div class="team-dept-group" data-dept-group="_other">';
     teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#888;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #eee;">अन्य</div>';
     teamHtml += _leftover.map(function(m){
-      return _makeItemRow(m.name, m.role+' · '+(m.dept||'—'),
+      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'">'+_makeItemRow(m.name, m.role+' · '+(m.dept||'—'),
         'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
-        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img);
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img)+'</div>';
     }).join('');
+    teamHtml += '</div>';
   }
   teamHtml = teamHtml || '<p style="color:#888888;font-size:14px;padding:10px;">कुनै सदस्य छैन।</p>';
   var supHtml = sC.map(function(s){
@@ -5328,7 +5448,7 @@ function tab(id,btn){
   if(id==='t-manage')    { renderManage(); refreshManageStats(); }
   if(id==='t-news')      { renderManage(); }  // inline list in news tab
   if(id==='t-donor')     { renderManage(); }  // inline list in donor tab
-  if(id==='t-team')      { renderManage(); }  // inline list in team tab
+  if(id==='t-team')      { renderManage(); _renderTeamHomeCfgUI(); }  // inline list in team tab
   if(id==='t-sup')       { renderManage(); }  // inline list in supporter tab
   if(id==='t-events')    loadEvents().then(renderEvAdminList);
   if(id==='t-videos')    loadVideos().then(renderVidAdminList);
@@ -8104,12 +8224,39 @@ async function deleteVolunteer(id){
   try{await window._del(window._doc(window._db,'volunteers',id));}catch(e){}
   loadVolunteers(true);
 }
+// ── Recover a lost नयाँ सदस्यता submission (Yubaraj Chudal — confirmed lost by
+// the same silent-failure bug the photo-upload fix above addresses) ──────────
+var _recoveredNewMemberData = {
+  name:'Yubaraj chudal', email:'yubaraj@gmail.com', phone:'9861010470',
+  gender:'पुरुष', dob:'1966-07-01', mother:'Padma Devi chudal', father:'Rudra prasad chudal',
+  marital:'छ', bloodGroup:'O+', citNo:'01282133', citDist:'Jhapa',
+  permanentAddr:'Birtamod 5', temporaryAddr:'Birtamod 5',
+  dept:'सल्लाहकार समिति', role:'सल्लाहकार', membershipType:'केन्द्रीय सदस्य',
+  edu:'B.com', feedback:'Na', photoUrl:'', fee:5100
+};
+async function _recoverYubarajNewMember(){
+  if(!confirm('Yubaraj chudal को हराएको नयाँ सदस्यता विवरण थप्ने? (फोटो पछि छुट्टै थप्नुपर्नेछ)')) return;
+  try{
+    var snap=await window._gets(window._col(window._db,'newMembers'));
+    var existing=snap.docs.map(function(d){return d.data();});
+    var dup=existing.some(function(m){ return m.name===_recoveredNewMemberData.name && m.phone===_recoveredNewMemberData.phone; });
+    if(dup){ toast('पहिल्यै थपिसकिएको छ।','info'); window._nmRecovered=true; loadNewMembers(true); return; }
+    var data=Object.assign({}, _recoveredNewMemberData, {createdAt:new Date().toISOString()});
+    await window._add(window._col(window._db,'newMembers'), data);
+    window._nmRecovered=true;
+    toast('✅ Yubaraj chudal थपियो! अब फोटो थप्न ✏️ Edit प्रयोग गर्नुस्।','success');
+    loadNewMembers(true);
+  }catch(e){ toast('❌ Error: '+e.message,'error'); }
+}
 async function loadNewMembers(adminMode){
   try{
     var snap=await window._gets(window._col(window._db,'newMembers'));
     var mems=snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
     mems.sort(function(a,b){return (b.createdAt||'')>(a.createdAt||'')?1:-1;});
     if(!adminMode) return;
+    var recoveredAlready = window._nmRecovered || mems.some(function(m){ return m.name===_recoveredNewMemberData.name && m.phone===_recoveredNewMemberData.phone; });
+    var rw=G('nm-recover-btn-wrap');
+    if(rw) rw.innerHTML = recoveredAlready ? '' : '<button onclick="_recoverYubarajNewMember()" style="background:#E65100;color:#fff;border:none;border-radius:6px;padding:7px 14px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;margin-bottom:12px;">&#128260; Yubaraj chudal (हराएको) Recover गर्नुस्</button>';
     _renderRegistrationRows(mems, ['nm-admin-list','nm-admin-list-embed'], {defaultType:'नयाँ सदस्य', onApprove:_approveNewMember, onDelete:deleteNewMember});
   }catch(e){['nm-admin-list','nm-admin-list-embed'].forEach(function(id){var el=G(id);if(el)el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';});}
 }
@@ -9573,7 +9720,7 @@ var _SD_DEFAULTS = {
   natakProgress: 82,
   natakProgressLbl: '८०%+',
   natakS1: 'रु. १.७८ करोड+', natakS1L: 'सरकारी लगानी',
-  natakS2: 'रु. ६०,०,०,०,०/-', natakS2L: 'जमिन खरिद — दाता सहयोग',
+  natakS2: 'रु. ६०,००,०००/-', natakS2L: 'जमिन खरिद — दाता सहयोग',
   natakS3: '३०० सिट', natakS3L: 'थिएटर क्षमता',
   natakDonors: '१०६+', natakLand: '३०+', natakNirman: '२७+',
   brickPrice: 20, landPrice: 'रु. २,१०,०००+',
