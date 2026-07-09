@@ -917,17 +917,21 @@ body.admin-mode .gal-del-btn,body.admin-mode .gal-edit-btn{display:block;}
 .reorder-box{background:#fff;border-radius:14px;padding:24px 20px 20px;width:min(420px,96vw);max-height:82vh;display:flex;flex-direction:column;box-shadow:0 8px 40px rgba(0,0,0,.25);}
 .reorder-title{font-size:16px;font-weight:700;color:#1a2332;margin-bottom:4px;}
 .reorder-sub{font-size:12px;color:#888888;margin-bottom:14px;}
-.reorder-list{overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:7px;padding-right:4px;}
-.reorder-item{display:flex;align-items:center;gap:10px;background:#ffffff;border:1.5px solid #e8e8e8;border-radius:8px;padding:9px 12px;cursor:grab;user-select:none;transition:box-shadow .15s,border-color .15s;}
+.reorder-list{overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:9px;padding-right:4px;-webkit-overflow-scrolling:touch;}
+.reorder-item{display:flex;align-items:center;gap:10px;background:#ffffff;border:1.5px solid #e8e8e8;border-radius:8px;padding:11px 12px;cursor:grab;user-select:none;transition:box-shadow .15s,border-color .15s;touch-action:none;}
 .reorder-item:active{cursor:grabbing;}
 .reorder-item.drag-over{border-color:#8B1520;background:#FFF0F0;box-shadow:0 0 0 2px rgba(176,28,46,.2);}
 .reorder-item.dragging{opacity:.45;border-style:dashed;}
-.reorder-handle{color:#8B1520;font-size:18px;flex-shrink:0;line-height:1;cursor:grab;}
+.reorder-handle{color:#8B1520;font-size:22px;flex-shrink:0;line-height:1;cursor:grab;padding:8px 4px;margin:-8px -4px;}
 .reorder-av{width:36px;height:36px;border-radius:6px;overflow:hidden;background:linear-gradient(135deg,#8B1520,#8B1520);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;flex-shrink:0;}
 .reorder-av img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 .reorder-name{flex:1;font-size:13.5px;font-weight:600;color:#1a2332;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .reorder-role{font-size:11.5px;color:#888888;}
 .reorder-idx{font-size:12px;font-weight:700;color:#8B1520;min-width:22px;text-align:right;}
+.ro-move-btns{display:flex;flex-direction:column;gap:3px;flex-shrink:0;}
+.ro-move-btn{width:30px;height:26px;background:#f5efe4;border:1px solid #e0d4bc;border-radius:5px;color:#8B1520;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0;touch-action:manipulation;}
+.ro-move-btn:disabled{opacity:.3;cursor:default;}
+.ro-move-btn:active:not(:disabled){background:#8B1520;color:#fff;}
 .reorder-footer{display:flex;gap:8px;margin-top:16px;}
 .ro-save-btn{flex:1;background:#8B1520;color:#fff;border:none;border-radius:7px;padding:10px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;}
 .ro-save-btn:hover{background:#8B1520;}
@@ -2523,7 +2527,7 @@ window.fbAsyncInit=function(){
 <div class="si">
   <div class="label" data-ne="टोली" data-en="Team">टोली</div><h2 data-ne="हाम्रो नेतृत्व" data-en="Our Leadership">हाम्रो नेतृत्व</h2><div class="bar"></div>
   <div class="sec-sub" style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin:20px 0 10px;">
-    <span data-ne="कार्यकारी समिति (शीर्ष ५)" data-en="Executive Committee (Top 5)">कार्यकारी समिति (शीर्ष ५)</span>
+    <span data-ne="कार्यकारी समिति (शीर्ष ८)" data-en="Executive Committee (Top 8)">कार्यकारी समिति (शीर्ष ८)</span>
     <button onclick="go('team')" style="background:none;border:1.5px solid #8B1520;color:#8B1520;border-radius:20px;padding:5px 16px;font-size:12px;font-weight:700;cursor:pointer;font-family:inherit;transition:all .2s;" onmouseover="this.style.background='#8B1520';this.style.color='#fff'" onmouseout="this.style.background='none';this.style.color='#8B1520'" data-ne="📋 सम्पूर्ण सदस्य सूची" data-en="📋 Members List">📋 सम्पूर्ण सदस्य सूची</button>
   </div>
   <div class="exec-grid" id="exec-grid"></div>
@@ -3150,6 +3154,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
       <button class="team-tab" onclick="_teamTab('sangeet',this)">संगीत प्रतिष्ठान</button>
       <button class="team-tab" onclick="_teamTab('sahitya',this)">साहित्य प्रतिष्ठान</button>
       <button class="team-tab" onclick="_teamTab('nritya',this)">नृत्य विभाग</button>
+      <button class="team-tab" onclick="_teamTab('sangathan',this)">संगठन विभाग</button>
       <button class="team-tab" onclick="_teamTab('advisor',this)">सल्लाहकार</button>
     </div>
     <!-- Dept sections — each rendered separately -->
@@ -3168,6 +3173,10 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
     <div id="pg-dept-nritya">
       <h2 class="team-section-title">💃 नृत्य विभाग</h2>
       <div class="team-pg-dept-grid" id="pg-grid-nritya"></div>
+    </div>
+    <div id="pg-dept-sangathan">
+      <h2 class="team-section-title">🧭 संगठन विभाग</h2>
+      <div class="team-pg-dept-grid" id="pg-grid-sangathan"></div>
     </div>
     <div id="pg-dept-advisor">
       <h2 class="team-section-title">🤝 सल्लाहकार सदस्यहरू</h2>
@@ -3728,7 +3737,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
       <div class="ap-card" style="margin-top:14px;">
         <div class="ap-card-title">🏠 होमपेजमा देखिने व्यक्तिहरू</div>
         <p style="font-size:12.5px;color:#888;margin-bottom:12px;">यहाँ छनोट गर्नुभएका व्यक्तिहरू मात्र होमपेजको "कार्यकारी समिति" र "विभाग प्रमुख" ग्रिडमा देखिन्छन्। बाँकी सबै सदस्य "📋 सम्पूर्ण सदस्य सूची" पेजमा देखिन्छन् — त्यहाँबाट कोही हराउँदैन।</p>
-        <div style="font-size:12.5px;font-weight:700;color:#8B1520;margin-bottom:6px;">⭐ शीर्ष ५ (पिन गरिएका कार्यकारी) — क्रम अनुसार</div>
+        <div style="font-size:12.5px;font-weight:700;color:#8B1520;margin-bottom:6px;">⭐ शीर्ष ८ (पिन गरिएका कार्यकारी) — क्रम अनुसार</div>
         <div id="th-pin-rows"></div>
         <div style="font-size:12.5px;font-weight:700;color:#8B1520;margin:16px 0 6px;">🏷 विभाग प्रमुखहरू</div>
         <div id="th-head-rows"></div>
@@ -4276,7 +4285,7 @@ service cloud.firestore {<br/>
     <div class="ap-section" id="t-newmember">
       <div class="ap-card">
         <div class="ap-card-title">🆕 New Member Registrations</div>
-        <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the नयाँ सदस्यता form (fee रु ५,१००/-) appear below.</p>
+        <p style="font-size:13px;color:#888888;margin-bottom:14px;">People who filled the नयाँ सदस्यता form (fee: साधारण रु १,१५०/विशेष रु ५,१५०/आजीवन रु ५१,१२१) appear below.</p>
         <button class="save-btn" onclick="loadNewMembers(true)" style="margin-bottom:14px;">🔄 Refresh List</button>
         <div id="nm-recover-btn-wrap"></div>
         <div id="nm-admin-list"><div style="color:#888888;font-size:13px;padding:12px;">Click Refresh to load registrations.</div></div>
@@ -5071,7 +5080,7 @@ function _teamTab(dept, btn){
   document.querySelectorAll('.team-tab').forEach(function(b){b.classList.remove('on');});
   if(btn) btn.classList.add('on');
   // Show/hide dept sections
-  var allDepts=['natya','sangeet','sahitya','nritya','advisor'];
+  var allDepts=['natya','sangeet','sahitya','nritya','sangathan','advisor'];
   allDepts.forEach(function(d){
     var sec=G('pg-dept-'+d);
     if(sec) sec.style.display=(dept==='all'||dept===d)?'':'none';
@@ -5086,19 +5095,19 @@ function renderMembers(){
   // falls back to the original curated order if nothing has been saved yet.
   var PIN_IDS = window._teamHomeCfg.pinnedIds;
   var pinned = PIN_IDS.map(function(pid){
-    return mC.find(function(m){ return m.id===pid || m._origId===pid; });
+    return mC.find(function(m){ return (m.id===pid || m._origId===pid) && m.visible!==false; });
   }).filter(Boolean);
   var pinnedKeys = pinned.map(function(m){ return m.id; });
-  var rest = execAll.filter(function(m){ return pinnedKeys.indexOf(m.id)===-1; });
+  var rest = execAll.filter(function(m){ return pinnedKeys.indexOf(m.id)===-1 && m.visible!==false; });
   // Homepage preview only shows the pinned top-5 + department heads — the FULL
   // committee list lives on the "सम्पूर्ण सदस्य सूची" team page (renderPageTeam(),
   // #pg-exec-grid), which already includes everyone. Do not remove this cap.
-  var execTop5 = pinned.slice(0,5);
+  var execTop5 = pinned.slice(0,8);
 
   // ── DEPT HEADS — also configurable via Admin Panel now (settings/teamHomeConfig).
   var _deptHeadDefs = window._teamHomeCfg.deptHeads;
   var deptHeads = _deptHeadDefs.map(function(d){
-    var m = mC.find(function(x){ return x.id===d.id || x._origId===d.id; });
+    var m = mC.find(function(x){ return (x.id===d.id || x._origId===d.id) && x.visible!==false; });
     if(m) m._deptLabel = d.label;
     return m;
   }).filter(Boolean);
@@ -5273,8 +5282,8 @@ function _renderTeamHomeCfgUI(){
       return '<option value="'+m.id+'"'+(m.id===selectedId?' selected':'')+'>'+m.name+' — '+(m.role||'')+'</option>';
     }).join('');
   }
-  var pins = window._teamHomeCfg.pinnedIds.slice(0,5);
-  while(pins.length<5) pins.push('');
+  var pins = window._teamHomeCfg.pinnedIds.slice(0,8);
+  while(pins.length<8) pins.push('');
   pinWrap.innerHTML = pins.map(function(pid,i){
     return '<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">'
       +'<span style="font-size:12px;font-weight:700;color:#888;width:18px;">'+(i+1)+'.</span>'
@@ -5320,11 +5329,12 @@ async function _saveTeamHomeCfg(){
     setTimeout(function(){ G('th-ok').style.display='none'; },3000);
   }catch(e){ G('th-err').textContent='❌ Error: '+e.message; G('th-err').style.display='block'; }
 }
-function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc){
+function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc, extraBtnHtml){
   return '<div class="item-row">'
     +(imgSrc?'<img src="'+imgSrc+'" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
     +'<div class="item-info"><div class="item-title">'+title+'</div><div class="item-sub">'+sub+'</div></div>'
     +'<div class="item-acts">'
+      +(extraBtnHtml||'')
       +'<button class="sec-btn or" onclick="'+editFn+'">✏️ सम्पादन</button>'
       +(canDelete?'<button class="sec-btn" style="color:#8B1520;border-color:#8B1520;" onclick="'+deleteFn+'">🗑</button>':'')
     +'</div></div>';
@@ -5363,9 +5373,11 @@ function renderManage(){
     teamHtml += '<div class="team-dept-group" data-dept-group="'+dk+'">';
     teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#8B1520;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #f0e0e0;">'+(_deptLabels[dk]||dk)+' ('+group.length+')</div>';
     teamHtml += group.map(function(m){
-      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'">'+_makeItemRow(m.name, m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
+      var hidden = m.visible===false;
+      var visBtn='<button class="sec-btn" style="'+(hidden?'background:#2E7D32;color:#fff;border-color:#2E7D32;':'')+'" title="टोली पेजमा देखाउने/लुकाउने" onclick="_toggleMemberVisibility(\''+m.id+'\')">'+(hidden?'👁️':'🚫')+'</button>';
+      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'" style="'+(hidden?'opacity:.5;':'')+'">'+_makeItemRow(m.name+(hidden?' <span style="font-size:10px;color:#999;font-weight:600;">(लुकाइएको)</span>':''), m.role+' · '+(m.dept==='exec'?'कार्यकारी':'विभाग'),
         'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
-        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img)+'</div>';
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img, visBtn)+'</div>';
     }).join('');
     teamHtml += '</div>';
   });
@@ -5376,9 +5388,11 @@ function renderManage(){
     teamHtml += '<div class="team-dept-group" data-dept-group="_other">';
     teamHtml += '<div style="font-size:12.5px;font-weight:700;color:#888;margin:14px 0 6px;padding-bottom:4px;border-bottom:1.5px solid #eee;">अन्य</div>';
     teamHtml += _leftover.map(function(m){
-      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'">'+_makeItemRow(m.name, m.role+' · '+(m.dept||'—'),
+      var hidden = m.visible===false;
+      var visBtn='<button class="sec-btn" style="'+(hidden?'background:#2E7D32;color:#fff;border-color:#2E7D32;':'')+'" title="टोली पेजमा देखाउने/लुकाउने" onclick="_toggleMemberVisibility(\''+m.id+'\')">'+(hidden?'👁️':'🚫')+'</button>';
+      return '<div class="team-member-row" data-mname="'+(m.name||'').toLowerCase()+'" style="'+(hidden?'opacity:.5;':'')+'">'+_makeItemRow(m.name+(hidden?' <span style="font-size:10px;color:#999;font-weight:600;">(लुकाइएको)</span>':''), m.role+' · '+(m.dept||'—'),
         'editMember('+JSON.stringify(m).replace(/"/g,"&quot;")+');tab(\'t-team\',_apTabBtn(\'t-team\'))',
-        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img)+'</div>';
+        'deleteMember(\''+m.id+'\')', !m.id.startsWith('dm'), m.img, visBtn)+'</div>';
     }).join('');
     teamHtml += '</div>';
   }
@@ -5901,6 +5915,10 @@ function _roRender(){
     div.innerHTML='<span class="reorder-handle" title="Drag to reorder">&#9776;</span>'
       +'<div class="reorder-av">'+avInner+'</div>'
       +'<div style="flex:1;min-width:0;"><div class="reorder-name">'+item.label+'</div>'+(item.sub?'<div class="reorder-role">'+item.sub+'</div>':'')+'</div>'
+      +'<div class="ro-move-btns">'
+        +'<button type="button" class="ro-move-btn" data-dir="up"'+(i===0?' disabled':'')+'>▲</button>'
+        +'<button type="button" class="ro-move-btn" data-dir="down"'+(i===_roItems.length-1?' disabled':'')+'>▼</button>'
+      +'</div>'
       +'<span class="reorder-idx">#'+(i+1)+'</span>';
     div.addEventListener('dragstart',function(e){_roDragIdx=parseInt(this.dataset.idx);this.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
     div.addEventListener('dragend',function(){this.classList.remove('dragging');document.querySelectorAll('.reorder-item').forEach(function(el){el.classList.remove('drag-over');});});
@@ -5909,8 +5927,37 @@ function _roRender(){
     div.addEventListener('touchstart',function(){_roDragIdx=parseInt(this.dataset.idx);this.classList.add('dragging');},{passive:true});
     div.addEventListener('touchmove',function(e){e.preventDefault();var y=e.touches[0].clientY;document.querySelectorAll('.reorder-item').forEach(function(el){el.classList.remove('drag-over');var r=el.getBoundingClientRect();if(y>=r.top&&y<=r.bottom&&parseInt(el.dataset.idx)!==_roDragIdx)el.classList.add('drag-over');});},{passive:false});
     div.addEventListener('touchend',function(){this.classList.remove('dragging');var ov=document.querySelector('.reorder-item.drag-over');if(ov){var t=parseInt(ov.dataset.idx);ov.classList.remove('drag-over');if(_roDragIdx!==null&&_roDragIdx!==t){var mv=_roItems.splice(_roDragIdx,1)[0];_roItems.splice(t,0,mv);_roRender();}}});
+    // Up/down buttons — a much more reliable way to reorder on mobile than
+    // dragging inside a small, already-scrollable list.
+    div.querySelector('[data-dir="up"]').addEventListener('click',function(e){
+      e.stopPropagation(); e.preventDefault();
+      var idx=parseInt(div.dataset.idx);
+      if(idx>0){ var mv=_roItems.splice(idx,1)[0]; _roItems.splice(idx-1,0,mv); _roRender(); }
+    });
+    div.querySelector('[data-dir="down"]').addEventListener('click',function(e){
+      e.stopPropagation(); e.preventDefault();
+      var idx=parseInt(div.dataset.idx);
+      if(idx<_roItems.length-1){ var mv=_roItems.splice(idx,1)[0]; _roItems.splice(idx+1,0,mv); _roRender(); }
+    });
     list.appendChild(div);
   });
+}
+// One-click starting arrangement: अध्यक्ष/प्रमुख → उपाध्यक्ष → कोषाध्यक्ष → सचिव → सदस्य.
+// Admin can still fine-tune with the ▲▼ buttons or drag afterward before saving.
+var _roRoleRank = {'अध्यक्ष':1,'प्रमुख':1,'उपाध्यक्ष':2,'बरिष्ठ उपाध्यक्ष':2,'कोषाध्यक्ष':3,
+  'सह-कोषाध्यक्ष':3,'सचिव':4,'महासचिव':4,'सह-सचिव':5,'सल्लाहकार':6,'सदस्य':9};
+function _roRoleSortKey(role){
+  if(!role) return 20;
+  for(var k in _roRoleRank){ if(role.indexOf(k)!==-1) return _roRoleRank[k]; }
+  return 15;
+}
+function _roSortByRole(){
+  _roItems.sort(function(a,b){
+    var rk=_roRoleSortKey(a.sub)-_roRoleSortKey(b.sub);
+    return rk!==0 ? rk : (a.label||'').localeCompare(b.label||'');
+  });
+  _roRender();
+  toast('भूमिका अनुसार मिलाइयो — अब आवश्यक अनुसार ▲▼ ले मिलाएर Save गर्नुस्।','info',4000);
 }
 function closeReorder(){G('reorder-overlay').classList.remove('show');_roSection=null;_roItems=[];_roDeptFilter='all';_roDeptSlots=null;}
 async function saveReorder(){
@@ -5922,35 +5969,49 @@ async function saveReorder(){
   } else {
     _roItems.forEach(function(it,i){it._ord=i;});
   }
+  // For every section: write the FULL current in-memory record (not just {_ord})
+  // using set(...,{merge:true}) instead of updateDoc. Two problems this fixes:
+  //  1. updateDoc throws "No document to update" for members/donors/etc. that only
+  //     ever existed as hardcoded defaults and were never saved to Firestore before
+  //     (exactly the dn1 error) — set-with-merge creates the doc instead of failing.
+  //  2. The old code wrote ONLY {_ord} for newly-created docs, which would have
+  //     silently wiped the member's name/role/photo/etc. on next page load, since
+  //     a same-ID Firestore doc fully overrides the hardcoded default. Writing the
+  //     full record avoids that data loss.
   try{
     if(_roSection==='members'){
       for(var i=0;i<_roItems.length;i++){
-        var it=_roItems[i];var m=mC.find(function(x){return x.id===it.id;});if(m)m._ord=it._ord;
-        if(it.id&&!it.id.startsWith('dm'))await window._upd(window._doc(window._db,'members',it.id),{_ord:it._ord});
+        var it=_roItems[i];var m=mC.find(function(x){return x.id===it.id;});
+        if(m){ m._ord=it._ord; var payload=Object.assign({},m); delete payload.id;
+          await window._set(window._doc(window._db,'members',it.id),payload,{merge:true}); }
       }
       mC.sort(function(a,b){return (a._ord||0)-(b._ord||0);});renderMembers();
     } else if(_roSection==='supporters'){
       for(var i=0;i<_roItems.length;i++){
-        var it=_roItems[i];var s=sC.find(function(x){return x.id===it.id;});if(s)s._ord=it._ord;
-        if(it.id&&!it.id.startsWith('ds'))await window._upd(window._doc(window._db,'supporters',it.id),{_ord:it._ord});
+        var it=_roItems[i];var s=sC.find(function(x){return x.id===it.id;});
+        if(s){ s._ord=it._ord; var payload=Object.assign({},s); delete payload.id;
+          await window._set(window._doc(window._db,'supporters',it.id),payload,{merge:true}); }
       }
       sC.sort(function(a,b){return (a._ord||0)-(b._ord||0);});renderSupporters();
     } else if(_roSection==='news'){
       for(var i=0;i<_roItems.length;i++){
-        var it=_roItems[i];var n=nC.find(function(x){return x.id===it.id;});if(n)n._ord=it._ord;
-        if(it.id)await window._upd(window._doc(window._db,'news',it.id),{_ord:it._ord});
+        var it=_roItems[i];var n=nC.find(function(x){return x.id===it.id;});
+        if(n){ n._ord=it._ord; var payload=Object.assign({},n); delete payload.id;
+          await window._set(window._doc(window._db,'news',it.id),payload,{merge:true}); }
       }
       nC.sort(function(a,b){return (a._ord!==undefined?a._ord:9999)-(b._ord!==undefined?b._ord:9999);});renderNews();
     } else if(_roSection==='donors'){
       for(var i=0;i<_roItems.length;i++){
-        var it=_roItems[i];var d=dC.find(function(x){return x.id===it.id;});if(d)d._ord=it._ord;
-        if(it.id)await window._upd(window._doc(window._db,'donors',it.id),{_ord:it._ord});
+        var it=_roItems[i];var d=dC.find(function(x){return x.id===it.id;});
+        if(d){ d._ord=it._ord; var payload=Object.assign({},d); delete payload.id;
+          await window._set(window._doc(window._db,'donors',it.id),payload,{merge:true}); }
       }
       dC.sort(function(a,b){return (a._ord!==undefined?a._ord:9999)-(b._ord!==undefined?b._ord:9999);});renderDonors();
     } else if(_roSection==='gallery'){
       for(var i=0;i<_roItems.length;i++){
-        var it=_roItems[i];var g=gC.find(function(x){return x.id===it.id;});if(g)g._ord=it._ord;
-        if(it.id)await window._upd(window._doc(window._db,'gallery',it.id),{_ord:it._ord});
+        var it=_roItems[i];var g=gC.find(function(x){return x.id===it.id;});
+        if(g){ g._ord=it._ord; var payload=Object.assign({},g); delete payload.id;
+          await window._set(window._doc(window._db,'gallery',it.id),payload,{merge:true}); }
       }
       gC.sort(function(a,b){return (a._ord!==undefined?a._ord:9999)-(b._ord!==undefined?b._ord:9999);});renderGallery();if(typeof renderGalAdmin==='function')renderGalAdmin();
     }
@@ -6217,15 +6278,24 @@ function renderPageTeam(){
     +'</div>';
   }
 
-  var exec = mC.filter(function(m){return m.dept==='exec';});
-  var depts = ['natya','sangeet','sahitya','nritya','advisor'];
-  var deptLabels = {natya:'🎭 नाट्य विभाग',sangeet:'🎵 संगीत प्रतिष्ठान',sahitya:'📚 साहित्य प्रतिष्ठान',nritya:'💃 नृत्य विभाग',advisor:'🤝 सल्लाहकार'};
-  var dept = mC.filter(function(m){return depts.includes(m.dept);});
+  // Public team page must display in role-seniority order (अध्यक्ष → उपाध्यक्ष →
+  // कोषाध्यक्ष → सचिव → सदस्य), not raw storage order. Reuses the same rank table
+  // the admin reorder tool's "sort by role" button uses (_roRoleSortKey), so both
+  // stay consistent. Manual drag-order (_ord) is kept only as a tiebreaker between
+  // members who share the same role.
+  function _teamPageSort(a,b){
+    var rk=_roRoleSortKey(a.role)-_roRoleSortKey(b.role);
+    return rk!==0 ? rk : (a._ord||0)-(b._ord||0);
+  }
+  var exec = mC.filter(function(m){return m.dept==='exec' && m.visible!==false;}).sort(_teamPageSort);
+  var depts = ['natya','sangeet','sahitya','nritya','sangathan','advisor'];
+  var deptLabels = {natya:'🎭 नाट्य विभाग',sangeet:'🎵 संगीत प्रतिष्ठान',sahitya:'📚 साहित्य प्रतिष्ठान',nritya:'💃 नृत्य विभाग',sangathan:'🧭 संगठन विभाग',advisor:'🤝 सल्लाहकार'};
+  var dept = mC.filter(function(m){return depts.includes(m.dept) && m.visible!==false;}).sort(_teamPageSort);
 
   var eg=G('pg-exec-grid'); if(eg) eg.innerHTML=exec.map(function(m){return card(m,true);}).join('');
   // Render each department separately
-  ['natya','sangeet','sahitya','nritya','advisor'].forEach(function(d){
-    var members=mC.filter(function(m){return m.dept===d;});
+  depts.forEach(function(d){
+    var members=mC.filter(function(m){return m.dept===d && m.visible!==false;}).sort(_teamPageSort);
     var grid=G('pg-grid-'+d);
     if(grid) grid.innerHTML=members.map(function(m){return card(m,false);}).join('');
   });
@@ -6919,7 +6989,7 @@ function _clearFullForm(p){
   var pname=G(p+'-photo-name'); if(pname) pname.textContent='कुनै फोटो छानिएको छैन';
 }
 
-// ── नयाँ सदस्य (New Member) — fee रु ५,१००/- ──────────────────────────────────
+// ── नयाँ सदस्य (New Member) — fee: साधारण रु १,१५०/- · विशेष रु ५,१५०/- · आजीवन रु ५१,१२१/- ──
 async function submitNewMember(){
   var d = _gatherFullForm('nm');
   var typeEl = document.querySelector('input[name="nm-type"]:checked');
@@ -6937,11 +7007,13 @@ async function submitNewMember(){
     }
   }
   var nmType = typeEl.value;
-  var nmFee = nmType==='आजीवन सदस्य' ? 51000 : 5100;
+  // Fees per क्षितिज नाट्य प्रतिष्ठान विधान (bylaws): साधारण/विशेष/आजीवन सदस्यता।
+  var _nmFeeMap = {'साधारण सदस्य':1150, 'विशेष सदस्य':5150, 'आजीवन सदस्य':51121};
+  var nmFee = _nmFeeMap[nmType] || 1150;
   var data = Object.assign({}, d, {membershipType:nmType, fee:nmFee, createdAt:new Date().toISOString()});
   try{
     await window._add(window._col(window._db,'newMembers'), data);
-    var emailBody = _buildEmailBody('नयाँ सदस्यता दर्ता (रु ५,१००/-)', {
+    var emailBody = _buildEmailBody('नयाँ सदस्यता दर्ता (रु '+nmFee.toLocaleString('ne-NP')+'/-)', {
       'नाम':data.name,'फोन':data.phone,'इमेल':data.email||'—','ठेगाना':data.permanentAddr||'—',
       'विभाग':data.dept||'—','पद':data.role||'—','सुझाव':data.feedback||'—'
     });
@@ -7099,13 +7171,18 @@ async function submitMembership(){
   var role=G('mem-role').value;
   var typeEl=G('mem-type-select');
   if(typeEl && !typeEl.value) typeEl=null;
-  if(!name||!email||!phone||!dept||!role||!typeEl){
-    G('mem-err').textContent='कृपया सबै अनिवार्य क्षेत्र (*) भर्नुस्।';
+  var feeCatEl=document.querySelector('input[name="mem-fee-cat"]:checked');
+  if(!name||!email||!phone||!dept||!role||!typeEl||!feeCatEl){
+    G('mem-err').textContent='कृपया सबै अनिवार्य क्षेत्र (*) भर्नुस् — सदस्यता शुल्क वर्ग समेत छान्नुस्।';
     G('mem-err').style.display='block';
     return;
   }
   G('mem-err').style.display='none';
   var memType=typeEl.value;
+  // Fees per क्षितिज नाट्य प्रतिष्ठान विधान (bylaws): साधारण/विशेष/आजीवन सदस्यता।
+  var _renewFeeMap = {'साधारण सदस्यता':1150, 'विशेष सदस्यता':5150, 'आजीवन सदस्यता':51121};
+  var feeCategory = feeCatEl.value;
+  var renewFee = _renewFeeMap[feeCategory] || 1150;
   var btn=document.querySelector('#page-membership .btn-r[onclick*="submitMembership"]');
   if(btn){btn.disabled=true;btn.textContent='फोटो अपलोड हुँदैछ...';}
   // Upload photo to Cloudinary FIRST — storing raw base64 photos directly in the
@@ -7155,7 +7232,7 @@ async function submitMembership(){
     citizenshipDist:G('mem-cit-dist').value.trim(), citizenshipDate:G('mem-cit-date').value.trim(),
     permanentAddr:G('mem-perm-addr').value.trim(), temporaryAddr:G('mem-temp-addr').value.trim(),
     postalAddr:G('mem-postal').value.trim(),
-    dept, role, membershipType:memType,
+    dept, role, membershipType:memType, feeCategory:feeCategory, fee:renewFee,
     otherOrgs:G('mem-other-orgs').value.trim(), awards:G('mem-awards').value.trim(),
     works:G('mem-works').value.trim(), profession:G('mem-profession').value.trim(),
     feedback:G('mem-feedback').value.trim(),
@@ -7196,6 +7273,7 @@ async function submitMembership(){
     'आबद्ध विभाग'     : dept,
     'पद'              : role,
     'सदस्यता प्रकार'   : memType,
+    'शुल्क वर्ग'       : feeCategory+' (रु. '+renewFee.toLocaleString('ne-NP')+'/-)',
     'शैक्षिक योग्यता'  : data.education||'—',
     'सुझाव/प्रतिक्रिया': data.feedback||'—'
   });
@@ -7218,6 +7296,8 @@ async function submitMembership(){
     document.querySelectorAll('.mem-type-lbl').forEach(function(el){
       el.style.borderColor='#e8e8e8'; el.style.background='#fff'; el.style.boxShadow='none';
     });
+    document.querySelectorAll('input[name="mem-fee-cat"]').forEach(function(r){r.checked=false;});
+    if(G('mem-type-select')) G('mem-type-select').value='';
     // Clear voucher
     if(G('mem-voucher-file'))G('mem-voucher-file').value='';
     if(G('mem-voucher-name'))G('mem-voucher-name').textContent='कुनै फाइल छानिएको छैन';
@@ -7309,6 +7389,18 @@ async function loadMemberships(){
       el.appendChild(row);
     });
   }catch(e){el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';}
+}
+async function _toggleMemberVisibility(id){
+  var m=mC.find(function(x){return x.id===id;});
+  if(!m) return;
+  var target = !(m.visible===false) ? false : true; // toggle
+  try{
+    var payload=Object.assign({},m,{visible:target}); delete payload.id;
+    await window._set(window._doc(window._db,'members',id),payload,{merge:true});
+    m.visible=target;
+    toast(target===false ? 'सार्वजनिक सूचीबाट लुकाइयो' : 'सार्वजनिक सूचीमा देखाइयो','success');
+    renderMembers(); renderManage();
+  }catch(e){ toast('❌ Error: '+e.message,'error'); }
 }
 async function _toggleMembershipVisibility(m,row,btn){
   var target = (m.visible===false) ? true : false; // toggle current state
@@ -10138,19 +10230,20 @@ var _titleMap={
 <div class="reorder-overlay" id="reorder-overlay">
   <div class="reorder-box">
     <div class="reorder-title" id="ro-title">Arrange Order</div>
-    <div class="reorder-sub">Drag &amp; drop to reorder. Top = appears first on site.</div>
+    <div class="reorder-sub">माथि/तल बटन थिच्नुस् वा ड्र्याग गर्नुस्। माथि = साइटमा पहिले देखिन्छ।</div>
     <div id="ro-dept-filter-wrap" style="display:none;margin-bottom:10px;">
       <select id="ro-dept-filter" class="fi" style="width:100%;font-size:13px;padding:8px 10px;" onchange="_roFilterMembersByDept(this.value)">
         <option value="all">🗂 सबै विभाग (All Departments)</option>
-        <option value="exec">केन्द्रीय कार्यसमिति</option>
-        <option value="natya">नाट्य विभाग</option>
-        <option value="sangeet">संगीत प्रतिष्ठान</option>
-        <option value="sahitya">साहित्य प्रतिष्ठान</option>
-        <option value="nritya">नृत्य विभाग</option>
-        <option value="advisor">सल्लाहकार</option>
-        <option value="dept">विभाग प्रमुख</option>
+        <option value="exec">🏛 केन्द्रीय कार्यसमिति</option>
+        <option value="natya">🎭 नाट्य विभाग</option>
+        <option value="sangeet">🎵 संगीत विभाग</option>
+        <option value="sahitya">📖 साहित्य विभाग</option>
+        <option value="nritya">💃 नृत्य विभाग</option>
+        <option value="sangathan">🧭 संगठन विभाग</option>
+        <option value="advisor">🎓 सल्लाहकार</option>
       </select>
       <div style="font-size:11px;color:#888;margin-top:5px;">💡 विभाग छान्नुस् — त्यो विभागका सदस्यहरू मात्र देखिनेछन्, arrange गर्न सजिलो हुन्छ। क्रम अरू विभागमा असर गर्दैन।</div>
+      <button class="sec-btn" style="margin-top:8px;font-size:12px;" onclick="_roSortByRole()">🔤 अध्यक्ष → उपाध्यक्ष → कोषाध्यक्ष → सचिव → सदस्य क्रममा मिलाउनुस्</button>
     </div>
     <div class="reorder-list" id="ro-list"></div>
     <div class="reorder-footer">
@@ -10454,7 +10547,7 @@ var _titleMap={
   <div class="page-hero">
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">नयाँ सदस्यता</span></div>
-      <div class="page-hero-label">NEW MEMBER REGISTRATION — रु ५,१००/-</div>
+      <div class="page-hero-label">NEW MEMBER REGISTRATION — सदस्यता प्रकार अनुसार</div>
       <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>नयाँ सदस्यता दर्ता फाराम</h1>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">हाम्रो परिवारमा नयाँ सदस्यको रूपमा सामेल हुन चाहनुहुने सबैलाई हार्दिक स्वागत छ।</p>
@@ -10465,7 +10558,7 @@ var _titleMap={
     <!-- Payment info banner -->
     <div style="background:linear-gradient(135deg,#fff8f8,#fffde8);border:2px solid #8B1520;border-radius:14px;padding:22px 20px;margin-bottom:32px;">
       <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;margin-bottom:10px;">&#128181; सदस्यता शुल्क भुक्तानी जानकारी</div>
-      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.9;margin-bottom:12px;">नयाँ सदस्यता दर्ता शुल्क <strong>रु. ५,१००/-</strong> तल उल्लेखित बैंक खातामा जम्मा गरी भाैचर यसै फाराममा समाबेश गर्नुहुन अनुरोध छ।</p>
+      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.9;margin-bottom:12px;">नयाँ सदस्यता दर्ता शुल्क तपाईंले तल छान्नुभएको सदस्यता प्रकार अनुसार हुन्छ — <strong>साधारण रु. १,१५०/-</strong>, <strong>विशेष रु. ५,१५०/-</strong> वा <strong>आजीवन रु. ५१,१२१/-</strong>। रकम तल उल्लेखित बैंक खातामा जम्मा गरी भाैचर यसै फाराममा समाबेश गर्नुहुन अनुरोध छ।</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;">
         <div class="bank-c"><div class="bl">खाता नम्बर</div><div class="bv">00100200001742000002</div><div class="bs2">A/C Holder: KSHITIZ NATYA SAMUHA</div><div class="bs2">Excel Development Bank Ltd.</div></div>
         <div class="bank-c"><div class="bl">खाता नम्बर (RBBBL)</div><div class="bv">2620100002729001</div><div class="bs2">KSHITYZ NATYA SAMUHA JHAPA NATAK GH</div><div class="bs2">Rastriya Banijya Bank Ltd.</div></div>
@@ -10645,11 +10738,15 @@ var _titleMap={
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;">
           <label class="mem-type-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
             <input type="radio" name="nm-type" value="साधारण सदस्य"/>
-            <span><strong style="color:#1a2332;">⭐ साधारण सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५,१००/-</span></span>
+            <span><strong style="color:#1a2332;">⭐ साधारण सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. १,१५०/-</span></span>
+          </label>
+          <label class="mem-type-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="nm-type" value="विशेष सदस्य"/>
+            <span><strong style="color:#1a2332;">🌟 विशेष सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५,१५०/-</span></span>
           </label>
           <label class="mem-type-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
             <input type="radio" name="nm-type" value="आजीवन सदस्य"/>
-            <span><strong style="color:#1a2332;">💎 आजीवन सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५१,०००/-</span></span>
+            <span><strong style="color:#1a2332;">💎 आजीवन सदस्य</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५१,१२१/-</span></span>
           </label>
         </div>
       </div>
@@ -10823,7 +10920,7 @@ var _titleMap={
     <!-- Payment info banner -->
     <div style="background:linear-gradient(135deg,#fff8f8,#fffde8);border:2px solid #8B1520;border-radius:14px;padding:22px 20px;margin-bottom:32px;">
       <div style="font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#1a2332;margin-bottom:10px;">&#128181; सदस्यता शुल्क भुक्तानी जानकारी</div>
-      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.9;margin-bottom:12px;">वार्षिक सदस्यता शुल्क <strong>रु. ११५०/-</strong> तल उल्लेखित बैंक खातामा जम्मा गरी भाैचर यसै फाराममा समाबेश गर्नुहुन अनुरोध छ।</p>
+      <p style="font-size:13.5px;color:#5a3a1a;line-height:1.9;margin-bottom:12px;">वार्षिक सदस्यता शुल्क तपाईंले तल छान्नुभएको सदस्यता वर्ग अनुसार हुन्छ — <strong>साधारण रु. १,१५०/-</strong>, <strong>विशेष रु. ५,१५०/-</strong> वा <strong>आजीवन रु. ५१,१२१/-</strong>। रकम तल उल्लेखित बैंक खातामा जम्मा गरी भाैचर यसै फाराममा समाबेश गर्नुहुन अनुरोध छ।</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px;">
         <div class="bank-c"><div class="bl">खाता नम्बर</div><div class="bv">00100200001742000002</div><div class="bs2">A/C Holder: KSHITIZ NATYA SAMUHA</div><div class="bs2">Excel Development Bank Ltd.</div></div>
         <div class="bank-c"><div class="bl">खाता नम्बर (RBBBL)</div><div class="bv">2620100002729001</div><div class="bs2">KSHITYZ NATYA SAMUHA JHAPA NATAK GH</div><div class="bs2">Rastriya Banijya Bank Ltd.</div></div>
@@ -11032,6 +11129,23 @@ var _titleMap={
           <option value="आजीवन सदस्य">आजीवन सदस्य (Lifetime Member)</option>
           <option value="साधारण सदस्य">साधारण सदस्य (General Member)</option>
         </select>
+      </div>
+      <div style="margin-bottom:14px;">
+        <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">सदस्यता शुल्क वर्ग * <span style="color:#8B1520;font-size:10px;">(विधान अनुसार वार्षिक शुल्क)</span></label>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;">
+          <label class="mem-fee-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="mem-fee-cat" value="साधारण सदस्यता"/>
+            <span><strong style="color:#1a2332;">⭐ साधारण सदस्यता</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. १,१५०/-</span></span>
+          </label>
+          <label class="mem-fee-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="mem-fee-cat" value="विशेष सदस्यता"/>
+            <span><strong style="color:#1a2332;">🌟 विशेष सदस्यता</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५,१५०/-</span></span>
+          </label>
+          <label class="mem-fee-lbl" style="display:flex;align-items:center;gap:10px;border:1.5px solid #e8e8e8;border-radius:8px;padding:12px 14px;cursor:pointer;">
+            <input type="radio" name="mem-fee-cat" value="आजीवन सदस्यता"/>
+            <span><strong style="color:#1a2332;">💎 आजीवन सदस्यता</strong><br/><span style="font-size:13px;color:#8B1520;font-weight:700;">रु. ५१,१२१/-</span></span>
+          </label>
+        </div>
       </div>
 
       <!-- Additional info -->
