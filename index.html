@@ -88,6 +88,8 @@ window._gtagMembership=function(type){
 <meta property="og:description" content="बिर्तामोड-१, झापा। नाटक, कला र संस्कृतिको संस्था।"/>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet"/>
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script>
 // Keys are split across variables — harder to auto-scrape.
 // Real security = Firebase Rules (only auth users write) + Cloudinary unsigned preset.
@@ -2988,6 +2990,42 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
   .modal-box{padding:18px 14px!important;}
   .team-pg-wrap,.news-pg-wrap{padding:20px 4%!important;}
 }
+
+/* ── Letter Designer (आधिकारिक पत्र) ───────────────────────────────────────── */
+.ltr-page{width:210mm;height:297mm;background:#fff;margin:0 auto 20px;padding:9mm 12mm 0;box-shadow:0 2px 14px rgba(0,0,0,.25);box-sizing:border-box;font-family:'Noto Sans Devanagari',Arial,sans-serif;position:relative;color:#1a1a1a;border-bottom:5px solid #8B1520;overflow:hidden;display:flex;flex-direction:column;}
+.ltr-page.ltr-overflow{height:auto;min-height:297mm;overflow:visible;}
+.ltr-quote{text-align:center;font-weight:700;font-size:11px;margin-bottom:4px;}
+.ltr-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;}
+.ltr-hdr-logo{width:92px;height:92px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid #ddd;}
+.ltr-hdr-center{flex:1;text-align:center;position:relative;}
+.ltr-hdr-title{font-size:28px;font-weight:900;color:#1a1a1a;line-height:1.05;}
+.ltr-hdr-sub{font-size:12.5px;font-weight:700;color:#8B1520;margin-top:1px;position:relative;}
+.ltr-hdr-regs{text-align:right;font-size:10px;font-weight:700;color:#2E7D32;line-height:1.55;white-space:nowrap;}
+.ltr-subhdr{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:11px;font-weight:700;position:relative;min-height:30px;}
+.ltr-subhdr .ltr-mid{font-size:9.5px;color:#999;font-weight:700;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;}
+.ltr-rule{height:3px;background:#8B1520;margin:4px 0 0;position:relative;flex-shrink:0;}
+.ltr-rule::after{content:'';display:block;height:1px;background:#8B1520;margin-top:2px;}
+.ltr-body-wrap{display:flex;gap:0;margin-top:0;flex:1;min-height:0;}
+.ltr-sidebar{width:26%;border-right:1.5px solid #8B1520;padding:8px 8px 0 0;font-size:11px;line-height:1.45;}
+.ltr-sidebar .exec-name{color:#7A0F14;font-weight:700;text-align:center;margin-top:5px;}
+.ltr-sidebar .exec-role{color:#7A0F14;font-weight:700;text-align:center;margin-bottom:2px;}
+.ltr-sidebar .extra-line{color:#2E7D32;font-weight:700;text-align:center;}
+.ltr-main{flex:1;padding:8px 0 0 16px;font-size:13px;line-height:1.9;}
+.ltr-main .ltr-subject{font-weight:700;margin:10px 0;}
+.ltr-main p{margin:0 0 10px;text-align:justify;}
+.ltr-sig-block{margin-top:50px;text-align:center;}
+.ltr-sig-img{max-width:120px;max-height:60px;object-fit:contain;}
+.ltr-sig-line{width:150px;border-top:1px solid #333;margin:2px auto 4px;}
+.ltr-sig-name{font-weight:700;font-size:13px;}
+.ltr-sig-role,.ltr-sig-phone{font-size:12px;color:#333;}
+.ltr-hdr-watermark{position:absolute;left:50%;top:38px;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;object-fit:cover;opacity:.18;pointer-events:none;}
+@media(max-width:900px){
+  #ltr-designer-grid{grid-template-columns:1fr!important;}
+  /* Keep the letter page at true A4 size (210mm × 297mm) even on small
+     screens — shrinking it here was making the preview/export look
+     non-A4. The preview column already scrolls, so mobile users can pan
+     to see the full page instead. */
+}
 </style>
 
 <!-- Newsletter strip -->
@@ -3399,6 +3437,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
       <button class="ap-tab" onclick="tab('t-productions',this);_loadProdsAdmin()">🎬 नाटक सूची</button>
       <button class="ap-tab" onclick="tab('t-activity',this)">🎭 गतिविधि</button>
       <button class="ap-tab" onclick="tab('t-sitedata',this);_loadSiteDataTab()">📝 साइट डेटा</button>
+      <button class="ap-tab" onclick="tab('t-letter',this);_initLetterDesigner()">🖋 पत्र डिजाइनर</button>
       <button class="ap-tab" onclick="tab('t-help',this)">❓ सहायता</button>
     </div>
 
@@ -3944,6 +3983,32 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
             <div style="font-size:12px;color:#1a2332;font-weight:700;margin-top:4px;">माधव कल्पित</div>
             <div style="font-size:11px;color:#888;">केन्द्रीय अध्यक्ष, क्षितिज नाट्य प्रतिष्ठान</div>
           </div>
+
+          <!-- ADDITIONAL SIGNATORIES — used only by 🖋 पत्र डिजाइनर for letters that need more than one signature -->
+          <div style="margin-top:16px;">
+            <div class="srow">
+              <div><div class="slbl">✍️ Signature 2 (हरि प्रसाद भण्डारी)</div><div class="ssub">पत्र डिजाइनरमा वैकल्पिक दोस्रो हस्ताक्षरको रूपमा प्रयोग हुन्छ</div></div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <img id="th-signature2" src="" alt="" class="sth" style="display:none;max-width:120px;border:1px solid #e8e8e8;border-radius:4px;"/>
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'signature2')"/>📁 Upload</label>
+                  <input class="fi" id="si-signature2-url" placeholder="Or paste URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'signature2')"/>
+                </div>
+                <button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:6px 10px;font-size:11px;" onclick="removeSI('signature2')">🗑 Remove</button>
+              </div>
+            </div>
+            <div class="srow" style="margin-top:10px;">
+              <div><div class="slbl">✍️ Signature 3 (राजकुमार भट्टराई)</div><div class="ssub">पत्र डिजाइनरमा वैकल्पिक तेस्रो हस्ताक्षरको रूपमा प्रयोग हुन्छ</div></div>
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <img id="th-signature3" src="" alt="" class="sth" style="display:none;max-width:120px;border:1px solid #e8e8e8;border-radius:4px;"/>
+                <div style="display:flex;flex-direction:column;gap:5px;">
+                  <label class="img-ul" style="width:auto;padding:6px 12px;margin:0;font-size:12px;"><input type="file" accept="image/*" onchange="uploadSI(this,'signature3')"/>📁 Upload</label>
+                  <input class="fi" id="si-signature3-url" placeholder="Or paste URL…" style="margin-bottom:0;font-size:12px;padding:6px 10px;" oninput="pasteSIUrl(this,'signature3')"/>
+                </div>
+                <button class="sec-btn" style="color:#8B1520;border-color:#8B1520;padding:6px 10px;font-size:11px;" onclick="removeSI('signature3')">🗑 Remove</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -4162,6 +4227,107 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         </div>
       </div>
     </div><!-- end t-sitedata -->
+
+    <!-- LETTER DESIGNER TAB -->
+    <div class="ap-section" id="t-letter">
+      <div class="ap-card">
+        <div class="ap-card-title">🖋 आधिकारिक पत्र डिजाइनर</div>
+        <p style="font-size:13px;color:#888888;margin-bottom:14px;">विवरण भर्नुस् — दायाँतिर लाइभ प्रिभ्यू देखिन्छ। लोगो र हस्ताक्षर "फोटो/लोगो" ट्याबमा अपलोड गरिएकै प्रयोग हुन्छ।</p>
+        <button class="save-btn" style="background:#555;margin-bottom:14px;" onclick="_ltrNewLetter()">🆕 नयाँ पत्र (अर्को च.न. स्वतः)</button>
+        <div id="ltr-designer-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start;">
+          <div id="ltr-form-col">
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">संस्थाको नाम</label>
+            <div style="display:flex;gap:16px;margin-bottom:12px;">
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;"><input type="radio" name="ltr-org" value="pratisthan" checked onchange="_renderLetterPreview()"/> क्षितिज नाट्य प्रतिष्ठान</label>
+              <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer;"><input type="radio" name="ltr-org" value="samuha" onchange="_renderLetterPreview()"/> क्षितिज नाट्य समूह</label>
+            </div>
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:14px;cursor:pointer;"><input type="checkbox" id="ltr-show-sidebar" checked onchange="_renderLetterPreview()"/> कार्यसमिति/टोली सूची देखाउने (बायाँ छेउमा)</label>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">प्र.स.</label>
+            <input class="fi" id="ltr-pras" placeholder="प्र.स. नं." oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">च.न. <span style="color:#2E7D32;font-size:10px;">(स्वतः क्रमशः बढ्छ — आवश्यक भए बदल्न सकिन्छ)</span></label>
+            <input class="fi" id="ltr-chalani" placeholder="स्वतः भरिन्छ" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">मिति</label>
+
+            <input class="fi" id="ltr-date" placeholder="जस्तै: २०८२/१२/१३" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">विषय</label>
+            <input class="fi" id="ltr-subject" placeholder="जस्तै: विशेष सहयोग सम्बन्धमा" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">सम्बोधन/अभिवादन</label>
+            <input class="fi" id="ltr-greeting" value="तपाईं आदरणीय मान्यजन प्रति सादर नमस्कार।" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">पत्रको मुख्य भाग * <span style="color:#8B1520;font-size:10px;">(अनुच्छेद छुट्याउन खाली लाइन छोड्नुस्)</span></label>
+            <textarea class="fi" id="ltr-body" placeholder="पत्रको विषयवस्तु यहाँ लेख्नुस्..." oninput="_renderLetterPreview()" style="min-height:220px;margin-bottom:12px;"></textarea>
+
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">हस्ताक्षर १ (मुख्य) — नाम</label>
+                <input class="fi" id="ltr-sig-name" value="माधब कल्पित" oninput="_renderLetterPreview()"/>
+              </div>
+              <div>
+                <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">पद</label>
+                <input class="fi" id="ltr-sig-role" value="(केन्द्रीय अध्यक्ष)" oninput="_renderLetterPreview()"/>
+              </div>
+            </div>
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">सम्पर्क नं.</label>
+            <input class="fi" id="ltr-sig-phone" value="९८४४६३७९५२" oninput="_renderLetterPreview()" style="margin-bottom:14px;"/>
+
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;cursor:pointer;"><input type="checkbox" id="ltr-sig2-on" onchange="_ltrToggleSig(2);_renderLetterPreview()"/> थप हस्ताक्षर २ थप्नुस्</label>
+            <div id="ltr-sig2-wrap" style="display:none;margin-bottom:14px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
+                <input class="fi" id="ltr-sig2-name" placeholder="नाम" value="हरि प्रसाद भण्डारी" oninput="_renderLetterPreview()"/>
+                <input class="fi" id="ltr-sig2-role" placeholder="पद" value="(बरिष्ठ उपाध्यक्ष)" oninput="_renderLetterPreview()"/>
+              </div>
+              <input class="fi" id="ltr-sig2-phone" placeholder="सम्पर्क नं. (वैकल्पिक)" oninput="_renderLetterPreview()"/>
+            </div>
+
+            <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;cursor:pointer;"><input type="checkbox" id="ltr-sig3-on" onchange="_ltrToggleSig(3);_renderLetterPreview()"/> थप हस्ताक्षर ३ थप्नुस्</label>
+            <div id="ltr-sig3-wrap" style="display:none;margin-bottom:14px;">
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
+                <input class="fi" id="ltr-sig3-name" placeholder="नाम" value="राजकुमार भट्टराई" oninput="_renderLetterPreview()"/>
+                <input class="fi" id="ltr-sig3-role" placeholder="पद" value="(सचिव)" oninput="_renderLetterPreview()"/>
+              </div>
+              <input class="fi" id="ltr-sig3-phone" placeholder="सम्पर्क नं. (वैकल्पिक)" oninput="_renderLetterPreview()"/>
+            </div>
+
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">थप सूची (सदस्यहरू/संरक्षकहरु/विभागीय प्रमुख पछि थप्ने) — वैकल्पिक</label>
+            <textarea class="fi" id="ltr-extra-list" placeholder="हरेक लाइनमा एक थप जानकारी" oninput="_renderLetterPreview()" style="min-height:80px;margin-bottom:14px;"></textarea>
+
+            <div style="display:flex;gap:10px;flex-wrap:wrap;">
+              <button class="save-btn" onclick="_downloadLetterPDF()">📄 PDF डाउनलोड</button>
+              <button class="save-btn" style="background:#555;" onclick="_downloadLetterPNG()">🖼 PNG डाउनलोड</button>
+              <button class="save-btn" style="background:#2E7D32;" onclick="_saveLetter()">💾 पत्र सुरक्षित गर्नुस्</button>
+            </div>
+            <p style="font-size:11.5px;color:#888;margin-top:8px;">धेरै लामो पत्र भएमा PDF स्वतः धेरै पृष्ठमा बाँडिन्छ। PNG एक पृष्ठको पत्रका लागि मात्र उपयुक्त छ। "सुरक्षित गर्नुस्" ले पत्र भविष्यको प्रयोगका लागि तल राख्छ र च.न. अर्को नम्बरमा बढाउँछ।</p>
+            <div id="ltr-status" style="font-size:12.5px;margin-top:8px;"></div>
+
+            <div style="margin-top:20px;padding-top:16px;border-top:2px solid #8B1520;">
+              <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">वेबसाइटमा प्रकाशित गर्नुस् (वैकल्पिक)</label>
+              <select class="fi" id="ltr-publish-section" style="margin-bottom:8px;">
+                <option value="">-- खण्ड छान्नुस् --</option>
+                <option value="notices">📢 सूचना</option>
+                <option value="events">📅 कार्यक्रम</option>
+                <option value="news">📰 समाचार</option>
+              </select>
+              <button class="save-btn" style="background:#8B1520;" onclick="_publishLetter()">🌐 वेबसाइटमा प्रकाशित गर्नुस्</button>
+              <div id="ltr-publish-status" style="font-size:12.5px;margin-top:8px;"></div>
+            </div>
+          </div>
+          <div id="ltr-preview-col" style="overflow:auto;max-height:900px;background:#e9e9e9;padding:16px;border-radius:8px;">
+            <div id="ltr-preview-mount"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:26px;padding-top:20px;border-top:2px solid #e8e8e8;">
+          <div class="ap-card-title">🗂 पहिले डिजाइन गरिएका पत्रहरू</div>
+          <p style="font-size:12.5px;color:#888;margin-bottom:12px;">भविष्यमा फेरि प्रयोग गर्न "लोड" थिच्नुस्, वा नचाहिने भए "मेट्नुस्"।</p>
+          <div id="ltr-saved-list"><div style="color:#888888;font-size:13px;padding:12px;">कुनै सुरक्षित पत्र छैन।</div></div>
+        </div>
+      </div>
+    </div><!-- end t-letter -->
 
     <div class="ap-section" id="t-help">
       <div class="ap-card">
@@ -4662,12 +4828,14 @@ async function handleQup(inp){
 // ── SITE IMAGES ───────────────────────────────────────────────────────────────
 // Global signature URL and logo URL for use in vouchers/cards
 var _signatureUrl = '';
+var _signature2Url = '';
+var _signature3Url = '';
 var _logoUrl = '';
 
 async function loadImages(){
   try{
     var snap=await window._get(window._doc(window._db,'settings','images'));
-    if(snap.exists()){ var d=snap.data(); ['cover','founder','natak','logo','about','journey','appeal','signature','yatra1','yatra2'].forEach(function(t){ if(d[t]) applyImg(t,d[t]); }); }
+    if(snap.exists()){ var d=snap.data(); ['cover','founder','natak','logo','about','journey','appeal','signature','signature2','signature3','yatra1','yatra2'].forEach(function(t){ if(d[t]) applyImg(t,d[t]); }); }
   }catch(e){}
 }
 function applyImg(type,url){
@@ -4687,6 +4855,8 @@ function applyImg(type,url){
     var prev=G('sig-preview-img'); if(prev){prev.src=url;}
     var wrap=G('sig-preview-wrap'); if(wrap) wrap.style.display='block';
   }
+  else if(type==='signature2'){ _signature2Url=url; var th=G('th-signature2'); if(th){th.src=url;th.style.display='block';} }
+  else if(type==='signature3'){ _signature3Url=url; var th=G('th-signature3'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='yatra1'){ var i1=G('yatra1-img'),p1=G('yatra1-ph'); if(i1){i1.src=url;i1.style.display='block';} if(p1)p1.style.display='none'; var th=G('th-yatra1'); if(th){th.src=url;th.style.display='block';} }
   else if(type==='yatra2'){ var i2=G('yatra2-img'),p2=G('yatra2-ph'); if(i2){i2.src=url;i2.style.display='block';} if(p2)p2.style.display='none'; var th=G('th-yatra2'); if(th){th.src=url;th.style.display='block';} }
 }
@@ -4704,6 +4874,8 @@ function removeImg(type){
     var prev=G('sig-preview-img'); if(prev) prev.src='';
     var wrap=G('sig-preview-wrap'); if(wrap) wrap.style.display='none';
   }
+  else if(type==='signature2'){ _signature2Url=''; var th=G('th-signature2'); if(th){th.src='';th.style.display='none';} }
+  else if(type==='signature3'){ _signature3Url=''; var th=G('th-signature3'); if(th){th.src='';th.style.display='none';} }
   else if(type==='yatra1'){ var i1=G('yatra1-img'),p1=G('yatra1-ph'); if(i1){i1.src='';i1.style.display='none';} if(p1)p1.style.display='flex'; var th=G('th-yatra1'); if(th){th.src='';th.style.display='none';} }
   else if(type==='yatra2'){ var i2=G('yatra2-img'),p2=G('yatra2-ph'); if(i2){i2.src='';i2.style.display='none';} if(p2)p2.style.display='flex'; var th=G('th-yatra2'); if(th){th.src='';th.style.display='none';} }
 }
@@ -12440,6 +12612,346 @@ function _nepaliToIso(nepaliDate){
   return new Date().toISOString().split('T')[0];
 }
 
+
+// ── LETTER DESIGNER (आधिकारिक पत्र) ─────────────────────────────────────────
+// Builds an A4 letterhead matching the organization's official letter design,
+// using the already-uploaded site logo (_logoUrl) and signature (_signatureUrl).
+// The केन्द्रीय कार्यसमिति sidebar is a fixed curated roster (_LETTER_ROSTER
+// below), and च.न. auto-increments from a Firestore-stored counter so every
+// new letter gets the next number without the admin tracking it by hand.
+// Exports via html2canvas + jsPDF's auto-paging html() renderer, so long
+// letters split across pages automatically; short ones stay a single page.
+var _LETTER_CHALANI_PREFIX = '०८३/०८४-';
+var _ltrLoadedRecordId = null; // null = fresh/new letter; set when a saved letter is loaded for reprint
+function _ne(num){
+  var map={'0':'०','1':'१','2':'२','3':'३','4':'४','5':'५','6':'६','7':'७','8':'८','9':'९'};
+  return String(num).split('').map(function(ch){return map[ch]||ch;}).join('');
+}
+async function _loadLetterCounter(forceNew){
+  if(_ltrLoadedRecordId && !forceNew) return; // reprinting a saved letter — keep its original च.न.
+  var next=43;
+  try{
+    var snap=await window._get(window._doc(window._db,'settings','letterCounter'));
+    if(snap.exists() && snap.data().next) next=snap.data().next;
+  }catch(e){}
+  G('ltr-chalani').value = _LETTER_CHALANI_PREFIX + _ne(next);
+}
+async function _bumpLetterCounter(){
+  try{
+    var snap=await window._get(window._doc(window._db,'settings','letterCounter'));
+    var cur = (snap.exists() && snap.data().next) ? snap.data().next : 43;
+    await window._set(window._doc(window._db,'settings','letterCounter'),{next:cur+1},{merge:true});
+  }catch(e){ /* non-fatal — worst case admin re-types the number next time */ }
+}
+function _ltrNewLetter(){
+  _ltrLoadedRecordId=null;
+  ['ltr-pras','ltr-subject','ltr-body','ltr-extra-list'].forEach(function(id){G(id).value='';});
+  G('ltr-greeting').value='तपाईं आदरणीय मान्यजन प्रति सादर नमस्कार।';
+  G('ltr-sig-name').value='माधब कल्पित'; G('ltr-sig-role').value='(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value='९८४४६३७९५२';
+  var d=new Date();
+  G('ltr-date').value = d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');
+  _loadLetterCounter(true);
+  _renderLetterPreview();
+  toast('नयाँ पत्र सुरु गरियो — च.न. स्वतः तोकियो।','info',2500);
+}
+function _initLetterDesigner(){
+  if(!G('ltr-date').value){
+    var d=new Date();
+    G('ltr-date').value = d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');
+  }
+  if(!G('ltr-chalani').value) _loadLetterCounter();
+  _renderLetterPreview();
+  _loadSavedLetters();
+}
+function _ltrEscape(s){
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
+// Fixed केन्द्रीय कार्यसमिति roster used on all official letters — matches the
+// organization's actual letterhead exactly (see reference samples). This is
+// deliberately NOT pulled from the live टोली database, since the letterhead
+// roster only ever lists the central committee + department heads, not every
+// member — keeping it as a stable, curated list avoids letters changing
+// unexpectedly whenever the Team page is edited.
+var _LETTER_ROSTER = [
+  {t:'name', c:'m', name:'माधब कल्पित', role:'के. अध्यक्ष'},
+  {t:'name', c:'m', name:'हरि प्र. भण्डारी', role:'बरिष्ठ उपाध्यक्ष'},
+  {t:'name', c:'m', name:'सुजना खतिवडा', role:'उपाध्यक्ष'},
+  {t:'name', c:'m', name:'राज कु. भट्टराई', role:'का. सचिव'},
+  {t:'name', c:'m', name:'मुना प्रसाई', role:'कोषाध्यक्ष'},
+  {t:'header', text:'सदस्यहरू'},
+  {t:'plain', c:'g', text:'माधब प्र.सिटौला'},
+  {t:'plain', c:'g', text:'भिमा खतिवडा'},
+  {t:'plain', c:'g', text:'मदन रसाईली'},
+  {t:'plain', c:'g', text:'राजु खरेल'},
+  {t:'header', text:'संरक्षकहरु'},
+  {t:'plain', c:'g', text:'पबित्रा महतारा प्रसाई'},
+  {t:'plain', c:'g', text:'राजेन्द्र कुमार बस्नेत'},
+  {t:'plain', c:'g', text:'राजकुमार पोखरेल'},
+  {t:'plain', c:'g', text:'माया देवी सिटौला'},
+  {t:'header', text:'विभागीय प्रमुख'},
+  {t:'name', c:'mg', name:'गजेन्द्र पृथक', role:'अध्यक्ष नाट्य'},
+  {t:'name', c:'mg', name:'तुलसी प्र.भट्टराई', role:'अध्यक्ष साहित्य'},
+  {t:'name', c:'mg', name:'निरज पोखरेल', role:'अध्यक्ष संगीत'},
+  {t:'name', c:'mg', name:'सविता रेग्मी', role:'अध्यक्ष नृत्य'},
+  {t:'name', c:'mg', name:'कुमार ढकाल', role:'संगठन बिभाग प्रमुख'},
+  {t:'name', c:'mg', name:'प्रेम कुमार खरेल', role:'अ. उपभोक्ता समिति'},
+  {t:'name', c:'mg', name:'डम्मर ब. बस्नेत', role:'अ. अनुगमन समिति'},
+  {t:'name', c:'mg', name:'भोज कुमार मास्के', role:'स. अनुगमन समिति'},
+  {t:'name', c:'mg', name:'भिमा सिवाकोटी', role:'अ. संचार समिति'}
+];
+function _ltrExecSidebarHtml(){
+  var html = _LETTER_ROSTER.map(function(item){
+    // Header lines (सदस्यहरू/संरक्षकहरु/विभागीय प्रमुख) are always maroon.
+    if(item.t==='header') return '<div class="exec-role" style="margin-top:8px;font-weight:900;">'+_ltrEscape(item.text)+'</div>';
+    if(item.t==='name'){
+      // c:'m'  → केन्द्रीय कार्यसमिति style: name + role both maroon.
+      // c:'mg' → विभागीय प्रमुख style: name maroon, role green.
+      var nameCls = 'exec-name';
+      var roleCls = item.c==='mg' ? 'extra-line' : 'exec-role';
+      return '<div class="'+nameCls+'">'+_ltrEscape(item.name)+'</div><div class="'+roleCls+'">('+_ltrEscape(item.role)+')</div>';
+    }
+    // plain names (सदस्यहरू/संरक्षकहरु lists) are green.
+    return '<div class="extra-line">'+_ltrEscape(item.text)+'</div>';
+  }).join('');
+  var extra = (G('ltr-extra-list').value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
+  if(extra.length){
+    html += extra.map(function(line){ return '<div class="extra-line">'+_ltrEscape(line)+'</div>'; }).join('');
+  }
+  return html;
+}
+function _buildLetterPageHtml(){
+  var org = document.querySelector('input[name="ltr-org"]:checked').value;
+  var orgName = org==='samuha' ? 'क्षितिज नाट्य समूह' : 'क्षितिज नाट्य प्रतिष्ठान';
+  var showSidebar = G('ltr-show-sidebar').checked;
+  var logo = (typeof _logoUrl!=='undefined' && _logoUrl) ? _logoUrl : '';
+  var sig = (typeof _signatureUrl!=='undefined' && _signatureUrl) ? _signatureUrl : '';
+  var bodyParas = (G('ltr-body').value||'').split(/\n\s*\n/).map(function(p){return p.trim();}).filter(Boolean);
+  var bodyHtml = bodyParas.map(function(p){ return '<p>'+_ltrEscape(p).replace(/\n/g,'<br/>')+'</p>'; }).join('');
+  var subject = G('ltr-subject').value.trim();
+  var greeting = G('ltr-greeting').value.trim();
+  var sidebarHtml = showSidebar ? _ltrExecSidebarHtml() : '';
+
+  return ''
+  +'<div class="ltr-quote">" हामी सबै जातका थुङ्गा-थुङ्गालाइ उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा छाैँ । "</div>'
+  +'<div class="ltr-hdr">'
+    +(logo?'<img class="ltr-hdr-logo" src="'+logo+'" crossorigin="anonymous"/>':'<div style="width:105px;"></div>')
+    +'<div class="ltr-hdr-center">'
+      +(logo?'<img class="ltr-hdr-watermark" src="'+logo+'" crossorigin="anonymous"/>':'')
+      +'<div class="ltr-hdr-title">'+orgName+'</div>'
+      +'<div class="ltr-hdr-sub">कोशी प्रदेश, झापा</div>'
+    +'</div>'
+    +'<div class="ltr-hdr-regs">द.न. २३०-५८/५९<br/>पा.न. ३०१६५०९८६<br/>स.क.पा.न. २४४९९</div>'
+  +'</div>'
+  +'<div class="ltr-subhdr">'
+    +'<div>प्र.स. '+_ltrEscape(G('ltr-pras').value)+'<br/>च.न. '+_ltrEscape(G('ltr-chalani').value)+'</div>'
+    +'<div class="ltr-mid">स्था. २०५८</div>'
+    +'<div>मिति : '+_ltrEscape(G('ltr-date').value)+'</div>'
+  +'</div>'
+  +'<div class="ltr-rule"></div>'
+  +'<div class="ltr-body-wrap">'
+    +(showSidebar?'<div class="ltr-sidebar">'+sidebarHtml+'</div>':'')
+    +'<div class="ltr-main">'
+      +(greeting?'<p>'+_ltrEscape(greeting)+'</p>':'')
+      +(subject?'<div class="ltr-subject">विषय: '+_ltrEscape(subject)+'</div>':'')
+      +bodyHtml
+      +_ltrSigBlocksHtml(sig)
+    +'</div>'
+  +'</div>';
+}
+function _ltrSigBlocksHtml(primarySig){
+  var blocks = [{img:primarySig, name:G('ltr-sig-name').value, role:G('ltr-sig-role').value, phone:G('ltr-sig-phone').value}];
+  if(G('ltr-sig2-on').checked){
+    blocks.push({img:(typeof _signature2Url!=='undefined'?_signature2Url:''), name:G('ltr-sig2-name').value, role:G('ltr-sig2-role').value, phone:G('ltr-sig2-phone').value});
+  }
+  if(G('ltr-sig3-on').checked){
+    blocks.push({img:(typeof _signature3Url!=='undefined'?_signature3Url:''), name:G('ltr-sig3-name').value, role:G('ltr-sig3-role').value, phone:G('ltr-sig3-phone').value});
+  }
+  var inner = blocks.map(function(b){
+    return '<div style="flex:1;min-width:140px;">'
+      +(b.img?'<img class="ltr-sig-img" src="'+b.img+'" crossorigin="anonymous"/>':'<div style="height:60px;"></div>')
+      +'<div class="ltr-sig-line"></div>'
+      +'<div class="ltr-sig-name">'+_ltrEscape(b.name)+'</div>'
+      +'<div class="ltr-sig-role">'+_ltrEscape(b.role)+'</div>'
+      +(b.phone?'<div class="ltr-sig-phone">'+_ltrEscape(b.phone)+'</div>':'')
+    +'</div>';
+  }).join('');
+  return '<div class="ltr-sig-block" style="display:flex;gap:20px;justify-content:flex-end;text-align:center;">'+inner+'</div>';
+}
+function _ltrToggleSig(n){
+  var w=G('ltr-sig'+n+'-wrap'); var on=G('ltr-sig'+n+'-on').checked;
+  if(w) w.style.display = on ? 'block' : 'none';
+}
+function _renderLetterPreview(){
+  var mount=G('ltr-preview-mount'); if(!mount) return;
+  mount.innerHTML = '<div class="ltr-page" id="ltr-page-live">'+_buildLetterPageHtml()+'</div>';
+  // Letters that fit in one page keep an exact 210mm×297mm box with the red
+  // bottom border. If the sidebar/body content is too tall for one page, we
+  // switch to a flowing layout (no clipping, no bottom border) so nothing is
+  // cut off — the PDF export still splits it into multiple real A4 pages.
+  var el=G('ltr-page-live');
+  if(el && el.scrollHeight > el.clientHeight + 2){
+    el.classList.add('ltr-overflow');
+  }
+}
+async function _downloadLetterPDF(){
+  var st=G('ltr-status'); st.textContent='⏳ PDF तयार गर्दै...'; st.style.color='#888';
+  try{
+    var el=G('ltr-page-live');
+    var jsPDFCtor = window.jspdf && window.jspdf.jsPDF;
+    if(!jsPDFCtor){ st.textContent='❌ PDF लाइब्रेरी लोड हुन सकेन — इन्टरनेट जाँच गर्नुस्।'; st.style.color='#c0392b'; return; }
+    var doc = new jsPDFCtor('p','mm','a4');
+    await doc.html(el, {
+      x:0, y:0, autoPaging:'text',
+      html2canvas:{scale:2, useCORS:true, backgroundColor:'#ffffff'},
+      width:210, windowWidth:el.offsetWidth
+    });
+    var org = document.querySelector('input[name="ltr-org"]:checked').value;
+    var fname = (org==='samuha'?'kshitiz-natya-samuha':'kshitiz-natya-pratisthan')+'-patra-'+Date.now()+'.pdf';
+    doc.save(fname);
+    st.textContent='✅ PDF डाउनलोड भयो।'; st.style.color='#2E7D32';
+  }catch(e){
+    st.textContent='❌ PDF बनाउन सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }
+}
+async function _downloadLetterPNG(){
+  var st=G('ltr-status'); st.textContent='⏳ PNG तयार गर्दै...'; st.style.color='#888';
+  try{
+    var el=G('ltr-page-live');
+    if(!window.html2canvas){ st.textContent='❌ इमेज लाइब्रेरी लोड हुन सकेन — इन्टरनेट जाँच गर्नुस्।'; st.style.color='#c0392b'; return; }
+    var canvas = await html2canvas(el, {scale:3, useCORS:true, backgroundColor:'#ffffff'});
+    canvas.toBlob(function(blob){
+      var org = document.querySelector('input[name="ltr-org"]:checked').value;
+      var fname = (org==='samuha'?'kshitiz-natya-samuha':'kshitiz-natya-pratisthan')+'-patra-'+Date.now()+'.png';
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=fname; a.click();
+      st.textContent='✅ PNG डाउनलोड भयो।'; st.style.color='#2E7D32';
+    },'image/png');
+  }catch(e){
+    st.textContent='❌ PNG बनाउन सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }
+}
+
+// ── SAVE / LOAD / DELETE past letters (Firestore collection 'letters') ────────
+function _ltrGatherFormData(){
+  return {
+    org: document.querySelector('input[name="ltr-org"]:checked').value,
+    showSidebar: G('ltr-show-sidebar').checked,
+    pras: G('ltr-pras').value, chalani: G('ltr-chalani').value, date: G('ltr-date').value,
+    subject: G('ltr-subject').value, greeting: G('ltr-greeting').value, body: G('ltr-body').value,
+    sigName: G('ltr-sig-name').value, sigRole: G('ltr-sig-role').value, sigPhone: G('ltr-sig-phone').value,
+    sig2On: G('ltr-sig2-on').checked, sig2Name: G('ltr-sig2-name').value, sig2Role: G('ltr-sig2-role').value, sig2Phone: G('ltr-sig2-phone').value,
+    sig3On: G('ltr-sig3-on').checked, sig3Name: G('ltr-sig3-name').value, sig3Role: G('ltr-sig3-role').value, sig3Phone: G('ltr-sig3-phone').value,
+    extraList: G('ltr-extra-list').value
+  };
+}
+async function _saveLetter(){
+  var st=G('ltr-status'); st.textContent='⏳ सुरक्षित गर्दै...'; st.style.color='#888';
+  var data = _ltrGatherFormData();
+  data.updatedAt = new Date().toISOString();
+  try{
+    if(_ltrLoadedRecordId){
+      await window._upd(window._doc(window._db,'letters',_ltrLoadedRecordId), data);
+    } else {
+      data.createdAt = data.updatedAt;
+      var ref = await window._add(window._col(window._db,'letters'), data);
+      _ltrLoadedRecordId = ref.id;
+      await _bumpLetterCounter();
+    }
+    st.textContent='✅ पत्र सुरक्षित भयो।'; st.style.color='#2E7D32';
+    _loadSavedLetters();
+  }catch(e){
+    st.textContent='❌ सुरक्षित गर्न सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }
+}
+var _savedLetters=[];
+async function _loadSavedLetters(){
+  var el=G('ltr-saved-list'); if(!el) return;
+  try{
+    var snap=await window._gets(window._col(window._db,'letters'));
+    _savedLetters = snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+    _savedLetters.sort(function(a,b){return (b.createdAt||'').localeCompare(a.createdAt||'');});
+  }catch(e){ _savedLetters=[]; }
+  _renderSavedLettersList();
+}
+function _renderSavedLettersList(){
+  var el=G('ltr-saved-list'); if(!el) return;
+  if(!_savedLetters.length){ el.innerHTML='<div style="color:#888888;font-size:13px;padding:12px;">कुनै सुरक्षित पत्र छैन।</div>'; return; }
+  el.innerHTML = _savedLetters.map(function(l){
+    var orgLabel = l.org==='samuha' ? 'समूह' : 'प्रतिष्ठान';
+    return '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid #e8e8e8;border-radius:6px;margin-bottom:8px;flex-wrap:wrap;">'
+      +'<div style="font-size:13px;"><b>'+_ltrEscape(l.subject||'(विषय छैन)')+'</b> · '+orgLabel+'<br/><span style="color:#888;font-size:11.5px;">च.न. '+_ltrEscape(l.chalani||'—')+' · मिति '+_ltrEscape(l.date||'—')+'</span></div>'
+      +'<div style="display:flex;gap:6px;">'
+        +'<button class="sec-btn" onclick="_loadSavedLetterIntoForm(\''+l.id+'\')">📂 लोड</button>'
+        +'<button class="sec-btn" style="color:#8B1520;border-color:#8B1520;" onclick="_deleteSavedLetter(\''+l.id+'\')">🗑 मेट्नुस्</button>'
+      +'</div>'
+    +'</div>';
+  }).join('');
+}
+function _loadSavedLetterIntoForm(id){
+  var l=_savedLetters.find(function(x){return x.id===id;}); if(!l) return;
+  _ltrLoadedRecordId = id;
+  document.querySelector('input[name="ltr-org"][value="'+(l.org||'pratisthan')+'"]').checked=true;
+  G('ltr-show-sidebar').checked = l.showSidebar!==false;
+  G('ltr-pras').value=l.pras||''; G('ltr-chalani').value=l.chalani||''; G('ltr-date').value=l.date||'';
+  G('ltr-subject').value=l.subject||''; G('ltr-greeting').value=l.greeting||''; G('ltr-body').value=l.body||'';
+  G('ltr-sig-name').value=l.sigName||'माधब कल्पित'; G('ltr-sig-role').value=l.sigRole||'(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value=l.sigPhone||'';
+  G('ltr-sig2-on').checked=!!l.sig2On; G('ltr-sig2-name').value=l.sig2Name||''; G('ltr-sig2-role').value=l.sig2Role||''; G('ltr-sig2-phone').value=l.sig2Phone||'';
+  G('ltr-sig3-on').checked=!!l.sig3On; G('ltr-sig3-name').value=l.sig3Name||''; G('ltr-sig3-role').value=l.sig3Role||''; G('ltr-sig3-phone').value=l.sig3Phone||'';
+  G('ltr-extra-list').value=l.extraList||'';
+  _ltrToggleSig(2); _ltrToggleSig(3);
+  _renderLetterPreview();
+  toast('पत्र लोड भयो — सम्पादन गर्न सकिन्छ।','info',2500);
+}
+async function _deleteSavedLetter(id){
+  if(!confirm('यो सुरक्षित पत्र मेट्नुहुन्छ? यो कार्य फिर्ता हुँदैन।')) return;
+  try{ await window._del(window._doc(window._db,'letters',id)); }catch(e){}
+  _savedLetters = _savedLetters.filter(function(x){return x.id!==id;});
+  if(_ltrLoadedRecordId===id) _ltrLoadedRecordId=null;
+  _renderSavedLettersList();
+}
+
+// ── PUBLISH letter to सूचना / कार्यक्रम / समाचार ───────────────────────────────
+async function _publishLetter(){
+  var section = G('ltr-publish-section').value;
+  var st=G('ltr-publish-status');
+  if(!section){ st.textContent='❌ पहिले खण्ड छान्नुस्।'; st.style.color='#c0392b'; return; }
+  var subject = G('ltr-subject').value.trim();
+  var body = G('ltr-body').value.trim();
+  if(!subject || !body){ st.textContent='❌ विषय र मुख्य भाग दुबै आवश्यक छ।'; st.style.color='#c0392b'; return; }
+  st.textContent='⏳ प्रकाशित गर्दै...'; st.style.color='#888';
+  try{
+    // Render the letter to an image and upload it, so the published item can
+    // link back to the exact designed letterhead if the section supports it.
+    var el=G('ltr-page-live');
+    var letterImgUrl='';
+    if(window.html2canvas){
+      var canvas = await html2canvas(el, {scale:2, useCORS:true, backgroundColor:'#ffffff'});
+      var blob = await new Promise(function(res){ canvas.toBlob(res,'image/png'); });
+      var file = new File([blob],'letter.png',{type:'image/png'});
+      letterImgUrl = await cloudUpload(file);
+    }
+    var dateVal = G('ltr-date').value.trim() || todayNe();
+    if(section==='notices'){
+      var ndata={title:subject, body:body, date:dateVal, type:'general'};
+      var ref=await window._add(window._col(window._db,'notices'),ndata);
+      notC.push(Object.assign({id:ref.id},ndata));
+      renderNotAdminList(); if(_curPage==='notices') renderPageNotices();
+    } else if(section==='news'){
+      var ndata2={title:subject, body:body, date:dateVal, tag:'सूचना', img:letterImgUrl, createdAt:window._ts()};
+      var ref2=await window._add(window._col(window._db,'news'),ndata2);
+      nC.unshift(Object.assign({id:ref2.id},ndata2));
+      renderNews(); renderManage();
+    } else if(section==='events'){
+      var edata={title:subject, date:dateVal, day:'', month:'', year:'', venue:'', desc:body, ticket:'', tag:'सूचना', type:'upcoming'};
+      var ref3=await window._add(window._col(window._db,'events'),edata);
+      evC.push(Object.assign({id:ref3.id},edata));
+      renderEvAdminList(); if(_curPage==='events') renderPageEvents();
+    }
+    st.textContent='✅ वेबसाइटमा प्रकाशित भयो।'; st.style.color='#2E7D32';
+  }catch(e){
+    st.textContent='❌ प्रकाशित गर्न सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }
+}
 
 // Bottom nav home button sets active
 document.addEventListener('DOMContentLoaded', function(){
