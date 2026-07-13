@@ -83,6 +83,7 @@ window._gtagMembership=function(type){
 <meta property="og:title" content="क्षितिज नाट्य प्रतिष्ठान — झापा नाटक घर अभियान"/>
 <meta property="og:image" id="og-image-meta" content="https://kshitiznatya.org.np/og-banner.jpg"/>
 <meta property="og:url" content="https://kshitiznatya.org.np/"/>
+<link rel="canonical" href="https://kshitiznatya.org.np/"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:image" content="https://kshitiznatya.org.np/og-banner.jpg"/>
 <meta property="og:description" content="बिर्तामोड-१, झापा। नाटक, कला र संस्कृतिको संस्था।"/>
@@ -1904,6 +1905,20 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
   .newsletter-form{flex-direction:column;align-items:stretch;}
   .newsletter-inp{min-width:unset;width:100%;}
 
+  /* LETTERHEAD PREVIEW — the A4 page (210mm×297mm ≈ 794×1123px) is wider
+     than any phone screen. Scaling the page down lets the admin see the
+     whole letter without horizontal scrolling. The wrapper's own box is set
+     to the POST-scale size (with overflow:hidden) — a transform alone
+     doesn't shrink the parent's scrollable area, only how it's painted. */
+  #ltr-preview-col{padding:8px;}
+  #ltr-preview-mount{width:366px;height:517px;overflow:hidden;}
+  #ltr-preview-mount .ltr-page{transform:scale(.46);transform-origin:top left;}
+
+  /* TOUCH TARGETS — small icon buttons (✏️🗑📋 etc.) are fine with a mouse
+     but easy to mis-tap on a phone; bump the tappable area at mobile widths
+     only, so the dense desktop admin lists stay unchanged. */
+  .ma,.sec-btn,.shr-btn{min-height:34px;min-width:34px;}
+
   /* DONATE PAGE */
   .donate-pg-wrap{padding:28px 4%;}
   .txn-form{padding:14px;}
@@ -1983,6 +1998,10 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
 
 /* ── SMALL MOBILE (≤480px) ── */
 @media(max-width:480px){
+  /* LETTERHEAD PREVIEW — smaller scale to fit narrower phones */
+  #ltr-preview-mount{width:311px;height:439px;}
+  #ltr-preview-mount .ltr-page{transform:scale(.39);}
+
   /* HERO */
   h1{font-size:clamp(24px,9vw,38px)!important;}
   .btn-r,.btn-g{font-size:13px;}
@@ -2106,6 +2125,8 @@ img,video,iframe,canvas,svg{max-width:100%;height:auto;}
   "founder": {"@type":"Person","name":"Madhav Prasad Khatiwada","alternateName":"Madhav Kalpit"},
   "address": {"@type":"PostalAddress","streetAddress":"बिर्तामोड-१","addressLocality":"बिर्तामोड","addressRegion":"झापा","addressCountry":"NP"},
   "contactPoint": {"@type":"ContactPoint","telephone":"+977-9844637952","email":"kurakalpit@gmail.com"},
+  "logo": "https://kshitiznatya.org.np/og-banner.jpg",
+  "sameAs": ["https://www.facebook.com/KshitizNatyaSamuha"],
   "taxID": "301957038"
 }
 </script>
@@ -2992,33 +3013,41 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
 }
 
 /* ── Letter Designer (आधिकारिक पत्र) ───────────────────────────────────────── */
-.ltr-page{width:210mm;height:297mm;background:#fff;margin:0 auto 20px;padding:9mm 12mm 0;box-shadow:0 2px 14px rgba(0,0,0,.25);box-sizing:border-box;font-family:'Noto Sans Devanagari',Arial,sans-serif;position:relative;color:#1a1a1a;border-bottom:5px solid #8B1520;overflow:hidden;display:flex;flex-direction:column;}
+.ltr-page{width:210mm;height:297mm;background:#fff;margin:0 auto 20px;padding:7mm 13mm 0;box-shadow:0 2px 14px rgba(0,0,0,.25);box-sizing:border-box;font-family:'Noto Sans Devanagari',Arial,sans-serif;position:relative;color:#111;border-bottom:2px solid #8B1520;overflow:hidden;display:flex;flex-direction:column;}
 .ltr-page.ltr-overflow{height:auto;min-height:297mm;overflow:visible;}
-.ltr-quote{text-align:center;font-weight:700;font-size:11px;margin-bottom:4px;}
-.ltr-hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;position:relative;}
-.ltr-hdr-logo{width:92px;height:92px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid #ddd;}
-.ltr-hdr-center{flex:1;text-align:center;position:relative;}
-.ltr-hdr-title{font-size:28px;font-weight:900;color:#1a1a1a;line-height:1.05;}
-.ltr-hdr-sub{font-size:12.5px;font-weight:700;color:#8B1520;margin-top:1px;position:relative;}
-.ltr-hdr-regs{text-align:right;font-size:10px;font-weight:700;color:#2E7D32;line-height:1.55;white-space:nowrap;}
-.ltr-subhdr{display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:11px;font-weight:700;position:relative;min-height:30px;}
-.ltr-subhdr .ltr-mid{font-size:9.5px;color:#999;font-weight:700;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);white-space:nowrap;}
-.ltr-rule{height:3px;background:#8B1520;margin:4px 0 0;position:relative;flex-shrink:0;}
-.ltr-rule::after{content:'';display:block;height:1px;background:#8B1520;margin-top:2px;}
-.ltr-body-wrap{display:flex;gap:0;margin-top:0;flex:1;min-height:0;}
-.ltr-sidebar{width:26%;border-right:1.5px solid #8B1520;padding:8px 8px 0 0;font-size:11px;line-height:1.45;}
-.ltr-sidebar .exec-name{color:#7A0F14;font-weight:700;text-align:center;margin-top:5px;}
-.ltr-sidebar .exec-role{color:#7A0F14;font-weight:700;text-align:center;margin-bottom:2px;}
-.ltr-sidebar .extra-line{color:#2E7D32;font-weight:700;text-align:center;}
-.ltr-main{flex:1;padding:8px 0 0 16px;font-size:13px;line-height:1.9;}
-.ltr-main .ltr-subject{font-weight:700;margin:10px 0;}
-.ltr-main p{margin:0 0 10px;text-align:justify;}
-.ltr-sig-block{margin-top:50px;text-align:center;}
-.ltr-sig-img{max-width:120px;max-height:60px;object-fit:contain;}
-.ltr-sig-line{width:150px;border-top:1px solid #333;margin:2px auto 4px;}
-.ltr-sig-name{font-weight:700;font-size:13px;}
-.ltr-sig-role,.ltr-sig-phone{font-size:12px;color:#333;}
-.ltr-hdr-watermark{position:absolute;left:50%;top:38px;transform:translate(-50%,-50%);width:110px;height:110px;border-radius:50%;object-fit:cover;opacity:.18;pointer-events:none;}
+.ltr-quote{text-align:center;font-weight:700;font-size:10.5px;margin-bottom:1px;position:relative;z-index:1;}
+.ltr-hdr{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;position:relative;z-index:1;margin-top:2px;}
+.ltr-hdr-logo{width:82px;height:82px;border-radius:50%;object-fit:cover;flex-shrink:0;border:1px solid #ddd;margin-top:4px;}
+.ltr-hdr-center{flex:1;text-align:center;position:relative;padding:2px 6px 0;}
+.ltr-hdr-watermark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:115px;height:115px;border-radius:50%;object-fit:cover;opacity:.15;pointer-events:none;z-index:0;}
+.ltr-hdr-title{font-size:27px;font-weight:900;color:#111;line-height:1.1;position:relative;z-index:1;}
+.ltr-hdr-sub{font-size:12px;font-weight:700;color:#8B1520;margin-top:2px;position:relative;z-index:1;}
+.ltr-hdr-est{font-size:10px;color:#8B1520;font-weight:700;margin-top:2px;position:relative;z-index:1;opacity:.75;}
+.ltr-hdr-regs{text-align:right;font-size:10px;font-weight:700;color:#2E7D32;white-space:nowrap;display:flex;flex-direction:column;gap:2px;margin-top:4px;}
+.ltr-subhdr{display:flex;justify-content:space-between;align-items:center;margin-top:6px;font-size:11px;font-weight:700;position:relative;z-index:1;}
+.ltr-subhdr-date{font-size:12.5px;text-align:right;}
+.ltr-rule{height:2px;background:#8B1520;margin:4px 0 0;position:relative;z-index:1;flex-shrink:0;}
+.ltr-rule::after{content:'';display:block;height:1px;background:#8B1520;opacity:.6;margin-top:2px;}
+.ltr-body-wrap{display:flex;gap:0;margin-top:12px;flex:1;min-height:0;position:relative;z-index:1;}
+.ltr-sidebar{width:27%;position:relative;padding:0 10px 0 2px;font-size:11px;line-height:1.55;display:flex;flex-direction:column;}
+.ltr-sidebar::before{content:'';position:absolute;right:0;top:6px;bottom:6px;width:1px;background:#8B1520;opacity:.55;}
+.roster-groups{display:flex;flex-direction:column;}
+.roster-group{padding-top:8px;margin-top:28px;}
+.roster-group:first-child{margin-top:0;}
+.roster-group-sep{border-top:1px dotted #c9a0a5;padding-top:16px;}
+.roster-header{color:#8B1520;font-weight:900;font-size:12px;letter-spacing:.6px;text-align:center;margin-bottom:9px;text-decoration:underline;text-underline-offset:3px;}
+.ltr-sidebar .exec-name,.ltr-sidebar .plain-name{color:#8B1520;font-weight:700;text-align:center;margin-top:5px;}
+.ltr-sidebar .exec-role{color:#2E7D32;font-weight:700;text-align:center;margin-bottom:10px;}
+.ltr-sidebar .plain-name{margin-bottom:10px;}
+.ltr-main{flex:1;padding:26px 0 0 26px;font-size:13.5px;line-height:1.75;}
+.ltr-main .ltr-subject{font-weight:700;margin:8px 0;}
+.ltr-main p{margin:0 0 9px;text-align:justify;color:#111;}
+.ltr-sig-block{margin-top:56px;text-align:center;}
+.ltr-sig-img{max-width:120px;max-height:60px;object-fit:contain;margin-bottom:6px;}
+.ltr-sig-line{width:140px;border-top:1px solid #333;margin:6px auto 10px;}
+.ltr-sig-name{font-weight:700;font-size:13px;margin-bottom:5px;}
+.ltr-sig-role{font-size:12px;color:#333;margin-bottom:5px;}
+.ltr-sig-phone{font-size:12px;color:#333;}
 @media(max-width:900px){
   #ltr-designer-grid{grid-template-columns:1fr!important;}
   /* Keep the letter page at true A4 size (210mm × 297mm) even on small
@@ -3103,7 +3132,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <span style="color:rgba(255,255,255,.7);" data-ne="समाचार" data-en="News">समाचार</span>
       </div>
       <div class="page-hero-label" data-ne="ताजा अपडेट" data-en="LATEST UPDATES">ताजा अपडेट</div>
-      <h1 class="page-hero-title" data-ne="समाचार र अपडेट" data-en="News &amp; Updates">समाचार र अपडेट</h1>
+      <h2 class="page-hero-title" data-ne="समाचार र अपडेट" data-en="News &amp; Updates">समाचार र अपडेट</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub" data-ne="क्षितिज नाट्य प्रतिष्ठानका ताजा समाचार, घोषणा र गतिविधिहरू।" data-en="Latest news, announcements and activities from Kshitiz Natya Samuha.">क्षितिज नाट्य प्रतिष्ठानका ताजा समाचार, घोषणा र गतिविधिहरू।</p>
     </div>
@@ -3114,6 +3143,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
     </div>
     <div class="news-pg-grid" id="pg-news-grid"></div>
     <div id="pg-news-empty" style="text-align:center;color:#888888;padding:60px 0;font-size:16px;display:none;">कुनै समाचार छैन। / No news yet.</div>
+    <div id="pg-news-more"></div>
   </div>
 </div>
 
@@ -3129,7 +3159,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <span style="color:rgba(255,255,255,.7);" id="nd-hero-title-short">...</span>
       </div>
       <div class="page-hero-label" id="nd-tag-hero"></div>
-      <h1 class="page-hero-title" id="nd-title-hero"></h1>
+      <h2 class="page-hero-title" id="nd-title-hero"></h2>
       <div class="page-hero-bar"></div>
       <div style="color:rgba(255,255,255,.5);font-size:12px;" id="nd-date-hero"></div>
     </div>
@@ -3155,7 +3185,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <span style="color:rgba(255,255,255,.7);" data-ne="फोटो ग्यालरी" data-en="Photo Gallery">फोटो ग्यालरी</span>
       </div>
       <div class="page-hero-label" data-ne="हाम्रा तस्विरहरू" data-en="OUR PHOTOS">हाम्रा तस्विरहरू</div>
-      <h1 class="page-hero-title" data-ne="फोटो ग्यालरी" data-en="Photo Gallery">फोटो ग्यालरी</h1>
+      <h2 class="page-hero-title" data-ne="फोटो ग्यालरी" data-en="Photo Gallery">फोटो ग्यालरी</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub" data-ne="संस्थाका गतिविधि, नाटक, दाता र महत्वपूर्ण क्षणहरूका तस्विरहरू।" data-en="Photos of our activities, dramas, donors and important moments.">संस्थाका गतिविधि, नाटक, दाता र महत्वपूर्ण क्षणहरूका तस्विरहरू।</p>
     </div>
@@ -3177,7 +3207,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <span style="color:rgba(255,255,255,.7);" data-ne="हाम्रो टोली" data-en="Our Team">हाम्रो टोली</span>
       </div>
       <div class="page-hero-label" data-ne="कार्यकारी समिति" data-en="EXECUTIVE COMMITTEE">कार्यकारी समिति</div>
-      <h1 class="page-hero-title" data-ne="हाम्रो टोली" data-en="Our Team">हाम्रो टोली</h1>
+      <h2 class="page-hero-title" data-ne="हाम्रो टोली" data-en="Our Team">हाम्रो टोली</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub" data-ne="क्षितिज नाट्य प्रतिष्ठानका समर्पित कार्यकारी र विभाग प्रमुखहरू।" data-en="Dedicated executive members and department heads of Kshitiz Natya Samuha.">क्षितिज नाट्य प्रतिष्ठानका समर्पित कार्यकारी र विभाग प्रमुखहरू।</p>
     </div>
@@ -3235,7 +3265,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">⌂ Home</span><span class="sep">›</span><span style="color:rgba(255,255,255,.7);">टिकट</span></div>
       <div class="page-hero-label">BOOK NOW</div>
-      <h1 class="page-hero-title" data-ne="नाटक टिकट बुकिङ" data-en="Drama Ticket Booking">नाटक टिकट बुकिङ</h1>
+      <h2 class="page-hero-title" data-ne="नाटक टिकट बुकिङ" data-en="Drama Ticket Booking">नाटक टिकट बुकिङ</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">झापा नाटक घर — ३०० सिट क्षमता। अनलाइन टिकट बुक गर्नुस् र नाट्य अनुभव लिनुस्।</p>
     </div>
@@ -3324,7 +3354,7 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <span style="color:rgba(255,255,255,.7);" data-ne="सम्पर्क" data-en="Contact">सम्पर्क</span>
       </div>
       <div class="page-hero-label" data-ne="हामीसँग जोडिनुस्" data-en="GET IN TOUCH">हामीसँग जोडिनुस्</div>
-      <h1 class="page-hero-title" data-ne="सम्पर्क गर्नुस्" data-en="Contact Us">सम्पर्क गर्नुस्</h1>
+      <h2 class="page-hero-title" data-ne="सम्पर्क गर्नुस्" data-en="Contact Us">सम्पर्क गर्नुस्</h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -3456,6 +3486,14 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <div class="dash-stat-card" id="ds-newsletter"><div class="ds-icon">📧</div><div class="ds-val" id="ds-val-newsletter">…</div><div class="ds-lbl">Newsletter</div></div>
           <div class="dash-stat-card" id="ds-events"><div class="ds-icon">📅</div><div class="ds-val" id="ds-val-events">…</div><div class="ds-lbl">कार्यक्रम</div></div>
           <div class="dash-stat-card" id="ds-supporters"><div class="ds-icon">🤝</div><div class="ds-val" id="ds-val-supporters">…</div><div class="ds-lbl">शुभचिन्तक</div></div>
+          <div class="dash-stat-card" id="ds-media" title="फोटो + समाचार + टोली + दाता तस्बिरहरूको जोड — वास्तविक Cloudinary MB होइन, किनकि त्यो जानकारी यो static साइटबाट सुरक्षित रूपमा निकाल्न सकिँदैन।"><div class="ds-icon">🗄️</div><div class="ds-val" id="ds-val-media">…</div><div class="ds-lbl">कुल मिडिया फाइल</div></div>
+        </div>
+        <!-- Pending approvals — the things that actually need admin action -->
+        <div class="ap-card-title" style="font-size:13px;margin-top:4px;">⏳ स्वीकृति बाँकी</div>
+        <div id="dash-pending-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;margin:10px 0 16px;">
+          <div class="dash-stat-card" id="ds-p-donations" style="cursor:pointer;" onclick="go('donate')"><div class="ds-icon">💵</div><div class="ds-val" id="ds-val-p-donations">…</div><div class="ds-lbl">दान (pending)</div></div>
+          <div class="dash-stat-card" id="ds-p-newmembers" style="cursor:pointer;" onclick="tab('t-membership',document.querySelector('[onclick*=t-membership]'));_loadMembershipAdmin()"><div class="ds-icon">🆕</div><div class="ds-val" id="ds-val-p-newmembers">…</div><div class="ds-lbl">नयाँ सदस्य</div></div>
+          <div class="dash-stat-card" id="ds-p-volunteers" style="cursor:pointer;" onclick="tab('t-volunteer',document.querySelector('[onclick*=t-volunteer]'));loadVolunteers(true)"><div class="ds-icon">🙋</div><div class="ds-val" id="ds-val-p-volunteers">…</div><div class="ds-lbl">स्वयंसेवक</div></div>
         </div>
         <div style="font-size:12px;color:#aaa;margin-bottom:16px;" id="dash-updated"></div>
         <!-- Recent activity feed -->
@@ -3645,9 +3683,18 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <option value="अभियान">🧱 अभियान</option>
           <option value="फोटो">📸 फोटो</option>
           <option value="घोषणा">📢 घोषणा</option>
+          <option value="लेख">✍️ लेख (Blog/Article)</option>
           <option value="अन्य">📌 अन्य</option>
         </select>
         <textarea class="fi" id="n-body" placeholder="Content / Description"></textarea>
+        <div style="display:flex;gap:16px;flex-wrap:wrap;margin:4px 0 10px;">
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5a2a00;cursor:pointer;">
+            <input type="checkbox" id="n-draft" style="width:16px;height:16px;"/> 📝 Draft (सार्वजनिक नगर्नुस्, अहिले नराख्नुस्)
+          </label>
+          <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5a2a00;cursor:pointer;">
+            <input type="checkbox" id="n-featured" style="width:16px;height:16px;"/> ⭐ Featured (माथि देखाउनुस्)
+          </label>
+        </div>
         <div style="background:#f5f5f5;border-radius:8px;padding:12px 14px;margin-bottom:10px;">
           <div style="font-size:12px;font-weight:700;color:#555555;margin-bottom:8px;">📷 News Photo (optional)</div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:start;">
@@ -3669,6 +3716,11 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
           <button class="save-btn" style="background:#888888;display:none;" id="n-cancel" onclick="cancelEdit('news')">✕ Cancel</button>
         </div>
         <div class="ok-msg" id="n-ok"></div><div class="err-msg" id="n-err"></div>
+      </div>
+      <div class="ap-card" style="margin-top:14px;background:#fff8e6;border:1.5px dashed #F4A300;">
+        <div class="ap-card-title" style="font-size:13px;">📥 प्रदान गरिएका लेखहरू Import गर्नुस्</div>
+        <p style="font-size:12.5px;color:#777;margin-bottom:10px;">माधव कल्पित र संस्थाको इतिहास बारे ३ वटा लेख Draft मा थप्नुहोस् — समीक्षा गरेपछि मात्र Publish गर्नुहोस्।</p>
+        <button class="save-btn" id="import-articles-btn" onclick="importProvidedArticles()">📥 ३ लेख Draft मा थप्नुस्</button>
       </div>
       <!-- Inline news list -->
       <div class="ap-card" style="margin-top:14px;">
@@ -3712,6 +3764,9 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
             <option value="firestore">🔥 Firestore (Dynamic List)</option>
           </select>
         </div>
+        <label style="display:flex;align-items:center;gap:7px;font-size:12.5px;color:#5a2a00;margin:6px 0 4px;cursor:pointer;">
+          <input type="checkbox" id="d-anon" style="width:16px;height:16px;"/> 🙈 यो दाताको नाम सार्वजनिक पानामा नदेखाउनुस् (अज्ञात दाता / Anonymous)
+        </label>
         <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px;">
           <button class="save-btn" id="d-save" onclick="saveDonor()">✅ सुरक्षित गर्नुस्</button>
           <button class="save-btn" style="background:#888888;display:none;" id="d-cancel" onclick="cancelEdit('donor')">✕ रद्द</button>
@@ -4092,7 +4147,10 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <input class="fi" id="ct-fb2" placeholder="Facebook Group URL (optional)"/>
         <input class="fi" id="ct-fb3" placeholder="Kshitiz Natya Samuha Facebook Profile URL (optional)"/>
         <input class="fi" id="ct-yt" placeholder="YouTube Channel URL"/>
-        <input class="fi" id="ct-yt2" placeholder="Second YouTube / TikTok / Instagram URL (optional)"/>
+        <input class="fi" id="ct-yt2" placeholder="Second YouTube / TikTok URL (optional)"/>
+        <input class="fi" id="ct-instagram" placeholder="Instagram URL (optional)"/>
+        <input class="fi" id="ct-hours" placeholder="कार्यालय समय / Office Hours e.g. आइत–शुक्र, बिहान १०–साँझ ५"/>
+        <input class="fi" id="ct-emergency" placeholder="आकस्मिक सम्पर्क नं. / Emergency Contact (optional)"/>
         <button class="save-btn" id="ct-save" onclick="saveContactInfo()">💾 Save Contact Info</button>
         <div class="ok-msg" id="ct-ok"></div>
         <div class="err-msg" id="ct-err"></div>
@@ -4256,12 +4314,16 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
             <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">विषय</label>
             <input class="fi" id="ltr-subject" placeholder="जस्तै: विशेष सहयोग सम्बन्धमा" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
 
-            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">सम्बोधन/अभिवादन</label>
-            <input class="fi" id="ltr-greeting" value="तपाईं आदरणीय मान्यजन प्रति सादर नमस्कार।" oninput="_renderLetterPreview()" style="margin-bottom:12px;"/>
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">सम्बोधन/अभिवादन <span style="color:#8B1520;font-size:10px;">(धेरै लाइन हुन सक्छ)</span></label>
+            <textarea class="fi" id="ltr-greeting" oninput="_renderLetterPreview()" style="min-height:56px;margin-bottom:12px;">तपाईं आदरणीय मान्यजन प्रति सादर नमस्कार।</textarea>
 
             <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">पत्रको मुख्य भाग * <span style="color:#8B1520;font-size:10px;">(अनुच्छेद छुट्याउन खाली लाइन छोड्नुस्)</span></label>
             <textarea class="fi" id="ltr-body" placeholder="पत्रको विषयवस्तु यहाँ लेख्नुस्..." oninput="_renderLetterPreview()" style="min-height:220px;margin-bottom:12px;"></textarea>
 
+            <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">क्रम (बायाँबाट दायाँ)</label>
+            <select class="fi" id="ltr-sig-order" oninput="_renderLetterPreview()" style="margin-bottom:12px;">
+              <option value="1">१ — सबैभन्दा बायाँ</option><option value="2">२ — बीचमा</option><option value="3" selected>३ — सबैभन्दा दायाँ</option>
+            </select>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;">
               <div>
                 <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">हस्ताक्षर १ (मुख्य) — नाम</label>
@@ -4277,6 +4339,10 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
 
             <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;cursor:pointer;"><input type="checkbox" id="ltr-sig2-on" onchange="_ltrToggleSig(2);_renderLetterPreview()"/> थप हस्ताक्षर २ थप्नुस्</label>
             <div id="ltr-sig2-wrap" style="display:none;margin-bottom:14px;">
+              <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">क्रम (बायाँबाट दायाँ)</label>
+              <select class="fi" id="ltr-sig2-order" oninput="_renderLetterPreview()" style="margin-bottom:10px;">
+                <option value="1">१ — सबैभन्दा बायाँ</option><option value="2" selected>२ — बीचमा</option><option value="3">३ — सबैभन्दा दायाँ</option>
+              </select>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
                 <input class="fi" id="ltr-sig2-name" placeholder="नाम" value="हरि प्रसाद भण्डारी" oninput="_renderLetterPreview()"/>
                 <input class="fi" id="ltr-sig2-role" placeholder="पद" value="(बरिष्ठ उपाध्यक्ष)" oninput="_renderLetterPreview()"/>
@@ -4286,6 +4352,10 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
 
             <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;cursor:pointer;"><input type="checkbox" id="ltr-sig3-on" onchange="_ltrToggleSig(3);_renderLetterPreview()"/> थप हस्ताक्षर ३ थप्नुस्</label>
             <div id="ltr-sig3-wrap" style="display:none;margin-bottom:14px;">
+              <label style="font-size:11px;font-weight:700;color:#888;display:block;margin-bottom:6px;text-transform:uppercase;">क्रम (बायाँबाट दायाँ)</label>
+              <select class="fi" id="ltr-sig3-order" oninput="_renderLetterPreview()" style="margin-bottom:10px;">
+                <option value="1" selected>१ — सबैभन्दा बायाँ</option><option value="2">२ — बीचमा</option><option value="3">३ — सबैभन्दा दायाँ</option>
+              </select>
               <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;">
                 <input class="fi" id="ltr-sig3-name" placeholder="नाम" value="राजकुमार भट्टराई" oninput="_renderLetterPreview()"/>
                 <input class="fi" id="ltr-sig3-role" placeholder="पद" value="(सचिव)" oninput="_renderLetterPreview()"/>
@@ -4626,6 +4696,21 @@ service cloud.firestore {<br/>
 <!-- MAIN JAVASCRIPT -->
 <script>
 var G = id => document.getElementById(id);
+// Shared HTML-escaping helper — used everywhere Firestore/user-submitted text
+// (names, titles, bios, descriptions, etc.) is inserted via innerHTML, so a
+// malicious value entered through a public form (member registration,
+// volunteer form, etc.) can never execute as HTML/JS for site visitors.
+function esc(s){
+  if(s===null||s===undefined) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+// For href/src attributes specifically — also blocks javascript: URLs, which
+// esc() alone (HTML-entity escaping) does not prevent.
+function escUrl(u){
+  u = String(u||'').trim();
+  if(/^\s*javascript:/i.test(u)) return '#';
+  return esc(u);
+}
 var AM = false, CU = null, curTag = 'all';
 var nC=[], dC=[], mC=[], sC=[];
 
@@ -4963,6 +5048,8 @@ function editNews(item){
   G('n-title').value=item.title||''; G('n-body').value=item.body||'';
   G('n-date').value=item.date||''; G('n-tag').value=item.tag||'कार्यक्रम';
   G('n-img').value=item.img||'';
+  G('n-draft').checked=item.status==='draft';
+  G('n-featured').checked=!!item.featured;
   if(item.img){ G('n-ipv').src=item.img; G('n-ipv').style.display='block'; }
   G('n-cancel').style.display='inline-block';
   G('n-form-title').textContent='📰 Edit News';
@@ -4970,8 +5057,8 @@ function editNews(item){
   G('t-news').scrollIntoView({behavior:'smooth'});
 }
 function cancelEdit(type){
-  if(type==='news'){ _nEdit=null; ['n-title','n-body','n-date','n-img'].forEach(i=>G(i).value=''); G('n-ipv').style.display='none'; G('n-cancel').style.display='none'; G('n-form-title').textContent='📰 Add News'; }
-  else if(type==='donor'){ _dEdit=null; ['d-name','d-amount','d-place','d-date'].forEach(i=>G(i).value=''); G('d-cancel').style.display='none'; G('d-form-title').textContent='💰 Add Donor'; }
+  if(type==='news'){ _nEdit=null; ['n-title','n-body','n-date','n-img'].forEach(i=>G(i).value=''); if(G('n-draft'))G('n-draft').checked=false; if(G('n-featured'))G('n-featured').checked=false; G('n-ipv').style.display='none'; G('n-cancel').style.display='none'; G('n-form-title').textContent='📰 Add News'; }
+  else if(type==='donor'){ _dEdit=null; ['d-name','d-amount','d-place','d-date'].forEach(i=>G(i).value=''); if(G('d-anon'))G('d-anon').checked=false; G('d-cancel').style.display='none'; G('d-form-title').textContent='💰 Add Donor'; }
   else if(type==='member'){ _mEdit=null; ['m-name','m-role','m-aka','m-fb','m-img'].forEach(i=>G(i).value=''); G('m-ipv').style.display='none'; G('m-cancel').style.display='none'; G('m-form-title').textContent='👥 Add / Edit Team Member'; }
   else if(type==='sup'){ _sEdit=null; ['s-name','s-title','s-img'].forEach(i=>G(i).value=''); G('s-ipv').style.display='none'; G('s-cancel').style.display='none'; G('s-form-title').textContent='🤝 Add / Edit Supporter'; }
   else if(type==='gallery'){ _gEdit=null; ['gal-caption','gal-date','gal-img'].forEach(i=>G(i).value=''); G('gal-ipv').style.display='none'; G('gal-cancel').style.display='none'; G('gal-form-title').textContent='📸 Add Photo to Gallery'; G('gal-save').textContent='✅ Add to Gallery'; }
@@ -4982,40 +5069,117 @@ function cancelEdit(type){
 async function saveNews(){
   var title=G('n-title').value.trim(), body=G('n-body').value.trim(),
       date=G('n-date').value.trim()||todayNe(), tag=G('n-tag').value, img=G('n-img').value.trim();
+  var status = (G('n-draft')&&G('n-draft').checked) ? 'draft' : 'published';
+  var featured = !!(G('n-featured')&&G('n-featured').checked);
   if(!title||!body){ alert('Title and content required!'); return; }
   btnLoad('n-save',true);
   try{
     if(_nEdit && !_nEdit.startsWith('s')){
-      await window._upd(window._doc(window._db,'news',_nEdit),{title,body,date,tag,img});
-      var idx=nC.findIndex(n=>n.id===_nEdit); if(idx>=0) nC[idx]=Object.assign(nC[idx],{title,body,date,tag,img});
+      await window._upd(window._doc(window._db,'news',_nEdit),{title,body,date,tag,img,status,featured});
+      var idx=nC.findIndex(n=>n.id===_nEdit); if(idx>=0) nC[idx]=Object.assign(nC[idx],{title,body,date,tag,img,status,featured});
     } else {
-      var ref=await window._add(window._col(window._db,'news'),{title,body,date,tag,img,createdAt:window._ts()});
-      nC.unshift({id:ref.id,title,body,date,tag,img});
+      var ref=await window._add(window._col(window._db,'news'),{title,body,date,tag,img,status,featured,createdAt:window._ts()});
+      nC.unshift({id:ref.id,title,body,date,tag,img,status,featured});
     }
     cancelEdit('news'); showOk('n-ok','✅ Saved!'); renderNews(); renderManage();
   }catch(e){ showErr('n-err','❌ '+e.message); }
   btnLoad('n-save',false);
+}
+// Duplicate a news item — handy for near-identical recurring announcements
+// (e.g. monthly meeting notices) instead of retyping the whole form.
+// One-click import for the 3 articles provided by the admin (site history /
+// founder profile pieces). Each is saved as a DRAFT — not auto-published —
+// so they can be reviewed, lightly edited, and published deliberately rather
+// than going live untouched. Safe to click more than once is NOT guaranteed
+// (it will create duplicates), so the button removes itself after use.
+var _PENDING_ARTICLE_IMPORT = [
+  {
+    "title": "झापा नाटक घरका निर्माण परिकल्पनाकार: माधव कल्पितको प्रेरणा र योगदान",
+    "tag": "लेख",
+    "body": "झापा नाटक घरको स्थापना र यसको पूर्णता प्राप्ति एक महत्त्वपूर्ण सांस्कृतिक प्रक्रिया हो जसले नेपालको रंगमंच र कला क्षेत्रमा ठूलो योगदान पुर्याएको छ। यस नाटक घरको परिकल्पनाकार माधव कल्पित हुन्, जसको अविस्मरणीय योगदान र प्रेरणाले यस कला मन्दिरलाई आकार दिएको छ। माधव कल्पितको व्यक्तिगत र सांस्कृतिक दृष्टिकोणले नाटक घरको विकासलाई एक नयाँ उचाइमा पुर्याएको छ।\n\n१. माधव कल्पितको जीवन र कार्यक्षेत्र\n\nमाधव कल्पित एक प्रख्यात नाटककार, रंगमंचकर्मी, र सांस्कृतिक अभियन्ता हुन्, जसले नाटक र कला क्षेत्रमा अपार योगदान पुर्याएका छन्। इलाम जिल्लामा जन्मिएका माधव कल्पितलाई शुरुमा साहित्य र नाटकको गहिरो लगाव थियो। उनले आफ्नो जीवनको धेरै समय नाटक र रंगमंचको क्षेत्रमा समर्पित गरेका छन्।\n\nउनको नाटक लेखन, निर्देशन र रंगमंचका कृतिहरू नेपालका विविध रंगमंच केन्द्रहरूमा प्रदर्शित भएका छन्। माधव कल्पितको नाटकहरूमा समाजका जटिलता र समस्याहरूको चित्रण गरिएको छ, जसले मानिसहरूलाई सशक्त र संवेदनशील बनाउँछ।\n\n२. झापा नाटक घरको स्थापना: परिकल्पना र प्रेरणा\n\nझापा नाटक घरको स्थापना र यसको पूर्णता प्राप्तिमा माधव कल्पितको भूमिका अत्यन्त महत्वपूर्ण थियो। उनले नाटक घरको परिकल्पना गर्दै त्यसलाई एक सांस्कृतिक केन्द्रको रूपमा स्थापित गर्ने सपना देखेका थिए। झापामा नाटक र कला क्षेत्रको विकासका लागि एक उपयुक्त स्थलको आवश्यकता महसुस गर्दा उनले यसको स्थापनामा आफ्नो नेतृत्व र प्रेरणा दिन थाले।\n\nमाधव कल्पितको दृढ विश्वास थियो कि झापा र अन्य पूर्वी नेपालका क्षेत्रहरूमा नाटक र रंगमंचको विकास हुन सकेमा त्यसले सम्पूर्ण समाजमा सांस्कृतिक चेतना ल्याउन सक्नेछ। यसै विश्वास र प्रेरणाबाट उनले झापा नाटक घरको स्थापना गर्ने विचार अघि बढाए।\n\n३. झापा नाटक घरको निर्माण र उद्देश्य\n\nझापा नाटक घरको उद्देश्य भनेको एक स्थायी सांस्कृतिक केन्द्रको स्थापना गर्नु थियो, जहाँ नाटक, संगीत, नृत्य र अन्य कला विधाहरूको संरक्षण र प्रोत्साहन गर्न सकिन्छ। माधव कल्पितको नेतृत्वमा यो परियोजना अघि बढेको थियो र यसले स्थानिय कलाकारहरूलाई एउटा मंच प्रदान गर्यो, जसबाट उनीहरू आफ्ना सिर्जनात्मक क्षमता प्रदर्शन गर्न सक्थे।\n\nझापा नाटक घरको भवन, संरचना र डिजाइनको लागि माधव कल्पितले सांस्कृतिक मूल्य र वास्तुकला परम्परालाई ध्यानमा राखेर काम गरे। यो नाटक घरका भित्री र बाहिरी स्वरूपमा नेपालको सांस्कृतिक धरोहरलाई समाहित गर्ने प्रयास गरिएको छ, ताकि कलाकार र दर्शक दुवैले यसलाई सांस्कृतिक यात्रा र समृद्धिको प्रतीकका रूपमा अनुभव गर्न सकून्।\n\n४. माधव कल्पितको प्रेरणादायक योगदान\n\nमाधव कल्पितको प्रेरणा र मार्गदर्शनले झापा नाटक घरलाई केवल एक कला मन्दिरको रूपमा मात्र स्थापित गरेको छैन, बरु यसले झापा र आसपासका क्षेत्रमा रंगमंचका गतिविधिहरूलाई पनि नयाँ दिशा दिएको छ। उनका प्रमुख योगदानहरू निम्नलिखित छन्:\n\nक. सांस्कृतिक समृद्धि र जागरूकता: माधव कल्पितको परिकल्पनामा झापा नाटक घरको स्थापना केवल कला र नाटकको प्रचार गर्न मात्र नभएर, सामाजिक र सांस्कृतिक परिवर्तनका लागि एउटा माध्यामको रूपमा प्रस्तुत गर्नका लागि गरिएको थियो।\n\nख. कला र कलाकारहरूको संरक्षण र प्रोत्साहन: माधव कल्पितले झापा नाटक घरमा एक सुगम र सृजनशील वातावरण सिर्जना गरे जसले स्थानिय कलाकारहरूको समर्पण र मेहनतको कदर गर्यो।\n\nग. सांस्कृतिक आदानप्रदान: झापा नाटक घरले माधव कल्पितको नेतृत्वमा मात्र स्थानिय स्तरमा कार्यक्रम आयोजना गरेको छैन, बरु राष्ट्रिय र अन्तर्राष्ट्रिय रंगमंचसँग पनि साङ्गठनिक आदानप्रदानको अवसरहरू सिर्जना गरेको छ।\n\nघ. सामाजिक मुद्दाहरूको चित्रण: माधव कल्पितको नाटकहरूले सधैं सामाजिक मुद्दाहरूलाई उठाएका छन्। उनले नाटक र रंगमंचका माध्यमबाट सामाजिक असमानता, अधिकारको हनन, र अन्यायका विरुद्ध आवाज उठाउने प्रयास गरेका छन्।\n\n५. निष्कर्ष\n\nझापा नाटक घरको स्थापना र यसको विकासमा माधव कल्पितको योगदान अतुलनीय छ। उनको विचार र प्रेरणाले न केवल झापा, बरु सम्पूर्ण नेपालका लागि एक महत्त्वपूर्ण सांस्कृतिक केन्द्रको रूपमा यसलाई स्थापित गराएको छ। माधव कल्पितको नेतृत्व र समर्पणले रंगमंच र नाटकका माध्यमबाट नेपाली समाजमा कला र संस्कृति प्रति सम्मान र चासो बढाएको छ।\n\nउनको योगदानलाई निरन्तर सम्मान गर्नु पर्छ, ताकि नयाँ पुस्ताले पनि सांस्कृतिक र रंगमंच क्षेत्रमा आफ्नो स्थान बनाउन सकोस्।"
+  },
+  {
+    "title": "माधव कल्पित: नेपाली रंग साहित्यका एक उदियमान तारा",
+    "tag": "लेख",
+    "body": "सन्दकपुर-३, इलाममा स्व.पिता अभिचन्द्र खतिवडा र स्व.माता रत्न कुमारी खतिवडाको कोखबाट जन्मिएका माधव कल्पित नेपाली रंग साहित्यका एक उदियमान तारा हुन्। बाल्यकालदेखि नै साहित्य, कला र रंगमंचमा गहिरो रुचि राख्ने माधव कल्पितले नेपाली रंगमंचको क्षेत्रमा यात्रा गर्नका लागि अद्वितीय योगदान दिएका छन्।\n\nकल्पितको जीवनका प्रारम्भिक वर्षहरू इलाममा बिते, जहाँ उनले आफ्नो बाल्यकालदेखि नै साहित्य र कला प्रति रुचि विकास गरेका थिए। तर, उनको वास्तविक पहचान रंगमंच र नाटक क्षेत्रसँग जोडिएको छ, जहाँ उनले आफ्नो सृजनात्मकता र नेतृत्वका साथ ठूलो भूमिका निर्वाह गरेका छन्।\n\nझापा नाटक घरको निर्माण\n\nमाधव कल्पितको सबसे ठूलो योगदान भनेको झापा नाटक घरको स्थापना हो। उनले झापाको बिर्तामोडमा बहुजातीय सांस्कृतिक संग्रहालय सहितको नाटक घर निर्माण गरेका छन्। यो नाटक घर केवल एक थिएटर स्थल मात्र होइन, बरु एक सांस्कृतिक धरोहरको रूपमा स्थापित भएको छ।\n\nझापा नाटक घरको स्थापना मात्र होइन, यसको निर्माण प्रक्रिया पनि निकै चुनौतीपूर्ण थियो। माधव कल्पितले सडकदेखि सदनसम्म पुगेर १/१ इट्टा सहयोग जुटाउँदै यो विशाल परियोजना अघि बढाएका थिए।\n\nयस नाटक घरको निर्माणमा माधव कल्पितको कठिन परिश्रम, दृढ इच्छाशक्ति र साहस महत्वपूर्ण भूमिका रहेको छ। यो नाटक घर पूर्वी नेपालको पहिलो नाटक घरको रूपमा परिचित हुँदै गएको छ, जसले नेपाली रंगमंचका इतिहासमा नयाँ अध्याय लेख्न भूमिका निभाएको छ।\n\nइतिहासको पहिलो धरोहर\n\nझापा नाटक घरको स्थापना नेपालको रंगमंच र सांस्कृतिक इतिहासको एक महत्वपूर्ण धरोहरका रूपमा परिचित हुदै गएको छ। यो नाटक घरको निर्माणले नेपालमा रंगमंचको परिप्रेक्ष्यलाई मात्र प्रगति गराएको छैन, बरु सम्पूर्ण पूर्वी नेपालको सांस्कृतिक संरचनालाई नयाँ उचाइमा पुर्याएको छ।\n\nनिष्कर्ष\n\nमाधव कल्पितको जीवन र कार्य नेपाली रंगमंच र साहित्यमा अद्वितीय छ। झापा नाटक घरको निर्माणले नेपाली रंगमंचको इतिहासमा एउटा महत्वपूर्ण स्थान बनाएको छ। उनले सडकदेखि सदनसम्म पुगेर, एकदमै कठिन परिस्थितिमा पनि आफ्नो सपना पुरा गरेका छन्। माधव कल्पितका योगदानले न केवल झापा, बरु समग्र नेपालमा सांस्कृतिक चेतना र रंगमंचप्रति अपार सम्मान बढाएको छ।"
+  },
+  {
+    "title": "पूर्वी क्षितिजमा उदाएको अर्को क्षितिज !",
+    "tag": "लेख",
+    "body": "नेपालको सांस्कृतिक चेतना, कला, र रंगमंचको विकासमा केही संस्थाहरूले विशिष्ट योगदान पुर्‍याएका छन्। यस्तै संस्था हो क्षितिज नाट्य प्रतिष्ठान, जसले पूर्वी नेपालको सांस्कृतिक परिदृश्यलाई नयाँ उचाइमा पुर्‍याएको छ। २०५८ सालमा जिल्ला प्रशासन कार्यालय फिदिम, पाँचथरमा विधिवत रूपमा दर्ता भएको यो संस्थाले झापाको बिर्तामोडबाट आफ्नो इतिहासको दीर्घकालिन बिजारोपण गर्न सफल भएको हो। यसको नेतृत्व र सामूहिक प्रयासले नेपाली रंगमंच र कला क्षेत्रलाई प्रगतिको नयाँ बाटोमा डोर्‍याएको छ।\n\nक्षितिज नाट्य प्रतिष्ठानको स्थापना कला र संस्कृति क्षेत्रको विकास तथा संवर्द्धन गर्ने उद्देश्यले गरिएको थियो। यसका जन्मदाता माधव कल्पितले यस प्रतिष्ठानलाई केवल एउटा संस्था मात्र होइन, सांस्कृतिक जागरण र सामाजिक परिवर्तनको अभियानका रूपमा परिभाषित गरेका छन्।\n\nक्षितिज नाट्य प्रतिष्ठानको सबैभन्दा ठूलो उपलब्धि भनेको झापाको बिर्तामोड-१ मा झापा नाटक घरको स्थापना हो। यो नेपालकै पहिलो रंगमंच केन्द्रहरूमध्ये एक हो, जसले स्थानीय कलाकारहरूलाई सशक्त बनाउँदै सांस्कृतिक जागरणको नयाँ बाटो खोल्यो। झापा नाटक घरले बहुजातीय सांस्कृतिक संग्रहालयको अवधारणालाई पनि अघि बढाएको छ।\n\nसंस्थापक नेतृत्व\n\nयस प्रतिष्ठानका जन्मदाता माधव कल्पित हुन्। उनको निर्माण परिकल्पना, सपना, दृढ नेतृत्व र सामाजिक सञ्जाल प्रयोगको क्षमताले यो परियोजना सम्भव भयो। सडकमा 'एक इट्टा माग्ने' उनको पहिलो योजनाले ३ करोड ५० लाखको इट्टा मागेर नाटक घर निर्माण गर्‍यो। यसर्थ, हामी यसलाई 'एक इट्टाले बनेको झापा नाटक घर' भनेर पनि परिभाषित गर्न सक्दछौं।\n\nसामूहिक प्रयास\n\n१७औँ महाधिवेशनबाट निर्वाचित वर्तमान कार्यसमिति पदाधिकारीहरूमा अध्यक्ष माधव कल्पित, वरिष्ठ उपाध्यक्ष हरिप्रसाद भण्डारी, उपाध्यक्ष सुजना खतिवडा, महासचिव तारा प्रसाई, सचिव राजकुमार भट्टराई, कोषाध्यक्ष मुना प्रसाई, नाट्य विभाग प्रमुख गजेन्द्र पृथक, साहित्य विभाग प्रमुख तुलसीप्रसाद भट्टराई, नृत्य विभाग प्रमुख सविता रेग्मी, संगीत विभाग प्रमुख निरज पोखरेल, संगठन विभाग प्रमुख कुमार ढकाल लगायत रहेका छन्।\n\n२०५८ सालमा स्थापित यस नाट्य प्रतिष्ठानले समाज रूपान्तरणका लागि गाउँबस्तीसम्म पुगेर सडक नाटक, रेडियो नाटक, स्टेज नाटक हुँदै टेली श्रृंखला \"बिहानी\" र \"कुरा अर्को छ\" का लागि हिमशिखर टेलिभिजन, सुर्योदय टेलिभिजन, र नेपाल टेलिभिजनसम्म पुगेर सफलतापूर्वक प्रशारण गरिसकेको छ। स्थापनाकालदेखि हालसम्म यस प्रतिष्ठानमा बाल, युवा र वृद्ध गरी ५५२ जना स्थानीय प्रतिभाहरू संगठित भई, राष्ट्र र अन्तर्राष्ट्रिय स्तरसम्म पुगेर नाट्य कलाको क्षेत्रमा योगदान पुर्‍याउँदै आएका छन्।\n\nभविष्यका योजना र लक्ष्यहरू\n\n१. झापा नाटक घरलाई सांस्कृतिक पर्यटनको प्रमुख गन्तव्य बनाउन।\n२. स्थानीय सरकारहरूसँग सहकार्य गर्दै नाटक घरको संरक्षण सुनिश्चित गर्न।\n३. कलाकारहरूको क्षमता विकासका लागि प्रशिक्षण र अन्तर्राष्ट्रिय सहकार्य कार्यक्रमहरू सञ्चालन।\n४. बहुजातीय सांस्कृतिक संग्रहालय निर्माणलाई निरन्तरता दिने।\n५. राष्ट्रिय र अन्तर्राष्ट्रिय नाट्य महोत्सव आयोजना गर्ने।\n६. व्यावसायिक रंगमञ्चको सुरुआत गर्ने।\n७. नाट्य कलाको पठनपाठनका लागि \"स्कुल अफ थिएटर\" सञ्चालन गर्ने।\n\nक्षितिज नाट्य प्रतिष्ठानले नेपाली कला र रंगमंचमा अभूतपूर्व योगदान पुर्‍याएको छ। माधव कल्पितजस्ता visionary व्यक्तित्वको नेतृत्व र संस्थाका पदाधिकारीहरूको सामूहिक प्रयासले झापा नाटक घरलाई केवल एक भौतिक संरचना मात्र होइन, सांस्कृतिक चेतनाको प्रतीक बनाएर स्थापित गर्‍यो।\n\nधन्यवाद, जय रंगमञ्च!\n— गजेन्द्र पृथक, संस्थापक सदस्य/नाट्य विभाग प्रमुख, क्षितिज नाट्य प्रतिष्ठान, बिर्तामोड-झापा"
+  }
+];
+async function importProvidedArticles(){
+  var alreadyImported = _PENDING_ARTICLE_IMPORT.filter(function(a){
+    return nC.some(function(existing){ return existing.title === a.title; });
+  });
+  var toImport = _PENDING_ARTICLE_IMPORT.filter(function(a){
+    return !nC.some(function(existing){ return existing.title === a.title; });
+  });
+  var btn = G('import-articles-btn');
+  if(!toImport.length){
+    toast('सबै लेख पहिले नै थपिसकिएको छ — दोहोरो थपिँदैन।', 'info', 4000);
+    if(btn){ btn.textContent = '✅ पहिले नै थपिएको'; btn.disabled = true; }
+    return;
+  }
+  var msg = 'यी ' + toImport.length + ' नयाँ लेख Draft मा थप्ने?';
+  if(alreadyImported.length) msg += ' (' + alreadyImported.length + ' वटा पहिले नै थपिएको छ — ती फेरि थपिँदैनन्।)';
+  if(!confirm(msg)) return;
+  if(btn){ btn.disabled = true; btn.textContent = '⏳ थप्दैछ...'; }
+  var okCount = 0;
+  for(var i=0; i<toImport.length; i++){
+    var a = toImport[i];
+    try{
+      var ref = await window._add(window._col(window._db,'news'), {
+        title:a.title, body:a.body, date:todayNe(), tag:a.tag, img:'',
+        status:'draft', featured:false, createdAt:window._ts()
+      });
+      nC.unshift({id:ref.id, title:a.title, body:a.body, date:todayNe(), tag:a.tag, img:'', status:'draft', featured:false});
+      okCount++;
+    }catch(e){ console.warn('Import failed for', a.title, e.message); }
+  }
+  renderNews(); renderManage();
+  toast(okCount + ' नयाँ लेख Draft मा थपियो — News tab मा गएर समीक्षा गर्नुस्।', 'success', 4000);
+  if(btn){ btn.textContent = '✅ थपियो'; }
+}
+async function duplicateNews(item){
+  if(!confirm('"'+item.title+'" को प्रतिलिपि बनाउने?')) return;
+  var copy = {title:item.title+' (प्रतिलिपि)', body:item.body||'', date:todayNe(), tag:item.tag||'कार्यक्रम', img:item.img||'', status:'draft', featured:false};
+  try{
+    var ref=await window._add(window._col(window._db,'news'),Object.assign({},copy,{createdAt:window._ts()}));
+    nC.unshift(Object.assign({id:ref.id},copy));
+    renderNews(); renderManage();
+    toast('प्रतिलिपि बनाइयो — Draft मा राखिएको छ, सम्पादन गरेर Publish गर्नुस्।','success');
+  }catch(e){ toast('❌ '+e.message,'error'); }
 }
 async function deleteNews(id){
   if(!confirm('Delete this news item?')) return;
   if(!id.startsWith('s')) try{ await window._del(window._doc(window._db,'news',id)); }catch(e){}
   nC=nC.filter(n=>n.id!==id); renderNews(); renderManage();
 }
+// Shared news filtering: drafts are hidden from everyone except admin (shown
+// faded with a DRAFT tag there); featured items float to the top.
+function _visibleNews(list){
+  var isAdmin = document.body.classList.contains('admin-mode');
+  var arr = isAdmin ? list.slice() : list.filter(function(n){ return n.status!=='draft'; });
+  arr.sort(function(a,b){ return (b.featured?1:0)-(a.featured?1:0); });
+  return arr;
+}
 function renderNews(){
   // ── Home page horizontal scroll (top 6) ──────────────────────────────────
   var hs = G('news-hscroll');
   if(hs){
-    var top6 = nC.slice(0,6);
+    var top6 = _visibleNews(nC).slice(0,6);
     hs.innerHTML = top6.length ? top6.map(function(n){
       var imgHtml = n.img
-        ? '<img class="home-hs-img" src="'+n.img+'" alt="" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=home-hs-img-placeholder>📰</div>\'">'
+        ? '<img class="home-hs-img" src="'+esc(n.img)+'" alt="" loading="lazy" onerror="this.parentNode.innerHTML=\'<div class=home-hs-img-placeholder>📰</div>\'">'
         : '<div class="home-hs-img-placeholder">📰</div>';
       return '<div class="home-hs-card" onclick="showPage(\'news-detail\','+JSON.stringify(n).replace(/"/g,'&quot;')+')">'
         +imgHtml
         +'<div class="home-hs-body">'
-          +'<div class="home-hs-tag">'+(n.tag||'समाचार')+'</div>'
-          +'<div class="home-hs-title">'+(n.title||'')+'</div>'
-          +'<div class="home-hs-date">'+(n.date||'')+'</div>'
+          +'<div class="home-hs-tag">'+esc(n.tag||'समाचार')+'</div>'
+          +'<div class="home-hs-title">'+esc(n.title||'')+(n.status==='draft'?' <span style="font-size:9px;background:#888;color:#fff;padding:1px 5px;border-radius:3px;vertical-align:middle;">DRAFT</span>':'')+'</div>'
+          +'<div class="home-hs-date">'+esc(n.date||'')+'</div>'
         +'</div>'
       +'</div>';
     }).join('')+'<div style="flex:0 0 1px;"></div>'
@@ -5024,15 +5188,6 @@ function renderNews(){
   // ── Legacy tag-row hidden element (keep for compat) ──────────────────────
   var tr = G('tag-row'); if(tr) tr.innerHTML='';
   var ng = G('news-grid'); if(ng) ng.innerHTML='';
-}
-
-// Render full news grid (only on the news page)
-function _renderFullNewsGrid(){
-  var tags=['all',...new Set(nC.map(function(n){return n.tag;}))];
-  var pgTagRow=G('pg-tag-row');
-  if(pgTagRow) pgTagRow.innerHTML=tags.map(function(t){
-    return '<button class="tg-btn'+(_pgNewsTag===t?' on':'')+'" data-tag="'+t+'" onclick="_pgSetTag(this)">'+(t==='all'?'सबै':t)+'</button>';
-  }).join('');
 }
 
 // ── DONORS ────────────────────────────────────────────────────────────────────
@@ -5051,6 +5206,7 @@ function editDonor(item){
   G('d-name').value=item.name||''; G('d-amount').value=item.amount||'';
   G('d-type').value=item.type||'नगद सहयोग'; G('d-place').value=item.place||'';
   G('d-date').value=item.date||'';
+  G('d-anon').checked=!!item.anon;
   G('d-cancel').style.display='inline-block';
   G('d-form-title').textContent='💰 Edit Donor';
   tab('t-donor',_apTabBtn('t-donor'));
@@ -5080,7 +5236,8 @@ async function saveDonor(){
     return;
   }
   // Firestore path
-  var data={name,amount:amount||'—',type,place,date};
+  var anon=G('d-anon')&&G('d-anon').checked;
+  var data={name,amount:amount||'—',type,place,date,anon:!!anon};
   try{
     if(_dEdit){
       await window._upd(window._doc(window._db,'donors',_dEdit),data);
@@ -5133,10 +5290,10 @@ function renderDonors(){
   if(gEl){
     gEl.innerHTML = dC.length ? dC.map(function(d){
       return '<div class="donor-card">'
-        +'<div class="donor-av">'+d.name.charAt(0).toUpperCase()+'</div>'
-        +'<div><div class="donor-name">'+d.name+'</div>'
-        +'<div class="donor-amt">'+d.amount+'</div>'
-        +'<div class="donor-meta">'+d.type+(d.place?' · '+d.place:'')+(d.date?' · '+d.date:'')+'</div></div>'
+        +'<div class="donor-av">'+esc(d.name.charAt(0).toUpperCase())+'</div>'
+        +'<div><div class="donor-name">'+esc(d.name)+'</div>'
+        +'<div class="donor-amt">'+esc(d.amount)+'</div>'
+        +'<div class="donor-meta">'+esc(d.type)+(d.place?' · '+esc(d.place):'')+(d.date?' · '+esc(d.date):'')+'</div></div>'
         +'<div class="d-acts">'
           +'<button class="db e" onclick=\'editDonor('+JSON.stringify(d).replace(/'/g,"&#39;")+')\'>\u270F\uFE0F</button>'
           +'<button class="db d" onclick="deleteDonor(\''+d.id+'\')">🗑</button>'
@@ -5259,8 +5416,7 @@ function _teamTab(dept, btn){
   });
 }
 
-function _openDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[idx]; if(m) openProfileModal(m); }
-function _editDeptHead(idx){ var m=window._deptHeadStore&&window._deptHeadStore[idx]; if(m) editMember(m); }
+
 function renderMembers(){
   var execAll = mC.filter(function(m){return m.dept==='exec'||m.dept==='sangathan';});
   // ── PINNED TOP 5 — configurable via Admin Panel (settings/teamHomeConfig),
@@ -5293,7 +5449,7 @@ function renderMembers(){
     var _isF=(m.id==='dm1'||m._origId==='dm1');
     var _isDef=m.id.startsWith('dm')||!!m._origId;
     var col=_isF?'av-g':(m.color||'av-r');
-    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
+    var av=m.img?'<img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/'/g,"&#39;");
     return '<div class="tc'+(_isF?' gb':'')+'" onclick=\'openProfileModal('+mJson+')\' style="cursor:pointer;">'
       +'<div class="m-acts">'
@@ -5301,24 +5457,24 @@ function renderMembers(){
         +(!_isDef?'<button class="ma d" onclick="event.stopPropagation();deleteMember(\''+m.id+'\')">🗑</button>':'')
       +'</div>'
       +'<div class="tav '+col+'">'+av+'</div>'
-      +'<div class="tn">'+m.name+'</div>'
-      +(m.aka?'<div class="ta">'+m.aka+'</div>':'')
-      +'<div class="tr">'+m.role+'</div>'
-      +(m.fb?'<a class="tc-fb" href="'+m.fb+'" target="_blank" onclick="event.stopPropagation()">Facebook ›</a>':'')
+      +'<div class="tn">'+esc(m.name)+'</div>'
+      +(m.aka?'<div class="ta">'+esc(m.aka)+'</div>':'')
+      +'<div class="tr">'+esc(m.role)+'</div>'
+      +(m.fb?'<a class="tc-fb" href="'+escUrl(m.fb)+'" target="_blank" onclick="event.stopPropagation()">Facebook ›</a>':'')
     +'</div>';
   }
 
   function deptBtn(m){
     var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
-    var av=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
+    var av=m.img?'<img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/'/g,"&#39;");
     return '<div class="tc" onclick=\'openProfileModal('+mJson+')\' style="cursor:pointer;border:1.5px solid #e8e8e8;">'
       +'<div class="m-acts">'
         +'<button class="ma e" onclick=\'event.stopPropagation();editMember('+mJson+')\'>✏️</button>'
       +'</div>'
       +'<div class="tav av-p">'+av+'</div>'
-      +'<div class="tn" style="font-size:12px;">'+m.name+'</div>'
-      +'<div class="tr" style="color:#8B1520;font-size:10.5px;font-weight:700;">'+m.role+'</div>'
+      +'<div class="tn" style="font-size:12px;">'+esc(m.name)+'</div>'
+      +'<div class="tr" style="color:#8B1520;font-size:10.5px;font-weight:700;">'+esc(m.role)+'</div>'
       +'<button onclick="event.stopPropagation();go(\'team\')" style="margin-top:6px;background:none;border:1.5px solid #8B1520;color:#8B1520;border-radius:20px;padding:3px 10px;font-size:10px;font-weight:700;cursor:pointer;font-family:inherit;" data-ne="सदस्यहरू" data-en="Members">सदस्यहरू ›</button>'
     +'</div>';
   }
@@ -5503,7 +5659,7 @@ async function _saveTeamHomeCfg(){
 }
 function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc, extraBtnHtml){
   return '<div class="item-row">'
-    +(imgSrc?'<img src="'+imgSrc+'" alt="" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
+    +(imgSrc?'<img src="'+imgSrc+'" alt="" loading="lazy" style="width:36px;height:36px;border-radius:8px;object-fit:cover;flex-shrink:0;" onerror="this.style.display=\'none\'"/>':'')
     +'<div class="item-info"><div class="item-title">'+title+'</div><div class="item-sub">'+sub+'</div></div>'
     +'<div class="item-acts">'
       +(extraBtnHtml||'')
@@ -5512,15 +5668,27 @@ function _makeItemRow(title, sub, editFn, deleteFn, canDelete, imgSrc, extraBtnH
     +'</div></div>';
 }
 function renderManage(){
+  var importBtn = G('import-articles-btn');
+  if(importBtn && typeof _PENDING_ARTICLE_IMPORT!=='undefined'){
+    var remaining = _PENDING_ARTICLE_IMPORT.filter(function(a){
+      return !nC.some(function(existing){ return existing.title === a.title; });
+    });
+    if(!remaining.length){ importBtn.textContent = '✅ पहिले नै थपिएको'; importBtn.disabled = true; }
+    else { importBtn.textContent = '📥 ' + remaining.length + ' लेख Draft मा थप्नुस्'; importBtn.disabled = false; }
+  }
   var newsHtml = nC.map(function(n){
-    return _makeItemRow(n.title, n.tag+' · '+n.date,
+    var badges = (n.status==='draft'?' <span style="font-size:10px;background:#888;color:#fff;padding:1px 6px;border-radius:3px;">DRAFT</span>':'')
+               + (n.featured?' <span style="font-size:10px;background:#F9A825;color:#fff;padding:1px 6px;border-radius:3px;">⭐ FEATURED</span>':'');
+    var dupBtn = '<button class="sec-btn" title="प्रतिलिपि बनाउनुस्" onclick="duplicateNews('+JSON.stringify(n).replace(/"/g,"&quot;")+')">📋</button>';
+    return _makeItemRow(n.title+badges, n.tag+' · '+n.date,
       'editNews('+JSON.stringify(n).replace(/"/g,"&quot;")+');tab(\'t-news\',_apTabBtn(\'t-news\'))',
-      'deleteNews(\''+n.id+'\')', !n.id.startsWith('s'));
+      'deleteNews(\''+n.id+'\')', !n.id.startsWith('s'), null, dupBtn);
   }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै समाचार छैन।</p>';
   var donorHtml = dC.map(function(d){
-    return _makeItemRow(d.name, (d.amount||'')+(d.type?' · '+d.type:'')+(d.date?' · '+d.date:''),
+    var certBtn='<button class="sec-btn" title="प्रमाणपत्र/रसिद डाउनलोड" onclick="downloadDonorCertificate('+JSON.stringify(d).replace(/"/g,"&quot;")+')">🏆</button>';
+    return _makeItemRow(d.name+(d.anon?' <span style="font-size:10px;color:#999;">(🙈 गुप्त)</span>':''), (d.amount||'')+(d.type?' · '+d.type:'')+(d.date?' · '+d.date:''),
       'editDonor('+JSON.stringify(d).replace(/"/g,"&quot;")+');tab(\'t-donor\',_apTabBtn(\'t-donor\'))',
-      'deleteDonor(\''+d.id+'\')', true);
+      'deleteDonor(\''+d.id+'\')', true, null, certBtn);
   }).join('')||'<p style="color:#888888;font-size:14px;padding:10px;">कुनै दाता छैन।</p>';
   var _deptLabels = {exec:'🏛 केन्द्रीय कार्यसमिति', natya:'🎭 नाट्य विभाग', sangeet:'🎵 संगीत विभाग',
     sahitya:'📖 साहित्य विभाग', nritya:'💃 नृत्य विभाग', sangathan:'🧭 संगठन विभाग', advisor:'🎓 सल्लाहकार'};
@@ -5915,7 +6083,7 @@ function renderGalAdmin(){
   el.innerHTML=gC.length?gC.map(g=>`
     <div class="item-row">
       <div style="display:flex;align-items:center;gap:10px;flex:1;">
-        <img src="${g.img}" alt="" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display=\\'none\\'" />
+        <img src="${g.img}" alt="" loading="lazy" style="width:48px;height:48px;object-fit:cover;border-radius:6px;flex-shrink:0;" onerror="this.style.display=\\'none\\'" />
         <div class="item-info">
           <div class="item-title">${g.cat||'—'}</div>
           <div class="item-sub">${g.caption||'(no caption)'} ${g.date?'· '+g.date:''}</div>
@@ -5936,7 +6104,6 @@ function openLB(id){
   var lb=G('lightbox'); lb.style.display='flex';
   document.body.style.overflow='hidden';
 }
-function closeLB(){ G('lightbox').style.display='none'; document.body.style.overflow=''; }
 document.addEventListener('keydown',e=>{if(e.key==='Escape') closeLB();});
 G('lightbox').addEventListener('click',e=>{if(e.target===G('lightbox')) closeLB();});
 
@@ -5959,15 +6126,18 @@ async function loadContactInfo(){
 function renderContactInfo(){
   var c=_CI;
   var html='';
-  if(c.phone) html+=`<div class="ci"><div class="ci-ic">📞</div><div><div class="ci-lb">Phone</div><a href="tel:${c.phone.replace(/[^+0-9]/g,'')}" class="ci-vl">${c.phone}</a>${c.phone2?'<div class="ci-sb">'+c.phone2+'</div>':''}<div class="ci-sb">${c.person}</div></div></div>`;
-  if(c.email) html+=`<div class="ci"><div class="ci-ic">✉️</div><div><div class="ci-lb">Email</div><a href="mailto:${c.email}" class="ci-vl" style="font-size:13px;">${c.email}</a></div></div>`;
-  if(c.address) html+=`<div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lb">Address</div><div class="ci-vl" style="font-size:14px;">${c.address}</div>${c.maps?'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe><a href="'+c.maps+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps मा ठूलो गरेर हेर्नुस् ↗</a></div>':'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q=Birtamod+Jhapa+Nepal&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe></div>'}</div></div>`;
+  if(c.phone) html+='<div class="ci"><div class="ci-ic">📞</div><div><div class="ci-lb">Phone</div><a href="tel:'+escUrl(c.phone.replace(/[^+0-9]/g,''))+'" class="ci-vl">'+esc(c.phone)+'</a>'+(c.phone2?'<div class="ci-sb">'+esc(c.phone2)+'</div>':'')+(c.person?'<div class="ci-sb">'+esc(c.person)+'</div>':'')+'</div></div>';
+  if(c.email) html+='<div class="ci"><div class="ci-ic">✉️</div><div><div class="ci-lb">Email</div><a href="mailto:'+escUrl(c.email)+'" class="ci-vl" style="font-size:13px;">'+esc(c.email)+'</a></div></div>';
+  if(c.address) html+='<div class="ci"><div class="ci-ic">📍</div><div><div class="ci-lb">Address</div><div class="ci-vl" style="font-size:14px;">'+esc(c.address)+'</div>'+(c.maps?'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe><a href="'+escUrl(c.maps)+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps मा ठूलो गरेर हेर्नुस् ↗</a></div>':'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q=Birtamod+Jhapa+Nepal&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe></div>')+'</div></div>';
+  if(c.hours) html+='<div class="ci"><div class="ci-ic">🕐</div><div><div class="ci-lb">कार्यालय समय</div><div class="ci-vl" style="font-size:13px;">'+esc(c.hours)+'</div></div></div>';
+  if(c.emergency) html+='<div class="ci"><div class="ci-ic">🚨</div><div><div class="ci-lb">आकस्मिक सम्पर्क</div><a href="tel:'+escUrl(c.emergency.replace(/[^+0-9]/g,''))+'" class="ci-vl" style="color:#c0392b;">'+esc(c.emergency)+'</a></div></div>';
   html+='<div class="soc-row">';
-  if(c.fb) html+=`<a href="${c.fb}" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>`;
-  if(c.fb2) html+=`<a href="${c.fb2}" target="_blank" class="soc fb" title="Facebook Group" style="opacity:.75;">f</a>`;
-  if(c.fb3) html+=`<a href="${c.fb3}" target="_blank" class="soc fb" title="Facebook Profile" style="opacity:.5;">f</a>`;
-  if(c.yt) html+=`<a href="${c.yt}" target="_blank" class="soc yt" title="YouTube">▶</a>`;
-  if(c.yt2) html+=`<a href="${c.yt2}" target="_blank" class="soc yt" title="YouTube 2" style="opacity:.7;">▶</a>`;
+  if(c.fb) html+='<a href="'+escUrl(c.fb)+'" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>';
+  if(c.fb2) html+='<a href="'+escUrl(c.fb2)+'" target="_blank" class="soc fb" title="Facebook Group" style="opacity:.75;">f</a>';
+  if(c.fb3) html+='<a href="'+escUrl(c.fb3)+'" target="_blank" class="soc fb" title="Facebook Profile" style="opacity:.5;">f</a>';
+  if(c.instagram) html+='<a href="'+escUrl(c.instagram)+'" target="_blank" class="soc" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);" title="Instagram">📷</a>';
+  if(c.yt) html+='<a href="'+escUrl(c.yt)+'" target="_blank" class="soc yt" title="YouTube">▶</a>';
+  if(c.yt2) html+='<a href="'+escUrl(c.yt2)+'" target="_blank" class="soc yt" title="YouTube 2" style="opacity:.7;">▶</a>';
   html+='</div>';
   var el=G('contact-info-block'); if(el) el.innerHTML=html;
 }
@@ -5977,6 +6147,9 @@ function fillContactAdminForm(){
   G('ct-address').value=_CI.address||''; G('ct-maps').value=_CI.maps||'';
   G('ct-fb').value=_CI.fb||''; G('ct-fb2').value=_CI.fb2||''; if(G('ct-fb3'))G('ct-fb3').value=_CI.fb3||'';
   G('ct-yt').value=_CI.yt||''; G('ct-yt2').value=_CI.yt2||'';
+  if(G('ct-instagram'))G('ct-instagram').value=_CI.instagram||'';
+  if(G('ct-hours'))G('ct-hours').value=_CI.hours||'';
+  if(G('ct-emergency'))G('ct-emergency').value=_CI.emergency||'';
 }
 async function saveContactInfo(){
   var d={
@@ -5984,7 +6157,10 @@ async function saveContactInfo(){
     person:G('ct-person').value.trim(), email:G('ct-email').value.trim(),
     address:G('ct-address').value.trim(), maps:G('ct-maps').value.trim(),
     fb:G('ct-fb').value.trim(), fb2:G('ct-fb2').value.trim(), fb3:G('ct-fb3')?G('ct-fb3').value.trim():'',
-    yt:G('ct-yt').value.trim(), yt2:G('ct-yt2').value.trim()
+    yt:G('ct-yt').value.trim(), yt2:G('ct-yt2').value.trim(),
+    instagram:G('ct-instagram')?G('ct-instagram').value.trim():'',
+    hours:G('ct-hours')?G('ct-hours').value.trim():'',
+    emergency:G('ct-emergency')?G('ct-emergency').value.trim():''
   };
   btnLoad('ct-save',true);
   try{
@@ -6312,29 +6488,35 @@ function calcBrick(){
 
 // ─── NEWS PAGE ──────────────────────────────────────────────────────────────
 var _pgNewsTag='all';
+var _pgNewsPageSize = 9, _pgNewsShown = 9;
 function renderPageNews(){
   // Render tag filters
   var tags=['all',...new Set(nC.map(function(n){return n.tag;}).filter(Boolean))];
   G('pg-tag-row').innerHTML=tags.map(function(t){
-    var lbl=t==='all'?'सबै':t;
-    return '<button class="tg-btn'+((_pgNewsTag===t)?' on':'')+'" data-tag="'+t+'" onclick="_pgSetTag(this)">'+lbl+'</button>';
+    var lbl=t==='all'?'सबै':esc(t);
+    return '<button class="tg-btn'+((_pgNewsTag===t)?' on':'')+'" data-tag="'+esc(t)+'" onclick="_pgSetTag(this)">'+lbl+'</button>';
   }).join('');
-  var list=_pgNewsTag==='all'?nC:nC.filter(function(n){return n.tag===_pgNewsTag;});
-  if(!list.length){G('pg-news-grid').innerHTML='';G('pg-news-empty').style.display='block';return;}
+  var base=_pgNewsTag==='all'?nC:nC.filter(function(n){return n.tag===_pgNewsTag;});
+  var list=_visibleNews(base);
+  if(!list.length){G('pg-news-grid').innerHTML='';G('pg-news-empty').style.display='block';var pg=G('pg-news-more');if(pg)pg.style.display='none';return;}
   G('pg-news-empty').style.display='none';
 
   var FB_SVG='<svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;flex-shrink:0;"><path d="M24 12.073C24 5.405 18.627 0 12 0S0 5.405 0 12.073C0 18.1 4.388 23.094 10.125 24v-8.437H7.078v-3.49h3.047V9.41c0-3.025 1.792-4.697 4.533-4.697 1.312 0 2.686.235 2.686.235v2.97h-1.513c-1.491 0-1.956.93-1.956 1.886v2.269h3.328l-.532 3.49h-2.796V24C19.612 23.094 24 18.1 24 12.073z"/></svg>';
   var WA_SVG='<svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:currentColor;flex-shrink:0;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
 
-  G('pg-news-grid').innerHTML=list.map(function(n){
-    var excerpt=(n.body||'').substring(0,120)+(n.body&&n.body.length>120?'...':'');
+  var pageList = list.slice(0, _pgNewsShown);
+  G('pg-news-grid').innerHTML=pageList.map(function(n){
+    var excerpt=esc((n.body||'').substring(0,120))+(n.body&&n.body.length>120?'...':'');
     var imgHtml=n.img
-      ?('<img class="news-card-img" src="'+n.img+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"/>')
-      :'<div class="news-card-img-placeholder">&#128240;</div>';    return '<div class="news-card-lg" onclick="showPage(\'news-detail\','+JSON.stringify(n).replace(/"/g,'&quot;')+')">'
+      ?('<img class="news-card-img" src="'+esc(n.img)+'" alt="" loading="lazy" onerror="this.style.display=\'none\'"/>')
+      :'<div class="news-card-img-placeholder">&#128240;</div>';
+    var badges=(n.featured?' <span style="font-size:10px;background:#F9A825;color:#fff;padding:1px 6px;border-radius:3px;">⭐</span>':'')
+              +(n.status==='draft'?' <span style="font-size:10px;background:#888;color:#fff;padding:1px 6px;border-radius:3px;">DRAFT</span>':'');
+    return '<div class="news-card-lg" onclick="showPage(\'news-detail\','+JSON.stringify(n).replace(/"/g,'&quot;')+')">'
       +imgHtml
       +'<div class="news-card-body">'
-        +'<div class="news-card-meta"><span class="news-card-tag">'+(n.tag||'News')+'</span><span class="news-card-date">'+(n.date||'')+'</span></div>'
-        +'<div class="news-card-title">'+(n.title||'')+'</div>'
+        +'<div class="news-card-meta"><span class="news-card-tag">'+esc(n.tag||'News')+'</span><span class="news-card-date">'+esc(n.date||'')+'</span></div>'
+        +'<div class="news-card-title">'+esc(n.title||'')+badges+'</div>'
         +'<div class="news-card-excerpt">'+excerpt+'</div>'
       +'</div>'
       +'<div class="news-card-footer">'
@@ -6343,19 +6525,205 @@ function renderPageNews(){
           +'<button class="shr-btn shr-fb" onclick="shareNewsFB('+JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;')+')">'+FB_SVG+'</button>'
           +'<button class="shr-btn shr-wa" onclick="shareNewsWA('+JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;')+')">'+WA_SVG+'</button>'
           +'<button class="shr-btn shr-cp" onclick="copyNewsLink(this)">&#128203;</button>'
+          +'<button class="shr-btn" title="Download as Image" onclick="downloadNewsShareCard('+JSON.stringify(n).replace(/"/g,'&quot;')+')">🖼️</button>'
         +'</div>'
       +'</div>'
     +'</div>';
   }).join('');
+  var moreEl=G('pg-news-more');
+  if(moreEl){
+    if(list.length>_pgNewsShown){
+      moreEl.style.display='block';
+      moreEl.innerHTML='<button class="btn-r" onclick="_loadMoreNews()" style="margin:20px auto;display:block;">थप समाचार हेर्नुस् ('+(list.length-_pgNewsShown)+' बाँकी) ↓</button>';
+    } else { moreEl.style.display='none'; moreEl.innerHTML=''; }
+  }
 }
+function _loadMoreNews(){ _pgNewsShown += _pgNewsPageSize; renderPageNews(); }
 
 function _pgSetTag(b){setPgNewsTag(b,b.getAttribute('data-tag'));}
 function setPgNewsTag(btn, tag){
   _pgNewsTag=tag;
+  _pgNewsShown=_pgNewsPageSize;
   renderPageNews();
 }
 
 // ─── NEWS DETAIL ────────────────────────────────────────────────────────────
+// ─── NEWS SHARE CARD (downloadable, social-media-ready image) ───────────────
+// ─── NEWS SHARE CARD (downloadable, newspaper-style, full article) ──────────
+// Pure measurement — returns wrapped lines without drawing, so we can size
+// the canvas to fit the COMPLETE article before drawing anything (no
+// truncation, unlike the earlier fixed-height version).
+function _wrapTextLines(ctx, text, maxWidth){
+  var words = String(text||'').split(' ');
+  var line = '', lines = [];
+  for(var n=0; n<words.length; n++){
+    var testLine = line + words[n] + ' ';
+    if(ctx.measureText(testLine).width > maxWidth && n > 0){
+      lines.push(line.trim()); line = words[n] + ' ';
+    } else { line = testLine; }
+  }
+  if(line.trim()) lines.push(line.trim());
+  return lines;
+}
+function _drawLines(ctx, lines, x, y, lineHeight){
+  lines.forEach(function(l, i){ ctx.fillText(l, x, y + i*lineHeight); });
+  return y + lines.length*lineHeight;
+}
+function _loadImgP(url){
+  return new Promise(function(resolve){
+    if(!url){ resolve(null); return; }
+    var img = new Image(); img.crossOrigin = 'anonymous';
+    img.onload = function(){ resolve(img); };
+    img.onerror = function(){ resolve(null); };
+    img.src = url;
+  });
+}
+async function generateNewsShareCard(n){
+  // Wait for the Devanagari webfont (Mukta) to actually be loaded — canvas
+  // text silently falls back to a default font if drawn before this,
+  // producing inconsistent results across devices.
+  try{ await document.fonts.load('700 44px Mukta'); await document.fonts.load('400 30px Mukta'); await document.fonts.ready; }catch(e){}
+
+  var W = 1080;
+  var MX = 70; // side margin
+  var contentW = W - MX*2;
+  var HEAD_H = 175; // masthead band height
+
+  // Load article image (if any) up front so we know its rendered height
+  var artImg = await _loadImgP(n.img);
+  var artImgH = 0;
+  if(artImg){
+    artImgH = Math.round(contentW * (artImg.height/artImg.width));
+    artImgH = Math.min(artImgH, 620); // cap so a very tall image doesn't dominate
+  }
+
+  // ── MEASURE PASS: use a scratch canvas to compute exact line-wraps so the
+  // real canvas can be sized to fit the full article with no cut-off text.
+  var scratch = document.createElement('canvas');
+  var mctx = scratch.getContext('2d');
+
+  mctx.font = '900 46px Mukta, sans-serif';
+  var titleLines = _wrapTextLines(mctx, n.title||'', contentW);
+
+  mctx.font = '400 29px Mukta, sans-serif';
+  var paragraphs = (n.body||'').split(/\n\s*\n/).map(function(p){return p.trim();}).filter(Boolean);
+  var paraLineSets = paragraphs.map(function(p){ return _wrapTextLines(mctx, p, contentW); });
+  var bodyLineCount = paraLineSets.reduce(function(sum,ls){return sum+ls.length;}, 0);
+  var PARA_GAP = 16, BODY_LH = 44;
+
+  var y = HEAD_H + 40;               // after masthead
+  y += 46;                            // tag pill row
+  y += titleLines.length*58 + 10;     // headline
+  y += 30;                            // rule + gap
+  if(artImg){ y += artImgH + 26; }    // article image + caption gap
+  y += bodyLineCount*BODY_LH + (paraLineSets.length-1)*PARA_GAP; // body
+  y += 130;                           // footer band + bottom padding
+  var H = Math.max(y, 900);
+
+  // ── REAL CANVAS at the exact computed size ──────────────────────────────
+  var canvas = document.createElement('canvas');
+  canvas.width = W; canvas.height = H;
+  var ctx = canvas.getContext('2d');
+
+  // Paper background (very slight warm off-white, like newsprint)
+  ctx.fillStyle = '#FFFCF5'; ctx.fillRect(0,0,W,H);
+
+  // Masthead band
+  var grad = ctx.createLinearGradient(0,0,W,0);
+  grad.addColorStop(0,'#8B1520'); grad.addColorStop(1,'#6E1019');
+  ctx.fillStyle = grad; ctx.fillRect(0,0,W,HEAD_H);
+
+  var logo = await _loadImgP(_logoUrl);
+  if(logo){
+    ctx.save();
+    ctx.beginPath(); ctx.arc(100,87,54,0,Math.PI*2); ctx.closePath(); ctx.clip();
+    ctx.drawImage(logo, 46,33,108,108);
+    ctx.restore();
+    ctx.strokeStyle='rgba(255,255,255,.6)'; ctx.lineWidth=2;
+    ctx.beginPath(); ctx.arc(100,87,54,0,Math.PI*2); ctx.stroke();
+  }
+  ctx.fillStyle = '#fff'; ctx.textAlign='left';
+  ctx.font = '900 38px Mukta, serif';
+  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान', 180, 80);
+  ctx.font = '500 19px Mukta, sans-serif'; ctx.fillStyle='rgba(255,255,255,.88)';
+  ctx.fillText('बिर्तामोड, झापा  •  kshitiznatya.org.np', 180, 112);
+  // Masthead double-rule (classic newspaper touch)
+  ctx.strokeStyle='rgba(255,255,255,.55)'; ctx.lineWidth=2;
+  ctx.beginPath(); ctx.moveTo(0,HEAD_H-10); ctx.lineTo(W,HEAD_H-10); ctx.stroke();
+  ctx.lineWidth=1;
+  ctx.beginPath(); ctx.moveTo(0,HEAD_H-5); ctx.lineTo(W,HEAD_H-5); ctx.stroke();
+
+  var cy = HEAD_H + 40;
+
+  // Tag pill + date, same row
+  var tag = (n.tag||'समाचार');
+  ctx.font = '700 20px Mukta, sans-serif';
+  var tagW = ctx.measureText(tag).width + 42;
+  ctx.fillStyle = '#F4A300';
+  ctx.beginPath();
+  if(ctx.roundRect) ctx.roundRect(MX, cy-30, tagW, 42, 21); else ctx.rect(MX, cy-30, tagW, 42);
+  ctx.fill();
+  ctx.fillStyle = '#1a1a1a'; ctx.textAlign='center';
+  ctx.fillText(tag, MX+tagW/2, cy-3);
+  ctx.font = '700 20px Mukta, sans-serif'; ctx.fillStyle = '#8B1520'; ctx.textAlign='right';
+  ctx.fillText('📅 ' + (n.date||''), W-MX, cy-3);
+  cy += 46;
+
+  // Headline
+  ctx.textAlign='left'; ctx.fillStyle='#1a1a1a';
+  ctx.font = '900 46px Mukta, serif';
+  cy = _drawLines(ctx, titleLines, MX, cy+46, 58) - 58 + 10;
+  cy += 10;
+
+  // Rule under headline
+  ctx.strokeStyle = '#8B1520'; ctx.lineWidth = 3;
+  ctx.beginPath(); ctx.moveTo(MX, cy); ctx.lineTo(MX+110, cy); ctx.stroke();
+  cy += 30;
+
+  // Article image, if present — full width, rounded corners, thin border
+  if(artImg){
+    ctx.save();
+    var rad = 12;
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(MX, cy, contentW, artImgH, rad); else ctx.rect(MX, cy, contentW, artImgH);
+    ctx.closePath(); ctx.clip();
+    ctx.drawImage(artImg, MX, cy, contentW, artImgH);
+    ctx.restore();
+    ctx.strokeStyle = '#e8e0d0'; ctx.lineWidth = 1.5;
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(MX, cy, contentW, artImgH, rad); else ctx.rect(MX, cy, contentW, artImgH);
+    ctx.stroke();
+    cy += artImgH + 26;
+  }
+
+  // Full body text, paragraph by paragraph — nothing truncated
+  ctx.font = '400 29px Mukta, sans-serif'; ctx.fillStyle = '#2a2a2a';
+  paraLineSets.forEach(function(lines){
+    cy = _drawLines(ctx, lines, MX, cy+29, BODY_LH) - BODY_LH + 29;
+    cy += PARA_GAP;
+  });
+
+  // Footer band
+  ctx.fillStyle = '#1a1a1a'; ctx.fillRect(0, H-90, W, 90);
+  ctx.fillStyle = '#fff'; ctx.font = '700 22px Mukta, sans-serif'; ctx.textAlign='center';
+  ctx.fillText('क्षितिज नाट्य प्रतिष्ठान  •  kshitiznatya.org.np', W/2, H-48);
+  ctx.font = '400 16px Mukta, sans-serif'; ctx.fillStyle='rgba(255,255,255,.7)';
+  ctx.fillText('बिर्तामोड, झापा — कोशी प्रदेश, नेपाल', W/2, H-22);
+
+  return canvas;
+}
+async function downloadNewsShareCard(n){
+  try{
+    toast('पूरा समाचारको तस्बिर तयार गर्दैछ...', 'info');
+    var canvas = await generateNewsShareCard(n);
+    var link = document.createElement('a');
+    link.download = 'KNS-News-'+(n.title||'news').replace(/\s+/g,'_').substring(0,40)+'.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+    toast('तस्बिर डाउनलोड भयो! Facebook/Instagram मा सेयर गर्न तयार।', 'success');
+  }catch(e){ toast('❌ तस्बिर बनाउन सकिएन: '+e.message, 'error'); }
+}
+
 function renderNewsDetail(n){
   G('nd-title-hero').textContent=n.title||'';
   G('nd-hero-title-short').textContent=(n.title||'').substring(0,30)+((n.title||'').length>30?'...':'');
@@ -6369,10 +6737,12 @@ function renderNewsDetail(n){
   var WA_SVG='<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>';
   var CP_SVG='<svg viewBox="0 0 24 24"><path d="M16 1H4C3 1 2 2 2 3v14h2V3h12V1zm3 4H8C7 5 6 6 6 7v14c0 1 1 2 2 2h11c1 0 2-1 2-2V7c0-1-1-2-2-2zm0 16H8V7h11v14z"/></svg>';
   var nb=JSON.stringify({title:n.title,body:n.body}).replace(/"/g,'&quot;');
+  var nCardJson=JSON.stringify(n).replace(/"/g,'&quot;');
   G('nd-share-btns').innerHTML=
     '<button class="shr-btn shr-fb" onclick="shareNewsFB('+nb+')">'+FB_SVG+' Facebook</button>'
     +'<button class="shr-btn shr-wa" onclick="shareNewsWA('+nb+')">'+WA_SVG+' WhatsApp</button>'
-    +'<button class="shr-btn shr-cp" onclick="copyNewsLink(this)">'+CP_SVG+' Copy Link</button>';
+    +'<button class="shr-btn shr-cp" onclick="copyNewsLink(this)">'+CP_SVG+' Copy Link</button>'
+    +'<button class="shr-btn" style="background:#8B1520;color:#fff;" onclick="downloadNewsShareCard('+nCardJson+')">🖼️ Download Image</button>';
 }
 
 // ─── GALLERY PAGE ────────────────────────────────────────────────────────────
@@ -6380,9 +6750,9 @@ var _pgGalLBItems=[], _pgGalLBIdx=0;
 function renderPageGallery(){
   var cats=['all',...new Set(gC.map(function(g){return g.cat;}).filter(Boolean))];
     G('pg-gal-cats').innerHTML=cats.map(function(cat){
-    var lbl=cat==='all'?'&#128444; All':cat;
+    var lbl=cat==='all'?'&#128444; All':esc(cat);
     var on=_pgGalCat===cat?' on':'';
-    return '<button class="gal-cat-pill'+on+'" data-cat="'+cat+'" onclick="_pgSetGalCat(this)">'+lbl+'</button>';
+    return '<button class="gal-cat-pill'+on+'" data-cat="'+esc(cat)+'" onclick="_pgSetGalCat(this)">'+lbl+'</button>';
   }).join('');
   var filtered=_pgGalCat==='all'?gC:gC.filter(function(g){return g.cat===_pgGalCat;});
   _pgGalLBItems=filtered;
@@ -6390,11 +6760,11 @@ function renderPageGallery(){
   G('pg-gal-empty').style.display='none';
   G('pg-gal-grid').innerHTML=filtered.map(function(g,i){
     return '<div class="gal-pg-item" onclick="openGalLB('+i+')">'
-      +'<img src="'+g.img+'" alt="" loading="lazy" />'
+      +'<img src="'+esc(g.img)+'" alt="" loading="lazy" />'
       +'<div class="gal-pg-overlay">'
         +'<div>'
-          +(g.caption?'<div class="gal-pg-caption">'+g.caption+'</div>':'')
-          +(g.cat?'<div class="gal-pg-cat-badge">'+g.cat+'</div>':'')
+          +(g.caption?'<div class="gal-pg-caption">'+esc(g.caption)+'</div>':'')
+          +(g.cat?'<div class="gal-pg-cat-badge">'+esc(g.cat)+'</div>':'')
         +'</div>'
       +'</div>'
     +'</div>';
@@ -6422,7 +6792,7 @@ function _showGalLB(){
 }
 function prevGalLB(){_pgGalLBIdx=(_pgGalLBIdx-1+_pgGalLBItems.length)%_pgGalLBItems.length;_showGalLB();}
 function nextGalLB(){_pgGalLBIdx=(_pgGalLBIdx+1)%_pgGalLBItems.length;_showGalLB();}
-function closeLB(){G('lightbox').classList.remove('show');G('lightbox').style.display='none';setTimeout(function(){G('lightbox').style.display='';},50);}
+function closeLB(){G('lightbox').classList.remove('show');G('lightbox').style.display='none';document.body.style.overflow='';setTimeout(function(){G('lightbox').style.display='';},50);}
 
 // Keyboard navigation for lightbox
 document.addEventListener('keydown',function(e){
@@ -6438,14 +6808,14 @@ function renderPageTeam(){
     var init=m.name.split(' ').map(function(w){return w[0]||'';}).join('').substring(0,2);
     var isFounder=(m.id==='dm1'||m._origId==='dm1');
     var col=isFounder?'av-g':(m.color||'av-r');
-    var avHtml=m.img?'<img src="'+m.img+'" alt="'+m.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
+    var avHtml=m.img?'<img src="'+esc(m.img)+'" alt="'+esc(m.name)+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var mJson=JSON.stringify(m).replace(/"/g,'&quot;');
     return '<div class="team-pg-card'+(isFounder?' gold':'')+'" onclick="openProfileModal('+mJson+')" style="cursor:pointer;">'
       +'<div class="team-pg-av '+col+'"'+(large?' style="width:100px;height:100px;"':'')+'>'+avHtml+'</div>'
-      +'<div class="team-pg-name">'+m.name+'</div>'
-      +(m.aka?'<div class="team-pg-aka">'+m.aka+'</div>':'')
-      +'<div class="team-pg-role">'+m.role+'</div>'
-      +(m.fb?'<a class="team-pg-fb" href="'+m.fb+'" target="_blank" onclick="event.stopPropagation()">&#128100; Facebook</a>':'')
+      +'<div class="team-pg-name">'+esc(m.name)+'</div>'
+      +(m.aka?'<div class="team-pg-aka">'+esc(m.aka)+'</div>':'')
+      +'<div class="team-pg-role">'+esc(m.role)+'</div>'
+      +(m.fb?'<a class="team-pg-fb" href="'+escUrl(m.fb)+'" target="_blank" onclick="event.stopPropagation()">&#128100; Facebook</a>':'')
       +'<button onclick="event.stopPropagation();openProfileModal('+mJson+');setTimeout(_safeDownloadCard,80)" style="margin-top:6px;background:none;border:1px solid #ddd;color:#666;border-radius:20px;padding:3px 10px;font-size:10px;cursor:pointer;font-family:inherit;transition:all .2s;" onmouseover="this.style.borderColor=\'#8B1520\';this.style.color=\'#8B1520\'" onmouseout="this.style.borderColor=\'#ddd\';this.style.color=\'#666\'">🪪 Card</button>'
     +'</div>';
   }
@@ -6478,12 +6848,12 @@ function renderPageTeam(){
   var sg=G('pg-sup-grid');
   if(sg) sg.innerHTML=sC.map(function(s){
     var init=(s.name||'?').charAt(0).toUpperCase();
-    var avHtml=s.img?'<img src="'+s.img+'" alt="'+s.name+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
+    var avHtml=s.img?'<img src="'+esc(s.img)+'" alt="'+esc(s.name)+'" style="width:100%;height:100%; object-fit:cover;object-position:center top;" loading="lazy"/>':init;
     var sJson=JSON.stringify(s).replace(/"/g,'&quot;');
     return '<div class="sup-pg-card" onclick="openProfileModal('+sJson+')" style="cursor:pointer;">'
       +'<div class="sup-pg-av">'+avHtml+'</div>'
-      +'<div style="font-weight:700;font-size:13px;color:#1a2332;line-height:1.3;">'+s.name+'</div>'
-      +(s.title?'<div style="font-size:11px;color:#888888;margin-top:3px;">'+s.title+'</div>':'')
+      +'<div style="font-weight:700;font-size:13px;color:#1a2332;line-height:1.3;">'+esc(s.name)+'</div>'
+      +(s.title?'<div style="font-size:11px;color:#888888;margin-top:3px;">'+esc(s.title)+'</div>':'')
     +'</div>';
   }).join('');
 
@@ -6510,15 +6880,19 @@ function renderPageTeam(){
 function renderPageContact(){
   var c=_CI;
   var html='<div style="font-family:\'Playfair Display\',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:20px;" data-ne="सम्पर्क जानकारी" data-en="Contact Information">सम्पर्क जानकारी</div>';
-  if(c.phone) html+='<div class="ci"><div class="ci-ic">&#128222;</div><div><div class="ci-lb">PHONE</div><a class="ci-vl" href="tel:'+c.phone+'">'+c.phone+'</a>'+(c.phone2?'<br/><a class="ci-vl" href="tel:'+c.phone2+'">'+c.phone2+'</a>':'')+'</div></div>';
-  if(c.person) html+='<div class="ci"><div class="ci-ic">&#128100;</div><div><div class="ci-lb">CONTACT PERSON</div><div class="ci-vl">'+c.person+'</div></div></div>';
-  if(c.email) html+='<div class="ci"><div class="ci-ic">&#128231;</div><div><div class="ci-lb">EMAIL</div><a class="ci-vl" href="mailto:'+c.email+'">'+c.email+'</a></div></div>';
-  if(c.address) html+='<div class="ci"><div class="ci-ic">&#128205;</div><div><div class="ci-lb">ADDRESS</div><div class="ci-vl">'+c.address+'</div>'+'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe>'+(c.maps?'<a href="'+c.maps+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps ↗</a>':'')+'</div></div></div></div>';
+  if(c.phone) html+='<div class="ci"><div class="ci-ic">&#128222;</div><div><div class="ci-lb">PHONE</div><a class="ci-vl" href="tel:'+escUrl(c.phone)+'">'+esc(c.phone)+'</a>'+(c.phone2?'<br/><a class="ci-vl" href="tel:'+escUrl(c.phone2)+'">'+esc(c.phone2)+'</a>':'')+'</div></div>';
+  if(c.person) html+='<div class="ci"><div class="ci-ic">&#128100;</div><div><div class="ci-lb">CONTACT PERSON</div><div class="ci-vl">'+esc(c.person)+'</div></div></div>';
+  if(c.email) html+='<div class="ci"><div class="ci-ic">&#128231;</div><div><div class="ci-lb">EMAIL</div><a class="ci-vl" href="mailto:'+escUrl(c.email)+'">'+esc(c.email)+'</a></div></div>';
+  if(c.address) html+='<div class="ci"><div class="ci-ic">&#128205;</div><div><div class="ci-lb">ADDRESS</div><div class="ci-vl">'+esc(c.address)+'</div>'+'<div style="margin-top:10px;border-radius:10px;overflow:hidden;border:1px solid #e8e8e8;"><iframe src="https://www.google.com/maps?q='+encodeURIComponent(c.address||'Birtamod Jhapa Nepal')+'&output=embed" width="100%" height="200" style="border:none;display:block;" loading="lazy" allowfullscreen></iframe>'+(c.maps?'<a href="'+escUrl(c.maps)+'" target="_blank" style="display:flex;align-items:center;gap:5px;padding:7px 12px;background:#f8f9fa;font-size:12px;color:#8B1520;font-weight:600;text-decoration:none;border-top:1px solid #e8e8e8;">📍 Google Maps ↗</a>':'')+'</div></div></div></div>';
+  if(c.hours) html+='<div class="ci"><div class="ci-ic">&#128336;</div><div><div class="ci-lb">कार्यालय समय</div><div class="ci-vl">'+esc(c.hours)+'</div></div></div>';
+  if(c.emergency) html+='<div class="ci"><div class="ci-ic">&#128680;</div><div><div class="ci-lb">आकस्मिक सम्पर्क</div><a class="ci-vl" href="tel:'+escUrl(c.emergency.replace(/[^+0-9]/g,''))+'" style="color:#c0392b;">'+esc(c.emergency)+'</a></div></div>';
   html+='<div style="margin-top:12px;"><div class="ci-lb" style="margin-bottom:8px;">SOCIAL</div><div class="soc-row">';
-  if(c.fb) html+='<a href="'+c.fb+'" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>';
-  if(c.fb2) html+='<a href="'+c.fb2+'" target="_blank" class="soc fb" style="opacity:.75;" title="Facebook Group">f</a>';
-  if(c.fb3) html+='<a href="'+c.fb3+'" target="_blank" class="soc fb" style="opacity:.5;" title="Facebook Profile">f</a>';
-  if(c.yt) html+='<a href="'+c.yt+'" target="_blank" class="soc yt" title="YouTube">&#9654;</a>';
+  if(c.fb) html+='<a href="'+escUrl(c.fb)+'" target="_blank" class="soc fb" title="Kshitiz Natya Samuha">f</a>';
+  if(c.fb2) html+='<a href="'+escUrl(c.fb2)+'" target="_blank" class="soc fb" style="opacity:.75;" title="Facebook Group">f</a>';
+  if(c.fb3) html+='<a href="'+escUrl(c.fb3)+'" target="_blank" class="soc fb" style="opacity:.5;" title="Facebook Profile">f</a>';
+  if(c.instagram) html+='<a href="'+escUrl(c.instagram)+'" target="_blank" class="soc" style="background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);" title="Instagram">📷</a>';
+  if(c.yt) html+='<a href="'+escUrl(c.yt)+'" target="_blank" class="soc yt" title="YouTube">&#9654;</a>';
+  if(c.yt2) html+='<a href="'+escUrl(c.yt2)+'" target="_blank" class="soc yt" style="opacity:.7;" title="YouTube 2">&#9654;</a>';
   html+='</div></div>';
   G('pg-contact-info').innerHTML=html;
 }
@@ -6813,18 +7187,57 @@ function _donorTable(rows, showAmount) {
   return html;
 }
 
+// Search/filter/sort state for the public Firestore donor table.
+var _donSearch = '', _donTypeFilter = 'all', _donSort = 'date-desc';
+function _donorDisplayName(d){ return d.anon ? '🙈 अज्ञात दाता' : esc(d.name); }
+function _donorTypesList(){
+  var seen = {}, out = ['all'];
+  dC.forEach(function(d){ var t=d.type||'—'; if(!seen[t]){ seen[t]=true; out.push(t); } });
+  return out;
+}
+function _donAmountNum(d){ return parseFloat(String(d.amount||'0').replace(/[^0-9.]/g,'')) || 0; }
+function _setDonSearch(v){ _donSearch=(v||'').toLowerCase(); _renderDonTable(); }
+function _setDonTypeFilter(v){ _donTypeFilter=v; _renderDonTable(); }
+function _setDonSort(v){ _donSort=v; _renderDonTable(); }
+function _renderDonTable(){
+  var body = G('don-table-body'); var countEl = G('don-table-count');
+  if(!body) return;
+  var rows = dC.filter(function(d){
+    var matchesSearch = !_donSearch || (d.name||'').toLowerCase().indexOf(_donSearch)>-1 || (d.place||'').toLowerCase().indexOf(_donSearch)>-1;
+    var matchesType = _donTypeFilter==='all' || (d.type||'—')===_donTypeFilter;
+    return matchesSearch && matchesType;
+  });
+  rows.sort(function(a,b){
+    if(_donSort==='amount-desc') return _donAmountNum(b)-_donAmountNum(a);
+    if(_donSort==='amount-asc') return _donAmountNum(a)-_donAmountNum(b);
+    if(_donSort==='name-asc') return (a.name||'').localeCompare(b.name||'');
+    if(_donSort==='date-asc') return (a.date||'').localeCompare(b.date||'');
+    return (b.date||'').localeCompare(a.date||''); // date-desc default
+  });
+  if(countEl) countEl.textContent = rows.length+' जना';
+  body.innerHTML = rows.length ? rows.map(function(d,i){
+    return '<tr><td style="color:#888888;font-size:12px;">'+(i+1)+'</td><td class="dt-name">'+_donorDisplayName(d)+'</td><td class="dt-amount">'+esc(d.amount||'—')+'</td><td><span class="dt-type">'+esc(d.type||'—')+'</span></td><td>'+esc(d.place||'—')+'</td><td class="dt-date">'+esc(d.date||'—')+'</td></tr>';
+  }).join('') : '<tr><td colspan="6" style="text-align:center;color:#888;padding:16px;">कुनै नतिजा फेला परेन।</td></tr>';
+}
 function renderPageDonors() {
   var el = G('pg-donors-seed');
   if(!el) return;
   var html = '';
   // Firestore donors table
   if(dC && dC.length) {
-    html += '<div class="donors-section-title">&#127873; दाताहरू <span class="donors-section-count">'+dC.length+' जना</span></div>';
-    html += '<div class="donors-table-wrap"><table class="donors-table"><thead><tr><th>#</th><th>नाम/थर</th><th>रकम</th><th>सहयोग प्रकार</th><th>स्थान</th><th>मिति</th></tr></thead><tbody>';
-    dC.forEach(function(d,i){
-      html += '<tr><td style="color:#888888;font-size:12px;">'+(i+1)+'</td><td class="dt-name">'+d.name+'</td><td class="dt-amount">'+(d.amount||'—')+'</td><td><span class="dt-type">'+(d.type||'—')+'</span></td><td>'+(d.place||'—')+'</td><td class="dt-date">'+(d.date||'—')+'</td></tr>';
-    });
-    html += '</tbody></table></div>';
+    html += '<div class="donors-section-title">&#127873; दाताहरू <span class="donors-section-count" id="don-table-count">'+dC.length+' जना</span></div>';
+    html += '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;">'
+      +'<input type="text" placeholder="🔍 नाम वा स्थान खोज्नुस्..." oninput="_setDonSearch(this.value)" style="flex:1;min-width:160px;padding:8px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;">'
+      +'<select onchange="_setDonTypeFilter(this.value)" style="padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;">'
+        +_donorTypesList().map(function(t){ return '<option value="'+esc(t)+'">'+(t==='all'?'सबै प्रकार':esc(t))+'</option>'; }).join('')
+      +'</select>'
+      +'<select onchange="_setDonSort(this.value)" style="padding:8px 10px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:13px;">'
+        +'<option value="date-desc">🕒 पछिल्लो पहिले</option><option value="date-asc">🕒 पुरानो पहिले</option>'
+        +'<option value="amount-desc">💰 धेरै रकम पहिले</option><option value="amount-asc">💰 थोरै रकम पहिले</option>'
+        +'<option value="name-asc">🔤 नाम अनुसार</option>'
+      +'</select>'
+    +'</div>';
+    html += '<div class="donors-table-wrap"><table class="donors-table"><thead><tr><th>#</th><th>नाम/थर</th><th>रकम</th><th>सहयोग प्रकार</th><th>स्थान</th><th>मिति</th></tr></thead><tbody id="don-table-body"></tbody></table></div>';
   }
   // Seed data from PDF
   html += '<div class="donors-section-title">&#127806; भूमिदान दाता महानुभावहरू <span class="donors-section-count">'+_donorsSeed.bhumidan.length+' जना</span></div>';
@@ -6842,6 +7255,7 @@ function renderPageDonors() {
     html += '<div style="margin-top:24px;"><button class="btn-r" onclick="go(\'donors-admin\')">&#10133; नयाँ दाता थप्नुस् (Admin)</button></div>';
   }
   el.innerHTML = html;
+  if(dC && dC.length) _renderDonTable();
 }
 
 // ── DONATION SUBMISSION ───────────────────────────────────────────────────────
@@ -6976,11 +7390,11 @@ function _renderEvList(){
   G('pg-events-list').innerHTML=list.map(function(ev){
     var badge=ev.type==='upcoming'?'<span class="ev-upcoming">&#128308; आगामी</span>':'<span class="ev-past">&#9989; भइसक्यो</span>';
     return '<div class="event-card">'
-      +'<div class="event-date-block"><div class="event-day">'+(ev.day||'—')+'</div><div class="event-month">'+(ev.month||'')+'</div><div class="event-year">'+(ev.year||'')+'</div></div>'
-      +'<div class="event-body">'+badge+'<div class="event-title">'+ev.title+'</div>'
-      +'<div class="event-meta"><span>&#128205; '+(ev.venue||'')+'</span><span>&#128197; '+(ev.date||'')+'</span>'+(ev.tag?'<span style="background:rgba(176,28,46,.1);color:#8B1520;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;">'+ev.tag+'</span>':'')+'</div>'
-      +'<div class="event-desc">'+(ev.desc||'')+'</div>'
-      +(ev.ticket?'<a href="'+ev.ticket+'" target="_blank" class="event-ticket-btn" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;">&#127915; टिकट / विवरण</a>':'')
+      +'<div class="event-date-block"><div class="event-day">'+esc(ev.day||'—')+'</div><div class="event-month">'+esc(ev.month||'')+'</div><div class="event-year">'+esc(ev.year||'')+'</div></div>'
+      +'<div class="event-body">'+badge+'<div class="event-title">'+esc(ev.title)+'</div>'
+      +'<div class="event-meta"><span>&#128205; '+esc(ev.venue||'')+'</span><span>&#128197; '+esc(ev.date||'')+'</span>'+(ev.tag?'<span style="background:rgba(176,28,46,.1);color:#8B1520;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700;">'+esc(ev.tag)+'</span>':'')+'</div>'
+      +'<div class="event-desc">'+esc(ev.desc||'')+'</div>'
+      +(ev.ticket?'<a href="'+escUrl(ev.ticket)+'" target="_blank" class="event-ticket-btn" style="margin-top:10px;display:inline-flex;align-items:center;gap:6px;background:#8B1520;color:#fff;border:none;border-radius:7px;padding:7px 16px;font-size:12px;font-weight:700;cursor:pointer;text-decoration:none;">&#127915; टिकट / विवरण</a>':'')
       +'</div></div>';
   }).join('');
 }
@@ -7019,13 +7433,13 @@ function renderPageVideos(){
       return '<div class="video-card">'
         +'<div class="video-embed">'
         +(embedSrc
-          ?'<iframe src="'+embedSrc+'" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" title="'+v.title+'"></iframe>'
+          ?'<iframe src="'+esc(embedSrc)+'" allowfullscreen allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" loading="lazy" title="'+esc(v.title)+'"></iframe>'
           :'<div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#111;color:#fff;gap:8px;"><span style="font-size:36px;">🎬</span><span style="font-size:13px;opacity:.7;">भिडियो उपलब्ध छैन</span></div>')
         +'</div>'
         +'<div class="video-card-body">'
-        +'<div class="video-card-title">'+(v.title||'')+'</div>'
-        +(v.desc?'<div class="video-card-desc">'+(v.desc||'')+'</div>':'')
-        +(v.ytId||extractYtId(v.url||'')?'<a href="https://youtube.com/watch?v='+(v.ytId||extractYtId(v.url||''))+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:11px;color:#888;text-decoration:none;">↗ YouTube मा हेर्नुस्</a>':'')
+        +'<div class="video-card-title">'+esc(v.title||'')+'</div>'
+        +(v.desc?'<div class="video-card-desc">'+esc(v.desc||'')+'</div>':'')
+        +(v.ytId||extractYtId(v.url||'')?'<a href="'+escUrl('https://youtube.com/watch?v='+(v.ytId||extractYtId(v.url||'')))+'" target="_blank" style="display:inline-flex;align-items:center;gap:5px;margin-top:8px;font-size:11px;color:#888;text-decoration:none;">↗ YouTube मा हेर्नुस्</a>':'')
         +'</div>'
         +'</div>';
     }).join('');
@@ -7060,9 +7474,9 @@ function renderPageNotices(){
       var bc=n.type==='urgent'?'#E65100':n.type==='info'?'#1565C0':'#888888';
       return '<div class="notice-item" style="border-left-color:'+bc+';">'
         +'<span class="notice-badge '+btype+'">'+label+'</span>'
-        +'<div class="notice-title">'+(n.title||'')+'</div>'
-        +'<div class="notice-body">'+(n.body||'')+'</div>'
-        +(n.date?'<div class="notice-date">&#128197; '+(n.date||'')+'</div>':'')
+        +'<div class="notice-title">'+esc(n.title||'')+'</div>'
+        +'<div class="notice-body">'+esc(n.body||'')+'</div>'
+        +(n.date?'<div class="notice-date">&#128197; '+esc(n.date||'')+'</div>':'')
       +'</div>';
     }).join('');
   });
@@ -8018,21 +8432,6 @@ function removeActPhoto(idx){
   _actEditorPhotos.splice(idx,1);
   renderActEditorPhotos();
 }
-async function saveActivityContent(){
-  var id=G('act-editor-id').value;
-  var desc=G('act-editor-desc').value.trim();
-  if(!id) return;
-  try{
-    await window._set(window._doc(window._db,'activities',id),
-      {description:desc, photos:_actEditorPhotos, updatedAt:new Date().toISOString()},
-      {merge:true});
-    G('act-editor-ok').style.display='block';
-    G('act-editor-ok').textContent='✅ सुरक्षित भयो! Activity page मा देखिनेछ।';
-    setTimeout(function(){G('act-editor-ok').style.display='none';},3000);
-    toast('Activity content saved!','success');
-  }catch(e){ alert('Error: '+e.message); }
-}
-
 function loadStatsTab(){
   G('se-productions2').value=_STATS.productions||2000;
   G('se-years2').value=_STATS.years||25;
@@ -8162,7 +8561,7 @@ function renderPageActivity(data){
     // Description
     var desc = d.description||d.text||'';
     G('act-pg-content').innerHTML = desc
-      ? '<div class="activity-content-block"><div class="activity-content-text" style="white-space:pre-wrap;">'+desc+'</div></div>'
+      ? '<div class="activity-content-block"><div class="activity-content-text" style="white-space:pre-wrap;">'+esc(desc)+'</div></div>'
       : '<div style="text-align:center;color:#888888;padding:40px;">अहिलेसम्म कुनै विवरण थपिएको छैन।<br/><span style="font-size:13px;">Admin Panel → Activities बाट सम्पादन गर्नुस्।</span></div>';
     // Photos (new format: array of {url,caption} OR legacy img1/img2/img3)
     var photos = d.photos||[];
@@ -8172,8 +8571,8 @@ function renderPageActivity(data){
           var url=typeof p==='string'?p:p.url;
           var cap=typeof p==='string'?'':p.caption||'';
           return '<div style="position:relative;border-radius:10px;overflow:hidden;cursor:pointer;" onclick="openLB(\'act_'+i+'\')">'
-            +'<img src="'+url+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;" alt="'+(cap||data.title)+'" loading="lazy">'
-            +(cap?'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:6px 8px;">'+cap+'</div>':'')
+            +'<img src="'+esc(url)+'" style="width:100%;aspect-ratio:4/3;object-fit:cover;" alt="'+esc(cap||data.title)+'" loading="lazy">'
+            +(cap?'<div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.6);color:#fff;font-size:11px;padding:6px 8px;">'+esc(cap)+'</div>':'')
             +'</div>';
         }).join('')+'</div>'
       : '';
@@ -8320,9 +8719,9 @@ function renderEvAdminList(){
   evC.forEach(function(ev){
     var row=document.createElement('div'); row.className='manage-row';
     var bc=ev.type==='upcoming'?'#e8f5e9':'#f5f5f5', tc=ev.type==='upcoming'?'#2e7d32':'#888888';
-    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+ev.title+'</div>'
-      +'<div class="manage-meta">'+(ev.date||'')+(ev.venue?' · '+ev.venue:'')
-      +'<span style="margin-left:8px;font-size:10px;font-weight:700;background:'+bc+';color:'+tc+';padding:2px 7px;border-radius:10px;">'+ev.type+'</span></div></div>'
+    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+esc(ev.title)+'</div>'
+      +'<div class="manage-meta">'+esc(ev.date||'')+(ev.venue?' · '+esc(ev.venue):'')
+      +'<span style="margin-left:8px;font-size:10px;font-weight:700;background:'+bc+';color:'+tc+';padding:2px 7px;border-radius:10px;">'+esc(ev.type)+'</span></div></div>'
       +'<div class="manage-acts"><button class="ma e">✏️</button><button class="ma d">🗑</button></div>';
     row.querySelector('.ma.e').onclick=function(){editEvent(ev);};
     row.querySelector('.ma.d').onclick=function(){deleteEvent(ev.id);};
@@ -8372,7 +8771,7 @@ function renderVidAdminList(){
   if(!vidC.length){el.innerHTML='<div style="color:#888888;font-size:13px;">No videos yet.</div>';return;}
   vidC.forEach(function(v){
     var row=document.createElement('div'); row.className='manage-row';
-    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+v.title+'</div><div class="manage-meta">'+(v.url||'')+'</div></div>'
+    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+esc(v.title)+'</div><div class="manage-meta">'+esc(v.url||'')+'</div></div>'
       +'<div class="manage-acts"><button class="ma e">✏️</button><button class="ma d">🗑</button></div>';
     row.querySelector('.ma.e').onclick=function(){editVideo(v);};
     row.querySelector('.ma.d').onclick=function(){deleteVideo(v.id);};
@@ -8422,7 +8821,7 @@ function renderNotAdminList(){
   if(!notC.length){el.innerHTML='<div style="color:#888888;font-size:13px;">No notices yet.</div>';return;}
   notC.forEach(function(n){
     var row=document.createElement('div'); row.className='manage-row';
-    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+n.title+'</div><div class="manage-meta">'+(n.date||'')+' · '+n.type+'</div></div>'
+    row.innerHTML='<div style="flex:1;min-width:0;"><div class="manage-name">'+esc(n.title)+'</div><div class="manage-meta">'+esc(n.date||'')+' · '+esc(n.type)+'</div></div>'
       +'<div class="manage-acts"><button class="ma e">✏️</button><button class="ma d">🗑</button></div>';
     row.querySelector('.ma.e').onclick=function(){editNotice(n);};
     row.querySelector('.ma.d').onclick=function(){deleteNotice(n.id);};
@@ -8457,7 +8856,7 @@ function _renderRegistrationRows(items, targets, opts){
       var btns=document.createElement('div'); btns.className='manage-acts';
       if(m.status!=='confirmed'){
         var cb=document.createElement('button'); cb.className='ma e'; cb.textContent='✓'; cb.title='स्वीकृत गर्नुस्';
-        cb.onclick=function(){ opts.onApprove(m.id); };
+        cb.onclick=function(){ opts.onApprove(m.id, m.name, m.email); };
         btns.appendChild(cb);
       }
       var db=document.createElement('button'); db.className='ma d'; db.textContent='🗑'; db.title='Delete';
@@ -8476,12 +8875,6 @@ async function loadVolunteers(adminMode){
     if(!adminMode) return;
     _renderRegistrationRows(vols, ['vol-admin-list','pg-vol-rows'], {defaultType:'स्वयंसेवक', onApprove:_approveVolunteer, onDelete:deleteVolunteer});
   }catch(e){['vol-admin-list','pg-vol-rows'].forEach(function(id){var el=G(id);if(el)el.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>';});}
-}
-async function _approveVolunteer(id){
-  try{ await window._upd(window._doc(window._db,'volunteers',id),{status:'confirmed'}); toast('✅ स्वीकृत भयो!','success'); }
-  catch(e){ toast('❌ Error: '+e.message,'error'); }
-  loadVolunteers(true);
-  _loadApprovedPublicGrid('volunteers','pg-vol-approved-grid');
 }
 async function deleteVolunteer(id){
   if(!confirm('Remove this registration?')) return;
@@ -8961,6 +9354,43 @@ function downloadDonationVoucher(name, amount, method, txnId, contact){
     link.click();
     toast('रसिद डाउनलोड भयो!', 'success');
   });
+}
+
+// Certificate/receipt for a stored donor record (admin donor list "🏆" button).
+// Reuses the same voucher generator as the live donation flow — respects the
+// anonymous flag by printing "अज्ञात दाता" instead of the real name.
+function downloadDonorCertificate(d){
+  var displayName = d.anon ? 'अज्ञात दाता (Anonymous)' : d.name;
+  downloadDonationVoucher(displayName, d.amount, d.type, d.date, d.place);
+}
+// The post-donation success screen calls these two by name (they were being
+// referenced but never actually defined — clicking either button silently
+// failed with no receipt/email ever going out). Both just forward to the
+// already-working generateDonationVoucher/emailVoucher using the data saved
+// at submission time.
+function _downloadLastDonVoucher(){
+  var d = window._lastDonData;
+  if(!d){ toast('रसिद डाटा फेला परेन।','error'); return; }
+  downloadDonationVoucher(d.name, d.amount, d.method, d.txnId, d.contact);
+}
+async function _emailLastDonVoucher(){
+  var d = window._lastDonData;
+  if(!d){ toast('रसिद डाटा फेला परेन।','error'); return; }
+  if(!d.contact || !d.contact.includes('@')){ toast('इमेल ठेगाना छैन।','error'); return; }
+  toast('इमेल पठाउँदैछ...', 'info');
+  var canvas = generateDonationVoucher(d.name, d.amount, d.method, d.txnId, d.contact);
+  var ctx = canvas.getContext('2d');
+  await _drawSignature(ctx, 500, 340, 200, 50);
+  if(_signatureUrl){
+    ctx.fillStyle='#888'; ctx.font='10px sans-serif'; ctx.textAlign='right';
+    ctx.fillText('केन्द्रीय अध्यक्षको हस्ताक्षर', 710, 400);
+    ctx.fillStyle='#1a2332'; ctx.font='bold 12px sans-serif';
+    ctx.fillText('माधव कल्पित', 710, 415);
+  }
+  var ok = await emailVoucher(canvas, d.contact, 'तपाईंको सहयोग रसिद — क्षितिज नाट्य प्रतिष्ठान',
+    'नमस्कार '+(d.name||'')+'जी,\n\nतपाईंको रु. '+(d.amount||'')+' को उदार सहयोगका लागि हार्दिक धन्यवाद। तपाईंको आधिकारिक रसिद संलग्न छ।');
+  if(ok) toast('रसिद इमेलमा पठाइयो!','success');
+  else toast(window._lastEmailError||'इमेल पठाउन सकिएन।','error');
 }
 
 // ════════════════════════════════════════════════════════════════════════════
@@ -9805,22 +10235,24 @@ function openProfileModal(m){
   var avEl=G('pm-av');
   if(avEl){
     avEl.innerHTML=m.img
-      ?'<img src="'+m.img+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="'+m.name+'"/>'
-      :'<div style="width:100%;height:100%;background:'+avColor+';display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;color:#fff;">'+init+'</div>';
+      ?'<img src="'+esc(m.img)+'" style="width:100%;height:100%;object-fit:cover;object-position:center top;" alt="'+esc(m.name)+'"/>'
+      :'<div style="width:100%;height:100%;background:'+avColor+';display:flex;align-items:center;justify-content:center;font-size:36px;font-weight:800;color:#fff;">'+esc(init)+'</div>';
   }
   var nm=G('pm-name'); if(nm) nm.textContent=m.name||'';
   var rl=G('pm-role'); if(rl) rl.textContent=m.role||'';
   var body='';
-  if(m.aka) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचित नाम</span><span class="profile-modal-val" style="color:#8B1520;font-style:italic;">'+m.aka+'</span></div>';
+  if(m.aka) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचित नाम</span><span class="profile-modal-val" style="color:#8B1520;font-style:italic;">'+esc(m.aka)+'</span></div>';
   if(m.dept) body+='<div class="profile-modal-row"><span class="profile-modal-label">विभाग</span><span class="profile-modal-val">'+(m.dept==='exec'?'कार्यकारी समिति':'विभाग प्रमुख')+'</span></div>';
-  else if(m.title!==undefined) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचय</span><span class="profile-modal-val">'+(m.title||'समर्थक / Supporter')+'</span></div>';
-  if(m.fb) body+='<div class="profile-modal-row"><span class="profile-modal-label">Facebook</span><a href="'+m.fb+'" target="_blank" style="color:#1877F2;font-weight:600;font-size:13px;">Profile ›</a></div>';
-  // Shareable link
-  var memberUrl=_getShareableLink('team')+'&member='+encodeURIComponent(m.name);
+  else if(m.title!==undefined) body+='<div class="profile-modal-row"><span class="profile-modal-label">परिचय</span><span class="profile-modal-val">'+esc(m.title||'समर्थक / Supporter')+'</span></div>';
+  if(m.fb) body+='<div class="profile-modal-row"><span class="profile-modal-label">Facebook</span><a href="'+escUrl(m.fb)+'" target="_blank" style="color:#1877F2;font-weight:600;font-size:13px;">Profile ›</a></div>';
+  // Shareable link — encodeURIComponent leaves ' unescaped, so it's swapped for
+  // %27 before going into a single-quoted onclick attribute to prevent breaking
+  // out of the attribute if a name ever contains a quote.
+  var memberUrl=(_getShareableLink('team')+'&member='+encodeURIComponent(m.name)).replace(/'/g,'%27');
   body+='<div style="margin-top:16px;padding-top:14px;border-top:1px solid #e8e8e8;">'
     +'<div style="font-size:11px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Share / Download</div>'
     +'<div style="display:flex;gap:8px;flex-wrap:wrap;">'
-      +(m.fb?'<a href="'+m.fb+'" target="_blank" style="background:#1877F2;color:#fff;border:none;border-radius:7px;padding:8px 16px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">📘 Facebook</a>':'')
+      +(m.fb?'<a href="'+escUrl(m.fb)+'" target="_blank" style="background:#1877F2;color:#fff;border:none;border-radius:7px;padding:8px 16px;font-size:12.5px;font-weight:700;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:5px;">📘 Facebook</a>':'')
       +'<button onclick="_copyShareableLink(\''+memberUrl+'\')" style="background:#f5f5f5;color:#1a2332;border:1.5px solid #ddd;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">🔗 Link Copy</button>'
       +'<button onclick="_safeDownloadCard()" style="background:#8B1520;color:#fff;border:none;border-radius:7px;padding:8px 14px;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">🪪 Card Download</button>'
     +'</div>'
@@ -10474,7 +10906,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">सहयोग</span></div>
       <div class="page-hero-label">SUPPORT OUR MISSION</div>
-      <h1 class="page-hero-title">हाम्रो कार्यलाई सहयोग गर्नुस्</h1>
+      <h2 class="page-hero-title">हाम्रो कार्यलाई सहयोग गर्नुस्</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">तपाईंको सहयोगले झापा नाटक घर निर्माण, नाट्य प्रदर्शन र अर्को पुस्ताका कलाकारहरूलाई सशक्त बनाउँछ।</p>
     </div>
@@ -10577,7 +11009,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">कार्यक्रम</span></div>
       <div class="page-hero-label">UPCOMING &amp; PAST EVENTS</div>
-      <h1 class="page-hero-title">कार्यक्रम तथा प्रदर्शनहरू</h1>
+      <h2 class="page-hero-title">कार्यक्रम तथा प्रदर्शनहरू</h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -10598,7 +11030,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">भिडियो</span></div>
       <div class="page-hero-label">VIDEO GALLERY</div>
-      <h1 class="page-hero-title">भिडियो संग्रह</h1>
+      <h2 class="page-hero-title">भिडियो संग्रह</h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -10614,7 +11046,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">सूचना</span></div>
       <div class="page-hero-label">ANNOUNCEMENTS</div>
-      <h1 class="page-hero-title">सूचना तथा घोषणाहरू</h1>
+      <h2 class="page-hero-title">सूचना तथा घोषणाहरू</h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -10630,7 +11062,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">स्वयंसेवक दर्ता</span></div>
       <div class="page-hero-label">VOLUNTEER REGISTRATION</div>
-      <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>स्वयंसेवक दर्ता फाराम</h1>
+      <h2 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>स्वयंसेवक दर्ता फाराम</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">हाम्रो कार्यक्रम तथा गतिविधिहरूमा स्वयंसेवाका लागि सामेल हुन चाहनुहुने सबैलाई हार्दिक स्वागत छ।</p>
     </div>
@@ -10720,7 +11152,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">नयाँ सदस्यता</span></div>
       <div class="page-hero-label">NEW MEMBER REGISTRATION — सदस्यता प्रकार अनुसार</div>
-      <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>नयाँ सदस्यता दर्ता फाराम</h1>
+      <h2 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>नयाँ सदस्यता दर्ता फाराम</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">हाम्रो परिवारमा नयाँ सदस्यको रूपमा सामेल हुन चाहनुहुने सबैलाई हार्दिक स्वागत छ।</p>
     </div>
@@ -11019,7 +11451,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">खोज्नुस्</span></div>
       <div class="page-hero-label">SEARCH</div>
-      <h1 class="page-hero-title">खोज्नुस्</h1>
+      <h2 class="page-hero-title">खोज्नुस्</h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -11047,7 +11479,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span onclick="go('activities')" style="cursor:pointer;">गतिविधि</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);" id="act-pg-crumb">...</span></div>
       <div class="activity-detail-hero-icon" id="act-pg-icon"></div>
-      <h1 class="page-hero-title" id="act-pg-title"></h1>
+      <h2 class="page-hero-title" id="act-pg-title"></h2>
       <div class="page-hero-bar"></div>
     </div>
   </div>
@@ -11076,7 +11508,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">सदस्यता नवीकरण</span></div>
       <div class="page-hero-label">MEMBERSHIP RENEWAL — आ.ब. २०८१/०८२</div>
-      <h1 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>सदस्यता फाराम</h1>
+      <h2 class="page-hero-title">क्षितिज नाट्य प्रतिष्ठान<br/>सदस्यता फाराम</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">केन्द्रीय समिति तथा विभागीय समिति भित्र आबद्ध सम्पूर्ण सदस्य ज्यूहरुमा सदस्यता नवीकरण सम्बन्धि हार्दिक अनुरोध।</p>
     </div>
@@ -11402,7 +11834,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">&#8962; Home</span><span class="sep">&#8250;</span><span style="color:rgba(255,255,255,.7);">दाताहरू</span></div>
       <div class="page-hero-label">HONOURED DONORS</div>
-      <h1 class="page-hero-title">हाम्रा सम्मानित दाताहरू</h1>
+      <h2 class="page-hero-title">हाम्रा सम्मानित दाताहरू</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">झापा नाटक घर र बहुसांस्कृतिक संग्रहालय निर्माणमा सहयोग गर्नु भएका सम्मानित व्यक्ति तथा संस्थाहरू।</p>
     </div>
@@ -11486,7 +11918,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>नाटकहरू</span></div>
       <div class="page-hero-label">PRODUCTIONS — नाटक प्रदर्शन</div>
-      <h1 class="page-hero-title">माधव 'कल्पित' द्वारा मञ्चित नाटकहरू</h1>
+      <h2 class="page-hero-title">माधव 'कल्पित' द्वारा मञ्चित नाटकहरू</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">२०४३ सालदेखि हालसम्म ६२+ मञ्च नाटक, सडक नाटक र सांस्कृतिक कार्यक्रमहरूको विवरण।</p>
     </div>
@@ -11526,7 +11958,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>हाम्रोबारे</span><span class="sep">›</span><span>अधिवेशनहरू</span></div>
       <div class="page-hero-label">HISTORY — इतिहास</div>
-      <h1 class="page-hero-title">महाधिवेशन इतिहास</h1>
+      <h2 class="page-hero-title">महाधिवेशन इतिहास</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठानको स्थापना (२०५८) देखि हालसम्म सम्पन्न ८ वटा महाधिवेशनहरूको विवरण।</p>
     </div>
@@ -11555,7 +11987,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>हाम्रोबारे</span><span class="sep">›</span><span>पूर्ण यात्रा कथा</span></div>
       <div class="page-hero-label">HISTORY — इतिहास</div>
-      <h1 class="page-hero-title">क्षितिजको यात्रा : सडकदेखि अन्तर्राष्ट्रिय मञ्चसम्मको इतिहास</h1>
+      <h2 class="page-hero-title">क्षितिजको यात्रा : सडकदेखि अन्तर्राष्ट्रिय मञ्चसम्मको इतिहास</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">एक इट्टाबाट सुरु भएको अभियान आज कोशी प्रदेशकै रंगमञ्चीय आकाशको इतिहास बनेको छ।</p>
     </div>
@@ -11635,7 +12067,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>हाम्रोबारे</span><span class="sep">›</span><span>कानुनी विवरण</span></div>
       <div class="page-hero-label">LEGAL — कानुनी विवरण</div>
-      <h1 class="page-hero-title">संस्थाको कानुनी विवरण</h1>
+      <h2 class="page-hero-title">संस्थाको कानुनी विवरण</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठानका आधिकारिक दर्ता, कर छुट र अन्य कानुनी प्रमाणपत्रहरू।</p>
     </div>
@@ -11675,7 +12107,7 @@ var _titleMap={
     <div class="page-hero-content">
       <div class="breadcrumb"><span onclick="showMain()">🏠 Home</span><span class="sep">›</span><span>हाम्रोबारे</span><span class="sep">›</span><span>उप-संस्थाहरू</span></div>
       <div class="page-hero-label">SUB-ORGANIZATIONS</div>
-      <h1 class="page-hero-title">क्षितिज परिवारका उप-संस्थाहरू</h1>
+      <h2 class="page-hero-title">क्षितिज परिवारका उप-संस्थाहरू</h2>
       <div class="page-hero-bar"></div>
       <p class="page-hero-sub">क्षितिज नाट्य प्रतिष्ठान अन्तर्गत स्थापित विभिन्न विभाग र प्रतिष्ठानहरू।</p>
     </div>
@@ -11721,7 +12153,7 @@ var _titleMap={
   <div style="max-width:680px;margin:0 auto;padding:60px 5% 80px;">
     <div style="text-align:center;margin-bottom:32px;">
       <div style="font-size:56px;margin-bottom:12px;">✅</div>
-      <h1 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2332;margin-bottom:10px;">फाराम सफलतापूर्वक पेश गरियो!</h1>
+      <h2 style="font-family:'Playfair Display',serif;font-size:26px;color:#1a2332;margin-bottom:10px;">फाराम सफलतापूर्वक पेश गरियो!</h2>
       <p style="font-size:14.5px;color:#555;line-height:1.8;max-width:480px;margin:0 auto;">तपाईंको सदस्यता नवीकरण फाराम प्राप्त भयो। प्रशासकले तपाईंको सम्पूर्ण जानकारी जाँच गरी छिट्टै सम्पर्क गर्नेछन्। तल तपाईंको सदस्यता परिचय पत्र हेर्नुस् — यो स्वतः तपाईंको इमेलमा पनि पठाइएको छ।</p>
     </div>
 
@@ -11903,12 +12335,12 @@ function renderProdTable(prods){
     var tagCls = catMap[p.cat] || 'social';
     var catLabel = {health:'स्वास्थ्य',env:'वातावरण',women:'महिला',caste:'जातीय',edu:'शिक्षा',social:'सामाजिक'}[p.cat]||'सामाजिक';
     return '<tr>'
-      +'<td style="color:#888;font-size:12px;">'+p.n+'</td>'
-      +'<td class="pt-title">'+p.title+'</td>'
-      +'<td style="color:#666;font-size:12px;white-space:nowrap;">'+p.date+'</td>'
-      +'<td style="color:#555;font-size:12.5px;">'+p.venue+'</td>'
-      +'<td style="color:#555;font-size:12px;">'+p.org+'</td>'
-      +'<td><span class="pt-tag '+tagCls+'">'+p.type+'</span><span class="pt-tag '+tagCls+'">'+catLabel+'</span></td>'
+      +'<td style="color:#888;font-size:12px;">'+esc(p.n)+'</td>'
+      +'<td class="pt-title">'+esc(p.title)+'</td>'
+      +'<td style="color:#666;font-size:12px;white-space:nowrap;">'+esc(p.date)+'</td>'
+      +'<td style="color:#555;font-size:12.5px;">'+esc(p.venue)+'</td>'
+      +'<td style="color:#555;font-size:12px;">'+esc(p.org)+'</td>'
+      +'<td><span class="pt-tag '+tagCls+'">'+esc(p.type)+'</span><span class="pt-tag '+tagCls+'">'+catLabel+'</span></td>'
       +'</tr>';
   }).join('');
 }
@@ -11934,30 +12366,51 @@ async function _loadDash(){
   var upd = G('dash-updated');
   if(upd) upd.textContent = 'लोड हुँदैछ…';
   try{
+    // members/donors/news/gallery/supporters are already loaded into memory
+    // at app startup (mC/dC/nC/gC/sC) and kept in sync after every edit —
+    // re-fetching them here just to count them was a redundant Firestore
+    // read on every single dashboard view. Only fetch what genuinely isn't
+    // cached anywhere else: volunteers, newsletter, events, and the two
+    // pending-approval queues (donations, newMembers).
+    var setVal=function(k,v){ var el=G('ds-val-'+k); if(el) el.textContent=v; };
+    setVal('members', mC.length); setVal('donors', dC.length);
+    setVal('news', nC.length); setVal('gallery', gC.length);
+    setVal('supporters', sC.length);
+
     var counts = await Promise.allSettled([
-      window._getDocs(window._col(window._db,'members')),
-      window._getDocs(window._col(window._db,'donors')),
-      window._getDocs(window._col(window._db,'news')),
-      window._getDocs(window._col(window._db,'gallery')),
       window._getDocs(window._col(window._db,'volunteers')),
       window._getDocs(window._col(window._db,'newsletter')),
       window._getDocs(window._col(window._db,'events')),
-      window._getDocs(window._col(window._db,'supporters'))
+      window._getDocs(window._col(window._db,'donations')),
+      window._getDocs(window._col(window._db,'newMembers'))
     ]);
-    var keys=['members','donors','news','gallery','volunteers','newsletter','events','supporters'];
-    keys.forEach(function(k,i){
-      var el=G('ds-val-'+k);
-      if(el) el.textContent = counts[i].status==='fulfilled' ? counts[i].value.docs.length : '—';
-    });
-    // Recent activity — last 5 news items
-    if(counts[2].status==='fulfilled'){
-      var recentNews = counts[2].value.docs.map(function(d){return d.data();})
-        .sort(function(a,b){return (b.ts||0)-(a.ts||0);}).slice(0,5);
-      var feed = G('dash-recent');
-      if(feed) feed.innerHTML = recentNews.length
-        ? recentNews.map(function(n){return '<div style="padding:6px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#8B1520;font-weight:700;">📰</span> '+n.title+' <span style="color:#aaa;font-size:11px;">'+n.date+'</span></div>';}).join('')
-        : '<div style="color:#aaa;">कुनै समाचार छैन।</div>';
+    var volunteersSnap=counts[0], newsletterSnap=counts[1], eventsSnap=counts[2], donationsSnap=counts[3], newMembersSnap=counts[4];
+    setVal('volunteers', volunteersSnap.status==='fulfilled'?volunteersSnap.value.docs.length:'—');
+    setVal('newsletter', newsletterSnap.status==='fulfilled'?newsletterSnap.value.docs.length:'—');
+    setVal('events', eventsSnap.status==='fulfilled'?eventsSnap.value.docs.length:'—');
+
+    // ── Pending-approval counts — the actionable queue ──────────────────────
+    function _pendingCount(snap){
+      if(snap.status!=='fulfilled') return '—';
+      return snap.value.docs.filter(function(d){ return d.data().status==='pending'; }).length;
     }
+    var pdEl=G('ds-val-p-donations'); if(pdEl){ var pd=_pendingCount(donationsSnap); pdEl.textContent=pd; pdEl.style.color=(pd>0?'#c0392b':''); }
+    var pnEl=G('ds-val-p-newmembers'); if(pnEl){ var pn=_pendingCount(newMembersSnap); pnEl.textContent=pn; pnEl.style.color=(pn>0?'#c0392b':''); }
+    var pvEl=G('ds-val-p-volunteers'); if(pvEl){ var pv=_pendingCount(volunteersSnap); pvEl.textContent=pv; pvEl.style.color=(pv>0?'#c0392b':''); }
+    // ── Media file count proxy (not real Cloudinary MB — see tooltip) ───────
+    var mediaEl=G('ds-val-media');
+    if(mediaEl){
+      var mediaCount = [nC,gC,mC,sC].reduce(function(sum,arr){
+        return sum + arr.filter(function(d){ return !!d.img; }).length;
+      }, 0);
+      mediaEl.textContent = mediaCount;
+    }
+    // Recent activity — last 5 news items (from the cached array, no fetch)
+    var recentNews = nC.slice().sort(function(a,b){return (b.ts||0)-(a.ts||0);}).slice(0,5);
+    var feed = G('dash-recent');
+    if(feed) feed.innerHTML = recentNews.length
+      ? recentNews.map(function(n){return '<div style="padding:6px 0;border-bottom:1px solid #f0f0f0;"><span style="color:#8B1520;font-weight:700;">📰</span> '+esc(n.title)+' <span style="color:#aaa;font-size:11px;">'+esc(n.date)+'</span></div>';}).join('')
+      : '<div style="color:#aaa;">कुनै समाचार छैन।</div>';
     if(upd) upd.textContent = 'अपडेट: '+new Date().toLocaleTimeString('ne-NP');
   }catch(e){
     if(upd) upd.textContent = 'लोड गर्न सकिएन: '+e.message;
@@ -12150,11 +12603,11 @@ function _renderTestimonialsPublic(){
     var ini = (t.name||'?').charAt(0).toUpperCase();
     return '<div style="background:#fff;border-radius:14px;padding:20px;box-shadow:0 2px 12px rgba(26,17,8,.07);border-left:4px solid '+col+';">'
       +'<div style="font-size:28px;color:'+col+';margin-bottom:8px;">\"</div>'
-      +'<p style="font-size:13px;color:#444;line-height:1.8;margin-bottom:12px;">'+t.quote+'</p>'
+      +'<p style="font-size:13px;color:#444;line-height:1.8;margin-bottom:12px;">'+esc(t.quote)+'</p>'
       +'<div style="display:flex;align-items:center;gap:8px;">'
-      +'<div style="width:32px;height:32px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;">'+ini+'</div>'
-      +'<div><div style="font-size:12px;font-weight:700;color:#1a2332;">'+t.name+'</div>'
-      +'<div style="font-size:11px;color:#888;">'+(t.role||'')+'</div></div></div>'
+      +'<div style="width:32px;height:32px;border-radius:50%;background:'+col+';display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:13px;">'+esc(ini)+'</div>'
+      +'<div><div style="font-size:12px;font-weight:700;color:#1a2332;">'+esc(t.name)+'</div>'
+      +'<div style="font-size:11px;color:#888;">'+esc(t.role||'')+'</div></div></div>'
       +'</div>';
   }).join('');
 }
@@ -12224,22 +12677,26 @@ document.addEventListener('DOMContentLoaded', function(){
   };
 })();
 
-// Standalone approve function called from volunteer list buttons
+// Standalone approve function called from volunteer list buttons.
+// NOTE: this used to set {confirmed:true, confirmedAt:...} while every other
+// part of the app (admin badges, the public approved-volunteers grid) reads
+// m.status==='confirmed' — so approving a volunteer never actually showed as
+// approved anywhere. Fixed to write the field the rest of the app expects.
 async function _approveVolunteer(id, name, email){
-  if(!confirm('स्वयंसेवक "'+name+'" लाई स्वीकृत गर्ने र Welcome Email पठाउने?')) return;
+  var who = name || 'यो स्वयंसेवक';
+  if(!confirm('स्वयंसेवक "'+who+'" लाई स्वीकृत गर्ने'+(email?' र Welcome Email पठाउने':'')+'?')) return;
   try{
-    // Mark as confirmed in Firebase
-    await window._updateDoc(window._doc(window._db,'volunteers',id),{confirmed:true,confirmedAt:Date.now()});
-    // Send welcome email via Web3Forms
+    await window._upd(window._doc(window._db,'volunteers',id),{status:'confirmed'});
     if(email){
       await _sendW3F(
         'स्वागत छ! क्षितिज नाट्य प्रतिष्ठानमा तपाईंको आवेदन स्वीकृत भयो।',
-        'नमस्ते '+name+',\n\nतपाईंको स्वयंसेवक आवेदन स्वीकृत भएको छ। क्षितिज नाट्य प्रतिष्ठान परिवारमा स्वागत छ! ✅\n\nसम्पर्कका लागि: kurakalpit@gmail.com\nवेबसाइट: https://kshitiznatya.org.np',
-        name, email, email
+        'नमस्ते '+who+',\n\nतपाईंको स्वयंसेवक आवेदन स्वीकृत भएको छ। क्षितिज नाट्य प्रतिष्ठान परिवारमा स्वागत छ! ✅\n\nसम्पर्कका लागि: kurakalpit@gmail.com\nवेबसाइट: https://kshitiznatya.org.np',
+        who, email, email
       );
     }
-    toast('✅ स्वीकृत भयो'+( email?' र email पठाइयो':'')+' — '+name,'success',4000);
+    toast('✅ स्वीकृत भयो'+(email?' र email पठाइयो':'')+' — '+who,'success',4000);
     loadVolunteers(true);
+    _loadApprovedPublicGrid('volunteers','pg-vol-approved-grid');
   }catch(e){ toast('❌ '+e.message,'error'); }
 }
 
@@ -12647,7 +13104,8 @@ function _ltrNewLetter(){
   _ltrLoadedRecordId=null;
   ['ltr-pras','ltr-subject','ltr-body','ltr-extra-list'].forEach(function(id){G(id).value='';});
   G('ltr-greeting').value='तपाईं आदरणीय मान्यजन प्रति सादर नमस्कार।';
-  G('ltr-sig-name').value='माधब कल्पित'; G('ltr-sig-role').value='(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value='९८४४६३७९५२';
+  G('ltr-sig-name').value='माधब कल्पित'; G('ltr-sig-role').value='(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value='९८४४६३७९५२'; G('ltr-sig-order').value='3';
+  G('ltr-sig2-order').value='2'; G('ltr-sig3-order').value='1';
   var d=new Date();
   G('ltr-date').value = d.getFullYear()+'/'+String(d.getMonth()+1).padStart(2,'0')+'/'+String(d.getDate()).padStart(2,'0');
   _loadLetterCounter(true);
@@ -12701,24 +13159,28 @@ var _LETTER_ROSTER = [
   {t:'name', c:'mg', name:'भिमा सिवाकोटी', role:'अ. संचार समिति'}
 ];
 function _ltrExecSidebarHtml(){
-  var html = _LETTER_ROSTER.map(function(item){
-    // Header lines (सदस्यहरू/संरक्षकहरु/विभागीय प्रमुख) are always maroon.
-    if(item.t==='header') return '<div class="exec-role" style="margin-top:8px;font-weight:900;">'+_ltrEscape(item.text)+'</div>';
-    if(item.t==='name'){
-      // c:'m'  → केन्द्रीय कार्यसमिति style: name + role both maroon.
-      // c:'mg' → विभागीय प्रमुख style: name maroon, role green.
-      var nameCls = 'exec-name';
-      var roleCls = item.c==='mg' ? 'extra-line' : 'exec-role';
-      return '<div class="'+nameCls+'">'+_ltrEscape(item.name)+'</div><div class="'+roleCls+'">('+_ltrEscape(item.role)+')</div>';
-    }
-    // plain names (सदस्यहरू/संरक्षकहरु lists) are green.
-    return '<div class="extra-line">'+_ltrEscape(item.text)+'</div>';
-  }).join('');
+  var groups = [{header:null, items:[]}];
+  _LETTER_ROSTER.forEach(function(item){
+    if(item.t==='header'){ groups.push({header:item.text, items:[]}); }
+    else { groups[groups.length-1].items.push(item); }
+  });
   var extra = (G('ltr-extra-list').value||'').split('\n').map(function(s){return s.trim();}).filter(Boolean);
-  if(extra.length){
-    html += extra.map(function(line){ return '<div class="extra-line">'+_ltrEscape(line)+'</div>'; }).join('');
-  }
-  return html;
+  if(extra.length){ groups.push({header:null, items: extra.map(function(t){return {t:'plain',c:'g',text:t};})}); }
+  var groupsHtml = groups.map(function(g, idx){
+    var itemsHtml = g.items.map(function(item){
+      if(item.t==='name'){
+        // Names are always red, positions/roles are always green — consistent
+        // regardless of which roster group (केन्द्रीय कार्यसमिति / विभागीय प्रमुख) they're in.
+        return '<div class="exec-name">'+_ltrEscape(item.name)+'</div><div class="exec-role">('+_ltrEscape(item.role)+')</div>';
+      }
+      // Plain single-line names (सदस्यहरू/संरक्षकहरु lists, custom extra lines)
+      // are still names, so they're red too — not green like a role would be.
+      return '<div class="plain-name">'+_ltrEscape(item.text)+'</div>';
+    }).join('');
+    var headerHtml = g.header ? '<div class="roster-header">'+_ltrEscape(g.header)+'</div>' : '';
+    return '<div class="roster-group'+(idx>0?' roster-group-sep':'')+'">'+headerHtml+itemsHtml+'</div>';
+  }).join('');
+  return '<div class="roster-groups">'+groupsHtml+'</div>';
 }
 function _buildLetterPageHtml(){
   var org = document.querySelector('input[name="ltr-org"]:checked').value;
@@ -12735,24 +13197,24 @@ function _buildLetterPageHtml(){
   return ''
   +'<div class="ltr-quote">" हामी सबै जातका थुङ्गा-थुङ्गालाइ उनेर एउटा सुन्दर माला निर्माण गर्ने अभियानमा छाैँ । "</div>'
   +'<div class="ltr-hdr">'
-    +(logo?'<img class="ltr-hdr-logo" src="'+logo+'" crossorigin="anonymous"/>':'<div style="width:105px;"></div>')
+    +(logo?'<img class="ltr-hdr-logo" src="'+logo+'" alt="संस्थाको लोगो" crossorigin="anonymous"/>':'<div style="width:82px;"></div>')
     +'<div class="ltr-hdr-center">'
-      +(logo?'<img class="ltr-hdr-watermark" src="'+logo+'" crossorigin="anonymous"/>':'')
+      +(logo?'<img class="ltr-hdr-watermark" src="'+logo+'" alt="" crossorigin="anonymous"/>':'')
       +'<div class="ltr-hdr-title">'+orgName+'</div>'
       +'<div class="ltr-hdr-sub">कोशी प्रदेश, झापा</div>'
+      +'<div class="ltr-hdr-est">स्थापना २०५८</div>'
     +'</div>'
-    +'<div class="ltr-hdr-regs">द.न. २३०-५८/५९<br/>पा.न. ३०१६५०९८६<br/>स.क.पा.न. २४४९९</div>'
+    +'<div class="ltr-hdr-regs"><div>द.न. २३०-५८/५९</div><div>पा.न. ३०१६५०९८६</div><div>स.क.पा.न. २४४९९</div></div>'
   +'</div>'
   +'<div class="ltr-subhdr">'
     +'<div>प्र.स. '+_ltrEscape(G('ltr-pras').value)+'<br/>च.न. '+_ltrEscape(G('ltr-chalani').value)+'</div>'
-    +'<div class="ltr-mid">स्था. २०५८</div>'
-    +'<div>मिति : '+_ltrEscape(G('ltr-date').value)+'</div>'
+    +'<div class="ltr-subhdr-date">मिति : '+_ltrEscape(G('ltr-date').value)+'</div>'
   +'</div>'
   +'<div class="ltr-rule"></div>'
   +'<div class="ltr-body-wrap">'
     +(showSidebar?'<div class="ltr-sidebar">'+sidebarHtml+'</div>':'')
     +'<div class="ltr-main">'
-      +(greeting?'<p>'+_ltrEscape(greeting)+'</p>':'')
+      +(greeting?'<p>'+_ltrEscape(greeting).replace(/\n/g,'<br/>')+'</p>':'')
       +(subject?'<div class="ltr-subject">विषय: '+_ltrEscape(subject)+'</div>':'')
       +bodyHtml
       +_ltrSigBlocksHtml(sig)
@@ -12760,16 +13222,19 @@ function _buildLetterPageHtml(){
   +'</div>';
 }
 function _ltrSigBlocksHtml(primarySig){
-  var blocks = [{img:primarySig, name:G('ltr-sig-name').value, role:G('ltr-sig-role').value, phone:G('ltr-sig-phone').value}];
+  var blocks = [{img:primarySig, name:G('ltr-sig-name').value, role:G('ltr-sig-role').value, phone:G('ltr-sig-phone').value, order:parseInt(G('ltr-sig-order').value,10)||3}];
   if(G('ltr-sig2-on').checked){
-    blocks.push({img:(typeof _signature2Url!=='undefined'?_signature2Url:''), name:G('ltr-sig2-name').value, role:G('ltr-sig2-role').value, phone:G('ltr-sig2-phone').value});
+    blocks.push({img:(typeof _signature2Url!=='undefined'?_signature2Url:''), name:G('ltr-sig2-name').value, role:G('ltr-sig2-role').value, phone:G('ltr-sig2-phone').value, order:parseInt(G('ltr-sig2-order').value,10)||2});
   }
   if(G('ltr-sig3-on').checked){
-    blocks.push({img:(typeof _signature3Url!=='undefined'?_signature3Url:''), name:G('ltr-sig3-name').value, role:G('ltr-sig3-role').value, phone:G('ltr-sig3-phone').value});
+    blocks.push({img:(typeof _signature3Url!=='undefined'?_signature3Url:''), name:G('ltr-sig3-name').value, role:G('ltr-sig3-role').value, phone:G('ltr-sig3-phone').value, order:parseInt(G('ltr-sig3-order').value,10)||1});
   }
+  // Sort left-to-right by the admin-chosen position (e.g. सचिव=1, उपाध्यक्ष=2,
+  // अध्यक्ष=3 → अध्यक्ष ends up at the right end, matching seniority convention).
+  blocks.sort(function(a,b){ return a.order-b.order; });
   var inner = blocks.map(function(b){
     return '<div style="flex:1;min-width:140px;">'
-      +(b.img?'<img class="ltr-sig-img" src="'+b.img+'" crossorigin="anonymous"/>':'<div style="height:60px;"></div>')
+      +(b.img?'<img class="ltr-sig-img" src="'+b.img+'" alt="हस्ताक्षर" crossorigin="anonymous"/>':'<div style="height:60px;"></div>')
       +'<div class="ltr-sig-line"></div>'
       +'<div class="ltr-sig-name">'+_ltrEscape(b.name)+'</div>'
       +'<div class="ltr-sig-role">'+_ltrEscape(b.role)+'</div>'
@@ -12796,8 +13261,15 @@ function _renderLetterPreview(){
 }
 async function _downloadLetterPDF(){
   var st=G('ltr-status'); st.textContent='⏳ PDF तयार गर्दै...'; st.style.color='#888';
+  var el=G('ltr-page-live'); var mount=G('ltr-preview-mount');
+  // On phones, CSS scales this same live element down (~40-46%) so the admin
+  // can see the whole page without horizontal scrolling. html2canvas/jsPDF
+  // capture whatever is actually rendered, so without this override, a PDF
+  // downloaded from a phone would come out at the shrunk mobile-preview size
+  // instead of true A4 — inline styles here override the CSS media query.
+  var prevElT=el.style.transform, prevMW=mount.style.width, prevMH=mount.style.height, prevMO=mount.style.overflow;
+  el.style.transform='none'; mount.style.width='auto'; mount.style.height='auto'; mount.style.overflow='visible';
   try{
-    var el=G('ltr-page-live');
     var jsPDFCtor = window.jspdf && window.jspdf.jsPDF;
     if(!jsPDFCtor){ st.textContent='❌ PDF लाइब्रेरी लोड हुन सकेन — इन्टरनेट जाँच गर्नुस्।'; st.style.color='#c0392b'; return; }
     var doc = new jsPDFCtor('p','mm','a4');
@@ -12812,12 +13284,16 @@ async function _downloadLetterPDF(){
     st.textContent='✅ PDF डाउनलोड भयो।'; st.style.color='#2E7D32';
   }catch(e){
     st.textContent='❌ PDF बनाउन सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }finally{
+    el.style.transform=prevElT; mount.style.width=prevMW; mount.style.height=prevMH; mount.style.overflow=prevMO;
   }
 }
 async function _downloadLetterPNG(){
   var st=G('ltr-status'); st.textContent='⏳ PNG तयार गर्दै...'; st.style.color='#888';
+  var el=G('ltr-page-live'); var mount=G('ltr-preview-mount');
+  var prevElT=el.style.transform, prevMW=mount.style.width, prevMH=mount.style.height, prevMO=mount.style.overflow;
+  el.style.transform='none'; mount.style.width='auto'; mount.style.height='auto'; mount.style.overflow='visible';
   try{
-    var el=G('ltr-page-live');
     if(!window.html2canvas){ st.textContent='❌ इमेज लाइब्रेरी लोड हुन सकेन — इन्टरनेट जाँच गर्नुस्।'; st.style.color='#c0392b'; return; }
     var canvas = await html2canvas(el, {scale:3, useCORS:true, backgroundColor:'#ffffff'});
     canvas.toBlob(function(blob){
@@ -12828,6 +13304,8 @@ async function _downloadLetterPNG(){
     },'image/png');
   }catch(e){
     st.textContent='❌ PNG बनाउन सकिएन: '+(e.message||e); st.style.color='#c0392b';
+  }finally{
+    el.style.transform=prevElT; mount.style.width=prevMW; mount.style.height=prevMH; mount.style.overflow=prevMO;
   }
 }
 
@@ -12838,9 +13316,9 @@ function _ltrGatherFormData(){
     showSidebar: G('ltr-show-sidebar').checked,
     pras: G('ltr-pras').value, chalani: G('ltr-chalani').value, date: G('ltr-date').value,
     subject: G('ltr-subject').value, greeting: G('ltr-greeting').value, body: G('ltr-body').value,
-    sigName: G('ltr-sig-name').value, sigRole: G('ltr-sig-role').value, sigPhone: G('ltr-sig-phone').value,
-    sig2On: G('ltr-sig2-on').checked, sig2Name: G('ltr-sig2-name').value, sig2Role: G('ltr-sig2-role').value, sig2Phone: G('ltr-sig2-phone').value,
-    sig3On: G('ltr-sig3-on').checked, sig3Name: G('ltr-sig3-name').value, sig3Role: G('ltr-sig3-role').value, sig3Phone: G('ltr-sig3-phone').value,
+    sigName: G('ltr-sig-name').value, sigRole: G('ltr-sig-role').value, sigPhone: G('ltr-sig-phone').value, sigOrder: G('ltr-sig-order').value,
+    sig2On: G('ltr-sig2-on').checked, sig2Name: G('ltr-sig2-name').value, sig2Role: G('ltr-sig2-role').value, sig2Phone: G('ltr-sig2-phone').value, sig2Order: G('ltr-sig2-order').value,
+    sig3On: G('ltr-sig3-on').checked, sig3Name: G('ltr-sig3-name').value, sig3Role: G('ltr-sig3-role').value, sig3Phone: G('ltr-sig3-phone').value, sig3Order: G('ltr-sig3-order').value,
     extraList: G('ltr-extra-list').value
   };
 }
@@ -12894,9 +13372,9 @@ function _loadSavedLetterIntoForm(id){
   G('ltr-show-sidebar').checked = l.showSidebar!==false;
   G('ltr-pras').value=l.pras||''; G('ltr-chalani').value=l.chalani||''; G('ltr-date').value=l.date||'';
   G('ltr-subject').value=l.subject||''; G('ltr-greeting').value=l.greeting||''; G('ltr-body').value=l.body||'';
-  G('ltr-sig-name').value=l.sigName||'माधब कल्पित'; G('ltr-sig-role').value=l.sigRole||'(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value=l.sigPhone||'';
-  G('ltr-sig2-on').checked=!!l.sig2On; G('ltr-sig2-name').value=l.sig2Name||''; G('ltr-sig2-role').value=l.sig2Role||''; G('ltr-sig2-phone').value=l.sig2Phone||'';
-  G('ltr-sig3-on').checked=!!l.sig3On; G('ltr-sig3-name').value=l.sig3Name||''; G('ltr-sig3-role').value=l.sig3Role||''; G('ltr-sig3-phone').value=l.sig3Phone||'';
+  G('ltr-sig-name').value=l.sigName||'माधब कल्पित'; G('ltr-sig-role').value=l.sigRole||'(केन्द्रीय अध्यक्ष)'; G('ltr-sig-phone').value=l.sigPhone||''; G('ltr-sig-order').value=l.sigOrder||'3';
+  G('ltr-sig2-on').checked=!!l.sig2On; G('ltr-sig2-name').value=l.sig2Name||''; G('ltr-sig2-role').value=l.sig2Role||''; G('ltr-sig2-phone').value=l.sig2Phone||''; G('ltr-sig2-order').value=l.sig2Order||'2';
+  G('ltr-sig3-on').checked=!!l.sig3On; G('ltr-sig3-name').value=l.sig3Name||''; G('ltr-sig3-role').value=l.sig3Role||''; G('ltr-sig3-phone').value=l.sig3Phone||''; G('ltr-sig3-order').value=l.sig3Order||'1';
   G('ltr-extra-list').value=l.extraList||'';
   _ltrToggleSig(2); _ltrToggleSig(3);
   _renderLetterPreview();
