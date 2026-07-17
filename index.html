@@ -2219,8 +2219,7 @@ window.fbAsyncInit=function(){
       <span class="nl act" onclick="go('home')" data-ne="गृहपृष्ठ" data-en="Home">गृहपृष्ठ</span>
 
       <!-- हाम्रोबारे dropdown -->
-      <span class="nl has-drop">
-        <span data-ne="हाम्रोबारे" data-en="About">हाम्रोबारे</span> ▾
+      <span class="nl has-drop" data-ne="हाम्रोबारे" data-en="About">हाम्रोबारे ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="go('about')">🏛 संस्थाबारे</button>
           <button class="drop-item" onclick="go('founder')">👤 संस्थापक माधव 'कल्पित'</button>
@@ -2234,8 +2233,7 @@ window.fbAsyncInit=function(){
       </span>
 
       <!-- गतिविधि dropdown -->
-      <span class="nl has-drop">
-        <span data-ne="गतिविधि" data-en="Activities">गतिविधि</span> ▾
+      <span class="nl has-drop" data-ne="गतिविधि" data-en="Activities">गतिविधि ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="go('activities')">🎭 सबै गतिविधि</button>
           <div class="drop-divider"></div>
@@ -2249,8 +2247,7 @@ window.fbAsyncInit=function(){
       </span>
 
       <!-- नाटकहरू dropdown -->
-      <span class="nl has-drop">
-        <span data-ne="नाटकहरू" data-en="Productions">नाटकहरू</span> ▾
+      <span class="nl has-drop" data-ne="नाटकहरू" data-en="Productions">नाटकहरू ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="showPage('productions')">📋 सम्पूर्ण नाटक सूची</button>
           <button class="drop-item" onclick="go('natak')">🏛 झापा नाटक घर</button>
@@ -2259,8 +2256,7 @@ window.fbAsyncInit=function(){
       </span>
 
       <!-- सामग्री dropdown -->
-      <span class="nl has-drop">
-        <span data-ne="सामग्री" data-en="Content">सामग्री</span> ▾
+      <span class="nl has-drop" data-ne="सामग्री" data-en="Content">सामग्री ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="go('news')">📰 समाचार</button>
           <button class="drop-item" onclick="go('gallery')">🖼 फोटो ग्यालरी</button>
@@ -2270,8 +2266,7 @@ window.fbAsyncInit=function(){
       </span>
 
       <!-- सहभागिता dropdown -->
-      <span class="nl has-drop">
-        <span data-ne="सहभागिता" data-en="Join">सहभागिता</span> ▾
+      <span class="nl has-drop" data-ne="सहभागिता" data-en="Join">सहभागिता ▾
         <div class="drop-menu">
           <button class="drop-item" onclick="go('team')">👥 टोली</button>
           <button class="drop-item" onclick="go('newmember')">🆕 नयाँ सदस्यता</button>
@@ -2522,7 +2517,7 @@ window.fbAsyncInit=function(){
 
   <!-- Supporters strip -->
   <div style="margin-top:24px;">
-    <div class="label" style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;">
+    <div class="label" style="margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;" data-ne="सहयोगीहरू" data-en="Supporters">
       <span data-ne="सहयोगीहरू · Supporters" data-en="Supporters">सहयोगीहरू · Supporters</span>
       <button onclick="go('team')" style="background:none;border:1.5px solid #8B1520;color:#8B1520;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:700;cursor:pointer;font-family:inherit;" data-ne="सबै हेर्नुस् →" data-en="See All →">सबै हेर्नुस् →</button>
     </div>
@@ -6586,8 +6581,7 @@ function showPage(name, data){
     membership:'सदस्यता',productions:'नाटकहरू',tickets:'🎟 टिकट'};
   if(navMap[name]){
     document.querySelectorAll('.nl').forEach(function(el){
-      var ne = el.getAttribute('data-ne') || (el.querySelector('[data-ne]') && el.querySelector('[data-ne]').getAttribute('data-ne'));
-      if(ne===navMap[name]) el.classList.add('pg-act');
+      if(el.getAttribute('data-ne')===navMap[name]) el.classList.add('pg-act');
     });
   }
   // Render content for each page
