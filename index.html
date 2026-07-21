@@ -3895,6 +3895,11 @@ section[style*="background:#8B1520"] p{color:rgba(255,255,255,.9)!important;}
         <button class="save-btn" style="background:#8B1520;margin-bottom:12px;" onclick="_persistRenewalVisibilityList()">🔒 नवीकरण-अनुसार देखावट Firestore मा लागू गर्नुस्</button>
         <div class="ok-msg" id="pv-ok" style="display:none;margin-bottom:10px;"></div>
         <div class="err-msg" id="pv-err" style="display:none;margin-bottom:10px;"></div>
+        <div style="background:#f0f7ff;border-left:3px solid #1565C0;border-radius:0 6px 6px 0;padding:8px 14px;margin-bottom:10px;font-size:12px;color:#0d3a66;">
+          📸 नवीकरण फाराम भर्दा सदस्यले अपलोड गरेको फोटो अहिले फाराम पेश गरेको ठाउँमा मात्र देखिन्छ, टोली सूचीमा देखिँदैन। तल थिच्दा नाम मिलेका सदस्यहरूको फोटो टोली सूचीमा पनि स्वतः राखिनेछ (नाम नमिलेकाहरूको फोटो छुट्नेछ — रिपोर्टमा देखिनेछ)।
+        </div>
+        <button class="save-btn" style="background:#2E7D32;margin-bottom:12px;" onclick="_syncRenewalPhotosToTeam()">📸 नवीकरण फोटोहरू टोली सूचीमा राख्नुस्</button>
+        <div id="rp-log" style="display:none;margin-bottom:10px;font-size:12px;line-height:1.8;background:#fafafa;border-radius:8px;padding:10px 12px;max-height:260px;overflow-y:auto;"></div>
         <input class="fi" id="team-search" placeholder="🔍 नाम खोज्नुस्..." style="margin-bottom:10px;" oninput="_filterTeamList(this.value)"/>
         <div id="mg-team-tab"></div>
       </div>
@@ -8402,6 +8407,57 @@ async function _persistRenewalVisibilityList(){
     errEl.textContent='⚠️ '+okCount+' सफल, '+failCount+' असफल। इन्टरनेट जाँच गरी फेरि प्रयास गर्नुस्।';
     errEl.style.display='block';
   }
+}
+// ── SYNC RENEWAL PHOTOS TO TEAM LIST ────────────────────────────────────────
+// The renewal form uploads each person's photo to Cloudinary and stores the
+// URL on their membership submission (photoUrl) — but that photo only shows
+// on the submitted-renewals strip, not on the टोली page itself. This copies
+// each matched photo across by name, so it's usable for anyone on mC
+// regardless of current visibility (in case visibility changes later).
+async function _syncRenewalPhotosToTeam(){
+  var logEl = G('rp-log');
+  logEl.style.display='block'; logEl.innerHTML='⏳ नवीकरण सूची लोड हुँदैछ...';
+  var mems = window._allMembershipsCache;
+  if(!mems){
+    try{
+      var snap = await window._gets(window._col(window._db,'memberships'));
+      mems = snap.docs.map(function(d){return Object.assign({id:d.id},d.data());});
+      window._allMembershipsCache = mems;
+    }catch(e){ mems = []; }
+  }
+  // Build normalized-name -> best photoUrl map (prefer the most recent submission with a photo)
+  var photoByName = {};
+  mems.forEach(function(m){
+    if(!m.photoUrl) return;
+    var key = _normName(m.name);
+    var prev = photoByName[key];
+    if(!prev || (m.createdAt||'') > (prev.createdAt||'')) photoByName[key] = {photoUrl:m.photoUrl, createdAt:m.createdAt||'', name:m.name};
+  });
+  var matched=[], noPhoto=[], notFound=[];
+  var toWrite = [];
+  mC.forEach(function(m){
+    var hit = photoByName[_normName(m.name)];
+    if(!hit){ notFound.push(m.name); return; }
+    if(m.img === hit.photoUrl){ matched.push(m.name+' (पहिले नै ठीक)'); return; }
+    toWrite.push({member:m, photoUrl:hit.photoUrl});
+  });
+  logEl.innerHTML = '⏳ '+toWrite.length+' जनाको फोटो लागू गर्दै...';
+  var okCount=0, failCount=0;
+  for(var i=0;i<toWrite.length;i++){
+    var m = toWrite[i].member, url = toWrite[i].photoUrl;
+    try{
+      var payload=Object.assign({},m,{img:url}); delete payload.id;
+      await window._set(window._doc(window._db,'members',m.id),payload,{merge:true});
+      m.img = url; okCount++; matched.push(m.name);
+    }catch(e){ failCount++; }
+  }
+  await loadMembers(); renderManage();
+  var html = '<div style="font-weight:700;margin-bottom:6px;">✅ '+okCount+' जनाको फोटो राखियो'+(failCount?(', ⚠️ '+failCount+' असफल'):'')+'</div>';
+  if(notFound.length){
+    html += '<div style="margin-top:8px;color:#8B1520;font-weight:700;">— नवीकरण फाराममा नाम नमिलेका ('+notFound.length+' जना, फोटो छुट्यो):</div>';
+    html += notFound.map(function(n){return '<div>'+esc(n)+'</div>';}).join('');
+  }
+  logEl.innerHTML = html;
 }
 // ── PERSIST CANONICAL TEAM ORDER ────────────────────────────────────────────
 // Ranks members by office-bearer hierarchy (अध्यक्ष→उपाध्यक्ष→...→सदस्य), then
