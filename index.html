@@ -8291,12 +8291,20 @@ async function submitLifetime(){
   }
   var data = Object.assign({}, d, {membershipType:'आजीवन सदस्यता', fee:LIFETIME_FEE, status:'pending', createdAt:new Date().toISOString()});
   try{
-    await window._add(window._col(window._db,'lifetimeMembers'), data);
+    var ltDbOk = true;
+    try{ await window._add(window._col(window._db,'lifetimeMembers'), data); }
+    catch(e){ ltDbOk = false; console.warn('lifetimeMembers save failed (check Firestore rules):', e); }
     var emailBody = _buildEmailBody('आजीवन सदस्यता दर्ता (रु '+LIFETIME_FEE.toLocaleString('ne-NP')+'/-)', {
       'नाम':data.name,'फोन':data.phone,'इमेल':data.email||'—','ठेगाना':data.permanentAddr||'—',
-      'विभाग':data.dept||'—','पद':data.role||'—','सुझाव':data.feedback||'—'
+      'विभाग':data.dept||'—','पद':data.role||'—','सुझाव':data.feedback||'—',
+      'फोटो':data.photoUrl||'—',
+      'नोट':ltDbOk?'':'⚠ डाटाबेसमा सेभ भएन (Firestore rules) — यो इमेलबाट म्यानुअल रूपमा रेकर्ड गर्नुहोस्।'
     });
-    await _sendW3F('आजीवन सदस्यता दर्ता: '+data.name, emailBody, data.name, data.email||undefined, data.email||undefined);
+    var ltMailOk = await _sendW3F('आजीवन सदस्यता दर्ता: '+data.name, emailBody, data.name, data.email||undefined, data.email||undefined);
+    if(!ltDbOk && !ltMailOk){
+      G('lt-err').textContent='❌ दर्ता पठाउन सकिएन। कृपया केही बेरपछि फेरि प्रयास गर्नुस् वा +977 984-4637952 मा सम्पर्क गर्नुस्।';
+      G('lt-err').style.display='block'; return;
+    }
     G('lt-ok').style.display='block'; G('lt-ok').textContent='✔ दर्ता सफल भयो! तपाईंको आजीवन सदस्यता कार्ड तयार हुँदैछ...';
     window._lastLTData = { name:data.name, role:data.role||'आजीवन सदस्य', dept:data.dept||'आजीवन सदस्य',
       membershipType:'आजीवन सदस्यता', permanentAddr:data.permanentAddr, email:data.email, photoUrl:data.photoUrl };
@@ -8364,23 +8372,41 @@ async function deleteLifetimeMember(id){
 // approves); email is required for later book-delivery contact. To remove
 // this feature once the campaign ends: delete the nav links, the
 // page-bookbooking div, and the t-bookbooking admin tab. ──
-var BOOK_PACKAGES = { both:{label:'दुवै कृति (अबको नेपाल + अकल्पित आख्यान)', fee:1102}, sahayog:{label:'संस्थागत सहयोग', fee:1500} };
-function _bbUpdateTotal(){
-  var pkg = document.querySelector('input[name="bb-pkg"]:checked');
-  var qty = parseInt(G('bb-qty').value,10) || 1;
-  var fee = pkg ? BOOK_PACKAGES[pkg.value].fee : 0;
-  G('bb-total').textContent = 'रु. ' + (fee*qty).toLocaleString('ne-NP') + '/-';
+var BOOK_GIME = {bank:'Global IME Bank', acc:'05807010119443', holder:'Madhav Prasad Khatiwada'};   // account behind the supplied QR
+var BOOK_PACKAGES = { both:{label:'दुवै कृति सेट (अबको नेपाल + अकल्पित आख्यान)', fee:1102}, sahayog:{label:'संस्थागत सहयोग', fee:1500} };
+// The order can mix any of: N book sets + M institutional-support units + a
+// free-amount donation. _bbLines() is the single source of truth for the
+// running total, the saved record, the email and the printed bill.
+function _bbNum(id){ var el=G(id); return Math.max(0, parseInt(el && el.value,10) || 0); }
+function _bbLines(){
+  var qb=_bbNum('bb-qty-both'), qs=_bbNum('bb-qty-sahayog'), don=_bbNum('bb-donation');
+  var lines=[];
+  if(qb)  lines.push({key:'both',    label:BOOK_PACKAGES.both.label,    qty:qb,  unit:BOOK_PACKAGES.both.fee,    amt:qb*BOOK_PACKAGES.both.fee});
+  if(qs)  lines.push({key:'sahayog', label:BOOK_PACKAGES.sahayog.label, qty:qs,  unit:BOOK_PACKAGES.sahayog.fee, amt:qs*BOOK_PACKAGES.sahayog.fee});
+  if(don) lines.push({key:'donation',label:'थप दान',                    qty:1,   unit:don,                       amt:don});
+  var total=lines.reduce(function(t,l){return t+l.amt;},0);
+  return {lines:lines,total:total,bookQty:qb,sahayogQty:qs,donation:don};
 }
+function _bbFmt(n){ return 'रु. '+n.toLocaleString('ne-NP'); }
+function _bbUpdateTotal(){
+  var o=_bbLines();
+  G('bb-total').textContent=_bbFmt(o.total)+'/-';
+  G('bb-breakdown').innerHTML = o.lines.length
+    ? o.lines.map(function(l){ return esc(l.label)+(l.key==='donation'?'':' × '+l.qty)+' — '+_bbFmt(l.amt); }).join('<br/>')
+    : 'कुनै विकल्प छानिएको छैन।';
+}
+function _bbStep(id,d){
+  var el=G(id); el.value=Math.max(0,(parseInt(el.value,10)||0)+d); _bbUpdateTotal();
+}
+function _bbDonPill(n){ G('bb-donation').value=n; _bbUpdateTotal(); }
 async function submitBookBooking(){
   var name=G('bb-name').value.trim(), phone=G('bb-phone').value.trim(), email=G('bb-email').value.trim();
-  var pkgEl = document.querySelector('input[name="bb-pkg"]:checked');
+  var order = _bbLines();
   var photoFile = G('bb-photo-file') && G('bb-photo-file').files[0];
   if(!name||!phone||!email){ G('bb-err').textContent='कृपया नाम, फोन र इमेल भर्नुस्।'; G('bb-err').style.display='block'; return; }
-  if(!pkgEl){ G('bb-err').textContent='कृपया प्याकेज छान्नुस्।'; G('bb-err').style.display='block'; return; }
+  if(order.total<=0){ G('bb-err').textContent='कृपया कम्तीमा एउटा विकल्प छान्नुस् — किताब, संस्थागत सहयोग वा दान।'; G('bb-err').style.display='block'; return; }
   if(!photoFile){ G('bb-err').textContent='कृपया आफ्नो फोटो अपलोड गर्नुस् (विज्ञापनका लागि आवश्यक)।'; G('bb-err').style.display='block'; return; }
   G('bb-err').style.display='none';
-  var qty = parseInt(G('bb-qty').value,10) || 1;
-  var pkg = BOOK_PACKAGES[pkgEl.value];
   var photoUrl='', voucherUrl='';
   try{ photoUrl = await cloudUpload(photoFile); }
   catch(e){ G('bb-err').textContent='❌ फोटो अपलोड गर्न सकिएन। इन्टरनेट जाँच गरी फेरि प्रयास गर्नुस्।'; G('bb-err').style.display='block'; return; }
@@ -8388,21 +8414,41 @@ async function submitBookBooking(){
   if(voucherFile){ try{ voucherUrl = await cloudUpload(voucherFile); }catch(e){} }
   var data = {
     name:name, phone:phone, email:email, address:G('bb-addr').value.trim(),
-    package:pkgEl.value, packageLabel:pkg.label, qty:qty, fee:pkg.fee*qty,
+    items:order.lines, bookQty:order.bookQty, sahayogQty:order.sahayogQty, donation:order.donation,
+    packageLabel:order.lines.map(function(l){ return l.label+(l.key==='donation'?'':' × '+l.qty); }).join(' + '),
+    qty:order.bookQty+order.sahayogQty, fee:order.total,
     photoUrl:photoUrl, voucherUrl:voucherUrl, status:'pending', createdAt:new Date().toISOString()
   };
+  // Two records: the full private one (contact details, admin-only) and a
+  // minimal public one for the buyers list. A shared `ref` links them so the
+  // admin's ✅/🗑 can update both.
+  data.ref = 'BK' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2,5).toUpperCase();
+  var pub = { ref:data.ref, name:data.name, photoUrl:data.photoUrl, bookQty:data.bookQty, sahayogQty:data.sahayogQty,
+              donation:data.donation, fee:data.fee, status:'pending', createdAt:data.createdAt };
+  var dbOk = true;
+  try{ await window._add(window._col(window._db,'bookBookings'), data); }
+  catch(e){ dbOk = false; console.warn('bookBookings save failed (check Firestore rules):', e); }
+  try{ await window._add(window._col(window._db,'bookBuyers'), pub); }
+  catch(e){ console.warn('bookBuyers save failed (check Firestore rules):', e); }
   try{
-    var docRef = await window._add(window._col(window._db,'bookBookings'), data);
     var emailBody = _buildEmailBody('किताब अग्रिम बुकिङ (रु '+data.fee.toLocaleString('ne-NP')+'/-)', {
+      'बुकिङ कोड':data.ref,
       'नाम':data.name,'फोन':data.phone,'इमेल':data.email,'ठेगाना':data.address||'—',
-      'प्याकेज':data.packageLabel,'संख्या':String(data.qty),'जम्मा':'रु '+data.fee.toLocaleString('ne-NP'),
-      'भुक्तानी स्क्रिनसट':data.voucherUrl||'(संलग्न गरिएको छैन)'
+      'किताब सेट':String(data.bookQty),'संस्थागत सहयोग (संख्या)':String(data.sahayogQty),'थप दान':'रु '+data.donation.toLocaleString('ne-NP'),
+      'विवरण':data.packageLabel,'जम्मा':'रु '+data.fee.toLocaleString('ne-NP'),
+      'तस्बिर':data.photoUrl||'—',
+      'भुक्तानी स्क्रिनसट':data.voucherUrl||'(संलग्न गरिएको छैन)',
+      'नोट':dbOk?'':'⚠ डाटाबेसमा सेभ भएन (Firestore rules) — यो इमेलबाट म्यानुअल रूपमा रेकर्ड गर्नुहोस्।'
     });
-    await _sendW3F('किताब बुकिङ: '+data.name, emailBody, data.name, data.email, data.email);
+    var mailOk = await _sendW3F('किताब बुकिङ: '+data.name, emailBody, data.name, data.email, data.email);
+    if(!dbOk && !mailOk){
+      G('bb-err').textContent='❌ बुकिङ पठाउन सकिएन। कृपया केही बेरपछि फेरि प्रयास गर्नुस् वा +977 984-4637952 मा सम्पर्क गर्नुस्।';
+      G('bb-err').style.display='block'; return;
+    }
     G('bb-ok').style.display='block';
     G('bb-ok').textContent='✔ बुकिङ सफल भयो! तलको बिल हेर्नुस् वा प्रिन्ट/PDF गर्नुस्।';
     // Bill number: JNG-0001 style, based on how many bookings exist so far
-    var billNo = 'JNG-0001';
+    var billNo = 'JNG-' + data.ref.slice(-6);   // fallback if the count query is not permitted
     try{
       var countSnap = await window._gets(window._col(window._db,'bookBookings'));
       billNo = 'JNG-' + String(countSnap.docs.length).padStart(4,'0');
@@ -8411,14 +8457,14 @@ async function submitBookBooking(){
     G('bb-bill-box').style.display='block';
     G('bb-bill-box').scrollIntoView({behavior:'smooth',block:'start'});
     ['bb-name','bb-phone','bb-email','bb-addr'].forEach(function(id){ var el=G(id); if(el) el.value=''; });
-    G('bb-qty').value='1';
+    G('bb-qty-both').value='1'; G('bb-qty-sahayog').value='0'; G('bb-donation').value='0'; _bbUpdateTotal();
     if(G('bb-photo-file')) G('bb-photo-file').value='';
     if(G('bb-photo-name')) G('bb-photo-name').textContent='कुनै फोटो छानिएको छैन';
     var pp=G('bb-photo-prev'); if(pp){ pp.style.display='none'; pp.src=''; }
     if(G('bb-voucher-file')) G('bb-voucher-file').value='';
     if(G('bb-voucher-name')) G('bb-voucher-name').textContent='कुनै फाइल छानिएको छैन';
     var vp=G('bb-voucher-prev'); if(vp){ vp.style.display='none'; vp.src=''; }
-    _loadApprovedPublicGrid('bookBookings','bb-approved-grid');
+    _loadBookBuyers();
   }catch(e){ G('bb-err').textContent='Error: '+e.message; G('bb-err').style.display='block'; }
 }
 // Fill the printable bill (mirrors the reference bill layout: bill no, date,
@@ -8426,9 +8472,11 @@ async function submitBookBooking(){
 function _bbFillBill(billNo, data){
   G('bb-bill-no').textContent = billNo;
   G('bb-bill-date').textContent = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  G('bb-bill-pkg').textContent = 'बुकिङ प्याकेज (' + data.packageLabel + ')';
-  G('bb-bill-qty').textContent = data.qty;
-  G('bb-bill-amt').textContent = 'रु. ' + data.fee.toLocaleString('ne-NP');
+  G('bb-bill-rows').innerHTML = (data.items||[]).map(function(l){
+    return '<tr style="border-bottom:1px solid #eee;"><td style="padding:8px 0;">'+esc(l.label)+'</td>'
+      +'<td style="text-align:center;">'+(l.key==='donation'?'—':l.qty)+'</td>'
+      +'<td style="text-align:right;">'+_bbFmt(l.amt)+'</td></tr>';
+  }).join('');
   G('bb-bill-total').textContent = 'रु. ' + data.fee.toLocaleString('ne-NP');
   G('bb-bill-name').textContent = data.name;
   G('bb-bill-phone').textContent = data.phone;
@@ -8437,8 +8485,10 @@ function _bbFillBill(billNo, data){
   else { addrWrap.style.display='none'; }
   G('bb-bill-qr').src = BOOK_QR_IMG;
   if(typeof DB!=='undefined'){
-    G('bb-bill-holder').textContent = DB.holder;
-    G('bb-bill-bankline').textContent = DB.bank + ' · ' + DB.acc;
+    G('bb-bill-holder').textContent = BOOK_GIME.holder;
+    G('bb-bill-bankline').innerHTML =
+      esc(BOOK_GIME.bank)+' · '+esc(BOOK_GIME.acc)+' <span style="color:#aaa;">(QR)</span><br/>'+
+      esc(DB.bank)+' · '+esc(DB.acc)+'<br/>eSewa · '+esc(DB.esewa);
   }
 }
 function _bbPrintBill(){
@@ -8465,11 +8515,12 @@ function renderPageBookBooking(){
   var bankEl = G('bb-bank-section');
   if(bankEl && typeof DB!=='undefined'){
     bankEl.innerHTML =
-      '<div class="bank-c"><div class="bl">🏦 बैंक खाता नं.</div><div class="bv">'+DB.acc+'</div><div class="bs2">'+DB.bank+' — '+DB.holder+'</div></div>'+
-      '<div class="bank-c"><div class="bl">📱 eSewa</div><div class="bv">'+DB.esewa+'</div><div class="bs2">'+DB.holder+'</div></div>';
+      '<div class="bank-c"><div class="bl">🏦 Global IME Bank (QR माथि)</div><div class="bv">'+BOOK_GIME.acc+'</div><div class="bs2">'+BOOK_GIME.holder+'</div></div>'+
+      '<div class="bank-c"><div class="bl">🏦 '+esc(DB.bank)+' बैंक खाता नं.</div><div class="bv">'+esc(DB.acc)+'</div><div class="bs2">'+esc(DB.holder)+'</div></div>'+
+      '<div class="bank-c"><div class="bl">📱 eSewa</div><div class="bv">'+esc(DB.esewa)+'</div><div class="bs2">'+esc(DB.holder)+'</div></div>';
   }
   _bbUpdateTotal();
-  _loadApprovedPublicGrid('bookBookings','bb-approved-grid');
+  _loadBookBuyers();
   if(document.body.classList.contains('admin-mode')){
     var el=G('pg-bb-admin'); if(el) el.style.display='block';
     if(typeof loadBookBookings==='function') loadBookBookings(true);
@@ -8486,26 +8537,82 @@ async function loadBookBookings(adminMode){
     var html = rows.map(function(r){
       return '<div style="display:flex;align-items:center;gap:10px;padding:10px;border-bottom:1px solid #eee;">'
         + (r.photoUrl?'<img src="'+esc(r.photoUrl)+'" style="width:44px;height:44px;border-radius:50%;object-fit:cover;"/>':'')
-        + '<div style="flex:1;min-width:0;"><b>'+esc(r.name)+'</b> — '+esc(r.packageLabel||'')+' × '+(r.qty||1)+' (रु '+(r.fee||0).toLocaleString('ne-NP')+')<br/>'
+        + '<div style="flex:1;min-width:0;"><b>'+esc(r.name)+'</b> — '+esc(r.packageLabel||'')+(r.items?'':' × '+(r.qty||1))+' (रु '+(r.fee||0).toLocaleString('ne-NP')+')<br/>'
         + '<span style="font-size:11.5px;color:#888;">📞 '+esc(r.phone||'')+' · ✉ '+esc(r.email||'')+' · '+(r.status==='confirmed'?'✅ स्वीकृत':'⏳ Pending')+'</span></div>'
         + (r.voucherUrl?'<a href="'+esc(r.voucherUrl)+'" target="_blank" style="font-size:11px;">भाैचर</a>':'')
-        + (r.status!=='confirmed'?'<button class="save-btn" style="font-size:11px;padding:5px 10px;" onclick="_approveBookBooking(\''+r.id+'\')">✅</button>':'')
-        + '<button class="save-btn" style="font-size:11px;padding:5px 10px;background:#c0392b;" onclick="deleteBookBooking(\''+r.id+'\')">🗑</button>'
+        + (r.status!=='confirmed'?'<button class="save-btn" style="font-size:11px;padding:5px 10px;" onclick="_approveBookBooking(\''+r.id+'\',\''+(r.ref||'')+'\')">✅</button>':'')
+        + '<button class="save-btn" style="font-size:11px;padding:5px 10px;background:#c0392b;" onclick="deleteBookBooking(\''+r.id+'\',\''+(r.ref||'')+'\')">🗑</button>'
         + '</div>';
     }).join('');
     targets.forEach(function(w){ w.innerHTML = html; });
   }catch(e){ ['bb-admin-list','pg-bb-rows'].forEach(function(id){ var w=G(id); if(w) w.innerHTML='<div style="color:#8B1520;">Error: '+e.message+'</div>'; }); }
 }
-async function _approveBookBooking(id){
+// Keep the public buyers-list record (bookBuyers) in step with the private one.
+async function _bbSyncPublic(ref, action){
+  if(!ref) return;
+  try{
+    var snap = await window._gets(window._col(window._db,'bookBuyers'));
+    for(var k=0;k<snap.docs.length;k++){
+      var d = snap.docs[k];
+      if((d.data()||{}).ref !== ref) continue;
+      if(action==='delete') await window._del(window._doc(window._db,'bookBuyers',d.id));
+      else await window._upd(window._doc(window._db,'bookBuyers',d.id),{status:'confirmed'});
+    }
+  }catch(e){ console.warn('bookBuyers sync failed:', e); }
+}
+async function _approveBookBooking(id, ref){
   try{ await window._upd(window._doc(window._db,'bookBookings',id),{status:'confirmed'}); toast('✅ स्वीकृत भयो!','success'); }
   catch(e){ toast('❌ Error: '+e.message,'error'); }
+  await _bbSyncPublic(ref,'confirm');
   loadBookBookings(true);
-  _loadApprovedPublicGrid('bookBookings','bb-approved-grid');
+  _loadBookBuyers();
 }
-async function deleteBookBooking(id){
+async function deleteBookBooking(id, ref){
   if(!confirm('Remove this booking?')) return;
   try{await window._del(window._doc(window._db,'bookBookings',id));}catch(e){}
+  await _bbSyncPublic(ref,'delete');
   loadBookBookings(true);
+  _loadBookBuyers();
+}
+
+// Public buyers list: name + what they bought + amount + status. Photos are
+// shown only once the admin has confirmed the booking (moderation).
+async function _loadBookBuyers(){
+  var list=G('bb-buyers-list'), sum=G('bb-buyers-summary');
+  if(!list) return;
+  try{
+    var snap = await window._gets(window._col(window._db,'bookBuyers'));
+    var rows = snap.docs.map(function(d){ return Object.assign({id:d.id}, d.data()); });
+    rows.sort(function(a,b){ return (b.createdAt||'')>(a.createdAt||'')?1:-1; });
+    if(!rows.length){
+      if(sum) sum.textContent='';
+      list.innerHTML='<div style="color:#888888;font-size:13px;">अहिलेसम्म कुनै बुकिङ भएको छैन — पहिलो खरिदकर्ता तपाईं नै बन्नुहोस्! 🙏</div>';
+      return;
+    }
+    var sets=0,total=0;
+    rows.forEach(function(r){ sets+=(r.bookQty||0); total+=(r.fee||0); });
+    if(sum) sum.innerHTML='<b>'+rows.length+'</b> जना · <b>'+sets+'</b> सेट किताब · कुल <b>रु. '+total.toLocaleString('ne-NP')+'</b>';
+    list.innerHTML = rows.map(function(r){
+      var ok = r.status==='confirmed';
+      var showPhoto = ok && r.photoUrl && /^(https?:|data:image)/.test(r.photoUrl);
+      var av = showPhoto
+        ? '<img src="'+esc(r.photoUrl)+'" alt="" loading="lazy" style="width:46px;height:46px;border-radius:50%;object-fit:cover;border:2px solid #8B1520;flex-shrink:0;"/>'
+        : '<div style="width:46px;height:46px;border-radius:50%;background:#f0e8d8;border:2px solid #8B1520;display:flex;align-items:center;justify-content:center;font-size:18px;font-weight:700;color:#8B1520;flex-shrink:0;">'+esc((r.name||'?').trim().charAt(0))+'</div>';
+      var parts=[];
+      if(r.bookQty) parts.push('📚 '+r.bookQty+' सेट किताब');
+      if(r.sahayogQty) parts.push('🏛️ संस्थागत सहयोग × '+r.sahayogQty);
+      if(r.donation) parts.push('💝 दान रु. '+Number(r.donation).toLocaleString('ne-NP'));
+      var when = r.createdAt ? new Date(r.createdAt).toLocaleDateString('en-GB',{day:'numeric',month:'short'}) : '';
+      return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid #eee;">'+av
+        +'<div style="flex:1;min-width:0;"><div style="font-weight:700;color:#1a2332;font-size:14px;">'+esc(r.name||'—')+'</div>'
+        +'<div style="font-size:12px;color:#666;line-height:1.6;">'+parts.join(' · ')+'</div>'
+        +'<div style="font-size:11px;color:'+(ok?'#1a7a3a':'#b07a10')+';">'+(ok?'✅ भुक्तानी पुष्टि भयो':'⏳ पुष्टि हुन बाँकी')+(when?' · '+when:'')+'</div></div>'
+        +'<div style="font-weight:800;color:#8B1520;font-size:14px;white-space:nowrap;">रु. '+Number(r.fee||0).toLocaleString('ne-NP')+'</div></div>';
+    }).join('');
+  }catch(e){
+    if(sum) sum.textContent='';
+    list.innerHTML='<div style="color:#888888;font-size:12.5px;">सूची अहिले लोड हुन सकेन।</div>';
+  }
 }
 
 // ── MEMBERSHIP PAGE ──────────────────────────────────────────────────────────
@@ -11414,7 +11521,9 @@ function _handleUrlParams(){
   if(page){
     setTimeout(function(){
       var validPages = ['donate','membership','news','gallery','team','donors','contact',
-        'events','videos','notices','volunteer','search','productions','adhiveshan','legal','suborgs'];
+        'events','videos','notices','volunteer','search','productions','adhiveshan','legal','suborgs',
+        'newmember','lifetime','committeechart','bookbooking','bidhan','audit','navikaran','tickets','activity'];
+      if(page==='book' || page==='books') page='bookbooking';   // short friendly alias
       if(validPages.indexOf(page) !== -1){
         showPage(page);
       }
@@ -12557,6 +12666,15 @@ var _titleMap={
   </div>
   <div style="max-width:820px;margin:0 auto;padding:44px 5%;">
 
+    <!-- Direct link to this page: opens straight on the booking page, no menu navigation -->
+    <div class="share-link-box" style="margin-bottom:18px;">
+      <span style="font-size:12px;color:#555;font-weight:600;">🔗 यो पृष्ठको लिंक शेयर गर्नुस्:</span>
+      <input class="share-link-input" id="slk-bookbooking" value="https://kshitiznatya.org.np/?page=bookbooking" readonly onclick="this.select()"/>
+      <button class="share-link-copy" onclick="_copyShareLink('slk-bookbooking',this)">Copy</button>
+      <a href="https://wa.me/?text=%E0%A4%9D%E0%A4%BE%E0%A4%AA%E0%A4%BE%20%E0%A4%A8%E0%A4%BE%E0%A4%9F%E0%A4%95%20%E0%A4%98%E0%A4%B0%20%E0%A4%B8%E0%A4%B9%E0%A4%AF%E0%A5%8B%E0%A4%97%E0%A4%BE%E0%A4%B0%E0%A5%8D%E0%A4%A5%20%E0%A4%95%E0%A4%BF%E0%A4%A4%E0%A4%BE%E0%A4%AC%20%E0%A4%85%E0%A4%97%E0%A5%8D%E0%A4%B0%E0%A4%BF%E0%A4%AE%20%E0%A4%AC%E0%A5%81%E0%A4%95%E0%A4%BF%E0%A4%99%3A%20https%3A%2F%2Fkshitiznatya.org.np%2F%3Fpage%3Dbookbooking" target="_blank" rel="noopener" style="background:#25D366;color:#fff;border-radius:6px;padding:7px 12px;font-size:12px;font-weight:700;text-decoration:none;">WhatsApp</a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fkshitiznatya.org.np%2F%3Fpage%3Dbookbooking" target="_blank" rel="noopener" style="background:#1877F2;color:#fff;border-radius:6px;padding:7px 12px;font-size:12px;font-weight:700;text-decoration:none;">Facebook</a>
+    </div>
+
     <div style="background:#fff8e0;border:1px solid #e8d090;border-radius:8px;padding:8px 14px;font-size:12px;color:#7a5a10;text-align:center;margin-bottom:28px;">
       ⏳ यो एउटा <b>सीमित समयको (लगभग १ महिना)</b> विशेष अभियान हो।
     </div>
@@ -12593,23 +12711,49 @@ var _titleMap={
     <div style="background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:26px 22px;box-shadow:0 3px 18px rgba(26,17,8,.07);">
       <div style="font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#1a2332;margin-bottom:18px;">&#128218; बुकिङ फाराम</div>
 
-      <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">प्याकेज छान्नुस् *</label>
-      <div style="display:grid;gap:8px;margin-bottom:16px;">
-        <label style="display:flex;align-items:center;gap:8px;border:1.5px solid #ddd;border-radius:8px;padding:10px 12px;cursor:pointer;">
-          <input type="radio" name="bb-pkg" value="both" onchange="_bbUpdateTotal()"/> <span>दुवै कृति (अबको नेपाल + अकल्पित आख्यान) — रु. १,१०२/-</span>
-        </label>
-        <label style="display:flex;align-items:center;gap:8px;border:1.5px solid #ddd;border-radius:8px;padding:10px 12px;cursor:pointer;">
-          <input type="radio" name="bb-pkg" value="sahayog" onchange="_bbUpdateTotal()"/> <span>संस्थागत सहयोग — रु. १,५००/-</span>
-        </label>
-      </div>
-      <div class="fi-half" style="margin-bottom:16px;">
-        <div>
-          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">संख्या (Quantity)</label>
-          <input class="fi" id="bb-qty" type="number" min="1" value="1" onchange="_bbUpdateTotal()"/>
+      <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:8px;text-transform:uppercase;">के चाहनुहुन्छ? <span style="color:#8B1520;">(एक वा बढी छान्न सकिन्छ)</span> *</label>
+      <div style="display:grid;gap:10px;margin-bottom:14px;">
+        <div style="border:1.5px solid #ddd;border-radius:10px;padding:12px;">
+          <div style="font-size:13.5px;font-weight:700;color:#1a2332;">📚 दुवै कृति सेट <span style="font-weight:400;color:#666;">(अबको नेपाल + अकल्पित आख्यान)</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap;">
+            <span style="font-size:13px;color:#8B1520;font-weight:700;">रु. १,१०२/- प्रति सेट</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <button type="button" onclick="_bbStep('bb-qty-both',-1)" style="width:34px;height:34px;border-radius:8px;border:1.5px solid #8B1520;background:#fff;color:#8B1520;font-size:18px;font-weight:700;cursor:pointer;">−</button>
+              <input id="bb-qty-both" type="number" min="0" value="1" oninput="_bbUpdateTotal()" style="width:56px;height:34px;text-align:center;border:1.5px solid #ddd;border-radius:8px;font-size:15px;font-weight:700;"/>
+              <button type="button" onclick="_bbStep('bb-qty-both',1)" style="width:34px;height:34px;border-radius:8px;border:1.5px solid #8B1520;background:#8B1520;color:#fff;font-size:18px;font-weight:700;cursor:pointer;">+</button>
+            </span>
+          </div>
         </div>
-        <div>
-          <label style="font-size:11px;font-weight:700;color:#888888;display:block;margin-bottom:4px;text-transform:uppercase;">जम्मा रकम</label>
-          <div id="bb-total" style="font-size:16px;font-weight:800;color:#8B1520;padding:10px 0;">रु. ०/-</div>
+        <div style="border:1.5px solid #ddd;border-radius:10px;padding:12px;">
+          <div style="font-size:13.5px;font-weight:700;color:#1a2332;">🏛️ संस्थागत सहयोग</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;flex-wrap:wrap;">
+            <span style="font-size:13px;color:#8B1520;font-weight:700;">रु. १,५००/- प्रति सहयोग</span>
+            <span style="display:inline-flex;align-items:center;gap:6px;">
+              <button type="button" onclick="_bbStep('bb-qty-sahayog',-1)" style="width:34px;height:34px;border-radius:8px;border:1.5px solid #8B1520;background:#fff;color:#8B1520;font-size:18px;font-weight:700;cursor:pointer;">−</button>
+              <input id="bb-qty-sahayog" type="number" min="0" value="0" oninput="_bbUpdateTotal()" style="width:56px;height:34px;text-align:center;border:1.5px solid #ddd;border-radius:8px;font-size:15px;font-weight:700;"/>
+              <button type="button" onclick="_bbStep('bb-qty-sahayog',1)" style="width:34px;height:34px;border-radius:8px;border:1.5px solid #8B1520;background:#8B1520;color:#fff;font-size:18px;font-weight:700;cursor:pointer;">+</button>
+            </span>
+          </div>
+        </div>
+        <div style="border:1.5px solid #ddd;border-radius:10px;padding:12px;">
+          <div style="font-size:13.5px;font-weight:700;color:#1a2332;">💝 थप दान <span style="font-weight:400;color:#666;">(झापा नाटक घर निर्माणका लागि — आफ्नो इच्छाअनुसार)</span></div>
+          <div style="display:flex;align-items:center;gap:8px;margin-top:8px;">
+            <span style="font-size:14px;font-weight:700;color:#8B1520;">रु.</span>
+            <input id="bb-donation" type="number" min="0" value="0" oninput="_bbUpdateTotal()" style="flex:1;min-width:0;height:36px;border:1.5px solid #ddd;border-radius:8px;padding:0 10px;font-size:15px;font-weight:700;"/>
+          </div>
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:8px;">
+            <button type="button" class="amt-pill" onclick="_bbDonPill(500)">रु. ५००</button>
+            <button type="button" class="amt-pill" onclick="_bbDonPill(1000)">रु. १,०००</button>
+            <button type="button" class="amt-pill" onclick="_bbDonPill(2000)">रु. २,०००</button>
+            <button type="button" class="amt-pill" onclick="_bbDonPill(5000)">रु. ५,०००</button>
+          </div>
+        </div>
+      </div>
+      <div style="background:#fff8f0;border-left:3px solid #8B1520;border-radius:0 8px 8px 0;padding:12px 14px;margin-bottom:16px;">
+        <div id="bb-breakdown" style="font-size:12.5px;color:#666;line-height:1.7;">कुनै विकल्प छानिएको छैन।</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:6px;">
+          <span style="font-weight:700;color:#1a2332;">जम्मा रकम</span>
+          <span id="bb-total" style="font-size:18px;font-weight:800;color:#8B1520;">रु. ०/-</span>
         </div>
       </div>
 
@@ -12663,11 +12807,7 @@ var _titleMap={
           <thead><tr style="border-bottom:1px solid #ddd;text-align:left;color:#888;font-size:11px;text-transform:uppercase;">
             <th style="padding:6px 0;">विवरण</th><th style="text-align:center;">परिमाण</th><th style="text-align:right;">रकम</th>
           </tr></thead>
-          <tbody><tr style="border-bottom:1px solid #eee;">
-            <td id="bb-bill-pkg" style="padding:8px 0;">—</td>
-            <td id="bb-bill-qty" style="text-align:center;">—</td>
-            <td id="bb-bill-amt" style="text-align:right;">—</td>
-          </tr></tbody>
+          <tbody id="bb-bill-rows"></tbody>
         </table>
         <div style="display:flex;justify-content:space-between;align-items:center;border-top:2px solid #8B1520;padding-top:10px;margin-bottom:16px;">
           <span style="font-family:'Playfair Display',serif;font-size:15px;font-weight:700;">कुल रकम</span>
@@ -12691,12 +12831,13 @@ var _titleMap={
       <div style="text-align:center;font-size:11.5px;color:#888;margin-top:14px;" class="no-print">भुक्तानी पछि स्क्रिनसट यही ठेगानामा पठाउनुहोस् वा फोन गर्नुहोस् — माथिको फाराममा पनि संलग्न गर्न सकिन्छ।</div>
     </div>
 
-    <!-- Approved buyers (public "thank you" advertisement grid) -->
+    <!-- All buyers & their purchases (public). Only name, purchase and amount are
+         shown — phone/email/address never leave the private bookBookings record.
+         Photos appear only after the admin confirms the booking. -->
     <div style="margin-top:40px;">
-      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#128218; हामीबाट किताब बुक गर्नुभएका</div>
-      <div id="bb-approved-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:16px;">
-        <div style="grid-column:1/-1;color:#888888;font-size:13px;">लोड हुँदैछ...</div>
-      </div>
+      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#1a2332;margin-bottom:6px;">&#128218; हाम्रा किताब खरिदकर्ता तथा सहयोगीहरू</div>
+      <div id="bb-buyers-summary" style="font-size:13px;color:#8B1520;margin-bottom:12px;"></div>
+      <div id="bb-buyers-list"><div style="color:#888888;font-size:13px;">लोड हुँदैछ...</div></div>
     </div>
 
     <!-- Admin -->
